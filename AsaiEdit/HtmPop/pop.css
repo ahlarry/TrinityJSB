@@ -1,0 +1,15 @@
+body{margin:0px;padding:0px;height:100%;FILTER:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#FFFFFF,EndColorStr=#F3FBFC);}
+body,td,select,div,span,button{font-size:12px;}
+button{width:66px;border-width:1px;}
+input{border:1px solid #3181AF;font-size:12px;}
+.title{font-weight:bold}
+a:link{color:#3181AF;}
+a:visited{color:#3181AF;}
+.button{FILTER:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#3181AF,EndColorStr=#89C3E4);
+background-color:#3181AF;color:#fff;font-weight:bold;BORDER:1px solid #3181AF;font-size:12px;}
+.mtab{background-color:#E3F5FF;border:#3181AF 1px solid;height:100%;width:100%;}
+.tit{height:25px;line-height:25px;text-align:center;FILTER:progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#3181AF,EndColorStr=#89C3E4);
+background-color:#3181AF;color:#fff;font-weight:bold;border:#ffffff 1px solid;}
+.tdl{background-color:#ffffff;width:30%;text-align:right;}
+.tdr{background-color:#ffffff;width:70%;text-align:left;}
+.tdd{background-color:#ffffff;text-align:center;}

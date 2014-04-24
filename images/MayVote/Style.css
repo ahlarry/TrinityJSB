@@ -1,0 +1,60 @@
+body,td,button,textarea{
+	font-family: "宋体";
+	font-size: 9pt;
+	color: #333333;
+}
+.smalltxt{
+font-family: "Tahoma";
+font-size:11px;
+}
+table {
+ border-collapse: collapse;
+} 
+input
+{
+background-color: #ffffff; 
+border-bottom: #666666 1px solid;
+border-left: #666666 1px solid;
+border-right: #666666 1px solid;
+border-top: #666666 1px solid;
+color: #666666;
+height: 18px;
+border-color: #666666 #666666 #666666 #666666; font-size: 9pt
+}
+/* 按钮的css定义:对应css中的“button”，这里为按钮的风格设置，可定义内容为背景、字体、颜色、边框等 */
+button
+{
+font-size: 9pt;height: 20px;
+}
+/* 下拉列表框的css定义:对应css中的“select”，这里为下拉列表框的风格设置，可定义内容为背景、字体、颜色、边框等 */
+select
+{
+background-color: #ffffff; 
+border-bottom: #666666 1px solid;
+border-left: #666666 1px solid;
+border-right: #666666 1px solid;
+border-top: #666666 1px solid;
+color: #666666;
+height: 20px;
+border-color: #666666 #666666 #666666 #666666; font-size: 9pt
+}
+#list1
+{
+line-height:20px;
+}
+#list2
+{
+height:25px;
+}
+#list3
+{
+width:550px;
+text-align: center;
+}
+#list4
+{
+width:100%;
+text-align: center;
+}
+a  {color:#000000; text-decoration:none; }
+a:hover  { color:#FF0000;text-decoration:underline; }

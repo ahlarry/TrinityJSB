@@ -1,0 +1,3021 @@
+MIME-Version: 1.0
+X-Document-Type: Workbook
+Content-Type: multipart/related; boundary="----=_NextPart_01C85E61.43CBFDA0"
+
+此文档为“单个文件网页”，也称为“Web 档案”文件。如果您看到此消息，但是您的浏览器或编辑器不支持“Web 档案”文件。请下载支持“Web 档案”的浏览器，如 Windows? Internet Explorer?。
+
+------=_NextPart_01C85E61.43CBFDA0
+Content-Location: file:///C:/2689BC8E/plan.htm
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="us-ascii"
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:o=3D"urn:schemas-microsoft-com:office:office"
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel"
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta name=3D"Excel Workbook Frameset">
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
+<meta name=3DProgId content=3DExcel.Sheet>
+<meta name=3DGenerator content=3D"Microsoft Excel 12">
+<link rel=3DFile-List href=3D"plan_filelist.xml">
+<![if !supportTabStrip]>
+<link id=3D"shLink" href=3D"plan_sheet001.htm">
+
+<link id=3D"shLink">
+
+<script language=3D"JavaScript">
+<!--
+ var c_lTabs=3D1;
+
+ var c_rgszSh=3Dnew Array(c_lTabs);
+ c_rgszSh[0] =3D "2007";
+
+
+
+ var c_rgszClr=3Dnew Array(8);
+ c_rgszClr[0]=3D"window";
+ c_rgszClr[1]=3D"buttonface";
+ c_rgszClr[2]=3D"windowframe";
+ c_rgszClr[3]=3D"windowtext";
+ c_rgszClr[4]=3D"threedlightshadow";
+ c_rgszClr[5]=3D"threedhighlight";
+ c_rgszClr[6]=3D"threeddarkshadow";
+ c_rgszClr[7]=3D"threedshadow";
+
+ var g_iShCur;
+ var g_rglTabX=3Dnew Array(c_lTabs);
+
+function fnGetIEVer()
+{
+ var ua=3Dwindow.navigator.userAgent
+ var msie=3Dua.indexOf("MSIE")
+ if (msie>0 && window.navigator.platform=3D=3D"Win32")
+  return parseInt(ua.substring(msie+5,ua.indexOf(".", msie)));
+ else
+  return 0;
+}
+
+function fnBuildFrameset()
+{
+ var szHTML=3D"<frameset rows=3D\"*,18\" border=3D0 width=3D0 frameborder=
+=3Dno framespacing=3D0>"+
+  "<frame src=3D\""+document.all.item("shLink")[0].href+"\" name=3D\"frShee=
+t\" noresize>"+
+  "<frameset cols=3D\"54,*\" border=3D0 width=3D0 frameborder=3Dno framespa=
+cing=3D0>"+
+  "<frame src=3D\"\" name=3D\"frScroll\" marginwidth=3D0 marginheight=3D0 s=
+crolling=3Dno>"+
+  "<frame src=3D\"\" name=3D\"frTabs\" marginwidth=3D0 marginheight=3D0 scr=
+olling=3Dno>"+
+  "</frameset></frameset><plaintext>";
+
+ with (document) {
+  open("text/html","replace");
+  write(szHTML);
+  close();
+ }
+
+ fnBuildTabStrip();
+}
+
+function fnBuildTabStrip()
+{
+ var szHTML=3D
+  "<html><head><style>.clScroll {font:8pt Courier New;color:"+c_rgszClr[6]+=
+";cursor:default;line-height:10pt;}"+
+  ".clScroll2 {font:10pt Arial;color:"+c_rgszClr[6]+";cursor:default;line-h=
+eight:11pt;}</style></head>"+
+  "<body onclick=3D\"event.returnValue=3Dfalse;\" ondragstart=3D\"event.ret=
+urnValue=3Dfalse;\" onselectstart=3D\"event.returnValue=3Dfalse;\" bgcolor=
+=3D"+c_rgszClr[4]+" topmargin=3D0 leftmargin=3D0><table cellpadding=3D0 cel=
+lspacing=3D0 width=3D100%>"+
+  "<tr><td colspan=3D6 height=3D1 bgcolor=3D"+c_rgszClr[2]+"></td></tr>"+
+  "<tr><td style=3D\"font:1pt\">&nbsp;<td>"+
+  "<td valign=3Dtop id=3DtdScroll class=3D\"clScroll\" onclick=3D\"parent.f=
+nFastScrollTabs(0);\" onmouseover=3D\"parent.fnMouseOverScroll(0);\" onmous=
+eout=3D\"parent.fnMouseOutScroll(0);\"><a>&#171;</a></td>"+
+  "<td valign=3Dtop id=3DtdScroll class=3D\"clScroll2\" onclick=3D\"parent.=
+fnScrollTabs(0);\" ondblclick=3D\"parent.fnScrollTabs(0);\" onmouseover=3D\=
+"parent.fnMouseOverScroll(1);\" onmouseout=3D\"parent.fnMouseOutScroll(1);\=
+"><a>&lt</a></td>"+
+  "<td valign=3Dtop id=3DtdScroll class=3D\"clScroll2\" onclick=3D\"parent.=
+fnScrollTabs(1);\" ondblclick=3D\"parent.fnScrollTabs(1);\" onmouseover=3D\=
+"parent.fnMouseOverScroll(2);\" onmouseout=3D\"parent.fnMouseOutScroll(2);\=
+"><a>&gt</a></td>"+
+  "<td valign=3Dtop id=3DtdScroll class=3D\"clScroll\" onclick=3D\"parent.f=
+nFastScrollTabs(1);\" onmouseover=3D\"parent.fnMouseOverScroll(3);\" onmous=
+eout=3D\"parent.fnMouseOutScroll(3);\"><a>&#187;</a></td>"+
+  "<td style=3D\"font:1pt\">&nbsp;<td></tr></table></body></html>";
+
+ with (frames['frScroll'].document) {
+  open("text/html","replace");
+  write(szHTML);
+  close();
+ }
+
+ szHTML =3D
+  "<html><head>"+
+  "<style>A:link,A:visited,A:active {text-decoration:none;"+"color:"+c_rgsz=
+Clr[3]+";}"+
+  ".clTab {cursor:hand;background:"+c_rgszClr[1]+";font:9pt &#23435;&#20307=
+;;padding-left:3px;padding-right:3px;text-align:center;}"+
+  ".clBorder {background:"+c_rgszClr[2]+";font:1pt;}"+
+  "</style></head><body onload=3D\"parent.fnInit();\" onselectstart=3D\"eve=
+nt.returnValue=3Dfalse;\" ondragstart=3D\"event.returnValue=3Dfalse;\" bgco=
+lor=3D"+c_rgszClr[4]+
+  " topmargin=3D0 leftmargin=3D0><table id=3DtbTabs cellpadding=3D0 cellspa=
+cing=3D0>";
+
+ var iCellCount=3D(c_lTabs+1)*2;
+
+ var i;
+ for (i=3D0;i<iCellCount;i+=3D2)
+  szHTML+=3D"<col width=3D1><col>";
+
+ var iRow;
+ for (iRow=3D0;iRow<6;iRow++) {
+
+  szHTML+=3D"<tr>";
+
+  if (iRow=3D=3D5)
+   szHTML+=3D"<td colspan=3D"+iCellCount+"></td>";
+  else {
+   if (iRow=3D=3D0) {
+    for(i=3D0;i<iCellCount;i++)
+     szHTML+=3D"<td height=3D1 class=3D\"clBorder\"></td>";
+   } else if (iRow=3D=3D1) {
+    for(i=3D0;i<c_lTabs;i++) {
+     szHTML+=3D"<td height=3D1 nowrap class=3D\"clBorder\">&nbsp;</td>";
+     szHTML+=3D
+      "<td id=3DtdTab height=3D1 nowrap class=3D\"clTab\" onmouseover=3D\"p=
+arent.fnMouseOverTab("+i+");\" onmouseout=3D\"parent.fnMouseOutTab("+i+");\=
+">"+
+      "<a href=3D\""+document.all.item("shLink")[i].href+"\" target=3D\"frS=
+heet\" id=3DaTab>&nbsp;"+c_rgszSh[i]+"&nbsp;</a></td>";
+    }
+    szHTML+=3D"<td id=3DtdTab height=3D1 nowrap class=3D\"clBorder\"><a id=
+=3DaTab>&nbsp;</a></td><td width=3D100%></td>";
+   } else if (iRow=3D=3D2) {
+    for (i=3D0;i<c_lTabs;i++)
+     szHTML+=3D"<td height=3D1></td><td height=3D1 class=3D\"clBorder\"></t=
+d>";
+    szHTML+=3D"<td height=3D1></td><td height=3D1></td>";
+   } else if (iRow=3D=3D3) {
+    for (i=3D0;i<iCellCount;i++)
+     szHTML+=3D"<td height=3D1></td>";
+   } else if (iRow=3D=3D4) {
+    for (i=3D0;i<c_lTabs;i++)
+     szHTML+=3D"<td height=3D1 width=3D1></td><td height=3D1></td>";
+    szHTML+=3D"<td height=3D1 width=3D1></td><td></td>";
+   }
+  }
+  szHTML+=3D"</tr>";
+ }
+
+ szHTML+=3D"</table></body></html>";
+ with (frames['frTabs'].document) {
+  open("text/html","replace");
+  charset=3Ddocument.charset;
+  write(szHTML);
+  close();
+ }
+}
+
+function fnInit()
+{
+ g_rglTabX[0]=3D0;
+ var i;
+ for (i=3D1;i<=3Dc_lTabs;i++)
+  with (frames['frTabs'].document.all.tbTabs.rows[1].cells[fnTabToCol(i-1)])
+   g_rglTabX[i]=3DoffsetLeft+offsetWidth-6;
+}
+
+function fnTabToCol(iTab)
+{
+ return 2*iTab+1;
+}
+
+function fnNextTab(fDir)
+{
+ var iNextTab=3D-1;
+ var i;
+
+ with (frames['frTabs'].document.body) {
+  if (fDir=3D=3D0) {
+   if (scrollLeft>0) {
+    for (i=3D0;i<c_lTabs&&g_rglTabX[i]<scrollLeft;i++);
+    if (i<c_lTabs)
+     iNextTab=3Di-1;
+   }
+  } else {
+   if (g_rglTabX[c_lTabs]+6>offsetWidth+scrollLeft) {
+    for (i=3D0;i<c_lTabs&&g_rglTabX[i]<=3DscrollLeft;i++);
+    if (i<c_lTabs)
+     iNextTab=3Di;
+   }
+  }
+ }
+ return iNextTab;
+}
+
+function fnScrollTabs(fDir)
+{
+ var iNextTab=3DfnNextTab(fDir);
+
+ if (iNextTab>=3D0) {
+  frames['frTabs'].scroll(g_rglTabX[iNextTab],0);
+  return true;
+ } else
+  return false;
+}
+
+function fnFastScrollTabs(fDir)
+{
+ if (c_lTabs>16)
+  frames['frTabs'].scroll(g_rglTabX[fDir?c_lTabs-1:0],0);
+ else
+  if (fnScrollTabs(fDir)>0) window.setTimeout("fnFastScrollTabs("+fDir+");"=
+,5);
+}
+
+function fnSetTabProps(iTab,fActive)
+{
+ var iCol=3DfnTabToCol(iTab);
+ var i;
+
+ if (iTab>=3D0) {
+  with (frames['frTabs'].document.all) {
+   with (tbTabs) {
+    for (i=3D0;i<=3D4;i++) {
+     with (rows[i]) {
+      if (i=3D=3D0)
+       cells[iCol].style.background=3Dc_rgszClr[fActive?0:2];
+      else if (i>0 && i<4) {
+       if (fActive) {
+        cells[iCol-1].style.background=3Dc_rgszClr[2];
+        cells[iCol].style.background=3Dc_rgszClr[0];
+        cells[iCol+1].style.background=3Dc_rgszClr[2];
+       } else {
+        if (i=3D=3D1) {
+         cells[iCol-1].style.background=3Dc_rgszClr[2];
+         cells[iCol].style.background=3Dc_rgszClr[1];
+         cells[iCol+1].style.background=3Dc_rgszClr[2];
+        } else {
+         cells[iCol-1].style.background=3Dc_rgszClr[4];
+         cells[iCol].style.background=3Dc_rgszClr[(i=3D=3D2)?2:4];
+         cells[iCol+1].style.background=3Dc_rgszClr[4];
+        }
+       }
+      } else
+       cells[iCol].style.background=3Dc_rgszClr[fActive?2:4];
+     }
+    }
+   }
+   with (aTab[iTab].style) {
+    cursor=3D(fActive?"default":"hand");
+    color=3Dc_rgszClr[3];
+   }
+  }
+ }
+}
+
+function fnMouseOverScroll(iCtl)
+{
+ frames['frScroll'].document.all.tdScroll[iCtl].style.color=3Dc_rgszClr[7];
+}
+
+function fnMouseOutScroll(iCtl)
+{
+ frames['frScroll'].document.all.tdScroll[iCtl].style.color=3Dc_rgszClr[6];
+}
+
+function fnMouseOverTab(iTab)
+{
+ if (iTab!=3Dg_iShCur) {
+  var iCol=3DfnTabToCol(iTab);
+  with (frames['frTabs'].document.all) {
+   tdTab[iTab].style.background=3Dc_rgszClr[5];
+  }
+ }
+}
+
+function fnMouseOutTab(iTab)
+{
+ if (iTab>=3D0) {
+  var elFrom=3Dframes['frTabs'].event.srcElement;
+  var elTo=3Dframes['frTabs'].event.toElement;
+
+  if ((!elTo) ||
+   (elFrom.tagName=3D=3DelTo.tagName) ||
+   (elTo.tagName=3D=3D"A" && elTo.parentElement!=3DelFrom) ||
+   (elFrom.tagName=3D=3D"A" && elFrom.parentElement!=3DelTo)) {
+
+   if (iTab!=3Dg_iShCur) {
+    with (frames['frTabs'].document.all) {
+     tdTab[iTab].style.background=3Dc_rgszClr[1];
+    }
+   }
+  }
+ }
+}
+
+function fnSetActiveSheet(iSh)
+{
+ if (iSh!=3Dg_iShCur) {
+  fnSetTabProps(g_iShCur,false);
+  fnSetTabProps(iSh,true);
+  g_iShCur=3DiSh;
+ }
+}
+
+ window.g_iIEVer=3DfnGetIEVer();
+ if (window.g_iIEVer>=3D4)
+  fnBuildFrameset();
+//-->
+</script>
+<![endif]><!--[if gte mso 9]><xml>
+ <x:ExcelWorkbook>
+  <x:ExcelWorksheets>
+   <x:ExcelWorksheet>
+    <x:Name>2007</x:Name>
+    <x:WorksheetSource HRef=3D"plan_sheet001.htm"/>
+   </x:ExcelWorksheet>
+  </x:ExcelWorksheets>
+  <x:Stylesheet HRef=3D"plan_stylesheet.css"/>
+  <x:WindowHeight>9120</x:WindowHeight>
+  <x:WindowWidth>14955</x:WindowWidth>
+  <x:WindowTopX>120</x:WindowTopX>
+  <x:WindowTopY>105</x:WindowTopY>
+  <x:ProtectStructure>False</x:ProtectStructure>
+  <x:ProtectWindows>False</x:ProtectWindows>
+ </x:ExcelWorkbook>
+</xml><![endif]-->
+</head>
+
+<frameset rows=3D"*,39" border=3D0 width=3D0 frameborder=3Dno framespacing=
+=3D0>
+ <frame src=3D"plan_sheet001.htm" name=3D"frSheet">
+ <frame src=3D"plan_tabstrip.htm" name=3D"frTabs" marginwidth=3D0 marginhei=
+ght=3D0>
+ <noframes>
+  <body>
+   <p>&#27492;&#39029;&#38754;&#20351;&#29992;&#20102;&#26694;&#26550;&#652=
+92;&#32780;&#24744;&#30340;&#27983;&#35272;&#22120;&#19981;&#25903;&#25345;=
+&#26694;&#26550;&#12290;</p>
+  </body>
+ </noframes>
+</frameset>
+</html>
+
+------=_NextPart_01C85E61.43CBFDA0
+Content-Location: file:///C:/2689BC8E/plan_stylesheet.css
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/css; charset="us-ascii"
+
+tr
+	{mso-height-source:auto;
+	mso-ruby-visibility:none;}
+col
+	{mso-width-source:auto;
+	mso-ruby-visibility:none;}
+br
+	{mso-data-placement:same-cell;}
+ruby
+	{ruby-align:left;}
+.style0
+	{mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	white-space:nowrap;
+	mso-rotate:0;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	color:windowtext;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:SimSun;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	border:none;
+	mso-protection:locked visible;
+	mso-style-name:\5E38\89C4;
+	mso-style-id:0;}
+.font11
+	{color:black;
+	font-size:9.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:SimSun;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;}
+.font12
+	{color:black;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:SimSun;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;}
+.font13
+	{color:black;
+	font-size:9.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Tahoma, sans-serif;
+	mso-font-charset:0;}
+.font14
+	{color:black;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Tahoma, sans-serif;
+	mso-font-charset:0;}
+td
+	{mso-style-parent:style0;
+	padding:0px;
+	mso-ignore:padding;
+	color:windowtext;
+	font-size:12.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:SimSun;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:middle;
+	border:none;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	mso-protection:locked visible;
+	white-space:nowrap;
+	mso-rotate:0;}
+.xl65
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;}
+.xl66
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:1.0pt solid windowtext;}
+.xl67
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:none;}
+.xl68
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid windowtext;
+	border-right:1.0pt solid black;
+	border-bottom:none;
+	border-left:none;}
+.xl69
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:none;
+	border-left:1.0pt solid windowtext;}
+.xl70
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;}
+.xl71
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:1.0pt solid black;
+	border-bottom:none;
+	border-left:none;}
+.xl72
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:1.0pt solid windowtext;}
+.xl73
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;}
+.xl74
+	{mso-style-parent:style0;
+	font-size:36.0pt;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:1.0pt solid black;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;}
+.xl75
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;}
+.xl76
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:none;}
+.xl77
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid windowtext;
+	border-left:.5pt solid windowtext;}
+.xl78
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:1.0pt solid windowtext;
+	border-left:none;}
+.xl79
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:none;}
+.xl80
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid black;
+	border-left:.5pt solid windowtext;}
+.xl81
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid black;
+	border-left:none;}
+.xl82
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:1.0pt solid black;
+	border-left:none;}
+.xl83
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:1.0pt solid black;
+	border-bottom:none;
+	border-left:none;}
+.xl84
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:1.0pt solid black;
+	border-bottom:1.0pt solid black;
+	border-left:none;}
+.xl85
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;}
+.xl86
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid windowtext;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:none;}
+.xl87
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;}
+.xl88
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:none;}
+.xl89
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid black;
+	border-right:none;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl90
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid black;
+	border-right:none;
+	border-bottom:none;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl91
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid black;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl92
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:.5pt solid windowtext;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl93
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl94
+	{mso-style-parent:style0;
+	font-size:20.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl95
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid black;
+	border-right:none;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl96
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid black;
+	border-right:none;
+	border-bottom:none;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl97
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid black;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl98
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:.5pt solid windowtext;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl99
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl100
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl101
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid black;
+	border-right:.5pt solid black;
+	border-bottom:none;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl102
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:.5pt solid black;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl103
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;}
+.xl104
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:none;}
+.xl105
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:none;}
+.xl106
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid black;
+	border-left:.5pt solid windowtext;}
+.xl107
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid black;
+	border-left:none;}
+.xl108
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:1.0pt solid black;
+	border-left:none;}
+.xl109
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:1.0pt solid black;
+	border-bottom:none;
+	border-left:none;}
+.xl110
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:1.0pt solid black;
+	border-bottom:1.0pt solid black;
+	border-left:none;}
+.xl111
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:1.0pt solid black;
+	border-right:1.0pt solid black;
+	border-bottom:none;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl112
+	{mso-style-parent:style0;
+	font-size:14.0pt;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:1.0pt solid black;
+	border-bottom:.5pt solid windowtext;
+	border-left:none;
+	background:#CCFFFF;
+	mso-pattern:black none;}
+.xl113
+	{mso-style-parent:style0;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;}
+.xl114
+	{mso-style-parent:style0;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:none;
+	border-bottom:none;
+	border-left:none;}
+.xl115
+	{mso-style-parent:style0;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:.5pt solid windowtext;
+	border-right:1.0pt solid black;
+	border-bottom:none;
+	border-left:none;}
+.xl116
+	{mso-style-parent:style0;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid black;
+	border-left:.5pt solid windowtext;}
+.xl117
+	{mso-style-parent:style0;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:none;
+	border-bottom:1.0pt solid black;
+	border-left:none;}
+.xl118
+	{mso-style-parent:style0;
+	font-weight:700;
+	font-family:FZYaoTi;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	text-align:center;
+	border-top:none;
+	border-right:1.0pt solid black;
+	border-bottom:1.0pt solid black;
+	border-left:none;}
+
+------=_NextPart_01C85E61.43CBFDA0
+Content-Location: file:///C:/2689BC8E/plan_tabstrip.htm
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="us-ascii"
+
+<html>
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
+<meta name=3DProgId content=3DExcel.Sheet>
+<meta name=3DGenerator content=3D"Microsoft Excel 12">
+<link id=3DMain-File rel=3DMain-File href=3Dplan.htm>
+
+<script language=3D"JavaScript">
+<!--
+if (window.name!=3D"frTabs")
+ window.location.replace(document.all.item("Main-File").href);
+//-->
+</script>
+<style>
+<!--
+A {
+    text-decoration:none;
+    color:#000000;
+    font-size:9pt;
+}
+-->
+</style>
+</head>
+<body topmargin=3D0 leftmargin=3D0 bgcolor=3D"#808080">
+<table border=3D0 cellspacing=3D1>
+ <tr>
+ <td bgcolor=3D"#FFFFFF" nowrap><b><small><small>&nbsp;<a href=3D"plan_shee=
+t001.htm" target=3D"frSheet"><font face=3D"&#23435;&#20307;" color=3D"#0000=
+00">2007</font></a>&nbsp;</small></small></b></td>
+
+ </tr>
+</table>
+</body>
+</html>
+
+------=_NextPart_01C85E61.43CBFDA0
+Content-Location: file:///C:/2689BC8E/plan_sheet001.htm
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="us-ascii"
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml"
+xmlns:o=3D"urn:schemas-microsoft-com:office:office"
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel"
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=3DContent-Type content=3D"text/html; charset=3Dus-ascii">
+<meta name=3DProgId content=3DExcel.Sheet>
+<meta name=3DGenerator content=3D"Microsoft Excel 12">
+<link id=3DMain-File rel=3DMain-File href=3Dplan.htm>
+<link rel=3DFile-List href=3D"plan_filelist.xml">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+x\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]-->
+<link rel=3DStylesheet href=3D"plan_stylesheet.css">
+<style>
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+@page
+	{margin:1.0in .75in 1.0in .75in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;}
+ruby
+	{ruby-align:left;}
+rt
+	{color:windowtext;
+	font-size:9.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:SimSun;
+	mso-generic-font-family:auto;
+	mso-font-charset:134;
+	mso-char-type:none;
+	display:none;}
+-->
+</style>
+<![if !supportTabStrip]><script language=3D"JavaScript">
+<!--
+function fnUpdateTabs()
+ {
+  if (parent.window.g_iIEVer>=3D4) {
+   if (parent.document.readyState=3D=3D"complete"
+    && parent.frames['frTabs'].document.readyState=3D=3D"complete")
+   parent.fnSetActiveSheet(0);
+  else
+   window.setTimeout("fnUpdateTabs();",150);
+ }
+}
+
+if (window.name!=3D"frSheet")
+ window.location.replace("plan.htm");
+else
+ fnUpdateTabs();
+//-->
+</script>
+<![endif]><![if !supportAnnotations]><style id=3D"dynCom" type=3D"text/css"=
+><!-- --></style>
+
+<script language=3D"JavaScript"><!--
+
+function msoCommentShow(com_id,anchor_id) {
+	if(msoBrowserCheck()) {
+	   c =3D document.all(com_id);
+	   a =3D document.all(anchor_id);
+	   if (null !=3D c) {
+		var cw =3D c.offsetWidth;
+		var ch =3D c.offsetHeight;
+		var aw =3D a.offsetWidth;
+		var ah =3D a.offsetHeight;
+		var x =3D a.offsetLeft;
+		var y =3D a.offsetTop;
+		var el =3D a;
+		while (el.tagName !=3D "BODY") {
+		   el =3D el.offsetParent;
+		   x =3D x + el.offsetLeft;
+		   y =3D y + el.offsetTop;
+		   }	=09
+		var bw =3D document.body.clientWidth;
+		var bh =3D document.body.clientHeight;
+		var bsl =3D document.body.scrollLeft;
+		var bst =3D document.body.scrollTop;
+		if (x + cw + ah/2 > bw + bsl && x + aw - ah/2 - cw >=3D bsl ) {
+		   c.style.left =3D x + aw - ah / 2 - cw;=20
+		}
+		else {
+		   c.style.left =3D x + ah/2;=20
+		}
+		if (y + ch + ah/2 > bh + bst && y + ah/2 - ch >=3D bst ) {
+	 	   c.style.top =3D y + ah/2 - ch;
+		}=20
+		else {
+		   c.style.top =3D y + ah/2;
+		}
+		c.style.visibility =3D "visible";
+	   }
+	}
+}
+
+function msoCommentHide(com_id) {
+	if(msoBrowserCheck()) {
+	  c =3D document.all(com_id)
+	  if (null !=3D c) {
+	    c.style.visibility =3D "hidden";
+	    c.style.left =3D "-10000";
+	    c.style.top =3D "-10000";
+	  }
+	}
+}
+
+function msoBrowserCheck() {
+ ms=3Dnavigator.appVersion.indexOf("MSIE");
+ vers =3D navigator.appVersion.substring(ms+5, ms+6);
+ ie4 =3D (ms>0) && (parseInt(vers) >=3D4);
+ return ie4
+}
+
+if (msoBrowserCheck()) {
+document.styleSheets.dynCom.addRule(".msocomspan1","position:absolute");
+document.styleSheets.dynCom.addRule(".msocomspan2","position:absolute");
+document.styleSheets.dynCom.addRule(".msocomspan2","left:-1.5ex");
+document.styleSheets.dynCom.addRule(".msocomspan2","width:2ex");
+document.styleSheets.dynCom.addRule(".msocomspan2","height:0.5em");
+document.styleSheets.dynCom.addRule(".msocomanch","font-size:0.5em");
+document.styleSheets.dynCom.addRule(".msocomanch","color:red");
+document.styleSheets.dynCom.addRule(".msocomhide","display: none");
+document.styleSheets.dynCom.addRule(".msocomtxt","visibility: hidden");
+document.styleSheets.dynCom.addRule(".msocomtxt","position: absolute");    =
+   =20
+document.styleSheets.dynCom.addRule(".msocomtxt","top:-10000");        =20
+document.styleSheets.dynCom.addRule(".msocomtxt","left:-10000");        =20
+document.styleSheets.dynCom.addRule(".msocomtxt","width: 33%");            =
+    =20
+document.styleSheets.dynCom.addRule(".msocomtxt","background: infobackgroun=
+d");
+document.styleSheets.dynCom.addRule(".msocomtxt","color: infotext");
+document.styleSheets.dynCom.addRule(".msocomtxt","border-top: 1pt solid thr=
+eedlightshadow");
+document.styleSheets.dynCom.addRule(".msocomtxt","border-right: 2pt solid t=
+hreedshadow");
+document.styleSheets.dynCom.addRule(".msocomtxt","border-bottom: 2pt solid =
+threedshadow");
+document.styleSheets.dynCom.addRule(".msocomtxt","border-left: 1pt solid th=
+reedlightshadow");
+document.styleSheets.dynCom.addRule(".msocomtxt","padding: 3pt 3pt 3pt 3pt"=
+);
+document.styleSheets.dynCom.addRule(".msocomtxt","z-index: 100");
+}
+
+// -->
+</script>
+<![endif]>
+</head>
+
+<body link=3Dblue vlink=3Dpurple>
+
+<table border=3D0 cellpadding=3D0 cellspacing=3D0 width=3D973 style=3D'bord=
+er-collapse:
+ collapse;table-layout:fixed;width:730pt'>
+ <col width=3D47 style=3D'mso-width-source:userset;mso-width-alt:1504;width=
+:35pt'>
+ <col width=3D40 style=3D'mso-width-source:userset;mso-width-alt:1280;width=
+:30pt'>
+ <col width=3D33 style=3D'mso-width-source:userset;mso-width-alt:1056;width=
+:25pt'>
+ <col width=3D28 style=3D'mso-width-source:userset;mso-width-alt:896;width:=
+21pt'>
+ <col width=3D33 style=3D'mso-width-source:userset;mso-width-alt:1056;width=
+:25pt'>
+ <col width=3D72 span=3D4 style=3D'width:54pt'>
+ <col width=3D144 style=3D'mso-width-source:userset;mso-width-alt:4608;widt=
+h:108pt'>
+ <col width=3D72 span=3D5 style=3D'width:54pt'>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D15 rowspan=3D5 height=3D95 class=3Dxl66 width=3D973 style=
+=3D'border-right:
+  1.0pt solid black;border-bottom:.5pt solid black;height:71.25pt;width:730=
+pt'>&#24320;&#21457;&#23567;&#32452;&#24037;&#20316;&#35745;&#21010;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'height:14.25pt'>
+  <td colspan=3D2 rowspan=3D2 height=3D39 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:29.25pt'>&#26102;&#38388;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl75 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:1.0pt solid black'>&#20154;&#21592;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl75 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:1.0pt solid black'>&#20869;&#23481;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl75 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#23436;&#25104;&#24773;&#20917;</td>
+ </tr>
+ <tr height=3D20 style=3D'height:15.0pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>1&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#24314;&#31435;&#39033;&#30446;&#25968;&=
+#25454;&#24211;&#65292;&#24182;&#25552;&#20132;&#35780;&#23457;<![if !suppo=
+rtAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_1"
+  onmouseover=3D"msoCommentShow('_com_1','_anchor_1')"
+  onmouseout=3D"msoCommentHide('_com_1')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_1" name=3D"_msoanchor_1">[1]</a></spa=
+n></span><![endif]></td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#25968;&#25454;&#24211;&#24314;&#31435;&=
+#23436;&#25104;.&#26410;&#25552;&#20132;&#35780;&#23457;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#31995;&#32479;&#27599;&#26085;&#30331;=
+&#38470;&#20154;&#21592;&#35760;&#24405;<![if !supportAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_2"
+  onmouseover=3D"msoCommentShow('_com_2','_anchor_2')"
+  onmouseout=3D"msoCommentHide('_com_2')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_2" name=3D"_msoanchor_2">[2]</a></spa=
+n></span><![endif]></td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#23436;&#25104;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>2&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#32771;&#26680;&#31995;&#32479;&#20462;&=
+#25913;,&#39033;&#30446;&#35780;&#23457;<![if !supportAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_3"
+  onmouseover=3D"msoCommentShow('_com_3','_anchor_3')"
+  onmouseout=3D"msoCommentHide('_com_3')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_3" name=3D"_msoanchor_3">[3]</a></spa=
+n></span><![endif]></td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#23436;&#25104;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#26681;&#25454;&#36213;&#21531;&#35201;=
+&#27714;&#20462;&#25913;&quot;&#38646;&#26143;&#20462;&#29702;&quot;&#39029=
+;&#38754;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#23436;&#25104;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>3&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26681;&#25454;&#39033;&#30446;&#35780;&=
+#23457;&#32467;&#26524;&#20462;&#27491;&#26041;&#21521;&#12289;&#32771;&#26=
+680;&#31995;&#32479;&#20462;&#25913;<![if !supportAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_4"
+  onmouseover=3D"msoCommentShow('_com_4','_anchor_4')"
+  onmouseout=3D"msoCommentHide('_com_4')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_4" name=3D"_msoanchor_4">[4]</a></spa=
+n></span><![endif]></td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#23436;&#25104;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#26681;&#25454;&#36213;&#21531;&#35201;=
+&#27714;&#20462;&#25913;&quot;&#22270;&#26723;&#22791;&#20221;&quot;&#39029=
+;&#38754;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#23436;&#25104;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>4&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#39033;&#30446;&#30028;&#38754;&#21644;&=
+#36755;&#20837;&#36755;&#20986;&#25509;&#21475;&#30340;&#35774;&#35745;&#12=
+289;&#23436;&#21892;&#32771;&#26680;&#31995;&#32479;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#25509;&#21475;&#35774;&#35745;&#26410;&=
+#23436;&#25104;<![if !supportAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_5"
+  onmouseover=3D"msoCommentShow('_com_5','_anchor_5')"
+  onmouseout=3D"msoCommentHide('_com_5')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_5" name=3D"_msoanchor_5">[5]</a></spa=
+n></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#39033;&#30446;&#36741;&#21161;&#24037;=
+&#20316;&#12289;&#31995;&#32479;&#31616;&#21333;&#20462;&#25913;&#21450;&#3=
+0005;&#33041;&#26434;&#39033;&#32500;&#25252;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#23436;&#25104;<![if !supportAnnotation=
+s]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_6"
+  onmouseover=3D"msoCommentShow('_com_6','_anchor_6')"
+  onmouseout=3D"msoCommentHide('_com_6')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_6" name=3D"_msoanchor_6">[6]</a></spa=
+n></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>5&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#23436;&#21892;&#25968;&#25454;&#24211;&=
+#25509;&#21475;&#35774;&#35745;&#65292;&#24320;&#21457;&#12298;&#35843;&#35=
+797;&#37096;&#32771;&#26680;&#31995;&#32479;&#12299;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#23436;&#25104;<![if !supportAnnotations=
+]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_7"
+  onmouseover=3D"msoCommentShow('_com_7','_anchor_7')"
+  onmouseout=3D"msoCommentHide('_com_7')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_7" name=3D"_msoanchor_7">[7]</a></spa=
+n></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#39033;&#30446;&#36741;&#21161;&#24037;=
+&#20316;&#12289;CAD&#24320;&#21457;&#20219;&#21153;&#21450;&#21378;&#20869;=
+&#30005;&#33041;&#32500;&#25252;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#26410;&#23436;&#25104;<![if !supportAn=
+notations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_8"
+  onmouseover=3D"msoCommentShow('_com_8','_anchor_8')"
+  onmouseout=3D"msoCommentHide('_com_8')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_8" name=3D"_msoanchor_8">[8]</a></spa=
+n></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>6&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#24320;&#21457;&#12298;&#35843;&#35797;&=
+#37096;&#32771;&#26680;&#31995;&#32479;&#12299;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#22522;&#26412;&#21151;&#33021;&#23454;&=
+#29616;&#65292;&#20869;&#37096;&#35843;&#35797;&#20462;&#25972;&#20013;<![i=
+f !supportAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_9"
+  onmouseover=3D"msoCommentShow('_com_9','_anchor_9')"
+  onmouseout=3D"msoCommentHide('_com_9')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_9" name=3D"_msoanchor_9">[9]</a></spa=
+n></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#39033;&#30446;&#36741;&#21161;&#24037;=
+&#20316;&#12289;CAD&#24320;&#21457;&#20219;&#21153;&#21450;&#21378;&#20869;=
+&#30005;&#33041;&#32500;&#25252;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#39033;&#30446;&#26694;&#26550;&#21450;=
+&#25968;&#25454;&#24211;&#38142;&#25509;&#25509;&#21475;&#24050;&#23436;&#2=
+5104;<![if !supportAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_10"
+  onmouseover=3D"msoCommentShow('_com_10','_anchor_10')"
+  onmouseout=3D"msoCommentHide('_com_10')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_10" name=3D"_msoanchor_10">[10]</a></=
+span></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>7&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#24320;&#21457;&#12298;&#35843;&#35797;&=
+#37096;&#32771;&#26680;&#31995;&#32479;&#12299;&#65292;&#20462;&#25913;&#12=
+298;&#25216;&#26415;&#37096;&#31995;&#32479;&#12299;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#22522;&#26412;&#20869;&#23481;&#23436;&=
+#25104;&#65292;&#20132;&#20184;&#27979;&#35797;&#65292;&#31561;&#24453;&#21=
+453;&#39304;<![if !supportAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_11"
+  onmouseover=3D"msoCommentShow('_com_11','_anchor_11')"
+  onmouseout=3D"msoCommentHide('_com_11')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_11" name=3D"_msoanchor_11">[11]</a></=
+span></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#39033;&#30446;&#24320;&#21457;&#65292;=
+&#38454;&#27573;&#35780;&#23457;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#25353;&#29031;&#35780;&#23457;&#32467;=
+&#26524;&#36827;&#34892;&#36827;&#19968;&#27493;&#20462;&#27491;<![if !supp=
+ortAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_12"
+  onmouseover=3D"msoCommentShow('_com_12','_anchor_12')"
+  onmouseout=3D"msoCommentHide('_com_12')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_12" name=3D"_msoanchor_12">[12]</a></=
+span></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>8&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#24320;&#21457;&#12298;&#35843;&#35797;&=
+#37096;&#32771;&#26680;&#31995;&#32479;&#12299;&#65292;&#20462;&#25913;&#12=
+298;&#25216;&#26415;&#37096;&#31995;&#32479;&#12299;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#23436;&#25104;<![if !supportAnnotations=
+]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_13"
+  onmouseover=3D"msoCommentShow('_com_13','_anchor_13')"
+  onmouseout=3D"msoCommentHide('_com_13')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_13" name=3D"_msoanchor_13">[13]</a></=
+span></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#39033;&#30446;&#36741;&#21161;&#24037;=
+&#20316;&#21450;&#21378;&#20869;&#30005;&#33041;&#32500;&#25252;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#19978;&#20256;&#21040;&#26381;&#21153;=
+&#22120;&#20013;&#36827;&#34892;&#20869;&#37096;&#27979;&#35797;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>9&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#35843;&#35797;&#12298;&#35843;&#35797;&=
+#37096;&#32771;&#26680;&#31995;&#32479;&#12299;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#26681;&#25454;&#27979;&#35797;&#21453;&=
+#39304;&#36827;&#34892;&#20462;&#27491;<![if !supportAnnotations]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_14"
+  onmouseover=3D"msoCommentShow('_com_14','_anchor_14')"
+  onmouseout=3D"msoCommentHide('_com_14')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_14" name=3D"_msoanchor_14">[14]</a></=
+span></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#39033;&#30446;&#36741;&#21161;&#24037;=
+&#20316;&#21450;&#21378;&#20869;&#30005;&#33041;&#32500;&#25252;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#26681;&#25454;&#27979;&#35797;&#21453;=
+&#39304;&#36827;&#34892;&#20462;&#27491;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>10&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#20462;&#27491;&#12298;&#35843;&#35797;&=
+#37096;&#32771;&#26680;&#31995;&#32479;&#12299;&#65292;&#20462;&#25913;&#12=
+298;&#25216;&#26415;&#37096;&#31995;&#32479;&#12299;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#23436;&#25104;<![if !supportAnnotations=
+]><span
+  class=3Dmsocomspan1><span class=3Dmsocomspan2 id=3D"_anchor_15"
+  onmouseover=3D"msoCommentShow('_com_15','_anchor_15')"
+  onmouseout=3D"msoCommentHide('_com_15')" language=3DJavaScript><a
+  class=3Dmsocomanch href=3D"#_msocom_15" name=3D"_msoanchor_15">[15]</a></=
+span></span><![endif]></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#40065;&#38160;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl103 style=3D'border-right:.5pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#39033;&#30446;&#24320;&#21457;&#65292;=
+&#20462;&#27491;&#12289;&#20248;&#21270;&#38454;&#27573;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl113 style=3D'border-right:1.0pt sol=
+id black;
+  border-bottom:1.0pt solid black'>&#23545;&#32534;&#30721;&#36827;&#34892;=
+&#26816;&#26597;&#65292;&#30830;&#23450;&#20854;&#21512;&#29702;&#12289;&#3=
+1616;&#27905;&#24182;&#24517;&#35201;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>11&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#20462;&#27491;&#12298;&#35843;&#35797;&=
+#37096;&#32771;&#26680;&#31995;&#32479;&#12299;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#19982;&#35843;&#35797;&#37096;&#29579;&=
+#28023;&#29141;&#26680;&#23545;&#25968;&#25454;&#24182;&#20462;&#27491;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#12288;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl75 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:1.0pt solid black'>&#12288;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl75 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#12288;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D2 rowspan=3D4 height=3D76 class=3Dxl85 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:57.0pt'>12&#26376;</td>
+  <td colspan=3D3 rowspan=3D2 class=3Dxl89 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#26417;&#30922;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:.5pt solid black'>&#20462;&#25913;&#12298;&#35843;&#35797;&=
+#37096;&#32771;&#26680;&#31995;&#32479;&#12299;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl95 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:.5pt solid black'>&#26681;&#25454;&#35780;&#23457;&#32467;&=
+#26524;&#20462;&#25913;&#31995;&#32479;&#31639;&#27861;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td colspan=3D3 rowspan=3D2 height=3D38 class=3Dxl75 style=3D'border-righ=
+t:.5pt solid black;
+  border-bottom:1.0pt solid black;height:28.5pt'>&#12288;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl75 style=3D'border-right:.5pt solid=
+ black;
+  border-bottom:1.0pt solid black'>&#12288;</td>
+  <td colspan=3D5 rowspan=3D2 class=3Dxl75 style=3D'border-right:1.0pt soli=
+d black;
+  border-bottom:1.0pt solid black'>&#12288;</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D6 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D4 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D5 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D5 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D5 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D5 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D6 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D4 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D5 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D5 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D5 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D5 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D6 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D4 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D5 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D5 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D5 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D5 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D6 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D4 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D5 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D5 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D5 class=3Dxl65 style=3D'height:14.25pt;mso-igno=
+re:colspan'></td>
+  <td colspan=3D5 style=3D'mso-ignore:colspan'></td>
+  <td colspan=3D5 class=3Dxl65 style=3D'mso-ignore:colspan'></td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D15 style=3D'height:14.25pt;mso-ignore:colspan'>=
+</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D15 style=3D'height:14.25pt;mso-ignore:colspan'>=
+</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D15 style=3D'height:14.25pt;mso-ignore:colspan'>=
+</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D15 style=3D'height:14.25pt;mso-ignore:colspan'>=
+</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D15 style=3D'height:14.25pt;mso-ignore:colspan'>=
+</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D15 style=3D'height:14.25pt;mso-ignore:colspan'>=
+</td>
+ </tr>
+ <tr height=3D19 style=3D'mso-height-source:userset;height:14.25pt'>
+  <td height=3D19 colspan=3D15 style=3D'height:14.25pt;mso-ignore:colspan'>=
+</td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=3D0 style=3D'display:none'>
+  <td width=3D47 style=3D'width:35pt'></td>
+  <td width=3D40 style=3D'width:30pt'></td>
+  <td width=3D33 style=3D'width:25pt'></td>
+  <td width=3D28 style=3D'width:21pt'></td>
+  <td width=3D33 style=3D'width:25pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+  <td width=3D144 style=3D'width:108pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+  <td width=3D72 style=3D'width:54pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+<div style=3D'mso-element:comment-list'><![if !supportAnnotations]>
+
+<hr class=3Dmsocomhide align=3Dleft size=3D1 width=3D"33%">
+
+<![endif]>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_1" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_1','_anchor_1')"
+onmouseout=3D"msoCommentHide('_com_1')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_1"
+name=3D"_msocom_1">[1]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shapetype id=3D"_x0000_t202" coordsize=3D"21600,21600" o:spt=3D"202" pa=
+th=3D"m,l,21600r21600,l21600,xe">
+  <v:stroke joinstyle=3D"miter"/>
+  <v:path gradientshapeok=3D"t" o:connecttype=3D"rect"/>
+ </v:shapetype><v:shape id=3D"_x0000_s2050" type=3D"#_x0000_t202" style=3D'=
+position:absolute;
+  margin-left:554.25pt;margin-top:-948pt;width:108pt;height:71.25pt;z-index=
+:2;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"infoBackground [80]"
+  o:insetmode=3D"auto">
+  <v:fill color2=3D"infoBackground [80]"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>7</x:Row>
+   <x:Column>5</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2050" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;:</font><font class=3D=
+"font12"><br>
+&#20027;&#35201;&#23545;&#25968;&#25454;&#24211;&#30340;&#36755;&#20837;&#3=
+6755;&#20986;&#20869;&#23481;&#36827;&#34892;&#35780;&#23457;&#65292;&#2136=
+3;&#27492;&#39033;&#30446;&#35201;&#27714;&#33021;&#22815;&#36755;&#20837;&=
+#21644;&#36755;&#20986;&#21738;&#20123;&#20869;&#23481;&#65292;&#24182;&#23=
+545;&#21487;&#34892;&#24615;&#36827;&#34892;&#20998;&#26512;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_2" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_2','_anchor_2')"
+onmouseout=3D"msoCommentHide('_com_2')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_2"
+name=3D"_msocom_2">[2]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2049" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:554.25pt;margin-top:-919.5pt;width:96pt;height:49.5pt;z-index=
+:1;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"infoBackground [80]"
+  o:insetmode=3D"auto">
+  <v:fill color2=3D"infoBackground [80]"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>9</x:Row>
+   <x:Column>5</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2049" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;:</font><font class=3D=
+"font12"><br>
+web&#24320;&#21457;&#65292;&#23558;&#27599;&#22825;&#30331;&#38470;&#31995;=
+&#32479;&#30340;&#29992;&#25143;&#35760;&#24405;&#19979;&#26469;&#24182;&#3=
+6890;&#36807;&#19968;&#20010;&#34920;&#26174;&#31034;&#20986;&#26469;</font=
+></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_3" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_3','_anchor_3')"
+onmouseout=3D"msoCommentHide('_com_3')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_3"
+name=3D"_msocom_3">[3]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2051" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:551.25pt;margin-top:-891pt;width:165.75pt;height:75pt;z-index=
+:3;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>11</x:Row>
+   <x:Column>5</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2051" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+1.</font><font class=3D"font12">&#23545;&#32452;&#21592;&#30340;&#32771;&#2=
+6680;&#20013;&#22686;&#21152;</font><font
+class=3D"font14">&quot;Ifs</font><font class=3D"font12">&#25968;&#25454;&#2=
+6410;&#20934;&#30830;&#21450;&#26102;&#24405;&#20837;</font><font
+class=3D"font14">&quot;;<br>
+2.</font><font class=3D"font12">&#20197;</font><font class=3D"font14">&quot=
+;</font><font
+class=3D"font12">&#27169;&#22836;&#32467;&#26500;&#30830;&#35748;</font><fo=
+nt
+class=3D"font14">&quot;</font><font class=3D"font12">&#12289;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#23450;&#22411;&#3246=
+7;&#26500;&#30830;&#35748;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#12289;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#27169;&#22836;&#3577=
+4;&#35745;&#30830;&#35748;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#12289;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#23450;&#22411;&#3577=
+4;&#35745;&#30830;&#35748;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#21462;&#20195;</font=
+><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#23457;&#26680;</fon=
+t><font
+class=3D"font14">&#8221;;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_4" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_4','_anchor_4')"
+onmouseout=3D"msoCommentHide('_com_4')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_4"
+name=3D"_msocom_4">[4]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2052" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:551.25pt;margin-top:-834pt;width:252pt;height:133.5pt;z-index=
+:4;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>15</x:Row>
+   <x:Column>5</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2052" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+1.</font><font class=3D"font12">&#32467;&#26500;</font><font class=3D"font1=
+4">\</font><font
+class=3D"font12">&#35774;&#35745;&#21333;&#29420;&#32771;&#26680;</font><fo=
+nt
+class=3D"font14">;<br>
+2.</font><font class=3D"font12">&#21462;&#28040;&#21592;&#24037;&#31995;&#2=
+5968;&#21015;&#34920;&#20013;&#30340;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#22791;&#27880;</font=
+><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#26639;</font><font
+class=3D"font14">;<br>
+3.</font><font class=3D"font12">&#22312;&#35843;&#35797;&#20449;&#24687;&#2=
+5972;&#29702;&#21518;&#28155;&#21152;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#40784;&#22871;&#204=
+49;&#24687;&#25972;&#29702;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#20219;&#21153;</fon=
+t><font
+class=3D"font14">;<br>
+4.</font><font class=3D"font12">&#23558;&#35843;&#35797;&#21333;&#35745;&#2=
+1010;&#32467;&#26463;&#26085;&#26399;&#30452;&#25509;&#26174;&#31034;&#2231=
+2;&#24453;&#20998;&#37197;&#20219;&#21153;&#21015;&#34920;&#20013;<br>
+</font><font class=3D"font14">5.</font><font class=3D"font12">&#20462;&#259=
+13;&#32452;&#38271;&#26356;&#25913;&#36131;&#20219;&#20154;&#39029;&#38754;=
+&#20013;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#32467;&#26500;&#308=
+30;&#35748;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#12289;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#35774;&#35745;&#308=
+30;&#35748;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#30340;&#26174;&#310=
+34;&#26041;&#24335;<br>
+</font><font class=3D"font14">6.</font><font class=3D"font12">&#26356;&#259=
+13;&#32452;&#38271;&#26435;&#38480;</font><font
+class=3D"font14">,</font><font class=3D"font12">&#30001;&#19979;&#36947;&#2=
+4037;&#24207;&#30830;&#35748;&#19978;&#36947;&#30340;&#32467;&#26463;&#2610=
+2;&#38388;<br>
+</font><font class=3D"font14">7.</font><font class=3D"font12">&#22686;&#211=
+52;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#21592;&#24037;&#327=
+71;&#35780;&#21015;&#34920;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#25628;&#32034;&#264=
+65;&#20214;</font><font
+class=3D"font14">&#8212;&#8212;</font><font class=3D"font12">&#24037;&#2031=
+6;&#32452;&#12289;&#32771;&#35780;&#39033;&#30446;</font><font
+class=3D"font14">;<br>
+8.</font><font class=3D"font12">&#26356;&#25913;&#38646;&#26143;&#20219;&#2=
+1153;&#20013;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#38646;&#26143;&#204=
+62;&#29702;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#30340;&#26174;&#310=
+34;&#26041;&#24335;</font><font
+class=3D"font14"><span
+style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><br>
+9.</font><font class=3D"font12">&#20135;&#29983;&#25253;&#24223;&#25110;&#3=
+6820;&#20462;&#26102;&#20165;&#24403;&#32452;&#21592;&#20026;&#35774;&#3574=
+5;&#32773;&#26102;&#23545;&#32452;&#38271;&#36827;&#34892;&#32771;&#26680;<=
+/font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_5" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_5','_anchor_5')"
+onmouseout=3D"msoCommentHide('_com_5')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_5"
+name=3D"_msocom_5">[5]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2053" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-777pt;width:174pt;height:206.25pt;z-index:5;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>19</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2053" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+</font><font class=3D"font12">&#25509;&#21475;&#35774;&#35745;&#26102;&#369=
+35;&#21040;</font><font
+class=3D"font14">Access</font><font class=3D"font12">&#19982;</font><font
+class=3D"font14">Sql</font><font class=3D"font12">&#25968;&#25454;&#24211;&=
+#25968;&#25454;&#36716;&#25442;&#30340;&#38382;&#39064;&#65292;&#27491;&#22=
+312;&#27979;&#35797;&#12290;<br>
+<br>
+&#32771;&#26680;&#31995;&#32479;&#26041;&#38754;&#26377;&#65306;<br>
+</font><font class=3D"font14">1.</font><font class=3D"font12">&#26356;&#259=
+13;&#20219;&#21153;&#23436;&#25104;&#26041;&#24335;&#65292;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#32467;&#26500;&#324=
+67;&#26463;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#20173;&#30001;&#324=
+67;&#26500;&#32452;&#38271;&#25191;&#34892;&#65292;&#35774;&#35745;&#32452;=
+&#38271;&#20998;&#37197;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#32467;&#26524;&#308=
+30;&#35748;&#32467;&#26463;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#65307;<br>
+</font><font class=3D"font14">2.</font><font class=3D"font12">&#22312;&#324=
+52;&#21592;&#32771;&#26680;&#30340;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#35774;&#35745;&#3613=
+6;&#37327;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#20013;&#22686;&#2115=
+2;</font><font
+class=3D"font14">3</font><font class=3D"font12">&#20010;&#25351;&#26631;&#6=
+5307;<br>
+</font><font class=3D"font14">3.</font><font class=3D"font12">&#23436;&#218=
+92;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#28155;&#21152;&#2716=
+9;&#20855;&#40784;&#22871;&#20449;&#24687;&#25972;&#29702;&#20219;&#21153;&=
+#20070;</font><font
+class=3D"font14"> &quot;</font><font class=3D"font12">&#20013;&#30340;&#261=
+74;&#31034;&#26041;&#24335;</font><font
+class=3D"font14"> </font><font class=3D"font12">&#65307;<br>
+</font><font class=3D"font14">4.</font><font class=3D"font12">&#22312;&#324=
+52;&#21592;&#32771;&#26680;&#30340;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#35774;&#35745;&#3613=
+6;&#37327;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#20013;&#22686;&#2115=
+2;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#35774;&#35745;&#199=
+81;&#31526;&#21512;&#35268;&#33539;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#25351;&#26631;&#653=
+07;<br>
+</font><font class=3D"font14">5.</font><font class=3D"font12">&#20462;&#274=
+91;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#26597;&#30475;&#215=
+92;&#24037;&#31995;&#25968;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#20013;&#26174;&#310=
+34;&#25968;&#25454;&#19982;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#21592;&#24037;&#327=
+71;&#26680;&#21015;&#34920;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#19981;&#19968;&#332=
+68;&#30340;&#38382;&#39064;&#65307;<br>
+</font><font class=3D"font14">6.</font><font class=3D"font12">&#21457;&#296=
+16;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#38646;&#26143;&#2046=
+2;&#29702;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#20013;&#26032;&#3276=
+9;&#25968;&#25454;&#19981;&#20860;&#23481;&#30340;&#38382;&#39064;&#24182;&=
+#20462;&#27491;&#65307;<br>
+</font><font class=3D"font14">7.</font><font class=3D"font12">&#20462;&#227=
+97;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#32771;&#35780;&#2101=
+5;&#34920;</font><font
+class=3D"font14"> &quot;</font><font class=3D"font12">&#20013;</font><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#25805;&#20316;</font=
+><font
+class=3D"font14">&quot;</font><font class=3D"font12">&#30340;&#38382;&#3906=
+4;&#12290;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_6" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_6','_anchor_6')"
+onmouseout=3D"msoCommentHide('_com_6')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_6"
+name=3D"_msocom_6">[6]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2054" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-748.5pt;width:161.25pt;height:205.5pt;
+  z-index:6;visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1"
+  o:insetmode=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>21</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2054" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+4.2--.4.6</font><font class=3D"font12">&#65306;</font><font class=3D"font14=
+">1.</font><font
+class=3D"font12">&#32473;&#26032;&#36827;&#21592;&#24037;&#20998;&#37197;&#=
+25442;&#19979;&#26469;&#30340;&#26426;&#22120;</font><font
+class=3D"font14"> 2.</font><font class=3D"font12">&#20462;&#25913;&#32771;&=
+#26680;&#31995;&#32479;&#22270;&#26723;&#22791;&#20221;&#27169;&#22359;</fo=
+nt><font
+class=3D"font14">:</font><font class=3D"font12">&#28155;&#21152;&#25353;&#3=
+5746;&#21333;&#21495;&#24490;&#29615;&#23384;&#30424;&#26041;&#24335;</font=
+><font
+class=3D"font14">,</font><font class=3D"font12">&#20445;&#30041;&#21407;&#2=
+6377;&#30340;&#21333;&#20010;&#23384;&#30424;&#26041;&#24335;</font><font
+class=3D"font14">,</font><font class=3D"font12">&#20943;&#23569;&#20102;&#2=
+5968;&#25454;&#24405;&#20837;&#32773;&#30340;&#24037;&#20316;&#37327;&#6530=
+7;<br>
+<br>
+</font><font class=3D"font14">4.9--4.13</font><font class=3D"font12">&#6530=
+6;</font><font
+class=3D"font14"> 1.</font><font class=3D"font12">&#32500;&#25252;&#25216;&=
+#26415;&#37096;&#26426;&#22120;&#27491;&#24120;&#24037;&#20316;</font><font
+class=3D"font14">2.</font><font class=3D"font12">&#20026;&#33829;&#38144;&#=
+37096;</font><font
+class=3D"font14">,</font><font class=3D"font12">&#36741;&#26426;&#31561;&#3=
+7096;&#38376;&#24037;&#20316;&#20154;&#21592;&#32500;&#20462;&#26426;&#2212=
+0;</font><font
+class=3D"font14"> 3.</font><font class=3D"font12">&#23436;&#21892;&#32771;&=
+#26680;&#31995;&#32479;&#30340;&#22270;&#26723;&#22791;&#20221;&#65307;</fo=
+nt><font
+class=3D"font14"> <br>
+<br>
+4.16--4.20</font><font class=3D"font12">&#65306;</font><font class=3D"font1=
+4"> 1.</font><font
+class=3D"font12">&#32500;&#25252;&#25216;&#26415;&#37096;&#26426;&#22120;&#=
+27491;&#24120;&#24037;&#20316;</font><font
+class=3D"font14">,</font><font class=3D"font12">&#24110;&#24037;&#20316;&#2=
+0154;&#21592;&#37325;&#35013;&#25805;&#20316;&#31995;&#32479;&#21644;&#2421=
+2;&#29992;&#36719;&#20214;</font><font
+class=3D"font14"> 2.</font><font class=3D"font12">&#32500;&#20462;&#35843;&=
+#35797;&#37096;&#26426;&#22120;</font><font
+class=3D"font14">,</font><font class=3D"font12">&#24110;&#24037;&#20316;&#2=
+0154;&#21592;&#37325;&#35013;&#25805;&#20316;&#31995;&#32479;&#19982;&#3681=
+6;&#29992;&#36719;&#20214;</font><font
+class=3D"font14"> 3.</font><font class=3D"font12">&#25353;&#29031;&#24037;&=
+#20316;&#20154;&#21592;&#35201;&#27714;&#20462;&#25913;</font><font
+class=3D"font14">autocad</font><font class=3D"font12">&#30340;</font><font
+class=3D"font14">ad</font><font class=3D"font12">&#21629;&#20196;</font><fo=
+nt
+class=3D"font14">(</font><font class=3D"font12">&#39046;&#26009;&#21333;&#2=
+4207;&#21495;</font><font
+class=3D"font14">) 4.</font><font class=3D"font12">&#25645;&#24314;&#25968;=
+&#25454;&#24211;&#31649;&#29702;&#31995;&#32479;&#20154;&#21592;&#26435;&#3=
+8480;&#27169;&#22359;&#30340;&#25968;&#25454;&#24211;&#32534;&#20889;&#3045=
+6;&#20851;&#20107;&#21153;&#22788;&#29702;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_7" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_7','_anchor_7')"
+onmouseout=3D"msoCommentHide('_com_7')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_7"
+name=3D"_msocom_7">[7]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2056" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-10in;width:162pt;height:154.5pt;z-index:8;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>23</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2056" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+</font><font class=3D"font12">&#25216;&#26415;&#37096;&#32771;&#26680;&#319=
+95;&#32479;&#65306;<br>
+</font><font class=3D"font14">1.</font><font class=3D"font12">&#22312;</fon=
+t><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#26356;&#25913;&#202=
+19;&#21153;&#20070;</font><font
+class=3D"font14"> &#8221;</font><font class=3D"font12">&#39029;&#38754;&#22=
+686;&#21152;&#26356;&#25913;&#23436;&#25104;&#26102;&#38388;&#19979;&#25289=
+;&#33756;&#21333;&#65292;&#20801;&#35768;&#32452;&#38271;&#23558;&#20219;&#=
+21153;&#23436;&#25104;&#26102;&#38388;&#25913;&#25104;&#24403;&#21069;&#261=
+02;&#65307;<br>
+</font><font class=3D"font14">2.</font><font class=3D"font12">&#20462;&#259=
+13;&#32771;&#35780;&#21015;&#34920;&#20013;&#30340;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#26356;&#25913;</fon=
+t><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#39033;&#65292;&#208=
+01;&#35768;&#32771;&#35780;&#20154;&#26356;&#25913;&#32771;&#26680;&#20998;=
+&#20540;&#20026;&#20219;&#24847;&#23454;&#25968;&#24182;&#33258;&#21160;&#2=
+6356;&#26032;&#32771;&#26680;&#26102;&#38388;&#12290;<br>
+<br>
+&#35843;&#35797;&#37096;&#32771;&#26680;&#31995;&#32479;&#65306;<br>
+&#24050;&#23436;&#25104;&#30028;&#38754;&#21644;&#25968;&#25454;&#24211;&#3=
+5774;&#35745;&#65292;&#19979;&#19968;&#27493;&#35774;&#35745;&#21518;&#2148=
+8;&#32771;&#26680;&#35745;&#31639;&#26041;&#27861;&#21644;&#20219;&#21153;&=
+#28155;&#21152;&#12289;&#20998;&#37197;&#31561;&#39029;&#38754;&#32454;&#33=
+410;&#12290;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_8" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_8','_anchor_8')"
+onmouseout=3D"msoCommentHide('_com_8')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_8"
+name=3D"_msocom_8">[8]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2055" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:525pt;margin-top:-691.5pt;width:160.5pt;height:69.75pt;z-inde=
+x:7;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>25</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2055" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#40065;&#38160;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+1.</font><font class=3D"font12">&#37325;&#20889;&#25968;&#25454;&#24211;&#3=
+5775;&#38382;&#26041;&#27861;&#21644;&#35843;&#29992;&#25509;&#21475;</font=
+><font
+class=3D"font14">(</font><font class=3D"font12">&#23578;&#26410;&#23436;&#2=
+5104;</font><font
+class=3D"font14">),</font><font class=3D"font12">&#22312;&#19979;&#20010;&#=
+26376;&#19978;&#26092;&#26395;&#33021;&#23436;&#25104;<br>
+</font><font class=3D"font14">,</font><font class=3D"font12">&#24213;&#2361=
+8;&#26694;&#26550;&#23436;&#25104;&#20043;&#21518;</font><font
+class=3D"font14">,</font><font class=3D"font12">&#39029;&#38754;&#25991;&#2=
+0214;&#21482;&#35201;&#21033;&#29992;&#25509;&#21475;&#35843;&#29992;&#2604=
+1;&#27861;&#21363;&#21487;&#20943;&#23569;&#21097;&#20313;&#24037;&#20316;&=
+#37327;<br>
+</font><font class=3D"font14">2.</font><font class=3D"font12">&#20026;&#208=
+44;&#21496;&#20050;&#20051;&#29699;&#27604;&#36187;&#25285;&#24403;&#35009;=
+&#21028;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_9" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_9','_anchor_9')"
+onmouseout=3D"msoCommentHide('_com_9')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_9"
+name=3D"_msocom_9">[9]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2058" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-663pt;width:108pt;height:63pt;z-index:10;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>27</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2058" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+</font><font class=3D"font12">&#28155;&#21152;&#12289;&#20998;&#37197;&#122=
+89;&#21024;&#38500;&#12289;&#20462;&#25913;&#20219;&#21153;&#20070;&#21151;=
+&#33021;&#24050;&#23454;&#29616;&#65292;&#21592;&#24037;&#20219;&#21153;&#2=
+1450;&#36136;&#37327;&#32771;&#26680;&#37096;&#20998;&#27491;&#22312;&#3682=
+7;&#34892;&#26368;&#32456;&#35843;&#35797;&#65292;&#25490;&#26597;</font><f=
+ont
+class=3D"font14">Bug</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_10" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_10','_anchor_10')"
+onmouseout=3D"msoCommentHide('_com_10')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_1=
+0"
+name=3D"_msocom_10">[10]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2057" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-634.5pt;width:138.75pt;height:104.25pt;
+  z-index:9;visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1"
+  o:insetmode=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>29</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2057" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#40065;&#38160;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+1.</font><font class=3D"font12">&#37325;&#20889;&#25968;&#25454;&#24211;&#3=
+5775;&#38382;&#26041;&#27861;&#21644;&#35843;&#29992;&#25509;&#21475;&#6529=
+2;&#32534;&#20889;&#31995;&#32479;&#20154;&#21592;&#31649;&#29702;&#27169;&=
+#22359;<br>
+</font><font class=3D"font14">2.</font><font class=3D"font12">&#25645;&#243=
+14;&#31995;&#32479;&#20027;&#39029;&#38754;</font><font
+class=3D"font14"> </font><font class=3D"font12">&#20197;&#21450;&#20851;&#2=
+0110;&#20449;&#24687;&#31649;&#29702;&#20998;&#39029;&#38754;</font><font
+class=3D"font14"> </font><font class=3D"font12">&#32534;&#20889;&#35813;&#3=
+9029;&#38754;&#35843;&#29992;&#30340;<br>
+&#24213;&#23618;&#20195;&#30721;<br>
+</font><font class=3D"font14">3.</font><font class=3D"font12">&#32473;&#228=
+06;&#20986;&#35843;&#35797;&#38067;&#24037;&#23433;&#35013;&#31995;&#32479;=
+&#19982;&#24120;&#29992;&#36719;&#20214;&#65292;&#26367;&#38144;&#21806;&#3=
+7096;&#21608;&#27719;&#24179;&#12289;&#32534;&#31243;&#23460;&#29579;&#3684=
+2;&#21018;&#32500;&#20462;&#26426;&#22120;</font><font
+class=3D"font14"> </font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_11" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_11','_anchor_11')"
+onmouseout=3D"msoCommentHide('_com_11')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_1=
+1"
+name=3D"_msocom_11">[11]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2060" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-606pt;width:142.5pt;height:126.75pt;z-index=
+:12;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>31</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2060" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:<br>
+<span style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></fo=
+nt><font
+class=3D"font12"><span
+style=3D'mso-spacerun:yes'>&nbsp;</span>&#22312;&#20219;&#21153;&#26597;&#3=
+0475;&#12289;&#25628;&#32034;&#31561;&#32454;&#33410;&#26041;&#38754;&#2017=
+3;&#38656;&#35201;&#25913;&#21892;&#12290;<br>
+<span style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&#22312;&#27979;&#35797;&#26102;&#26410;&#23545;&#29992;&#25143;&#26=
+435;&#38480;&#36827;&#34892;&#35774;&#32622;&#12290;<br>
+<span style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&#21518;&#21488;&#22270;&#24418;&#21270;&#20462;&#25913;&#25968;&#25=
+454;&#30028;&#38754;&#23578;&#26410;&#21046;&#20316;&#23436;&#20840;&#12290=
+;<br>
+<span style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&#20998;&#20540;&#25968;&#25454;&#30340;&#35745;&#31639;&#32467;&#26=
+524;&#20934;&#30830;&#24615;&#26377;&#24453;&#35843;&#35797;&#37096;&#25216=
+;&#26415;&#21592;&#21453;&#39304;&#12290;<br>
+<span style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>&#26102;&#21051;&#25910;&#38598;&#35843;&#35797;&#37096;&#25216;&#26=
+415;&#21592;&#35797;&#29992;&#30340;&#21453;&#39304;&#24847;&#35265;&#21644=
+;&#24314;&#35758;&#12290;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_12" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_12','_anchor_12')"
+onmouseout=3D"msoCommentHide('_com_12')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_1=
+2"
+name=3D"_msocom_12">[12]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2059" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:663.75pt;margin-top:-577.5pt;width:243.75pt;height:182.25pt;
+  z-index:11;visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1"
+  o:insetmode=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>33</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2059" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#40065;&#38160;</font><font class=3D"=
+font13">:<br>
+</font><font class=3D"font14">7.2--7.6:</font><font class=3D"font13"><br>
+</font><font class=3D"font12"><span
+style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.&#32534;&#20889;&#39029;&#38754;&#21151;&#33021;&#20195;&#30721;&#=
+65288;&#35843;&#35797;&#20449;&#24687;&#37096;&#20998;&#65289;
+2.&#27979;&#35797;&#35813;&#37096;&#20998;&#20195;&#30721;&#65288;&#21333;&=
+#20803;&#27979;&#35797;&#65289;
+3.&#32534;&#20889;&#23458;&#25143;&#20449;&#24687;&#24213;&#23618;&#20844;&=
+#29992;&#20195;&#30721;</font><font
+class=3D"font11"><br>
+</font><font class=3D"font12">7.9--7.13:</font><font class=3D"font11"><br>
+</font><font class=3D"font12"><span
+style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.&#32534;&#20889;&#39029;&#38754;&#21151;&#33021;&#20195;&#30721;(&=
+#23458;&#25143;&#20449;&#24687;&#37096;&#38376;)
+2 &#27979;&#35797;&#35813;&#37096;&#20998;&#20195;&#30721;&#65288;&#21333;&=
+#20803;&#27979;&#35797;&#65289;<br>
+7.16--7.20:<br>
+<span style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.&#28155;&#21152;&#26435;&#38480;&#25511;&#21046;&#65292;&#21644;&#=
+31649;&#29702;&#21592;&#25805;&#20316;&#37096;&#20998;
+2.&#23545;&#25972;&#20010;&#36719;&#20214;&#36827;&#34892;&#27969;&#31243;&=
+#24615;&#27979;&#35797;&#65288;&#38598;&#25104;&#27979;&#35797;&#65289;
+3.&#27719;&#24635;&#35780;&#23457;&#24847;&#35265;<br>
+7.22--7.27:<br>
+<span style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span>1.&#25910;&#38598;&#36164;&#26009;&#65292;&#23545;&#36719;&#20214;&#=
+21151;&#33021;&#20462;&#25913;&#21487;&#34892;&#24615;&#36827;&#34892;&#209=
+98;&#26512;<br>
+(&#19978;&#20256;&#20135;&#21697;&#22270;&#65292;&#39029;&#38754;&#39044;&#=
+35272;&#35813;&#22270;&#36825;&#39033;&#21151;&#33021;&#32422;&#20843;&#263=
+76;&#20013;&#26092;&#32473;&#20104;&#23436;&#25104;&#65307;&#27599;&#22871;=
+&#35774;&#35745;&#22270;&#32440;&#23545;&#24212;&#22810;&#20010;cad&#22270;=
+&#32440;&#65292;&#35813;&#21151;&#33021;&#21033;&#29992;&#19978;&#20256;&#2=
+6159;&#19981;&#29616;&#23454;&#20063;&#26080;&#27861;&#23454;&#29616;&#3034=
+0;&#65292;&#35813;&#21151;&#33021;&#27491;&#22312;&#23547;&#27714;&#26368;&=
+#25509;&#36817;&#30340;&#26367;&#20195;&#26041;&#27861;)
+2.&#26681;&#25454;&#29992;&#25143;&#25552;&#20986;&#24847;&#35265;&#20462;&=
+#25913;&#25968;&#25454;&#24211;&#32467;&#26500;
+&#65292;&#24213;&#23618;&#20195;&#30721;
+&#65292;&#39029;&#38754;&#21151;&#33021;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_13" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_13','_anchor_13')"
+onmouseout=3D"msoCommentHide('_com_13')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_1=
+3"
+name=3D"_msocom_13">[13]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2062" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-549pt;width:162pt;height:163.5pt;z-index:13;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>35</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2062" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+</font><font class=3D"font12">&#25216;&#26415;&#37096;&#32771;&#26680;&#319=
+95;&#32479;&#65306;<br>
+</font><font class=3D"font14">1.</font><font class=3D"font12">&#20801;&#357=
+68;&#32771;&#35780;&#20154;&#20462;&#25913;&#32771;&#35780;&#26102;&#38388;=
+&#65307;<br>
+</font><font class=3D"font14">2.</font><font class=3D"font12">&#20462;&#274=
+91;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#25910;&#20214;&#316=
+65;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#21457;&#20214;&#201=
+54;&#31579;&#36873;</font><font
+class=3D"font14">bug</font><font class=3D"font12">&#65307;<br>
+</font><font class=3D"font14">3.</font><font class=3D"font12">&#25509;&#214=
+63;&#24352;&#23478;&#26435;&#24314;&#35758;&#22312;&#26597;&#30475;&#30701;=
+&#20449;&#39029;&#38754;&#22686;&#21152;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#21024;&#38500;</fon=
+t><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#36873;&#39033;&#653=
+07;<br>
+</font><font class=3D"font14">4.</font><font class=3D"font12">&#25509;&#214=
+63;&#24352;&#20142;&#24314;&#35758;&#22312;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#20849;&#25380;&#271=
+69;&#20855;</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#39029;&#38754;&#226=
+86;&#21152;&#25353;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#21378;&#23478;</fon=
+t><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#31579;&#36873;<br>
+</font><font class=3D"font14">5.</font><font class=3D"font12">&#25509;&#214=
+63;&#24352;&#37329;&#38134;&#24314;&#35758;&#22312;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#28155;&#21152;&#271=
+69;&#20855;&#40784;&#22871;&#20449;&#24687;&#25972;&#29702;&#20219;&#21153;=
+</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#39029;&#38754;&#251=
+91;&#34892;&#20154;&#40664;&#35748;&#21644;&#19978;&#19968;&#20010;&#25191;=
+&#34892;&#20154;&#19968;&#33268;</font><font
+class=3D"font14"> <br>
+6.</font><font class=3D"font12">&#25509;&#21463;&#24352;&#37329;&#38134;&#2=
+4314;&#35758;&#23558;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#28155;&#21152;&#271=
+69;&#20855;&#40784;&#22871;&#20449;&#24687;&#25972;&#29702;&#20219;&#21153;=
+</font><font
+class=3D"font14">&#8221;</font><font class=3D"font12">&#26465;&#20214;&#300=
+01;</font><font
+class=3D"font14">&#8220;</font><font class=3D"font12">&#35843;&#35797;</fon=
+t><font
+class=3D"font14">1</font><font class=3D"font12">&#27425;</font><font class=
+=3D"font14">&#8221;</font><font
+class=3D"font12">&#25913;&#20026;&#35843;&#35797;&#21333;&#23436;&#25104;</=
+font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_14" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_14','_anchor_14')"
+onmouseout=3D"msoCommentHide('_com_14')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_1=
+4"
+name=3D"_msocom_14">[14]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2063" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-492pt;width:108pt;height:39.75pt;z-index:14;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>39</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2063" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+</font><font class=3D"font12">&#35814;&#32454;&#32467;&#26524;&#35265;&#390=
+33;&#30446;&#25991;&#20214;&#22841;&#20013;&#12298;&#35843;&#35797;&#25253;=
+&#21578;&#12299;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+<div style=3D'mso-element:comment'><![if !supportAnnotations]>
+
+<div id=3D"_com_15" class=3Dmsocomtxt
+onmouseover=3D"msoCommentShow('_com_15','_anchor_15')"
+onmouseout=3D"msoCommentHide('_com_15')" language=3DJavaScript><![endif]>
+
+<div><![if !supportAnnotations]><a class=3Dmsocomhide href=3D"#_msoanchor_1=
+5"
+name=3D"_msocom_15">[15]</a><![endif]><!--[if gte mso 9]><xml>
+ <v:shape id=3D"_x0000_s2064" type=3D"#_x0000_t202" style=3D'position:absol=
+ute;
+  margin-left:741pt;margin-top:-435pt;width:162pt;height:118.5pt;z-index:15;
+  visibility:hidden;mso-wrap-style:tight' fillcolor=3D"#ffffe1" o:insetmode=
+=3D"auto">
+  <v:fill color2=3D"#ffffe1"/>
+  <v:shadow on=3D"t" color=3D"black" obscured=3D"t"/>
+  <v:path o:connecttype=3D"none"/>
+  <v:textbox style=3D'mso-direction-alt:auto'/>
+  <x:ClientData ObjectType=3D"Note">
+   <x:MoveWithCells/>
+   <x:SizeWithCells/>
+   <x:AutoFill>False</x:AutoFill>
+   <x:Row>43</x:Row>
+   <x:Column>10</x:Column>
+   <x:Author>&#26417;&#30922;</x:Author>
+  </x:ClientData>
+ </v:shape></xml><![endif]--><![if !vml]><span style=3D'mso-ignore:vglayout=
+'><![endif]>
+
+<div v:shape=3D"_x0000_s2064" style=3D'padding:.75pt 0pt 0pt .75pt;text-ali=
+gn:left'
+class=3Dshape><font class=3D"font11">&#26417;&#30922;</font><font class=3D"=
+font13">:</font><font
+class=3D"font14"><br>
+</font><font class=3D"font12">&#25216;&#26415;&#37096;&#32771;&#26680;&#319=
+95;&#32479;&#65306;<br>
+</font><font class=3D"font14">1.</font><font class=3D"font12">&#23558;&#202=
+19;&#21153;&#23436;&#25104;&#36229;&#36807;</font><font
+class=3D"font14">5</font><font class=3D"font12">&#22825;&#21518;&#26080;&#2=
+7861;&#26356;&#25913;&#21464;&#26356;&#20026;&#20801;&#35768;&#26356;&#2591=
+3;&#22791;&#27880;<br>
+<br>
+</font><font class=3D"font14">CAD</font><font class=3D"font12">&#20108;&#27=
+425;&#24320;&#21457;&#65306;<br>
+</font><font class=3D"font14">1.</font><font class=3D"font12">&#29289;&#260=
+09;&#35745;&#31639;&#22120;<br>
+<br>
+&#32534;&#20889;&#39033;&#30446;&#25152;&#38656;&#21508;&#31181;&#25991;&#2=
+6723;&#12289;&#24187;&#28783;&#29255;&#65292;&#23433;&#35013;&#30003;&#2525=
+3;&#26448;&#26009;&#21644;&#37492;&#23450;&#26448;&#26009;&#36827;&#34892;&=
+#20998;&#31867;&#25972;&#29702;&#12290;</font></div>
+
+<![if !vml]></span><![endif]></div>
+
+<![if !supportAnnotations]></div>
+
+<![endif]></div>
+
+</div>
+
+</body>
+
+</html>
+
+------=_NextPart_01C85E61.43CBFDA0
+Content-Location: file:///C:/2689BC8E/plan_filelist.xml
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/xml; charset="utf-8"
+
+<xml xmlns:o=3D"urn:schemas-microsoft-com:office:office">
+ <o:MainFile HRef=3D"plan.htm"/>
+ <o:File HRef=3D"plan_stylesheet.css"/>
+ <o:File HRef=3D"plan_tabstrip.htm"/>
+ <o:File HRef=3D"plan_sheet001.htm"/>
+ <o:File HRef=3D"plan_filelist.xml"/>
+</xml>
+------=_NextPart_01C85E61.43CBFDA0--

@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<TITLE>上传附件</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<SCRIPT language=JavaScript event=onclick for=Ok>
+window.returnValue = a.value+"*"+b.value+"*"+c.value
+//window.returnValue = a.value
+window.close();
+</SCRIPT>
+<Link rel="stylesheet" type="text/css" href="pop.css">
+</HEAD>
+<BODY>
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+  <FORM name="pic" action="" method="post">
+    <tr>
+      <td><IFRAME src="UpForm.asp" frameBorder="0" width="99%" frameborder="0" scrolling="no" height="24">
+        </IFRAME></td>
+    </tr>
+    <tr>
+      <td>&nbsp;&nbsp;附件类型：png、jpg、gif、doc、docx、xls、xlsx、dwg</td>
+    </tr>
+    <tr>
+      <td>&nbsp;&nbsp;附件上传大小限制：3000K。</td>
+    </tr>
+    <tr>
+      <td>&nbsp;&nbsp;
+        <INPUT id="a" name="a" type="hidden" title="由上传程序自动产生文件地址" size="20"></td>
+        <INPUT id="a" name="b" type="hidden" title="文件上传的服务器地址" size="20"></td>
+        <INPUT id="a" name="c" type="hidden" title="文件扩展名" size="20"></td>
+    </tr>
+    <tr align="center">
+      <td>&nbsp;&nbsp;
+        <INPUT id="Ok" title="点击“插入”按钮，在编辑器中插入附件地址。" type="button" value='  插入  '>
+        &nbsp;&nbsp;
+        <input type=button value='  取消  ' onClick="window.close();"></td>
+    </tr>
+  </FORM>
+</table>
+</BODY>
+</HTML>

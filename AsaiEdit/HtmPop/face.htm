@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<Link rel="stylesheet" type="text/css" href="pop.css">
+<STYLE type=text/css>
+body,ul,li{
+margin:0px;
+padding:0px;
+}
+body,td{
+font-size:12px;
+color:#111111;
+}
+IMG{CURSOR:hand;}
+#Ix{
+text-align:left;
+height:22px;
+background-color:#F3FBFC;
+border-top:#3181AF 1px solid;
+border-right:#3181AF 1px solid;
+border-bottom:#3181AF 1px solid;
+clear:both;
+}
+#Ix ul{
+clear:both;
+}
+#Ix ul li{ 
+float:left;
+text-align:center;
+line-height:22px; 
+}
+.im{
+float:left;
+text-align:center;
+width:10%;
+height:32px;
+line-height:32px;
+}
+.imb{
+float:left;
+text-align:center;
+width:12%;
+height:46px;
+line-height:46px;
+}
+</STYLE>
+<title>插入可爱小表情</title>
+<!--JavaScript部分-->
+<SCRIPT language="JavaScript"> 
+var tID=0;  
+function ShowIcon(ID){  
+if(ID!=tID){  
+  Itit[tID].className="Itit";  
+  Itit[ID].className="Itita";  
+  Icon[tID].style.display="none";  
+  Icon[ID].style.display="";  
+  tID=ID;  
+}}
+
+function emotclick(){
+if ("IMG"==event.srcElement.tagName.toUpperCase()) {
+//dialogArguments.insertHTML("<IMG SRC=" + event.srcElement.src + ">");
+window.returnValue = "<IMG SRC=" + event.srcElement.src + ">";
+window.close();
+}
+}
+document.onclick=emotclick;
+</SCRIPT>  
+</head>
+<body scroll="no">
+<table border="0" align="center" cellspacing="1" cellpadding="4" class="mtab">
+<tr><td class="tit">插入可爱小表情</td></tr>
+<tr><td class="tdd">
+<div id="Iy">
+<ul id="Icon" style="display:'';">
+<script>
+for(i=1;i<101;i++)document.write("<li class=im><IMG src=../Face/qq/"+i+".gif></li>")
+</script>
+</ul>
+</div> 
+</td></tr>
+<tr><td class="tdd"><button class="button" onclick=window.close();>关闭</BUTTON></td></tr>
+</table>
+</body>
+</html>
