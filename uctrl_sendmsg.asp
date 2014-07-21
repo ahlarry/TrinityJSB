@@ -66,13 +66,13 @@ Function uctrlSendMsg()
         第&nbsp;四&nbsp;组&nbsp;&nbsp;
         <input type=checkbox id=qfzy6 name=qfzy6 value=xz6 onclick="checkxz();">
         第&nbsp;五&nbsp;组&nbsp;&nbsp;
-        <input type=checkbox id=qfzy0 name=qfzy0 value=xz0 onclick="checkxz();">
+        <input type=checkbox id=qfzy7 name=qfzy7 value=xz7 onclick="checkxz();">
         自&nbsp;由&nbsp;组&nbsp;&nbsp;
         <input type=checkbox id=qfzy5 name=qfzy5 value=xz5 onclick="checkxz();">
         调试组&nbsp;&nbsp;
         <input type=checkbox id=qfzy8 name=qfzy8 value=xz8 onclick="checkxz();">
         研发部&nbsp;&nbsp;
-        <input type=checkbox style="display:none;"  id=qfzy7 name=qfzy7 value=xz7 onclick="checkxz();">
+        <input type=checkbox style="display:none;"  id=qfzy0 name=qfzy0 value=xz0 onclick="checkxz();">
          </td>
     </tr>
     <tr>
