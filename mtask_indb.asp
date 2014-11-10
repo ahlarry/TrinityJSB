@@ -5,13 +5,13 @@
 	Dim action
 	action=Request("action")
 
-	Dim strlsh, strddh, strdwmc, strdmmc, strmh, strsbcj, strjcjxh, strmjxx, strrwlr
+	Dim strlsh, strddh, strdwmc, strdmmc, strmh, strsbcj, strjcjxh, strmjxx, strrwlr, ifgbl, ifcbl
 	Dim strmtjg, strdxjg, strsxjg, strsjtsl, strqjtsl, strqysd, strmtljcc, strrdogg, ijcfx, iqs
 	Dim bpjrb, strjrbxs, strjrbcl, strjrbxx, strmjcl, strbz, dtjhjssj
 	Dim dtrwxdsj, strzz, strjsdb, strbm, strlzr, dtlzrq, bgjfs,bqhgj,strgjxs
 	Dim sngmjzf, sngmtbl, ibomzf, itsdzf, itszf, itsxxzlzf, igjzf,sngmtjgbl, sngdxjgbl
-	Dim strxcbh, strdxqg, strtslb, strcnts, bbtiao,strckdm,strfzxs
-	Dim igjfs1, igjfs2, igjfs3, igjfs4, strjgzz, strsjzz, dtjhkssj, dtjgjssj
+	Dim strxcbh, strdxqg, strtslb, strcnts, bbtiao,strckdm,strfzxs, strmtrw, strdxrw
+	Dim igjfs1, igjfs2, igjfs3, igjfs4, strjgzz, strsjzz, dtjhkssj, dtjgjssj, strdedm, strdefz, strdemt, strdedx
 
 	'任务书所有变量初始化
 	strlsh=Trim(Request("lsh")) : strddh=Trim(Request("ddh")) : strdwmc=Trim(Request("dwmc")) : strdmmc=Trim(Request("dmmc"))
@@ -27,11 +27,10 @@
 	itszf=Request("tszf") : itsxxzlzf=Request("tsxxzlzf") : igjzf=Request("gjzf")
 	strtslb=Request("tslb") : strxcbh=Request("xcbh") : strcnts=Request("cnts") : bbtiao=Request("beit")
 	strjgzz=Request("jgzz") : strsjzz=Request("sjzz") : strdxqg=Request("dxqg")
-	igjfs1=Request("ssgjf") : igjfs2=Request("qbfgjf") : igjfs3=Request("qgjf") : igjfs4=Request("hgjf")
-	'bgjfs=Request("gjfs") : bqhgj=Request("qhgj")
+	igjfs1=Request("ssgjf") : igjfs2=Request("qbfgjf")
+'	igjfs3=Request("qgjf") : igjfs4=Request("hgjf")
+	strmtrw=Request("mtrw") : strdxrw=Request("dxrw") : strdedm=Request("dedm") : strdefz=Request("defz")		
 
-'	bgjfs=NullToNum(bgjfs)
-'	bqhgj=NullToNum(bqhgj)
 	sngmjzf=NullToNum(sngmjzf)
 	sngmtbl=NulltoNum(sngmtbl)
 	sngmtjgbl=NulltoNum(sngmtjgbl)
@@ -41,6 +40,55 @@
 	itszf=NulltoNum(itszf)
 	itsxxzlzf=NulltoNum(itsxxzlzf)
 	igjzf=NulltoNum(igjzf)
+	strdemt=NulltoNum(strdemt)
+	strdedx=NulltoNum(strdedx)
+
+	'初始化模具定额信息
+	strSql="select * from [c_fzbl]"
+	set rs=xjweb.Exec(strSql, 1)
+	ifgbl=CSng(rs("fgbl"))
+	ifcbl=CSng(rs("fcbl"))
+	rs.close
+
+	Select Case strmjxx
+		Case "模头"
+			strdefz=strdefz*0.4
+			sngmtbl=100
+		Case "定型"
+			strdefz=strdefz*0.6
+			sngmtbl=0
+	End select	
+	
+	If igjfs2<>0 Then
+		strdemt=strdefz*strfzxs*sngmtbl/100 + 400
+	else
+		strdemt=strdefz*strfzxs*sngmtbl/100
+	End If
+	strdedx=strdefz*strfzxs*(100-sngmtbl)/100
+	If igjfs3<>0 Then
+		strdemt=strdemt + 200*sngmtbl/100
+		strdedx=strdedx + 200*(100-sngmtbl)/100
+	End If	
+	Select Case strmtrw
+		Case ""
+			strdemt=0
+		Case "设计"
+			strdemt=Round(strdemt,1)
+		Case "复改"
+			strdemt=Round(strdemt*ifgbl,1)
+		Case "复查"
+			strdemt=Round(strdemt*ifcbl,1)
+	End select
+	Select Case strdxrw
+		Case ""
+			strdedx=0
+		Case "设计"
+			strdedx=Round(strdedx,1)
+		Case "复改"
+			strdedx=Round(strdedx*ifgbl,1)
+		Case "复查"
+			strdedx=Round(strdedx*ifcbl,1)
+	End select	
 
 	'对待入库数据进行处理
 	strMsg=""
@@ -127,8 +175,13 @@
 			Rs("mtljcc")=strmtljcc
 			Rs("rdogg")=strrdogg
 			Rs("mjxx")=strmjxx
-			Rs("rwlr")=strrwlr
+			Rs("rwlr")=strrwlr			
+			Rs("mtrw")=strmtrw
+			Rs("dxrw")=strdxrw
 			Rs("ckdm")=strckdm
+			Rs("dedm")=strdedm
+			Rs("demt")=strdemt
+			Rs("dedx")=strdedx
 			Rs("fzxs")=strfzxs
 			Rs("cnts")=strcnts
 			Rs("beit")=bbtiao
@@ -158,8 +211,8 @@
 '			Rs("gjfs")=bgjfs
 			Rs("SSGJ")=igjfs1
 			Rs("QBFGJ")=igjfs2
-			Rs("QGJ")=igjfs3
-			Rs("HGJ")=igjfs4
+'			Rs("QGJ")=igjfs3
+'			Rs("HGJ")=igjfs4
 '			Rs("qhgj")=bqhgj
 			Rs("mjzf")=sngmjzf
 			Rs("mtbl")=sngmtbl
@@ -208,8 +261,13 @@
 			Rs("mtljcc")=strmtljcc
 			Rs("rdogg")=strrdogg
 			Rs("mjxx")=strmjxx
-			Rs("rwlr")=strrwlr
+			Rs("rwlr")=strrwlr			
+			Rs("mtrw")=strmtrw
+			Rs("dxrw")=strdxrw
 			Rs("ckdm")=strckdm
+			Rs("dedm")=strdedm
+			Rs("demt")=strdemt
+			Rs("dedx")=strdedx
 			Rs("fzxs")=strfzxs
 			Rs("cnts")=strcnts
 			Rs("beit")=bbtiao
@@ -240,8 +298,8 @@
 			Rs("qhgj")=0
 			Rs("SSGJ")=igjfs1
 			Rs("QBFGJ")=igjfs2
-			Rs("QGJ")=igjfs3
-			Rs("HGJ")=igjfs4
+'			Rs("QGJ")=igjfs3
+'			Rs("HGJ")=igjfs4
 			Rs("mjzf")=sngmjzf
 			Rs("mtbl")=sngmtbl
 			Rs("mtjgbl")=sngmtjgbl

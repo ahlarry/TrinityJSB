@@ -59,6 +59,7 @@
 	if chkable(0) then mnu_mtstat=mnu_mtstat & "<div class=menuitems><a href=mtstat_display.asp>查看任务分值</a></div>"
 	if chkable(0) then mnu_mtstat=mnu_mtstat & "<div class=menuitems><a href=mtstat_ygkpdis.asp>查看考评分值</a></div>"
 	if chkable("2,3") then mnu_mtstat=mnu_mtstat & "<div class=menuitems><a href=mtstat_ygxslist.asp>查看员工系数</a></div>"
+	If chkable("2,3") Then mnu_mtstat=mnu_mtstat & "<div class=menuitems><a href=team_task.asp>任务定额</a></div>"
 
 
 	rem 图档备份(mnu_docbak)

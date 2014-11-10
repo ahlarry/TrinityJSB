@@ -216,6 +216,12 @@ Function mtask_change(Rs)
         &nbsp;&nbsp; <span id=xcsm></span></td>
     </tr>
     <tr>
+      <td class=rtd>定额断面</td>
+      <td class=ltd alt="1.选择参考断面:获得模具的基础定额;<br>2.选择复杂系数:确定模具的具体定额;<br>3.根据不同的模具情况选择:确定模具的最终定额."><select name="dedm" onChange="if(this.selectedIndex==0) jcde.innerHTML='';else jcde.innerHTML=' 定额:'+x_defz[this.selectedIndex-1];document.all.defz.value=x_defz[this.selectedIndex-1];">
+        </select>
+        &nbsp;&nbsp; <span id=jcde></span></td>
+    </tr>        
+    <tr>
       <td class=rtd>复杂系数</td>
       <td class=ltd><input name=fzxs type=text onchange="calmjfz()" size=5 value=<%=Rs("fzxs")%>></td>
     </tr>
@@ -250,6 +256,7 @@ Function mtask_change(Rs)
     <input type=hidden name=bqbfgj value=false>
     <input type=hidden name=bryqgj value=false>
     <input type=hidden name=bryhgj value=false>
+    <input type=hidden name=defz value=0>
     <tr>
       <td class=rtd rowspan="2">分值比例</td>
       <td class=ltd>模头比例:
@@ -270,11 +277,23 @@ Function mtask_change(Rs)
     </tr>
     <tr>
       <td class=rtd>模具信息</td>
-      <td class=ltd><select name=mjxx onchange='chkmjxx(this);'>
-          <option value="全套" <%If Rs("mjxx")="全套" Then%> selected <%End If%>>全套</option>
-          <option value="模头" <%If Rs("mjxx")="模头" Then%> selected <%End If%>>模头</option>
-          <option value="定型" <%If Rs("mjxx")="定型" Then%> selected <%End If%>>定型</option>
-        </select></td>
+      <td colspan="2" class=ltd><select name=mjxx onchange='chkmjxx(this);'>
+          <option value="全套" <%if rs("mjxx")="全套" then%> selected <%end if%>>全套</option>
+          <option value="模头" <%if rs("mjxx")="模头" then%> selected <%end if%>>模头</option>
+          <option value="定型" <%if rs("mjxx")="定型" then%> selected <%end if%>>定型</option>
+        </select>&nbsp;&nbsp;&nbsp;
+        模头<select name=mtrw id="mtrw">
+          <option value="" selected></option>
+          <option value="设计" <%if rs("mtrw")="设计" then%> selected <%end if%>>设计</option>
+          <option value="复改" <%if rs("mtrw")="复改" then%> selected <%end if%>>复改</option>
+          <option value="复查" <%if rs("mtrw")="复查" then%> selected <%end if%>>复查</option>
+        </select>&nbsp;&nbsp;&nbsp;
+        定型<select name=dxrw id="dxrw">
+          <option value="" selected></option>
+          <option value="设计" <%if rs("dxrw")="设计" then%> selected <%end if%>>设计</option>
+          <option value="复改" <%if rs("dxrw")="复改" then%> selected <%end if%>>复改</option>
+          <option value="复查" <%if rs("dxrw")="复查" then%> selected <%end if%>>复查</option>
+        </select></td>        
     </tr>
     <tr>
       <td class=rtd>任务内容</td>
@@ -461,11 +480,11 @@ If Rs("zz") <> "" Then %>
   </form>
 </table>
 <%
-	Dim TmpTslb,TmpCkdm
+	Dim TmpTslb,TmpCkdm,TmpDmde
 	TmpTslb=Rs("tslb")
 	TmpCkdm=Rs("ckdm")
-	Call mtask_js(TmpCkdm,TmpTslb)
-'	Call InitTS(TmpTslb)
+	TmpDmde=Rs("dedm")
+	Call mtask_js(TmpCkdm,TmpTslb,TmpDmde)
 End Function		'mtask_change()
 
 Function BzChan(Rs)
@@ -492,7 +511,7 @@ Function BzChan(Rs)
 <%
 End Function		'BzChan()
 
-Function mtask_js(CkdmOv,TslbOv)
+Function mtask_js(CkdmOv,TslbOv,DmdeOV)
 '以下为JS代码%>
 <script language="javascript">
 //初始化北调与调试类别的出现与否
@@ -540,13 +559,36 @@ function ExcTslb(ChangeV)
 	for(var i=1; i<x_xcmc.length + 1; i++)
 	{
 		document.all.ckdm[i] = new Option(x_xcmc[i-1],x_xcmc[i-1]);
+		if(document.all.ckdm.options[i].value=="<%=CkdmOV%>")
+ 			document.all.ckdm.options[i].selected=true; 
 	}
- 	var   o   =   document.getElementById("ckdm");
-	var   i;
-	for(i=0;i<o.length;i++)
+	calmjfz();
+//对定额断面初始化
+	var x_demc = new Array();
+	var x_defz = new Array();
+
+<%
+	set rs=xjweb.exec("select * from c_dmde",1)
+	i=0
+	do while not rs.eof
+%>
+		x_demc[<%=i%>]="<%=rs("dmmc")%>";
+		x_defz[<%=i%>]="<%=rs("dmfz")%>";
+<%
+		i = i + 1
+		rs.movenext
+	loop
+	rs.close
+%>
+	for(var i=1; i<x_demc.length + 1; i++)
 	{
- 		if(o.options[i].value=="<%=response.write(CkdmOv)%>") o.options[i].selected=true;
- 	}
+		document.all.dedm[i] = new Option(x_demc[i-1],x_demc[i-1]);
+		if(document.all.dedm.options[i].value=="<%=DmdeOV%>")
+		{
+ 			document.all.dedm.options[i].selected=true; 
+			document.all.defz.value=x_defz[i-1];
+		}
+	}
 
 //对调试类别初始化
 	var z_tslb = new Array();

@@ -202,6 +202,12 @@ function mtask_cadd(rs)
         &nbsp;&nbsp; <span id=xcsm></span></td>
     </tr>
     <tr>
+      <td class=rtd>定额断面</td>
+      <td class=ltd alt="1.选择参考断面:获得模具的基础定额;<br>2.选择复杂系数:确定模具的具体定额;<br>3.根据不同的模具情况选择:确定模具的最终定额."><select name="dedm" onChange="if(this.selectedIndex==0) jcde.innerHTML='';else jcde.innerHTML=' 定额:'+x_defz[this.selectedIndex-1];document.all.defz.value=x_defz[this.selectedIndex-1];">
+        </select>
+        &nbsp;&nbsp; <span id=jcde></span></td>
+    </tr>        
+    <tr>
       <td class=rtd>复杂系数</td>
       <td colspan="2" class=ltd><input name=fzxs type=text onchange="calmjfz()" size=5 value=1></td>
     </tr>
@@ -216,7 +222,7 @@ function mtask_cadd(rs)
         软硬前共挤<input name=qgjf type=text onchange="calmjfz()" value=<%=Rs("qgj")%> size=5  <%If NullToNum(Rs("qgj"))=0 Then%> style="display:none" <%End If%>>
         <input type="checkbox" name="gjfs4" class="radio" value="1" onclick="document.mtask_add.gjfs3.checked=false;calmjfz();" <%If NullToNum(Rs("hgj"))<>0 Then%> checked <%End If%> />
         软硬后共挤 <input name=hgjf type=text onchange="calmjfz()" value=<%=Rs("hgj")%> size=5  <%If NullToNum(Rs("hgj"))=0 Then%> style="display:none" <%End If%>> </td>
-            </tr>
+    </tr>
     <tr>
       <td class=rtd>模具分值</td>
       <td colspan="2" class=ltd> 模具总分:<span id=span_mjzf style="font-weight:bold;">0</span>分&nbsp;&nbsp;&nbsp;&nbsp; <span id=span_gjzf style="font-weight:bold;">0</span> <br>
@@ -236,6 +242,7 @@ function mtask_cadd(rs)
     <input type=hidden name=bhgj value=false>
     <input type=hidden name=bssgj value=false>
     <input type=hidden name=brygj value=false>
+    <input type=hidden name=defz value=0>
     <tr>
       <td class=rtd rowspan="2">分值比例</td>
       <td class=ltd>模头比例:
@@ -260,7 +267,19 @@ function mtask_cadd(rs)
           <option value="全套" <%if rs("mjxx")="全套" then%> selected <%end if%>>全套</option>
           <option value="模头" <%if rs("mjxx")="模头" then%> selected <%end if%>>模头</option>
           <option value="定型" <%if rs("mjxx")="定型" then%> selected <%end if%>>定型</option>
-        </select></td>
+        </select>&nbsp;&nbsp;&nbsp;
+        模头<select name=mtrw id="mtrw">
+          <option value="" selected></option>
+          <option value="设计" <%if rs("mtrw")="设计" then%> selected <%end if%>>设计</option>
+          <option value="复改" <%if rs("mtrw")="复改" then%> selected <%end if%>>复改</option>
+          <option value="复查" <%if rs("mtrw")="复查" then%> selected <%end if%>>复查</option>
+        </select>&nbsp;&nbsp;&nbsp;
+        定型<select name=dxrw id="dxrw">
+          <option value="" selected></option>        
+          <option value="设计" <%if rs("dxrw")="设计" then%> selected <%end if%>>设计</option>
+          <option value="复改" <%if rs("dxrw")="复改" then%> selected <%end if%>>复改</option>
+          <option value="复查" <%if rs("dxrw")="复查" then%> selected <%end if%>>复查</option>
+        </select></td>        
     </tr>
     <tr>
       <td class=rtd>任务内容</td>
@@ -415,9 +434,11 @@ function mtask_cadd(rs)
   </form>
 </table>
 <%
-	Dim TmpTslb
+	Dim TmpTslb,TmpCkdm,TmpDmde
 	TmpTslb=Rs("tslb")
-	call mtask_js(TmpTslb)
+	TmpCkdm=Rs("ckdm")
+	TmpDmde=Rs("dedm")
+	call mtask_js(TmpTslb,TmpCkdm,TmpDmde)
 end function		'mtask_cadd()
 
 
@@ -571,6 +592,12 @@ Function mtask_add()
         &nbsp;&nbsp; <span id=xcsm></span></td>
     </tr>
     <tr>
+      <td class=rtd>定额断面</td>
+      <td class=ltd alt="1.选择参考断面:获得模具的基础定额;<br>2.选择复杂系数:确定模具的具体定额;<br>3.根据不同的模具情况选择:确定模具的最终定额."><select name="dedm" onChange="if(this.selectedIndex==0) jcde.innerHTML='';else jcde.innerHTML=' 定额:'+x_defz[this.selectedIndex-1];document.all.defz.value=x_defz[this.selectedIndex-1];">
+        </select>
+        &nbsp;&nbsp; <span id=jcde></span></td>
+    </tr>    
+    <tr>
       <td class=rtd>复杂系数</td>
       <td class=ltd><input name=fzxs type=text onchange="calmjfz()" size=5 value=1></td>
     </tr>
@@ -604,6 +631,8 @@ Function mtask_add()
     <input type=hidden name=bqbfgj value=false>
     <input type=hidden name=bryqgj value=false>
     <input type=hidden name=bryhgj value=false>
+    <input type=hidden name=defz value=0>
+    
     <tr>
       <td class=rtd rowspan="2">分值比例</td>
       <td class=ltd>模头比例:
@@ -628,8 +657,20 @@ Function mtask_add()
           <option value="全套" selected>全套</option>
           <option value="模头">模头</option>
           <option value="定型">定型</option>
+        </select>&nbsp;&nbsp;&nbsp;
+      模头<select name=mtrw id="mtrw">
+          <option value=""></option>
+          <option value="设计">设计</option>
+          <option value="复改">复改</option>
+          <option value="复查">复查</option>
+        </select>&nbsp;&nbsp;&nbsp;
+      定型<select name=dxrw id="dxrw">
+          <option value=""></option>
+          <option value="设计">设计</option>
+          <option value="复改">复改</option>
+          <option value="复查">复查</option>
         </select></td>
-    </tr>
+    </tr>     
     <tr>
       <td class=rtd>任务内容</td>
       <td class=ltd><select name=rwlr>
@@ -788,11 +829,11 @@ Function mtask_add()
   </form>
 </table>
 <%
-	call mtask_js("")
+	call mtask_js("","","")
 end function		'mtask_add()
 %>
 <%
-function mtask_js(TslbOv)
+function mtask_js(TslbOv,CkdmOV,DmdeOV)
 '以下为JS代码%>
 <script language="javascript">
 //对参考模具初始化
@@ -817,9 +858,38 @@ function mtask_js(TslbOv)
 	for(var i=1; i<x_xcmc.length + 1; i++)
 	{
 		document.all.ckdm[i] = new Option(x_xcmc[i-1],x_xcmc[i-1]);
+		if(document.all.ckdm.options[i].value=="<%=CkdmOV%>")
+ 			document.all.ckdm.options[i].selected=true; 
 	}
-	//document.all.ckdm[1] = new Option("xujian","xujian");
+	calmjfz();
+		
+//对定额断面初始化
+	var x_demc = new Array();
+	var x_defz = new Array();
 
+<%
+	set rs=xjweb.exec("select * from c_dmde",1)
+	i=0
+	do while not rs.eof
+%>
+		x_demc[<%=i%>]="<%=rs("dmmc")%>";
+		x_defz[<%=i%>]="<%=rs("dmfz")%>";
+<%
+		i = i + 1
+		rs.movenext
+	loop
+	rs.close
+%>
+	for(var i=1; i<x_demc.length + 1; i++)
+	{
+		document.all.dedm[i] = new Option(x_demc[i-1],x_demc[i-1]);
+		if(document.all.dedm.options[i].value=="<%=DmdeOV%>")
+		{
+ 			document.all.dedm.options[i].selected=true; 
+			document.all.defz.value=x_defz[i-1];
+		}
+	}
+		
 //对调试类别初始化
 	var z_tslb = new Array();
 	var z_xcbz = new Array();
@@ -1040,11 +1110,27 @@ function chkmjxx(ftemp)
 			document.all.dxqg.value="";
 			document.all.dxjg.value="/";
 			document.all.sxjg.value="/";
+			document.getElementById("mtrw").disabled=false;
+			document.getElementById("dxrw").disabled=true;
+			document.getElementById("dxrw").value="";
+//			document.all.dxrw.disabled="true";
+			break;
+		case "定型" :
+			document.all.trdxqg.style.display="";
+			document.all.trdxjg.style.display="";
+			document.all.trsxjg.style.display="";
+			document.getElementById("mtrw").value="";
+			document.getElementById("mtrw").disabled=true;
+			document.getElementById("dxrw").disabled=false;
+//			document.all.mtrw.disabled="true";
 			break;
 		default:
 			document.all.trdxqg.style.display="";
 			document.all.trdxjg.style.display="";
 			document.all.trsxjg.style.display="";
+			document.getElementById("mtrw").disabled=false;
+			document.getElementById("dxrw").disabled=false;
+			
 			break;
 	}
 }

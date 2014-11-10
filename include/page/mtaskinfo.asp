@@ -29,7 +29,16 @@ Function mtask_fewinfo(rs)
   </tr>
   <tr>
     <td class="rtd">任务内容</td>
-    <td class="ltd"><%=rs("mjxx") & rs("rwlr")%></td>
+    <td class="ltd">
+    <%
+    If IsNull(rs("mtrw")) and IsNull(rs("dxrw")) Then
+    	Response.Write(rs("mjxx") & rs("rwlr"))
+    else
+    	If Rs("mtrw")<>"" Then Response.Write("模头"&rs("mtrw")) End If
+    	If Rs("dxrw")<>"" Then Response.Write("定型"&rs("dxrw")) End If
+    End If
+    %>
+   </td>
     <td class="rtd">计划结束时间</td>
     <td class="ltd"><%=xjDate(rs("jhjssj"),1)%></td>
   </tr>
@@ -129,7 +138,16 @@ end select
   </tr>
   <tr>
     <td class="rtd"  width="13%">任务内容</td>
-    <td class="ltd"><%=rs("mjxx") & rs("rwlr")%></td>
+    <td class="ltd">
+    <%
+    If IsNull(rs("mtrw")) and IsNull(rs("dxrw")) Then
+    	Response.Write(rs("mjxx") & rs("rwlr"))
+    else
+    	If Rs("mtrw")<>"" Then Response.Write("模头"&rs("mtrw")) End If
+    	If Rs("dxrw")<>"" Then Response.Write("定型"&rs("dxrw")) End If
+    End If
+    %>
+   </td>
         <td class="rtd"  width="13%">厂内调试</td>
     <td class="ltd"  width="*"><%if rs("cnts") then%>
       是
@@ -289,7 +307,16 @@ Function mtask_allinfo(rs)
     <td class="rtd">定型切割</td>
     <td class="ltd"><%=rs("dxqg")%>&nbsp;</td>
     <td class="rtd">任务内容</td>
-    <td class="ltd"><%=rs("mjxx") & rs("rwlr")%></td>
+    <td class="ltd">
+    <%
+    If IsNull(rs("mtrw")) and IsNull(rs("dxrw")) Then
+    	Response.Write(rs("mjxx") & rs("rwlr"))
+    else
+    	If Rs("mtrw")<>"" Then Response.Write("模头"&rs("mtrw")) End If
+    	If Rs("dxrw")<>"" Then Response.Write("定型"&rs("dxrw")) End If
+    End If
+    %>
+   </td>
   </tr>
   <tr>
     <td class="rtd">定型结构</td>

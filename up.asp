@@ -29,15 +29,15 @@ End Sub
 
 Function Updata()
 	Dim ijgsj, isj
-	strSql="select * from [mtask] where isnull(sjjssj) and isnull(jhjgsj) order by jhjssj desc"
+	strSql="select * from [mtask] where datediff('m', sjjssj, '"&now()&"') < 3 or datediff('m', rwxdsj, '"&now()&"') < 4"
 		Call xjweb.exec("",-1)
 		Rs.open strSql,Conn,1,3
 		Do while not Rs.eof
-			isj=INT(datediff("d", rs("jhkssj"), rs("jhjssj"))/2)
-			ijgsj=dateadd("d",isj,rs("jhkssj"))
-			Rs("jhjgsj")=ijgsj
+			Rs("mtrw")=rs("rwlr")
+			Rs("dxrw")=rs("rwlr")
+			if Rs("mjxx")="定型" Then Rs("mtrw")=""
+			if Rs("mjxx")="模头" Then Rs("dxrw")=""
 			Rs.update
-			Response.Write(Rs("lsh")&"-----"&Rs("jhjgsj")&"<br>")
 		Rs.movenext
 		Loop
 	Rs.close
