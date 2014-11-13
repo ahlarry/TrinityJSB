@@ -114,12 +114,43 @@ Function TaskList()
 	loop
 	%>
 <tr>
-  <td class=rtd colspan=7>任务总分:</td>
+  <td class=rtd colspan=7>设计任务总分:</td>
   <td class=ctd><b><%=irwzf%></b></td>
 </tr>
 <%
 	Rs.close
+	
+	strSql="select * from [ftask] where xz="&iGroup&" and rwlx='零星修理' and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0 order by jssj desc"
+	Set Rs=xjweb.Exec(strSql, 1)
+	Do While Not Rs.eof
+%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd><%=Rs("xldh")%></td>
+  <td class=ctd><%=Rs("rwlx")%></td>
+  <td class=ctd><%=Rs("zrr")%></td>
+  <td class=ctd colspan=2>&nbsp;</td>
+  <td class=ctd><%=Rs("zf")%></td>
+  <td class=ctd><%=Rs("zf")%></td>
+</tr>
+<%
+			icount = icount + 1
+			ilxrwzf=ilxrwzf+Rs("zf")
+			Rs.movenext
+	loop
+%>
+<tr>
+  <td class=rtd colspan=7>零星任务总分:</td>
+  <td class=ctd><b><%=ilxrwzf%></b></td>
+</tr>
+<%
+	Rs.close	
   %>
+  <tr>
+  <td class=rtd colspan=7>任务总分:</td>
+  <td class=ctd><b><%=Round(irwzf+ilxrwzf,1)%></b></td>
+</tr>
+
 </table>
 <%
 End Function

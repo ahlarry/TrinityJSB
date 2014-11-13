@@ -130,7 +130,7 @@ function mtask_mt()		'设计任务分值统计
 	%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd title="<p>订单号: <%=Rs("ddh")%></p>流水号: <%=Rs("lsh")%><br>客户厂家: <%=Rs("dwmc")%><br>断面名称: <%=Rs("dmmc")%><br>"><a href="mtask_display.asp?s_lsh=<%=Rs("lsh")%>"><%=Rs("lsh")%></a></td>
+  <td class=ctd alt="订单号: <%=Rs("ddh")%><br>流水号: <%=Rs("lsh")%><br>客户厂家: <%=Rs("dwmc")%><br>断面名称: <%=Rs("dmmc")%><br>"><a href="mtask_display.asp?s_lsh=<%=Rs("lsh")%>"><%=Rs("lsh")%></a></td>
   <td class=ctd><%=Rs("rwlr")%></td>
   <td class=ctd><%=Rs("zrr")%></td>
   <td class=ctd alt="计划结束时间:<%=xjDate(Rs("jhjssj"),1)%>"><%=xjDate(Rs("jssj"),1)%></td>
