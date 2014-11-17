@@ -113,6 +113,7 @@
 	If sngmtbl=0 Then strMsg=strMsg & "模头比例为零!<br>"
 	If sngmtjgbl=0 Then strMsg=strMsg & "模头结构比例为零!<br>"
 	If sngdxjgbl=0 Then strMsg=strMsg & "定型结构比例为零!<br>"
+	If strdemt=0 and strdedx=0 Then strMsg=strMsg & "模头和定型定额不能同时为0!<br>"
 	If strzz=""  Then
 		If strjgzz="" or strsjzz="" Then strMsg=strMsg & "组长没有选择!<br>"
 	End If
