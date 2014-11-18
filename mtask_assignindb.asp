@@ -496,7 +496,7 @@
 			if not bmtaskend("sjjssj", strlsh) then
 				strSql="update [mtask] set sjjssj='"&request("psd")&" "& request("pst") &"', psjl='"&request("zrpsjl")&"' where lsh='"&strlsh&"'"
 				call xjweb.Exec(strSql, 0)
-				call fentodb(strlsh)
+'				call fentodb(strlsh)
 				call DeToDB(strlsh)
 			end if
 			Call JsAlert("流水号 【" & strlsh & "】 任务书全部完成!","mtask_assign.asp")
@@ -1472,8 +1472,8 @@ End Function
 Function DeToDB(lsh)
 	'将定额写入定额库
 	Dim mtfz, dxfz, imtjgbl, idxjgbl, isjbl, ishbl, ibombl, hgjf
-	Dim iGroup, tmpSql, tmpRs, imtrw, idxrw, ijssj
-	hgjf=0 : iGroup=0
+	Dim iGroup, tmpSql, tmpRs, imtrw, idxrw, ijssj, ijhjssj, ikhxs
+	hgjf=0 : iGroup=0 : ikhxs=1
 	'指定设计、审核、bom比例，三者相加等于1
 	isjbl=0.72 : ishbl=0.24 : ibombl=0.04
 
@@ -1486,8 +1486,12 @@ Function DeToDB(lsh)
 	dxfz=Rs("dedx")
 	imtrw=Rs("mtrw")
 	idxrw=Rs("dxrw")
+	ijhjssj=Rs("jhjssj")
 	ijssj=Rs("sjjssj")
 	if Isnull(ijssj) then ijssj=now()
+	ikhxs=1-datediff("d",ijhjssj,ijssj)*0.1	'提前或延迟分值系数，每天浮动0.1,最多0.5
+	if ikhxs<0.5 Then ikhxs=0.5
+	if ikhxs>1.5 Then ikhxs=1.5
 
 			if not(isnull(rs("mtjgr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtjgr")&"'"
@@ -1498,7 +1502,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("mtjgr")&"',"&iGroup&",'模头结构',"&Round(mtfz*isjbl*imtjgbl,1)&","&Round(mtfz*isjbl*imtjgbl,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtjgr")&"',"&iGroup&",'模头结构',"&Round(mtfz*isjbl*imtjgbl,1)&","&Round(mtfz*ikhxs*isjbl*imtjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("dxjgr"))) then
@@ -1510,7 +1514,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("dxjgr")&"',"&iGroup&",'定型结构',"&Round(dxfz*isjbl*idxjgbl,1)&","&Round(dxfz*isjbl*idxjgbl,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxjgr")&"',"&iGroup&",'定型结构',"&Round(dxfz*isjbl*idxjgbl,1)&","&Round(dxfz*ikhxs*isjbl*idxjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("gjjgr"))) then
@@ -1522,7 +1526,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("gjjgr")&"',"&iGroup&",'后共挤结构',"&Round(hgjf*isjbl*imtjgbl,1)&","&Round(hgjf*isjbl*imtjgbl,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjjgr")&"',"&iGroup&",'后共挤结构',"&Round(hgjf*isjbl*imtjgbl,1)&","&Round(hgjf*ikhxs*isjbl*imtjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("mtsjr"))) then
@@ -1534,7 +1538,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("mtsjr")&"',"&iGroup&",'模头设计',"&Round(mtfz*isjbl*(1-imtjgbl),1)&","&Round(mtfz*isjbl*(1-imtjgbl),1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtsjr")&"',"&iGroup&",'模头设计',"&Round(mtfz*isjbl*(1-imtjgbl),1)&","&Round(mtfz*ikhxs*isjbl*(1-imtjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("dxsjr"))) then
@@ -1546,7 +1550,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("dxsjr")&"',"&iGroup&",'定型设计',"&Round(dxfz*isjbl*(1-idxjgbl),1)&","&Round(dxfz*isjbl*(1-idxjgbl),1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxsjr")&"',"&iGroup&",'定型设计',"&Round(dxfz*isjbl*(1-idxjgbl),1)&","&Round(dxfz*ikhxs*isjbl*(1-idxjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("gjsjr"))) then
@@ -1558,7 +1562,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("gjsjr")&"',"&iGroup&",'后共挤设计',"&Round(hgjf*isjbl*(1-imtjgbl),1)&","&Round(hgjf*isjbl*(1-imtjgbl),1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjsjr")&"',"&iGroup&",'后共挤设计',"&Round(hgjf*isjbl*(1-imtjgbl),1)&","&Round(hgjf*ikhxs*isjbl*(1-imtjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("mtjgshr"))) then
@@ -1570,7 +1574,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("mtjgshr")&"',"&iGroup&",'模头结构审核',"&Round(mtfz*ishbl*imtjgbl,1)&","&Round(mtfz*ishbl*imtjgbl,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtjgshr")&"',"&iGroup&",'模头结构审核',"&Round(mtfz*ishbl*imtjgbl,1)&","&Round(mtfz*ikhxs*ishbl*imtjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("mtsjshr"))) then
@@ -1582,7 +1586,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("mtsjshr")&"',"&iGroup&",'模头设计审核',"&Round(mtfz*ishbl*(1-imtjgbl),1)&","&Round(mtfz*ishbl*(1-imtjgbl),1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtsjshr")&"',"&iGroup&",'模头设计审核',"&Round(mtfz*ishbl*(1-imtjgbl),1)&","&Round(mtfz*ikhxs*ishbl*(1-imtjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("dxjgshr"))) then
@@ -1594,7 +1598,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("dxjgshr")&"',"&iGroup&",'定型结构审核',"&Round(dxfz*ishbl*idxjgbl,1)&","&Round(dxfz*ishbl*idxjgbl,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxjgshr")&"',"&iGroup&",'定型结构审核',"&Round(dxfz*ishbl*idxjgbl,1)&","&Round(dxfz*ikhxs*ishbl*idxjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("dxsjshr"))) then
@@ -1606,7 +1610,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("dxsjshr")&"',"&iGroup&",'定型设计审核',"&Round(dxfz*ishbl*(1-idxjgbl),1)&","&Round(dxfz*ishbl*(1-idxjgbl),1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxsjshr")&"',"&iGroup&",'定型设计审核',"&Round(dxfz*ishbl*(1-idxjgbl),1)&","&Round(dxfz*ikhxs*ishbl*(1-idxjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("gjjgshr"))) then
@@ -1618,7 +1622,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("gjjgshr")&"',"&iGroup&",'后共挤结构审核',"&Round(hgjf*ishbl*imtjgbl,1)&","&Round(hgjf*ishbl*imtjgbl,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjjgshr")&"',"&iGroup&",'后共挤结构审核',"&Round(hgjf*ishbl*imtjgbl,1)&","&Round(hgjf*ikhxs*ishbl*imtjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("gjsjshr"))) then
@@ -1630,7 +1634,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("gjsjshr")&"',"&iGroup&",'后共挤设计审核',"&Round(hgjf*ishbl*(1-imtjgbl),1)&","&Round(hgjf*ishbl*(1-imtjgbl),1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjsjshr")&"',"&iGroup&",'后共挤设计审核',"&Round(hgjf*ishbl*(1-imtjgbl),1)&","&Round(hgjf*ikhxs*ishbl*(1-imtjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("mtbomr"))) then
@@ -1642,7 +1646,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("mtbomr")&"',"&iGroup&",'模头BOM',"&Round(mtfz*ibombl,1)&","&Round(mtfz*ibombl,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtbomr")&"',"&iGroup&",'模头BOM',"&Round(mtfz*ibombl,1)&","&Round(mtfz*ikhxs*ibombl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			if not(isnull(rs("dxbomr"))) then
@@ -1654,7 +1658,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("dxbomr")&"',"&iGroup&",'定型BOM',"&Round(dxfz*ibombl,1)&","&Round(dxfz*ibombl,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxbomr")&"',"&iGroup&",'定型BOM',"&Round(dxfz*ibombl,1)&","&Round(dxfz*ikhxs*ibombl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 			
@@ -1669,9 +1673,9 @@ Function DeToDB(lsh)
 				End If
 				tmpRs.Close
 				if imtrw="复查" Then
-					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("mtshr")&"',"&iGroup&",'模头复查',"&Round(mtfz,1)&","&Round(mtfz,1)&",'"&ijssj&"')"				
+					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtshr")&"',"&iGroup&",'模头复查',"&Round(mtfz,1)&","&Round(mtfz*ikhxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"		
 				else
-					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("mtshr")&"',"&iGroup&",'模头审核',"&Round(mtfz*ishbl,1)&","&Round(mtfz*ishbl,1)&",'"&ijssj&"')"
+					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtshr")&"',"&iGroup&",'模头审核',"&Round(mtfz*ishbl,1)&","&Round(mtfz*ikhxs*ishbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				End If
 				call xjweb.Exec(strSql,0)
 			end if
@@ -1685,9 +1689,9 @@ Function DeToDB(lsh)
 				End If
 				tmpRs.Close
 				if idxrw="复查" Then				
-					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("dxshr")&"',"&iGroup&",'定型复查',"&Round(dxfz,1)&","&Round(dxfz,1)&",'"&ijssj&"')"
+					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxshr")&"',"&iGroup&",'定型复查',"&Round(dxfz,1)&","&Round(dxfz*ikhxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				else
-					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("dxshr")&"',"&iGroup&",'定型审核',"&Round(dxfz*ishbl,1)&","&Round(dxfz*ishbl,1)&",'"&ijssj&"')"
+					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxshr")&"',"&iGroup&",'定型审核',"&Round(dxfz*ishbl,1)&","&Round(dxfz*ikhxs*ishbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				End if					
 				call xjweb.Exec(strSql,0)
 			end if
@@ -1700,7 +1704,7 @@ Function DeToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj) values ('"&rs("lsh")&"','"&rs("gjshr")&"',"&iGroup&",'共挤审核',"&Round(hgjf,1)&","&Round(hgjf,1)&",'"&ijssj&"')"
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjshr")&"',"&iGroup&",'共挤审核',"&Round(hgjf,1)&","&Round(hgjf*ikhxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 	rs.close

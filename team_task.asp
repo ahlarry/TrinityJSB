@@ -104,12 +104,12 @@ Function TaskList()
   <td class=ctd><%=Rs("zrr")%></td>
   <td class=ctd><%=Rs("js")%></td>
   <td class=ctd><%if Rs("dedm")<>"" Then Response.Write(Rs("dedm")) else Response.Write(Rs("ckdm"))%></td>
-  <td class=ctd title=""><%=Round(Rs("fz"),1)%></td>
   <td class=ctd><%=Round(Rs("fz"),1)%></td>
+  <td class=ctd title=<%=Rs("a.bz")%>><%=Round(Rs("sjfz"),1)%></td>
 </tr>	
 <%
 		icount = icount + 1
-		irwzf=irwzf+Round(Rs("fz"),1)
+		irwzf=irwzf+Round(Rs("sjfz"),1)
 		Rs.movenext
 	loop
 	%>
