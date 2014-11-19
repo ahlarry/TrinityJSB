@@ -1,6 +1,6 @@
 <!--#include file="include/conn.asp"-->
 <%
-	dim action, strrwlx, strrwlr, strzrr, izf, iid,strxldh,strxlxh,stryhdw,strgzyy,   strzbfa,strmjmc,strjssj,strzrfp,strylsh
+	dim action, strrwlx, strrwlr, strzrr, izf, iid,strxldh,strxlxh,stryhdw,strgzyy,   strzbfa,strmjmc,strjssj,strzrfp,strylsh,stred
 	action="" : strrwlx="" : strrwlr="" : strzrr="" : izf=0 :  iid=0 :  strxldh="" : strxlxh="" : stryhdw="" : strgzyy="" :  strzbfa="" : strmjmc="":strjssj="":strzrfp="" : strylsh=""
 	action=request("action")
 	strrwlx=request("rwlx")
@@ -8,6 +8,7 @@
 	strxlxh=request("xlxh")
 	stryhdw=request("yhdw")
 	strzrfp=Request("zrfp")
+	stred=Request("ed")
 	strylsh=trim(request("ylsh"))
 	strgzyy=trim(request("gzyy"))
 	strzbfa=trim(request("zbfa"))
@@ -64,6 +65,7 @@
 			rs("zrr")=strzrr
 			rs("xz")=iGroup
 			rs("zf")=izf
+			if stred<>"" then rs("ed")=stred end if
 			rs("jssj")=strjssj
 			rs("lzr")=session("userName")
 			rs("lzrq")=now()
@@ -101,6 +103,7 @@
 			rs("zrr")=strzrr
 			rs("xz")=iGroup
 			rs("zf")=izf
+			if stred<>"" then rs("ed")=stred end if
 			rs("jssj")=strjssj
 			rs("lzr")=session("userName")
 			rs("lzrq")=now()
@@ -116,6 +119,7 @@
 	if strrwlx="零星修理" then
 	strrwlr="用户单位:"&stryhdw&"||模具名称:"&strmjmc&"||修理小号:"&strxlxh&"||故障现象与分析原因:"&strgzyy&"||准备采取方案:"&strzbfa&"||责任分配:"&strzrfp&"||原流水号:"&strylsh
 	izf=Request("zf1")
+	If Instr(strzrfp,"设计")>0 Then stred=Request("ed")
 	strzrr=Request("zrr1")
 	strjssj=Request("psy1") & "年" & request("psm1") & "月" & request("psd1") & "日"
 	else

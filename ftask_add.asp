@@ -113,6 +113,11 @@ function ftaskCadd(rs)
 	</tr>
 
 	<tr>
+		<td class=rtd>额度</td>
+		<td class=ltd><input type=text name="ed" size=8 onblur="fzcheck();" value=<%=rs("ed")%>>分</td>
+	</tr>
+
+	<tr>
 		<td class=rtd>计划结束时间</td>
 		<td class=ltd>
 			<select id="psy1" name="psy1" onchange='addOptions(this.form.psy.value, this.form.psm.value-1, this.form.psd);'>
@@ -204,6 +209,11 @@ function ftaskAdd()
         分</td>
     </tr>
     <tr>
+      <td class="rtd">额度</td>
+      <td class="ltd"><input type="text" name="ed" size="8" onblur="fzcheck();" />
+        分</td>
+    </tr>
+    <tr>
       <td class="rtd">结束时间</td>
       <td class="ltd"><select id="psy" name="psy" onchange='addOptions(this.form.psy.value, this.form.psm.value-1, this.form.psd);'>
           <%for i = year(now)-1 to year(now) + 3%>
@@ -285,6 +295,11 @@ function ftaskAdd()
     <tr>
       <td class="rtd">分值</td>
       <td class="ltd"><input type="text" name="zf1" size="8" onblur="fzcheck();" />
+        分</td>
+    </tr>
+    <tr>
+      <td class="rtd">额度</td>
+      <td class="ltd"><input type="text" name="ed" size="8" onblur="fzcheck();" />
         分</td>
     </tr>
     <tr>

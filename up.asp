@@ -28,16 +28,14 @@ Sub Main()
 End Sub
 
 Function Updata()
-	Dim ijgsj, isj
-	strSql="select * from [mtask] where datediff('m', sjjssj, '"&now()&"') < 3 or datediff('m', rwxdsj, '"&now()&"') < 4"
+	Dim mystr, mystr1, ikhxs, rwlr_change, tmpRs
+	ikhxs=1
+	strSql="select * from [ftask] where datediff('m',jssj,'"&now()&"')<4 and (rwlx='零星修理' or rwlx='零星任务' or rwlx='技术代表设计')"
 		Call xjweb.exec("",-1)
 		Rs.open strSql,Conn,1,3
 		Do while not Rs.eof
-			Rs("mtrw")=rs("rwlr")
-			Rs("dxrw")=rs("rwlr")
-			if Rs("mjxx")="定型" Then Rs("mtrw")=""
-			if Rs("mjxx")="模头" Then Rs("dxrw")=""
-			Rs.update
+				if IsNull(Rs("ed")) Then Rs("ed")=0
+				Rs.update
 		Rs.movenext
 		Loop
 	Rs.close

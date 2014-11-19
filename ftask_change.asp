@@ -132,6 +132,11 @@ function ftask_change(rs)
 		<td class=rtd>分值</td>
 		<td class=ltd><input type=text name="zf1" size=8 onblur="fzcheck();" value=<%=rs("zf")%>>分</td>
 	</tr>
+	
+	<tr>
+		<td class=rtd>额度</td>
+		<td class=ltd><input type=text name="ed" size=8 onblur="fzcheck();" value=<%=rs("ed")%>>分</td>
+	</tr>
 
 	<tr>
 		<td class=rtd>计划结束时间</td>
@@ -193,6 +198,11 @@ function ftask_change(rs)
 	<tr>
 		<td class=rtd>分值</td>
 		<td class=ltd><input type=text name="zf" size=8 onblur="fzcheck();" value=<%=rs("zf")%>>分</td>
+	</tr>
+
+	<tr>
+		<td class=rtd>额度</td>
+		<td class=ltd><input type=text name="ed" size=8 onblur="fzcheck();" value=<%=rs("ed")%>>分</td>
 	</tr>
 
 	<tr>

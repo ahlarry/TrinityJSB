@@ -119,24 +119,37 @@ Function TaskList()
 </tr>
 <%
 	Rs.close
-	
-	strSql="select * from [ftask] where xz="&iGroup&" and rwlx='零星修理' and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0 order by jssj desc"
+	Dim mystr, mystr1, rwlr_change
+	strSql="select * from [ftask] where xz="&iGroup&" and (rwlx='零星修理' or rwlx='零星任务' or rwlx='技术代表设计') and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0 order by rwlx desc,jssj desc"
 	Set Rs=xjweb.Exec(strSql, 1)
 	Do While Not Rs.eof
+		mystr=rs("rwlr")
+	    mystr=split(mystr,"||")
+		If 5 > ubound(mystr) Then
+		  	mystr1=split(rs("rwlr"),":")
+		   	rwlr_change=""
+		  else
+	   	 	mystr1=mystr(5)
+			mystr1=split(mystr1,":")
+			rwlr_change=mystr1(1)
+	   End If
+	   If not(Rs("rwlx")="零星修理" and InStr(rwlr_change, "设计")=0) Then
 %>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd><%=Rs("xldh")%></td>
+  <td class=ctd><%If Rs("rwlx")="技术代表设计" Then Response.Write(mystr1(0)) else Response.Write(Rs("xldh")) End If%>&nbsp;</td>
   <td class=ctd><%=Rs("rwlx")%></td>
   <td class=ctd><%=Rs("zrr")%></td>
-  <td class=ctd colspan=2>&nbsp;</td>
-  <td class=ctd><%=Rs("zf")%></td>
-  <td class=ctd><%=Rs("zf")%></td>
+  <td class=ctd><%=rwlr_change%>&nbsp;</td>
+  <td class=ctd>&nbsp;</td>
+  <td class=ctd><%=Rs("ed")%></td>
+  <td class=ctd><%=Rs("ed")%></td>
 </tr>
 <%
-			icount = icount + 1
-			ilxrwzf=ilxrwzf+Rs("zf")
-			Rs.movenext
+		End If
+		icount = icount + 1
+		ilxrwzf=ilxrwzf+Rs("ed")
+		Rs.movenext
 	loop
 %>
 <tr>
