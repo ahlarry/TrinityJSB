@@ -1,14 +1,14 @@
 <!--#include file="include/conn.asp"-->
 <%
-	dim action, strrwlx, strrwlr, strzrr, izf, iid,strxldh,strxlxh,stryhdw,strgzyy,   strzbfa,strmjmc,strjssj,strzrfp,strylsh,stred
-	action="" : strrwlx="" : strrwlr="" : strzrr="" : izf=0 :  iid=0 :  strxldh="" : strxlxh="" : stryhdw="" : strgzyy="" :  strzbfa="" : strmjmc="":strjssj="":strzrfp="" : strylsh=""
+	dim action, strrwlx, strrwlr, strzrr, izf, iid,strxldh,strxlxh,stryhdw,strgzyy,   strzbfa,strmjmc,strjssj,strzrfp,strylsh,ied
+	action="" : strrwlx="" : strrwlr="" : strzrr="" : izf=0 :  iid=0 :  strxldh="" : strxlxh="" : stryhdw=""
+	strgzyy="" :  strzbfa="" : strmjmc="":strjssj="":strzrfp="" : strylsh="" : ied=0
 	action=request("action")
 	strrwlx=request("rwlx")
 	strxldh=request("xldh")
 	strxlxh=request("xlxh")
 	stryhdw=request("yhdw")
 	strzrfp=Request("zrfp")
-	stred=Request("ed")
 	strylsh=trim(request("ylsh"))
 	strgzyy=trim(request("gzyy"))
 	strzbfa=trim(request("zbfa"))
@@ -65,7 +65,7 @@
 			rs("zrr")=strzrr
 			rs("xz")=iGroup
 			rs("zf")=izf
-			if stred<>"" then rs("ed")=stred end if
+			rs("ed")=ied
 			rs("jssj")=strjssj
 			rs("lzr")=session("userName")
 			rs("lzrq")=now()
@@ -103,7 +103,7 @@
 			rs("zrr")=strzrr
 			rs("xz")=iGroup
 			rs("zf")=izf
-			if stred<>"" then rs("ed")=stred end if
+			rs("ed")=ied
 			rs("jssj")=strjssj
 			rs("lzr")=session("userName")
 			rs("lzrq")=now()
@@ -117,16 +117,17 @@
 	function SelectT()
 	'根据任务不同初始化数据
 	if strrwlx="零星修理" then
-	strrwlr="用户单位:"&stryhdw&"||模具名称:"&strmjmc&"||修理小号:"&strxlxh&"||故障现象与分析原因:"&strgzyy&"||准备采取方案:"&strzbfa&"||责任分配:"&strzrfp&"||原流水号:"&strylsh
-	izf=Request("zf1")
-	If Instr(strzrfp,"设计")>0 Then stred=Request("ed")
-	strzrr=Request("zrr1")
-	strjssj=Request("psy1") & "年" & request("psm1") & "月" & request("psd1") & "日"
+		strrwlr="用户单位:"&stryhdw&"||模具名称:"&strmjmc&"||修理小号:"&strxlxh&"||故障现象与分析原因:"&strgzyy&"||准备采取方案:"&strzbfa&"||责任分配:"&strzrfp&"||原流水号:"&strylsh
+		izf=Request("zf1")
+		If Instr(strzrfp,"设计")>0 Then ied=Request("ed1")
+		strzrr=Request("zrr1")
+		strjssj=Request("psy1") & "年" & request("psm1") & "月" & request("psd1") & "日"
 	else
-	strrwlr=trim(request("rwlr"))
-	izf=request("zf")
-	strzrr=request("zrr")
-	strjssj=request("psy") & "年" & request("psm") & "月" & request("psd") & "日"
+		strrwlr=trim(request("rwlr"))
+		izf=request("zf")
+		ied=request("ed")
+		strzrr=request("zrr")
+		strjssj=request("psy") & "年" & request("psm") & "月" & request("psd") & "日"
 	end if
 	end function
 

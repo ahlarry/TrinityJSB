@@ -86,21 +86,23 @@ function checkinf()
 	if(trim(objdm.gzyy.value)==""){alert("故障现象与分析原因不能为空!\n请输入故障现象与分析原因!"); objdm.gzyy.value="";objdm.gzyy.focus(); return false;}
 	if(trim(objdm.zbfa.value)==""){alert("准备采取方案不能为空!\n请输入准备采取方案!"); objdm.zbfa.value="";objdm.zbfa.focus(); return false;}
 	if (objdm.zf1.value==0){alert("分值不能为零!"); objdm.zf1.focus(); return false;}
+	if (objdm.ed1.value==0){alert("额度不能为零!"); objdm.ed1.focus(); return false;}
 	if (objdm.zrr1.value==""){alert("请选择责任人!"); objdm.zrr1.focus(); return false;}
 	}
 	else 
 	{
 		if (trim(objdm.rwlr.value)==""){alert("任务能容不能为空!\n请输入任务内容!"); objdm.rwlr.value="";objdm.rwlr.focus(); return false;} 
-	if (objdm.zf.value==0){alert("分值不能为零!"); objdm.zf.focus(); return false;}
-	if (objdm.zrr.value==""){alert("请选择责任人!"); objdm.zrr.focus(); return false;}
+		if (objdm.zf.value==0){alert("分值不能为零!"); objdm.zf.focus(); return false;}
+		if (objdm.ed.value==0){alert("额度不能为零!"); objdm.ed.focus(); return false;}
+		if (objdm.zrr.value==""){alert("请选择责任人!"); objdm.zrr.focus(); return false;}
 	}
-	
 	return true;
 }
 
 function fzcheck()
 {
 	var zf=0;
+	var ied=0;
 	var objdm=document.frm_ftask
 	if (objdm.rwlx.value=="零星修理")
  { 
@@ -110,6 +112,12 @@ function fzcheck()
 	  document.all.zf1.value=zf;
     return;
     }
+ 	if(!isNaN(parseFloat(document.all.ed1.value)))
+ 	{
+ 		ied=parseFloat(document.all.ed1.value);
+	  document.all.ed1.value=ied;
+    return;
+    }
   }
   else
   	if(!isNaN(parseFloat(document.all.zf.value)))
@@ -117,8 +125,12 @@ function fzcheck()
  		zf=parseFloat(document.all.zf.value);
 	  document.all.zf.value=zf;
     return;
+  	if(!isNaN(parseFloat(document.all.ed.value)))
+ 	{
+ 		ied=parseFloat(document.all.ed.value);
+	  document.all.ed.value=ied;
+    return;
     }
- 
 }
 function selecttask(s) 
 {

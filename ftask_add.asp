@@ -299,7 +299,7 @@ function ftaskAdd()
     </tr>
     <tr>
       <td class="rtd">¶î¶È</td>
-      <td class="ltd"><input type="text" name="ed" size="8" onblur="fzcheck();" />
+      <td class="ltd"><input type="text" name="ed1" size="8" onblur="fzcheck();" />
         ·Ö</td>
     </tr>
     <tr>
