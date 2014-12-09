@@ -28,7 +28,7 @@
 	strtslb=Request("tslb") : strxcbh=Request("xcbh") : strcnts=Request("cnts") : bbtiao=Request("beit")
 	strjgzz=Request("jgzz") : strsjzz=Request("sjzz") : strdxqg=Request("dxqg")
 	igjfs1=Request("ssgjf") : igjfs2=Request("qbfgjf")
-'	igjfs3=Request("qgjf") : igjfs4=Request("hgjf")
+	igjfs3=Request("qgjf") : igjfs4=Request("hgjf")
 	strmtrw=Request("mtrw") : strdxrw=Request("dxrw") : strdedm=Request("dedm") : strdefz=Request("defz")		
 
 	sngmjzf=NullToNum(sngmjzf)
@@ -212,8 +212,8 @@
 '			Rs("gjfs")=bgjfs
 			Rs("SSGJ")=igjfs1
 			Rs("QBFGJ")=igjfs2
-'			Rs("QGJ")=igjfs3
-'			Rs("HGJ")=igjfs4
+			Rs("QGJ")=igjfs3
+			Rs("HGJ")=igjfs4
 '			Rs("qhgj")=bqhgj
 			Rs("mjzf")=sngmjzf
 			Rs("mtbl")=sngmtbl
@@ -299,8 +299,8 @@
 			Rs("qhgj")=0
 			Rs("SSGJ")=igjfs1
 			Rs("QBFGJ")=igjfs2
-'			Rs("QGJ")=igjfs3
-'			Rs("HGJ")=igjfs4
+			Rs("QGJ")=igjfs3
+			Rs("HGJ")=igjfs4
 			Rs("mjzf")=sngmjzf
 			Rs("mtbl")=sngmtbl
 			Rs("mtjgbl")=sngmtjgbl
