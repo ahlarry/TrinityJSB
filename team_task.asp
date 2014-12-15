@@ -51,6 +51,7 @@ End Sub
 
 Function TaskList()
 	Dim iGroup, tmpSql, tmpRs, ArrZrr, ArrJs, ArrFz, ArrSjfz, n
+	ArrZrr="" : ArrJs="" : ArrFz="" : ArrSjfz="" : tmpfz=0
 	Call TbTopic(struser & "组" & imonth & "月任务定额")
 %>
 <table width="98%" cellpadding="2" cellspacing="0" border="0"  class="xtable"  align="center">
@@ -123,7 +124,7 @@ Function TaskList()
   <%
 			dtlsh=0 : ArrZrr="" : ArrJs="" : ArrFz="" : ArrSjfz="" : tmpfz=0
 			icount = icount + 1
-		Else
+		End If
 			If ArrZrr="" Then ArrZrr=Rs("zrr") else ArrZrr=ArrZrr & "," & Rs("zrr")
 			If ArrJs="" Then ArrJs=Rs("js") else ArrJs=ArrJs & "," & Rs("js")
 			If ArrFz="" Then ArrFz=Rs("fz") else ArrFz=ArrFz & "," & Rs("fz")
@@ -131,7 +132,7 @@ Function TaskList()
 			tmpbz=Rs("a.bz")
 			tmpfz=tmpfz + Rs("fz")
 			dtlsh=dtlsh + Rs("sjfz")
-		End If
+
 		tmplsh=Rs("lsh")
 		tmpdm=Rs("dedm")
 		If Rs("demt")>0 Then tmprw="模头"&Rs("mtrw")
@@ -140,6 +141,32 @@ Function TaskList()
 		Rs.movenext
 	loop
 	%>
+  <tr onclick="show(<%=icount%>)">
+    <td class=ctd><img  id=<%="img"&icount%> src="images/plus.png" width="16" height="16" alt="展开" /><%=icount%></td>
+    <td class=ctd><a href="mtask_display.asp?s_lsh=<%=tmplsh%>"><%=tmplsh%></a>&nbsp;</td>
+    <td class=ctd><%=tmprw%>&nbsp;</td>
+    <td class=ctd>&nbsp;</td>
+    <td class=ctd>&nbsp;</td>
+    <td class=ctd><%=tmpdm%>&nbsp;</td>
+    <td class=ctd><%=tmpfz%>&nbsp;</td>
+    <td class=ctd title=<%=tmpbz%>><%=dtlsh%>&nbsp;</td>
+  </tr>
+<tbody id="child<%=icount%>" style="display:none;" >  
+  <%
+  			ArrZrr=split(ArrZrr,",")
+			ArrJs=split(ArrJs,",")
+			ArrFz=split(ArrFz,",")
+			ArrSjfz=split(ArrSjfz,",")
+  for n=0 to ubound(ArrZrr)%>
+  <tr>
+    <td class=rtd colspan="4"><%=ArrZrr(n)%></td>
+    <td class=ctd colspan="2"><%=ArrJs(n)%></td>
+    <td class=ctd><%=Round(ArrFz(n),1)%></td>
+    <td class=ctd><%=Round(ArrSjfz(n),1)%></td>
+  </tr>
+  <%next%>
+  </tbody>
+	
   <tr>
     <td class=rtd colspan=7>设计任务总分:</td>
     <td class=ctd><b><%=Round(irwzf,1)%></b></td>

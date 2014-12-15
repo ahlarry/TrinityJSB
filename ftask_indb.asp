@@ -65,7 +65,7 @@
 			rs("zrr")=strzrr
 			rs("xz")=iGroup
 			rs("zf")=izf
-			rs("ed")=ied
+			if ied<>"" Then rs("ed")=ied
 			rs("jssj")=strjssj
 			rs("lzr")=session("userName")
 			rs("lzrq")=now()
@@ -103,7 +103,7 @@
 			rs("zrr")=strzrr
 			rs("xz")=iGroup
 			rs("zf")=izf
-			rs("ed")=ied
+			if ied<>"" Then rs("ed")=ied
 			rs("jssj")=strjssj
 			rs("lzr")=session("userName")
 			rs("lzrq")=now()

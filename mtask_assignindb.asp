@@ -496,7 +496,7 @@
 			if not bmtaskend("sjjssj", strlsh) then
 				strSql="update [mtask] set sjjssj='"&request("psd")&" "& request("pst") &"', psjl='"&request("zrpsjl")&"' where lsh='"&strlsh&"'"
 				call xjweb.Exec(strSql, 0)
-'				call fentodb(strlsh)
+				call fentodb(strlsh)
 				call DeToDB(strlsh)
 			end if
 			Call JsAlert("流水号 【" & strlsh & "】 任务书全部完成!","mtask_assign.asp")
