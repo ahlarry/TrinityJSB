@@ -110,7 +110,7 @@
 	If strrdogg=""  Then strMsg=strMsg & "热电偶规格为空!<br>"
 	If strmjcl=""  Then strMsg=strMsg & "模具材料为空!<br>"
 	If sngmjzf=0 Then strMsg=strMsg & "模具总分为零!<br>"
-	If sngmtbl=0 Then strMsg=strMsg & "模头比例为零!<br>"
+	'If sngmtbl=0 Then strMsg=strMsg & "模头比例为零!<br>"
 	If sngmtjgbl=0 Then strMsg=strMsg & "模头结构比例为零!<br>"
 	If sngdxjgbl=0 Then strMsg=strMsg & "定型结构比例为零!<br>"
 	If strdemt=0 and strdedx=0 Then strMsg=strMsg & "模头和定型定额不能同时为0!<br>"

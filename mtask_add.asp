@@ -1110,10 +1110,9 @@ function chkmjxx(ftemp)
 			document.all.dxqg.value="";
 			document.all.dxjg.value="/";
 			document.all.sxjg.value="/";
+                   document.getElementById("dxrw").value="";      
 			document.getElementById("mtrw").disabled=false;
 			document.getElementById("dxrw").disabled=true;
-			document.getElementById("dxrw").value="";
-//			document.all.dxrw.disabled="true";
 			break;
 		case "¶¨ÐÍ" :
 			document.all.trdxqg.style.display="";
@@ -1122,15 +1121,13 @@ function chkmjxx(ftemp)
 			document.getElementById("mtrw").value="";
 			document.getElementById("mtrw").disabled=true;
 			document.getElementById("dxrw").disabled=false;
-//			document.all.mtrw.disabled="true";
 			break;
 		default:
 			document.all.trdxqg.style.display="";
 			document.all.trdxjg.style.display="";
 			document.all.trsxjg.style.display="";
 			document.getElementById("mtrw").disabled=false;
-			document.getElementById("dxrw").disabled=false;
-			
+			document.getElementById("dxrw").disabled=false;		
 			break;
 	}
 }
