@@ -64,15 +64,10 @@ Function uctrlSendMsg()
         第&nbsp;三&nbsp;组&nbsp;&nbsp;
         <input type=checkbox id=qfzy4 name=qfzy4 value=xz4 onclick="checkxz();">
         第&nbsp;四&nbsp;组&nbsp;&nbsp;
-        <input type=checkbox id=qfzy6 name=qfzy6 value=xz6 onclick="checkxz();">
-        第&nbsp;五&nbsp;组&nbsp;&nbsp;
-        <input type=checkbox id=qfzy7 name=qfzy7 value=xz7 onclick="checkxz();">
-        自&nbsp;由&nbsp;组&nbsp;&nbsp;
         <input type=checkbox id=qfzy5 name=qfzy5 value=xz5 onclick="checkxz();">
-        调试组&nbsp;&nbsp;
-        <input type=checkbox id=qfzy8 name=qfzy8 value=xz8 onclick="checkxz();">
-        研发部&nbsp;&nbsp;
-        <input type=checkbox style="display:none;"  id=qfzy0 name=qfzy0 value=xz0 onclick="checkxz();">
+        调&nbsp;试&nbsp;组&nbsp;&nbsp;
+        <input type=checkbox id=qfzy0 name=qfzy0 value=xz0 onclick="checkxz();">
+        自&nbsp;由&nbsp;组
          </td>
     </tr>
     <tr>
@@ -132,9 +127,6 @@ Function uctrlSendMsg()
 		var allxz3=new Array(<%=ubound(c_xz3)%>);
 		var allxz4=new Array(<%=ubound(c_xz4)%>);
 		var allxz5=new Array(<%=ubound(c_xz5)%>);
-		var allxz6=new Array(<%=ubound(c_xz6)%>);
-		var allxz7=new Array(<%=ubound(c_xz7)%>);
-		var allxz8=new Array(<%=ubound(c_xz8)%>);
 
 		var i,j;
 		for (i = 0; i <<%=ubound(c_allzy)%>; i++)
@@ -177,24 +169,6 @@ Function uctrlSendMsg()
 		{
 			<%for i=0 to ubound(c_xz5)%>
 				allxz5[<%=i%>] ="<%=c_xz5(i)%>";
-			<%next%>
-		}
-		for (i = 0; i <<%=ubound(c_xz6)%>; i++)
-		{
-			<%for i=0 to ubound(c_xz6)%>
-				allxz6[<%=i%>] ="<%=c_xz6(i)%>";
-			<%next%>
-		}
-		for (i = 0; i <<%=ubound(c_xz7)%>; i++)
-		{
-			<%for i=0 to ubound(c_xz7)%>
-				allxz7[<%=i%>] ="<%=c_xz7(i)%>";
-			<%next%>
-		}
-		for (i = 0; i <<%=ubound(c_xz8)%>; i++)
-		{
-			<%for i=0 to ubound(c_xz8)%>
-				allxz8[<%=i%>] ="<%=c_xz8(i)%>";
 			<%next%>
 		}
 		for (i = 0; i <<%=ubound(c_allzz)%>; i++)
@@ -286,7 +260,7 @@ Function uctrlSendMsg()
 			{
 				eval("document.all.user"+j+".checked=false");
 			}
-			for(i=0;i<9;i++) {
+			for(i=0;i<7;i++) {
 				eval("document.all.qfzy"+i+".checked=false");
 			}
 			for(j=0; j<=<%=ubound(c_jsb)%>; j++)
@@ -327,7 +301,7 @@ Function uctrlSendMsg()
 		{
 			document.all.msgqf[4].checked=true;
 			var xz=new Array();
-			for(i=0;i<9;i++) {
+			for(i=0;i<6;i++) {
 				var chkobj=eval("document.all.qfzy" + i);
 				var b=eval("allxz"+i);
 				if(chkobj.checked){

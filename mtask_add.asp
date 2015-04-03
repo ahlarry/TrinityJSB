@@ -246,9 +246,9 @@ function mtask_cadd(rs)
     <tr>
       <td class=rtd rowspan="2">分值比例</td>
       <td class=ltd>模头比例:
-        <input type=text name=mtbl size=4 onchange=blchange();>
+        <input type=text name=mtbl size=4 value="40" onchange=blchange();>
         %&nbsp;&nbsp;&nbsp;定型比例:
-        <input type=text name=dxbl size=4 disabled>
+        <input type=text name=dxbl size=4  value="60" disabled>
         %</td>
     </tr>
     <tr>
@@ -636,9 +636,9 @@ Function mtask_add()
     <tr>
       <td class=rtd rowspan="2">分值比例</td>
       <td class=ltd>模头比例:
-        <input type=text name=mtbl size=4 onchange=blchange();>
+        <input type=text name=mtbl size=4 value="40" onchange=blchange();>
         %&nbsp;&nbsp;&nbsp;定型比例:
-        <input type=text name=dxbl size=4 disabled>
+        <input type=text name=dxbl size=4  value="60" disabled>
         %</td>
     </tr>
     <tr>

@@ -362,3 +362,18 @@ function ftaskAdd()
 <%
 end function		'ftask_add()
 %>
+<script language="javascript">
+function selecttask(s) 
+{
+  var name = s.options[s.selectedIndex].value;
+  if (name=="¡„–«–ﬁ¿Ì")
+  {
+document.all.table1.style.display='';
+document.all.table2.style.display='none';  
+}
+  else{
+document.all.table2.style.display='';
+document.all.table1.style.display='none';  
+}
+ }
+ </script>

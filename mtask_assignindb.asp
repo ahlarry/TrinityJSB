@@ -1471,9 +1471,9 @@ End Function
 
 Function DeToDB(lsh)
 	'将定额写入定额库
-	Dim mtfz, dxfz, imtjgbl, idxjgbl, isjbl, ishbl, ibombl, hgjf
+	Dim mtfz, dxfz, imtjgbl, idxjgbl, isjbl, ishbl, ibombl, hgjf, ifzxs, igyxs
 	Dim iGroup, tmpSql, tmpRs, imtrw, idxrw, ijssj, ijhjssj, ikhxs
-	hgjf=0 : iGroup=0 : ikhxs=1
+	hgjf=0 : iGroup=0 : ikhxs=1 : igyxs=1
 	'指定设计、审核、bom比例，三者相加等于1
 	isjbl=0.72 : ishbl=0.24 : ibombl=0.04
 
@@ -1492,6 +1492,10 @@ Function DeToDB(lsh)
 	ikhxs=1-datediff("d",ijhjssj,ijssj)*0.1	'提前或延迟分值系数，每天浮动0.1,最多0.5
 	if ikhxs<0.5 Then ikhxs=0.5
 	if ikhxs>1.5 Then ikhxs=1.5
+
+	ifzxs=Rs("fzxs")
+	if imtrw="复查" or idxrw="复查" Then igyxs=0.33
+
 
 			if not(isnull(rs("mtjgr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtjgr")&"'"
@@ -1705,6 +1709,30 @@ Function DeToDB(lsh)
 				End If
 				tmpRs.Close
 				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjshr")&"',"&iGroup&",'共挤审核',"&Round(hgjf,1)&","&Round(hgjf*ikhxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
+				call xjweb.Exec(strSql,0)
+			end if
+			if not(isnull(rs("mtgysjr"))) then
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtgysjr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtgysjr")&"',"&iGroup&",'模头工艺设计',"&Round(20*ifzxs*igyxs,1)&","&Round(20*ifzxs*igyxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
+				call xjweb.Exec(strSql,0)
+			end if
+			if not(isnull(rs("dxgysjr"))) then
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxgysjr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxgysjr")&"',"&iGroup&",'定型工艺设计',"&Round(30*ifzxs*igyxs,1)&","&Round(30*ifzxs*igyxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
 				call xjweb.Exec(strSql,0)
 			end if
 	rs.close
