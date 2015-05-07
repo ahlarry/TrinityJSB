@@ -28,30 +28,18 @@ Sub Main()
 				Select Case action
 					Case "cztozrkp"
 						Call CzToZrKpAdd()
-					Case "zrtozzkp"
-						Call ZrToZzKpAdd()
 					Case "zrtozykp"
 						Call ZrToZyKpAdd()
-					Case "zrtogykp"
-						Call ZrToGykpAdd()
-					Case "zrtobckp"
-						Call ZrToBcKpAdd()
+					Case "zrtofwkp"
+						Call ZrToFwkpAdd()
 					Case "zztotsykp"
 						Call ZzToTsyKpAdd()
 					Case "zztozykp"
 						Call ZzToZyKpAdd()
-					Case "zztogykp"
-						Call ZzToGykpAdd()
-					Case "zztobckp"
-						Call ZzToBcKpAdd()
 					Case "PgbToTsykp"
 						Call PgbToTsykpAdd()
 					Case "pgbtozykp"
 						Call PgbToZyKpAdd()
-					Case "pgbtogykp"
-						Call PgbToGykpAdd()
-					Case "pgbtobckp"
-						Call PgbToBcKpAdd()
 					Case "glbtozrkp"
 						Call GlbKpAdd()
 					Case Else
@@ -74,23 +62,13 @@ Function kpHead() '考评页面页首
 
 	If Chkable(3) Then		'主任
 	%>
-主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任 → <a href="?kp=zrtozzkp">组长考评</a> | <a href="?kp=zrtozykp">设计技术员考评</a> | <a href="?kp=zrtogykp">工艺技术员考评</a> | <a href="?kp=zrtobckp">编程技术员考评</a><br>
-<%
-	End If
-
-	If Chkable(4) Then		'组长
-	%>
-组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长 →
-<%If Session("userGroup")=5 Then%>
-<a href="?kp=zztotsykp">调试员考评</a> |
-<%End If%>
-<a href="?kp=zztozykp">组员考评</a> | <a href="?kp=zztogykp">工艺考评</a> | <a href="?kp=zztobckp">编程考评</a><br>
+主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任 → <a href="?kp=zrtozykp">设计技术员考评</a> | <a href="?kp=zrtofwkp">服务技术员考评</a> <br>
 <%
 	End If
 
 	If Chkable(11) Then	'品管部
 	%>
-品&nbsp;管&nbsp;&nbsp;部 → <a href="?kp=PgbToTsykp">调试技术员考评</a> | <a href="?kp=pgbtozykp">设计技术员考评</a> | <a href="?kp=pgbtogykp">工艺技术员考评</a> | <a href="?kp=pgbtobckp">编程技术员考评</a><br>
+品&nbsp;管&nbsp;&nbsp;部 → <a href="?kp=PgbToTsykp">调试技术员考评</a> | <a href="?kp=pgbtozykp">设计、服务技术员考评</a><br>
 <%
 	End If
 
@@ -141,51 +119,6 @@ Function CzToZrKpAdd()	 '厂长to主任考评
       <td class=ltd><input type="submit" value=" 确定 "></td>
     </Tr>
     <input type="hidden" name="action" value="cztozrkp">
-  </form>
-</Table>
-<%
-End Function
-
-Function ZrToZzkpAdd()		'主任 to 组长考评
-	Call ChkPageAble(3)
-%>
-<%Call TbTopic("主任 → 组长考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%"  align="center">
-  <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
-    <Tr>
-      <td class=th width=100>被考评人员</td>
-      <td class=ltd><Select name="kpzrr">
-          <option value=""></option>
-          <%for i = 0 to ubound(c_allzz)%>
-          <option value='<%=c_allzz(i)%>'><%=c_allzz(i)%></option>
-          <%next%>
-        </Select></td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>考评项目</td>
-      <td class=ltd><Select name="kpinfo">
-          <option value=""></option>
-          <%
-						strSql="Select * from c_kplr where kp_kind=3 and kp_kpr=2"		'kp_kind=3代表组长,kp_kpr=2代表主任
-						Set Rs=xjweb.Exec(strSql, 1)
-						Do While Not Rs.Eof
-							%>
-          <Option value="<%=Rs("kp_topic") & "||" & Rs("kp_item") & "||" & Rs("kp_uprice") & "||" & Rs("Kp_mul")%>"><%=Rs("kp_item")%></Option>
-          <%
-							Rs.MoveNext
-						Loop
-					%>
-        </Select></td>
-    </tr>
-    <tr>
-      <td class=th>备注</td>
-      <td class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
-    </Tr>
-    <tr>
-      <td class=th>操作</td>
-      <td class=ltd><input type="submit" value=" 确定 "></td>
-    </Tr>
-    <input type="hidden" name="action" value="zrtozzkp">
   </form>
 </Table>
 <%
@@ -260,10 +193,10 @@ Function ZrToZyKpAdd()		'主任 to 组员考评
 End Function
 
 
-Function ZrToGyKpAdd()		'主任 to 工艺技术员
+Function ZrToFwKpAdd()		'主任 to 服务技术员
 	Call ChkPageAble(3)
 %>
-<%Call TbTopic("主任 → 工艺技术员考评")%>
+<%Call TbTopic("主任 → 服务技术员考评")%>
 <table class=xtable cellspacing=0 cellpadding=3 width="60%"  align="center">
   <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
     <Tr>
@@ -306,75 +239,6 @@ Function ZrToGyKpAdd()		'主任 to 工艺技术员
       <td class=ltd><input type="submit" value=" 确定 "></td>
     </Tr>
     <input type="hidden" name="action" value="zrtogykp">
-  </form>
-</Table>
-<script language="javascript">
-		function changexm()
-		{
-			var TmpArr = new Array();
-			var str1 = document.all.kpinfo.value;
-			TmpArr = str1.split("||")
-			document.all.kpfz.value=TmpArr[2];
-			if(TmpArr[2]==0)
-				{
-				document.getElementById("kpfz").readOnly=false;
-				}
-			else
-				{
-				document.getElementById("kpfz").readOnly=true;
-				}
-		}
-	</script>
-<%
-End Function
-
-
-Function ZrToBcKpAdd()		'主任 to 编程技术员考评
-	Call ChkPageAble(3)
-%>
-<%Call TbTopic("主任 → 编程技术员考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%"  align="center">
-  <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
-    <Tr>
-      <td class=th width=100>被考评人员</td>
-      <td class=ltd><Select name="kpzrr">
-          <option value=""></option>
-          <%for i = 0 to ubound(c_allbc)%>
-          <option value='<%=c_allbc(i)%>'><%=c_allbc(i)%></option>
-          <%next%>
-        </Select></td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>考评项目</td>
-      <td class=ltd><Select name="kpinfo" onChange="changexm();">
-          <option value=""></option>
-          <%
-						strSql="Select * from c_kplr where kp_kind=9 and kp_kpr=2 or kp_kind=9 and kp_kpr=3 or kp_kind=9 and kp_kpr=106 order by kp_id"		'
-						Set Rs=xjweb.Exec(strSql, 1)
-						Do While Not Rs.Eof
-							%>
-          <Option value="<%=Rs("kp_topic") & "||" & Rs("kp_item") & "||" & Rs("kp_uprice") & "||" & Rs("Kp_mul")%>"><%=Rs("kp_item")%></Option>
-          <%
-							Rs.MoveNext
-						Loop
-					%>
-        </Select></td>
-    </tr>
-    <tr id=trkpfz>
-      <td class=th>考评分值</td>
-      <td class=ltd><label>
-          <input name="kpfz" type="text" id="kpfz" value="0" readonly="true" onKeyPress="javascript:validationNumber(this, 'float', '', '');" />
-        </label></td>
-    </tr>
-    <tr>
-      <td class=th>备注</td>
-      <td class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
-    </Tr>
-    <tr>
-      <td class=th>操作</td>
-      <td class=ltd><input type="submit" value=" 确定 "></td>
-    </Tr>
-    <input type="hidden" name="action" value="zrtobckp">
   </form>
 </Table>
 <script language="javascript">
@@ -532,143 +396,6 @@ Function ZzToZykpAdd()		'组员考评
     <input type="hidden" name="action" value="zztozykp">
   </form>
 </Table>
-<%
-End Function
-
-Function ZzToGykpAdd()		'组长 to 工艺技术员
-	Call ChkPageAble(4)
-%>
-<%Call TbTopic("组长 → 工艺技术员考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%" align="center">
-  <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
-    <Tr>
-      <td class=th width=100>被考评人员</td>
-      <td class=ltd><Select name="kpzrr">
-          <option value=""></option>
-          <%for i = 0 to ubound(c_allgy)%>
-          <option value='<%=c_allgy(i)%>'><%=c_allgy(i)%></option>
-          <%next%>
-        </Select></td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>考评项目</td>
-      <td class=ltd><Select name="kpinfo" onChange="changexm();">
-          <option value=""></option>
-          <%
-						strSql="Select * from c_kplr where p_kind=8 and kp_kpr=3 order by kp_id"		'kp_kind=5代表组员,kp_kpr=4代表组长
-						Set Rs=xjweb.Exec(strSql, 1)
-						Do While Not Rs.Eof
-							%>
-          <Option value="<%=Rs("kp_topic") & "||" & Rs("kp_item") & "||" & Rs("kp_uprice") & "||" & Rs("Kp_mul")%>"><%=Rs("kp_item")%></Option>
-          <%
-							Rs.MoveNext
-						Loop
-					%>
-        </Select></td>
-    </tr>
-    <tr id=trkpfz>
-      <td class=th>考评分值</td>
-      <td class=ltd><label>
-          <input name="kpfz" type="text" id="kpfz" value="0" readonly="true" onKeyPress="javascript:validationNumber(this, 'float', '', '');" />
-        </label></td>
-    </tr>
-    <tr>
-      <td class=th>备注</td>
-      <td class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
-    </Tr>
-    <tr>
-      <td class=th>操作</td>
-      <td class=ltd><input type="submit" value=" 确定 "></td>
-    </Tr>
-    <input type="hidden" name="action" value="zztogykp">
-  </form>
-</Table>
-<script language="javascript">
-		function changexm()
-		{
-			var TmpArr = new Array();
-			var str1 = document.all.kpinfo.value;
-			TmpArr = str1.split("||")
-			document.all.kpfz.value=TmpArr[2];
-			if(TmpArr[2]==0)
-				{
-				document.getElementById("kpfz").readOnly=false;
-				}
-			else
-				{
-				document.getElementById("kpfz").readOnly=true;
-				}
-		}
-	</script>
-<%
-End Function
-
-
-Function ZzToBcKpAdd()		'组长 to 编程技术员考评
-	Call ChkPageAble(4)
-%>
-<%Call TbTopic("组长 → 编程技术员考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%" align="center">
-  <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
-    <Tr>
-      <td class=th width=100>被考评人员</td>
-      <td class=ltd><Select name="kpzrr">
-          <option value=""></option>
-          <%for i = 0 to ubound(c_allbc)%>
-          <option value='<%=c_allbc(i)%>'><%=c_allbc(i)%></option>
-          <%next%>
-        </Select></td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>考评项目</td>
-      <td class=ltd><Select name="kpinfo" onChange="changexm();">
-          <option value=""></option>
-          <%
-						strSql="Select * from c_kplr where kp_kind=9 and kp_kpr=3 order by kp_id"		'
-						Set Rs=xjweb.Exec(strSql, 1)
-						Do While Not Rs.Eof
-							%>
-          <Option value="<%=Rs("kp_topic") & "||" & Rs("kp_item") & "||" & Rs("kp_uprice") & "||" & Rs("Kp_mul")%>"><%=Rs("kp_item")%></Option>
-          <%
-							Rs.MoveNext
-						Loop
-					%>
-        </Select></td>
-    </tr>
-    <tr id=trkpfz>
-      <td class=th>考评分值</td>
-      <td class=ltd><label>
-          <input name="kpfz" type="text" id="kpfz" value="0" readonly="true" onKeyPress="javascript:validationNumber(this, 'float', '', '');" />
-        </label></td>
-    </tr>
-    <tr>
-      <td class=th>备注</td>
-      <td class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
-    </Tr>
-    <tr>
-      <td class=th>操作</td>
-      <td class=ltd><input type="submit" value=" 确定 "></td>
-    </Tr>
-    <input type="hidden" name="action" value="zztobckp">
-  </form>
-</Table>
-<script language="javascript">
-		function changexm()
-		{
-			var TmpArr = new Array();
-			var str1 = document.all.kpinfo.value;
-			TmpArr = str1.split("||")
-			document.all.kpfz.value=TmpArr[2];
-			if(TmpArr[2]==0)
-				{
-				document.getElementById("kpfz").readOnly=false;
-				}
-			else
-				{
-				document.getElementById("kpfz").readOnly=true;
-				}
-		}
-	</script>
 <%
 End Function
 
@@ -853,156 +580,6 @@ Function PgbToZyKpAdd()		'品管部 to 组员考评
 </Table>
 <%
 End Function
-
-Function PgbToGykpAdd()		'品管部 to 工艺技术员
-	Call ChkPageAble(11)
-%>
-<%Call TbTopic("品管部 → 工艺技术员考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%" align="center">
-  <form name="Pg2Zy" action="ygkp_indb.asp" method="post" onSubmit="return chkpgbkp(this);">
-    <Tr>
-      <td class=th width=100>模具流水号</td>
-      <td colspan="2" class=ltd><input type="text" name="kplsh" size=15></td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>考评项目</td>
-      <td colspan="2" class=ltd><Select name="kpinfo">
-          <option value=""></option>
-          <%
-						strSql="Select * from c_kplr where kp_kind=8 and kp_kpr=4 or kp_kind=8 and kp_kpr=106"		'3代表组长
-						Set Rs=xjweb.Exec(strSql, 1)
-						Do While Not Rs.Eof
-							%>
-          <Option value="<%=Rs("kp_topic") & "||" & Rs("kp_item") & "||" & Rs("kp_uprice") & "||" & Rs("Kp_mul")%>"><%=Rs("kp_item")%></Option>
-          <%
-							Rs.MoveNext
-						Loop
-					%>
-        </Select></td>
-    </tr>
-    <Tr>
-      <td width="100" rowspan="3" class=th>被考评人员</td>
-      <td class=ltd>设计:
-        <input name="kpsj" type="text" id="kpsj" size="25" readonly=true />
-        <a href="javascript:zrrminus('kpsj');"><img src="images/undo.png" alt="重置" border=0 align="middle"></a>
-        <a href="javascript:zrrplus('kpsj');"><img src="images/plus.png" alt="添加" border=0 align="middle"></a>
-      </td>
-      <td rowspan="3" class=ltd><select name="hxzrr" size="6" multiple="multiple" id="hxzrr">
-          <%for i = 0 to ubound(c_allgy)%>
-          <option value='<%=c_allgy(i)%>'><%=c_allgy(i)%></option>
-          <%next%>
-        </select>
-        </label></td>
-    </Tr>
-    <Tr>
-      <td class=ltd>审核:
-        <input name="kpsh" type="text" id="kpsh" size="25" readonly=true />
-        <a href="javascript:zrrminus('kpsh');"><img src="images/undo.png" alt="重置" border=0 align="middle"></a>
-        <a href="javascript:zrrplus('kpsh');"><img src="images/plus.png" alt="添加" border=0 align="middle"></a>
-      </td>
-    </Tr>
-    <Tr>
-      <td class=ltd>
-        鼠标拖动连续选择或按住Ctrl鼠标点击间隔多选
-      </td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>零件件数</td>
-      <td colspan="2" class=ltd><input type="text" name="ljjs" size=8 value="1.0"></td>
-    </tr>
-    <Tr>
-      <td class=th width=100>零件系数</td>
-      <td colspan="2" class=ltd><input type="text" name="ljxs" size=8 value="1.0"></td>
-    </tr>
-    <tr>
-      <td class=th>备注</td>
-      <td colspan="2" class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
-    </Tr>
-    <tr>
-      <td class=th>操作</td>
-      <td colspan="2" class=ltd><input type="submit" value=" 确定 "></td>
-    </Tr>
-    <input type="hidden" name="action" value="pgbtozykp">
-  </form>
-</Table>
-<%
-End Function
-
-
-Function PgbToBcKpAdd()		'品管部 to 编程技术员考评
-	Call ChkPageAble(11)
-%>
-<%Call TbTopic("品管部 → 编程技术员考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%" align="center">
-  <form name="Pg2Zy" action="ygkp_indb.asp" method="post" onSubmit="return chkpgbkp(this);">
-    <Tr>
-      <td class=th width=100>模具流水号</td>
-      <td colspan="2" class=ltd><input type="text" name="kplsh" size=15></td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>考评项目</td>
-      <td colspan="2" class=ltd><Select name="kpinfo">
-          <option value=""></option>
-          <%
-						strSql="Select * from c_kplr where kp_kind=9 and kp_kpr=4 or kp_kind=9 and kp_kpr=106"		'3代表组长
-						Set Rs=xjweb.Exec(strSql, 1)
-						Do While Not Rs.Eof
-							%>
-          <Option value="<%=Rs("kp_topic") & "||" & Rs("kp_item") & "||" & Rs("kp_uprice") & "||" & Rs("Kp_mul")%>"><%=Rs("kp_item")%></Option>
-          <%
-							Rs.MoveNext
-						Loop
-					%>
-        </Select></td>
-    </tr>
-    <Tr>
-      <td width="100" rowspan="3" class=th>被考评人员</td>
-      <td class=ltd>设计:
-        <input name="kpsj" type="text" id="kpsj" size="25" readonly=true />
-        <a href="javascript:zrrminus('kpsj');"><img src="images/undo.png" alt="重置" border=0 align="middle"></a>
-        <a href="javascript:zrrplus('kpsj');"><img src="images/plus.png" alt="添加" border=0 align="middle"></a>
-      </td>
-      <td rowspan="3" class=ltd><select name="hxzrr" size="6" multiple="multiple" id="hxzrr">
-          <%for i = 0 to ubound(c_allbc)%>
-          <option value='<%=c_allbc(i)%>'><%=c_allbc(i)%></option>
-          <%next%>
-        </select>
-        </label></td>
-    </Tr>
-    <Tr>
-      <td class=ltd>审核:
-        <input name="kpsh" type="text" id="kpsh" size="25" readonly=true />
-        <a href="javascript:zrrminus('kpsh');"><img src="images/undo.png" alt="重置" border=0 align="middle"></a>
-        <a href="javascript:zrrplus('kpsh');"><img src="images/plus.png" alt="添加" border=0 align="middle"></a>
-      </td>
-    </Tr>
-    <Tr>
-      <td class=ltd>
-        鼠标拖动连续选择或按住Ctrl鼠标点击间隔多选
-      </td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>零件件数</td>
-      <td colspan="2" class=ltd><input type="text" name="ljjs" size=8 value="1.0"></td>
-    </tr>
-    <Tr>
-      <td class=th width=100>零件系数</td>
-      <td colspan="2" class=ltd><input type="text" name="ljxs" size=8 value="1.0"></td>
-    </tr>
-    <tr>
-      <td class=th>备注</td>
-      <td colspan="2" class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
-    </Tr>
-    <tr>
-      <td class=th>操作</td>
-      <td colspan="2" class=ltd><input type="submit" value=" 确定 "></td>
-    </Tr>
-    <input type="hidden" name="action" value="pgbtozykp">
-  </form>
-</Table>
-<%
-End Function
-
 
 Function GlbKpAdd()		'管理部考评
 	Call ChkPageAble(12)

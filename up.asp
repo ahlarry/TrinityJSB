@@ -21,7 +21,7 @@ Sub Main()
   <Tr>
     <Td class=ctd height=300>
       <%
-     	 Call DeToDB()
+     	 Call Updata()
       %>
     </Td>
   </Tr>
@@ -32,12 +32,12 @@ End Sub
 Function Updata()
 	Dim mystr, mystr1, ikhxs, rwlr_change, tmpRs
 	ikhxs=1
-	strSql="select * from [ftask] where datediff('m',jssj,'"&now()&"')<4 and (rwlx='零星修理' or rwlx='零星任务' or rwlx='技术代表设计')"
+	strSql="select * from [ims_user]"
 		Call xjweb.exec("",-1)
 		Rs.open strSql,Conn,1,3
 		Do while not Rs.eof
-if IsNull(Rs("ed")) Then Rs("ed")=0
-Rs.update
+			Rs("user_basicwage")=300
+		Rs.update
 		Rs.movenext
 		Loop
 	Rs.close

@@ -8,8 +8,7 @@ CurPage="分值统计 → 查看考评分值统计"					'页面的名称位置( 任务书管理 → 添加任
 strPage="mtstat"
 xjweb.header()
 Call TopTable()
-
-'定义变量及变量赋值
+'定义变量及变量赋值			
 Dim iyear, imonth, dtstart, dtend, struser, irwzf, iaddfz, ilxrwzf, icount
 iyear = request("searchy")
 imonth = request("searchm")
@@ -28,7 +27,14 @@ irwzf=0			'总分
 ilxrwzf=0
 iaddfz=0		'奖惩分值
 icount=1		'工作项目数
-
+'更新技术员基础任务量
+dim strChg_wg, strbasicwg
+strChg_wg=request("Chg_wg")
+strbasicwg=request("basicwg")
+If strChg_wg="更新" and chkable(3) then
+	strSql="update [ims_user] set user_basicwage='"&strbasicwg&"' where user_name='"&struser&"'"
+	call xjweb.Exec(strSql, 0)
+End If
 '定义考评用的变量
 	Dim kpf(30), kpif(10), ics(10), kpzf
 	kpzf=0
@@ -103,14 +109,15 @@ Function ygkpstatDisplay()
 	strSql="Select * from [ims_user] where [user_name]='"&struser&"'"
 	Set Rs=xjweb.Exec(strSql,1)
 	If Rs.Eof Or Rs.Bof Then TbTopic("请重新选择查询人员!") : Rs.Close : Exit Function
-	Dim tmpGroup, tmpAble
+	Dim tmpGroup, tmpAble,TargetFZ
 	tmpGroup=Rs("user_Group")
 	tmpAble=Rs("user_Able")
+	TargetFZ=Rs("user_basicwage")
 	Rs.Close
 
 	Dim iTotalFz, tmpCount			'定义总分的变量
 	iTotalFz=0 : tmpCount=1
-	If InStr("5689",ChkJs(tmpAble))>0 Then		'判断是不是组员或调试员
+	If InStr("4568",ChkJs(tmpAble))>0 Then		'判断是不是组员或调试员
 		'1--任务分值
 		strSql="select * from [mantime] where zrr='"&struser&"' and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0"
 		Set Rs=xjweb.Exec(strSql, 1)
@@ -133,42 +140,15 @@ Function ygkpstatDisplay()
 		Else
 			iTotalFz=Fix(ilxrwzf + irwzf)
 		End If
-	else
-		If InStr("4",ChkJs(tmpAble))>0 Then		'判断是不是组长
-			'1--统计小组成员人数
-			strSql="Select * from [ims_user] where [user_group]="&tmpGroup
-			Call xjweb.Exec("",-1)
-			Set Rs=Server.CreateObject("ADODB.RECORDSET")
-			Rs.open strSql,Conn,1,3
-			tmpCount=Rs.RecordCount
-			Rs.Close
-			'2--任务分值
-			strSql="select * from [mantime] where [xz]="&tmpGroup&" and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0"
-			Set Rs=xjweb.Exec(strSql, 1)
-			Do While Not Rs.eof
-				irwzf=irwzf+Round(Rs("fz"),1)
-				Rs.movenext
-			Loop
-			Rs.close
-			'3---零星任务分值
-			strSql="select * from [ftask] where [xz]="&tmpGroup&" and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0"
-			Set Rs=xjweb.Exec(strSql, 1)
-			Do While Not Rs.eof
-				ilxrwzf=ilxrwzf+Rs("zf")
-				Rs.movenext
-			Loop
-			Rs.close
-			'4---统计总分
-			iTotalFz=Round((ilxrwzf + irwzf)/tmpCount,1)
-		End If
 	End If
 
 	icount=1
 	Call TbTopic(struser & " " & formatdatetime(dtstart,1) & " 至 " & formatdatetime(dtend,1) & " 考评统计")
 		%>
-<table width="90%" cellpadding=2 cellspacing=0 class="xtable"  align="center">
+<table width="90%" cellpadding=2 cellspacing=0 class="xtable"  align="center" >
+<form action=<%=request.servervariables("script_name")%> method="get">
 <tr>
-  <th class=th>id</th>
+  <th class=th>id<input name="searchuser" type="hidden" value=<%=struser%>></th>
   <th class=th>考评项目</th>
   <th class=th>考评指标</th>
   <th class=th>单元分(分)</th>
@@ -180,257 +160,21 @@ Function ygkpstatDisplay()
 </tr>
 <%
 	Select Case ChkJs(tmpAble)
-		Case 4	'组长
-			%>
-<%icount=1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>任务量</td>
-  <td class=ctd>小组人平均分值300分</td>
-  <td class=ctd>50.0</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <%
-					If iTotalFz<300 Then
-						kpf(0)=round((iTotalFz/300 * 50),1)
-					Else
-						kpf(0)=round((50+((iTotalFz-300)/300*50*1.25)),1)
-					End If
-				%>
-  <td class=ctd alt="<%="任务:" & iTotalFz & "分"%>"><%=kpf(0)%></td>
-  <td class=ctd><%=kpf(0)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=2>设计完成</td>
-  <td class=ltd>提前</td>
-  <td class=ctd rowspan=2>10</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/天</td>
-  <%
-					ics(0)=statkpcs("提前", "", 0)
-					ics(1)=statkpcs("延迟", "", 0)
-
-					kpif(0)=statkpfz("提前", 0)
-					kpif(1)=statkpfz("延迟", 0)
-					kpf(1)=kpif(0) + kpif(1)
-					if kpf(1)<-10 Then kpf(1)=-10
-					if kpf(1)>10 Then kpf(1)=10
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=2><%=kpf(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>延迟</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/天</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=7>设计质量</td>
-  <td class=ltd>模具设计和任务书不符</td>
-  <td class=ctd rowspan=7>20</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("模具设计和任务书不符", "", 0)
-					ics(1)=statkpcs("设计原因产生返工", "审核", 0)+statkpcs("设计原因产生返工", "设计", tmpGroup)
-					ics(2)=statkpcs("设计原因产生返修", "审核", 0)+statkpcs("设计原因产生返修", "设计", tmpGroup)
-					ics(3)=statkpcs("设计原因产生报废", "审核", 0)+statkpcs("设计原因产生报废", "设计", tmpGroup)
-					ics(4)=statkpcs("厂内调试少于额定次数", "", 0)
-					ics(5)=statkpcs("厂内调试多于额定次数", "", 0)
-					ics(6)=statkpcs("不同批次相似型材类似问题重复发生", "", 0)
-
-					kpif(0)=statkpfz("模具设计和任务书不符", 0)
-					kpif(1)=statkpfz("设计原因产生返工", 0) - ics(1)
-					kpif(2)=statkpfz("设计原因产生返修", 0) - ics(2)*2
-					kpif(3)=statkpfz("设计原因产生报废", 0) - ics(3)*4
-					kpif(4)=statkpfz("厂内调试少于额定次数", 0)
-					kpif(5)=statkpfz("厂内调试多于额定次数", 0)
-					kpif(6)=statkpfz("不同批次相似型材类似问题重复发生", 0)
-
-					kpf(2)=kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4) + kpif(5) + kpif(6)
-					if kpf(2)<-20 Then kpf(2)=-20
-					if kpf(2)>20 Then kpf(2)=20
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=7><%=kpf(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>设计原因产生返工</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>设计原因产生返修</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>设计原因产生报废</td>
-  <td class=ctd>4</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(3)%></td>
-  <td class=ctd><%=kpif(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>厂内调试少于额定次数</td>
-  <td class=ctd>0.4</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(4)%></td>
-  <td class=ctd><%=kpif(4)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>厂内调试多于额定次数</td>
-  <td class=ctd>0.4</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(5)%></td>
-  <td class=ctd><%=kpif(5)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>不同批次相似型材类似问题重复发生</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(6)%></td>
-  <td class=ctd><%=kpif(6)%></td>
-</tr>
-<tr>
-  <td class=rtd colspan=8>Total:</td>
-    <%
-				'将质量分随任务分变化而变化,即质量分=任务分/300*30,但不大于30
-				for i=0 to 2
-					kpzf=kpzf+kpf(i)
-				next
-				If iTotalFz>300 Then
-					kpzf=kpzf+30
-				else
-					kpzf=round(kpzf+(iTotalFz/300 * 30),1)
-				End If
-				%>
-  <td class=ctd><%=kpzf%></td>
-</tr>
-<%icount=1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=6>内部管理</td>
-  <td class=ltd>设计规范维护及时性</td>
-  <td class=ctd rowspan=6>20</td>
-  <td class=ctd>5</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("设计规范维护及时性", "", 0)
-					ics(1)=statkpcs("项目实施计划未按时完成", "", 0)
-					ics(2)=statkpcs("组内技术代表维护不及时", "", 0)
-					ics(3)=statkpcs("标准结构物料未充分利用", "", 0)
-					ics(4)=statkpcs("现场管理、卫生清洁", "", 0)
-					ics(5)=statkpcs("不服从分配", "", 0)
-
-					kpif(0)=statkpfz("设计规范维护及时性", 0)
-					kpif(1)=statkpfz("项目实施计划未按时完成", 0)
-					kpif(2)=statkpfz("组内技术代表维护不及时", 0)
-					kpif(3)=statkpfz("标准结构物料未充分利用", 0)
-					kpif(4)=statkpfz("现场管理、卫生清洁", 0)
-					kpif(5)=statkpfz("不服从分配", 0)
-
-					kpf(3)=kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4) + kpif(5)
-					if kpf(3)<-20 Then kpf(3)=-20
-					if kpf(3)>20 Then kpf(3)=20
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=6><%=kpf(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>项目实施计划未按时完成</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>组内技术代表维护不及时</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>标准结构物料未充分利用</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(3)%></td>
-  <td class=ctd><%=kpif(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>现场管理、卫生清洁</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(4)%></td>
-  <td class=ctd><%=kpif(4)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ltd>不服从分配</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(5)%></td>
-  <td class=ctd><%=kpif(5)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=rtd colspan=8>Total:</td>
-  <td class=ctd><%=20+kpf(3)%></td>
-</tr>
-<%
 		Case 6	'调试员
 			%>
 <tr>
   <td class=ctd><%=icount%></td>
   <td class=ctd>任务量</td>
-  <td class=ctd>每月分值(总量300分)</td>
+  <td class=ctd>每月分值(总量<%=TargetFZ%>分)</td>
   <td class=ctd>50.0</td>
   <td class=ctd>&nbsp;</td>
   <td class=ctd>&nbsp;</td>
   <td class=ctd>&nbsp;</td>
   <%
-					If iTotalFz<300 Then
-						kpf(0)=round((iTotalFz/300 * 50),1)
+					If iTotalFz<TargetFZ Then
+						kpf(0)=round((iTotalFz/TargetFZ * 50),1)
 					Else
-						kpf(0)=round((50+((iTotalFz-300)/300*50*1.25)),1)
+						kpf(0)=round((50+((iTotalFz-TargetFZ)/TargetFZ*50*1.25)),1)
 					End If
 				%>
   <td class=ctd alt="<%="任务:" & iTotalFz & "分"%>"><%=kpf(0)%></td>
@@ -690,31 +434,210 @@ Function ygkpstatDisplay()
 				for i=0 to 29
 					kpzf=kpzf+kpf(i)
 				next
-				'将质量分由默认的50改为随任务分变化而变化,即质量分=任务分/300*50,但不大于50
-				If iTotalFz>300 Then
+				'将质量分由默认的50改为随任务分变化而变化,即质量分=任务分/TargetFZ*50,但不大于50
+				If iTotalFz>TargetFZ Then
 					kpzf=kpzf+50
 				else
-					kpzf=round(kpzf+(iTotalFz/300 * 50),1)
+					kpzf=round(kpzf+(iTotalFz/TargetFZ * 50),1)
 				End If
 				%>
   <td class=ctd><%=kpzf%></td>
 </tr>
 <%
-		Case 5	'组员
+		Case 8		'服务技术员
 			%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd>任务量</td>
-  <td class=ctd>每月分值(总量300分)</td>
-  <td class=ctd>50.0</td>
+  <td class=ctd rowspan=4>工作数量</td>
+  <td class=ctd>设计标准、规范维护不及时</td>
+  <td class=ctd rowspan=4>50.0</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/次</td>
+  <%
+					ics(0)=statkpcs("设计标准、规范维护不及时", "", 0)
+					ics(1)=statkpcs("调试方案问题处理不及时", "", 0)
+					ics(2)=statkpcs("营销技术支持不及时", "", 0)
+					ics(3)=statkpcs("技术代表延期", "", 0)
+
+					kpif(0)=statkpfz("设计标准、规范维护不及时", 0)
+					kpif(1)=statkpfz("调试方案问题处理不及时", 0)
+					kpif(2)=statkpfz("营销技术支持不及时", 0)
+					kpif(3)=statkpfz("技术代表延期", 0)
+
+					kpf(0)=50 + kpif(0) + kpif(1) + kpif(2) + kpif(3)
+					If kpf(0)<0 Then kpf(0)=0
+				%>
+  <td class=ctd><%=ics(0)%></td>
+  <td class=ctd><%=kpif(0)%></td>				
+  <td class=ctd  rowspan=4><%=kpf(0)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>调试方案问题处理不及时</td>
+  <td class=ctd>3.0</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(1)%></td>
+  <td class=ctd><%=kpif(1)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>营销技术支持不及时</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(2)%></td>
+  <td class=ctd><%=kpif(2)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>技术代表准时率</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(3)%></td>
+  <td class=ctd><%=kpif(3)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd rowspan=3>工作质量</td>
+  <td class=ctd>技术原因遭外部投诉</td>
+  <td class=ctd rowspan=3>30.0</td>
+  <td class=ctd>3.0</td>
+  <td class=ctd>分/件</td>
+  <%
+					ics(0)=statkpcs("技术原因遭外部投诉", "", 0)
+					ics(1)=statkpcs("工作过程未按规定执行", "", 0)
+					ics(2)=statkpcs("设计原因质量损失超千元", "", 0)
+
+					kpif(0)=statkpfz("技术原因遭外部投诉", 0)
+					kpif(1)=statkpfz("工作过程未按规定执行", 0)
+					kpif(2)=statkpfz("设计原因质量损失超千元", 0)
+
+					kpf(1)=30 + kpif(0)+kpif(1)+kpif(2)
+					If kpf(1)<0 Then kpf(1)=0
+				%>
+  <td class=ctd><%=ics(0)%></td>
+  <td class=ctd><%=kpif(0)%></td>
+  <td class=ctd rowspan=3><%=kpf(1)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>工作过程未按规定执行</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(1)%></td>
+  <td class=ctd><%=kpif(1)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>设计原因质量损失超千元</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/千元</td>
+  <td class=ctd><%=ics(2)%></td>
+  <td class=ctd><%=kpif(2)%></td>
+</tr>
+<tr>
+  <td class=rtd colspan=8>Total:</td>
+  <%
+				for i=0 to 1
+					kpzf=kpzf+kpf(i)
+				next
+				%>
+  <td class=ctd><%=kpzf%></td>
+</tr>
+<%icount=1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd rowspan=5>定性指标</td>
+  <td class=ctd>提出改进建议取得成效</td>
+  <td class=ctd rowspan=5>20.0</td>
+  <td class=ctd>1.0~5.0</td>
+  <td class=ctd>分/次</td>
+  <%
+					ics(0)=statkpcs("提出改进建议取得成效", "", 0)
+					ics(1)=statkpcs("主动承担较难任务", "", 0)
+					ics(2)=statkpcs("上班做与工作无关", "", 0)
+					ics(3)=statkpcs("不服从分配", "", 0)
+					ics(4)=statkpcs("5S管理不达标", "", 0)
+
+					kpif(0)=statkpfz("提出改进建议取得成效", 0)
+					kpif(1)=statkpfz("主动承担较难任务", 0)
+					kpif(2)=statkpfz("上班做与工作无关", 0)
+					kpif(3)=statkpfz("不服从分配", 0)
+					kpif(4)=statkpfz("5S管理不达标", 0)
+
+					kpf(2)=20 + kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4)
+					If kpf(2)<0 Then kpf(2)=0					
+				%>
+  <td class=ctd><%=ics(0)%></td>
+  <td class=ctd><%=kpif(0)%></td>
+  <td class=ctd rowspan=5><%=kpf(2)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>主动承担较难任务</td>
+  <td class=ctd>1.0~5.0</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(1)%></td>
+  <td class=ctd><%=kpif(1)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>上班做与工作无关的事</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(2)%></td>
+  <td class=ctd><%=kpif(2)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>不服从分配</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(3)%></td>
+  <td class=ctd><%=kpif(3)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>5S管理不达标</td>
+  <td class=ctd>1.0~2.0</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(4)%></td>
+  <td class=ctd><%=kpif(4)%></td>
+</tr>
+<tr>
+  <td class=rtd colspan=8>Total:</td>
+    <%
+				kpzf=kpf(2)
+				%>
+  <td class=ctd><%=kpzf%></td>
+</tr>
+<%
+		Case Else	'组员
+			%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd rowspan=3>工作数量</td>
+  <td class=ctd>设计任务<input name="basicwg" size="5" style="BACKGROUND-COLOR:transparent;BORDER-BOTTOM:#ffffff 1px solid;BORDER-LEFT:#ffffff 1px solid;BORDER-RIGHT:#ffffff 1px solid;BORDER-TOP:#ffffff 1px solid;COLOR:#00659c;HEIGHT:18px;border-color:#ffffff #ffffff #ffffff #ffffff;text-align:center;font-size:9pt" value=<%=TargetFZ%> >
+  			<%if chkable(3) then%><input name="Chg_wg" type="submit" value="更新"><%End If%>
+  </td>
+  <td class=ctd>35.0</td>
   <td class=ctd>&nbsp;</td>
   <td class=ctd>&nbsp;</td>
   <td class=ctd>&nbsp;</td>
   <%
-					If iTotalFz<300 Then
-						kpf(0)=round((iTotalFz/300 * 50),1)
+					If iTotalFz<TargetFZ Then
+						kpf(0)=round((iTotalFz/TargetFZ * 35),1)
 					Else
-						kpf(0)=round((50+((iTotalFz-300)/300*50*1.25)),1)
+						kpf(0)=round((35+((iTotalFz-TargetFZ)/TargetFZ*35*1.25)),1)
 					End If
 				%>
   <td class=ctd alt="<%="任务:" & iTotalFz & "分"%>"><%=kpf(0)%></td>
@@ -723,42 +646,43 @@ Function ygkpstatDisplay()
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=2>任务完成</td>
-  <td class=ctd>延迟</td>
-  <td class=ctd rowspan=2>10.0</td>
-  <td class=ctd>2.5</td>
-  <td class=ctd>分/天</td>
+  <td class=ctd>技术代表准时率</td>
+  <td class=ctd>5.0</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/次</td>
   <%
-					ics(0)=statkpcs("延迟", "", 0)
-					ics(1)=statkpcs("提前", "", 0)
-
-					kpif(0)=statkpfz("延迟", 0)
-					If kpif(0)<-10 Then kpif(0)=-10
-					kpif(1)=statkpfz("提前", 0)
-					If kpif(1)>10 Then kpif(1)=10
-					kpf(1)=kpif(0) + kpif(1)
-					If kpf(1)>10 Then kpf(1)=10
-					If kpf(1)<-10 Then kpf(1)=-10
+					ics(0)=statkpcs("技术代表延期", "", 0)
+					kpif(0)=statkpfz("技术代表延期", 0)
+					kpf(1)=kpif(0) + 5
+					If kpf(1)<0 Then kpf(1)=0
 				%>
   <td class=ctd><%=ics(0)%></td>
   <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=2><%=kpf(1)%></td>
+  <td class=ctd><%=kpf(1)%></td>
 </tr>
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd>提前</td>
-  <td class=ctd>1.5</td>
-  <td class=ctd>分/天</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
+  <td class=ctd>任务准时率</td>
+  <td class=ctd>10.0</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/次</td>
+  <%
+					ics(0)=statkpcs("延迟", "", 0)
+					kpif(0)=statkpfz("延迟", 0)
+					kpf(2)=kpif(0) + 10
+					If kpf(2)<0 Then kpf(2)=0
+				%>
+  <td class=ctd><%=ics(0)%></td>
+  <td class=ctd><%=kpif(0)%></td>
+  <td class=ctd><%=kpf(2)%></td>
 </tr>
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=5>设计质量</td>
+  <td class=ctd rowspan=7>工作质量</td>
   <td class=ctd>设计原因产生报废</td>
-  <td class=ctd rowspan=5>20.0</td>
+  <td class=ctd rowspan=7>30.0</td>
   <td class=ctd>4.0</td>
   <td class=ctd>分/件</td>
   <%
@@ -767,20 +691,23 @@ Function ygkpstatDisplay()
 					ics(2)=statkpcs("设计原因产生返工", "", 0)
 					ics(3)=statkpcs("厂内调试少于额定次数", "", 0)
 					ics(4)=statkpcs("厂内调试多于额定次数", "", 0)
+					ics(5)=statkpcs("工作过程未按规定执行", "", 0)
+					ics(6)=statkpcs("设计原因质量损失超千元", "", 0)
 
 					kpif(0)=statkpfz("设计原因产生报废", 0)
 					kpif(1)=statkpfz("设计原因产生返修", 0)
 					kpif(2)=statkpfz("设计原因产生返工", 0)
 					kpif(3)=statkpfz("厂内调试少于额定次数", 0)
 					kpif(4)=statkpfz("厂内调试多于额定次数", 0)
+					kpif(5)=statkpfz("工作过程未按规定执行", 0)
+					kpif(6)=statkpfz("设计原因质量损失超千元", 0)
 
-					kpf(2)=kpif(0)+kpif(1)+kpif(2)+kpif(3)+kpif(4)
-					If kpf(2)<-20 Then kpf(2)=-20
-					If kpf(2)>20 Then kpf(2)=20
+					kpf(3)=30+kpif(0)+kpif(1)+kpif(2)+kpif(3)+kpif(4)+kpif(5)+kpif(6)
+					if kpf(3)<0 Then kpf(3)=0
 				%>
   <td class=ctd><%=ics(0)%></td>
   <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=5><%=kpf(2)%></td>
+  <td class=ctd rowspan=7><%=kpf(3)%></td>
 </tr>
 <%icount=icount+1%>
 <tr>
@@ -804,7 +731,7 @@ Function ygkpstatDisplay()
 <tr>
   <td class=ctd><%=icount%></td>
   <td class=ctd>厂内调试少于额定次数</td>
-  <td class=ctd>1.0</td>
+  <td class=ctd>2.0</td>
   <td class=ctd>分/次</td>
   <td class=ctd><%=ics(3)%></td>
   <td class=ctd><%=kpif(3)%></td>
@@ -813,275 +740,7 @@ Function ygkpstatDisplay()
 <tr>
   <td class=ctd><%=icount%></td>
   <td class=ctd>厂内调试多于额定次数</td>
-  <td class=ctd>1.0</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(4)%></td>
-  <td class=ctd><%=kpif(4)%></td>
-</tr>
-<tr>
-  <td class=rtd colspan=8>Total:</td>
-  <%
-				'将质量分由默认的50改为随任务分变化而变化,即质量分=任务分/300*50,但不大于50
-				for i=0 to 2
-					kpzf=kpzf+kpf(i)
-				next
-				If iTotalFz>300 Then
-					kpzf=kpzf+30
-				else
-					kpzf=round(kpzf+(iTotalFz/300 * 30),1)
-				End If
-				%>
-  <td class=ctd><%=kpzf%></td>
-</tr>
-<%icount=1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=2>技术提升</td>
-  <td class=ctd>提出改进建议取得成效</td>
-  <td class=ctd rowspan=2>&nbsp;</td>
-  <td class=ctd>1.0~5.0</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("提出改进建议取得成效", "", 0)
-					ics(1)=statkpcs("提出合理化建议并被采纳", "", 0)
-
-					kpif(0)=statkpfz("提出改进建议取得成效", 0)
-					kpif(1)=statkpfz("提出合理化建议并被采纳", 0)
-
-					kpf(3)=kpif(0) + kpif(1)
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=2><%=kpf(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>提出合理化建议并被采纳</td>
-  <td class=ctd>1.0~5.0</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=3>纪律态度</td>
-  <td class=ctd>上班做与工作无关的事</td>
-  <td class=ctd rowspan=3>20.0</td>
   <td class=ctd>2.0</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("上班做与工作无关", "", 0)
-					ics(1)=statkpcs("不服从分配", "", 0)
-					ics(2)=statkpcs("主动承担较难任务", "", 0)
-
-					kpif(0)=statkpfz("上班做与工作无关", 0)
-					kpif(1)=statkpfz("不服从分配", 0)
-					kpif(2)=statkpfz("主动承担较难任务", 0)
-
-					kpf(4)=kpif(0) + kpif(1) + kpif(2)
-					If kpf(4)<-20 Then kpf(4)=-20
-					If kpf(4)>20 Then kpf(4)=20
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=3><%=kpf(4)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>不服从分配</td>
-  <td class=ctd>2.0</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>主动承担较难任务</td>
-  <td class=ctd>3.0~5.0</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<tr>
-  <td class=rtd colspan=8>Total:</td>
-  <%
-				kpzf=20
-				for i=3 to 4
-					kpzf=kpzf+kpf(i)
-				next
-				%>
-  <td class=ctd><%=kpzf%></td>
-</tr>
-<%
-		Case 8		'工艺技术员
-			%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>任务量</td>
-  	<td class=ctd>每月分值(总量400分)</td>
-  <td class=ctd>50</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <%
-					If iTotalFz<400 Then
-						kpf(0)=round((iTotalFz/400 * 50),1)
-					Else
-						kpf(0)=round((50+((iTotalFz-400)/400*50*1.25)),1)
-					End If
-				%>
-  <td class=ctd alt="<%="任务书:" & iTotalFz & "分"%>"><%=kpf(0)%></td>
-  <td class=ctd><%=kpf(0)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=2>任务完成</td>
-  <td class=ctd>延迟</td>
-  <td class=ctd rowspan=2>10</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次(</td>
-  <%
-					ics(0)=statkpcs("延迟", "", 0)
-					ics(1)=statkpcs("提前", "", 0)
-
-					kpif(0)=statkpfz("延迟", 0)
-					If kpif(0)<-10 Then kpif(0)=-10
-					kpif(1)=statkpfz("提前", 0)
-					If kpif(1)>10 Then kpif(1)=10
-					kpf(1)=kpif(0) + kpif(1)
-					If kpf(1)>10 Then kpf(1)=10
-					If kpf(1)<-10 Then kpf(1)=-10
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=2><%=kpf(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>提前</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=3>项目完成</td>
-  <td class=ctd>新品开发月计划任务未完成</td>
-  <td class=ctd rowspan=3>5</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("新品开发月计划任务未完成", "", 0)
-					ics(1)=statkpcs("新品开发月、周未及时上报", "", 0)
-					ics(2)=statkpcs("新品开发实施计划维护情况差", "", 0)
-
-					kpif(0)=statkpfz("新品开发月计划任务未完成", 0)
-					kpif(1)=statkpfz("新品开发月、周未及时上报", 0)
-					kpif(2)=statkpfz("新品开发实施计划维护情况差", 0)
-
-					kpf(2)=kpif(0) + kpif(1) + kpif(2)
-					If kpf(2)<-5 Then kpf(2)=-5
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=3><%=kpf(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>新品开发月、周未及时上报</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>新品开发实施计划维护情况差</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=10>工艺质量</td>
-  <td class=ctd>工艺文件更改不完善未造成质量问题</td>
-  <td class=ctd rowspan=10>20</td>
-  <td class=ctd>0.5</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("工艺文件更改不完善未造成质量问题", "", 0)
-					ics(1)=statkpcs("所编制的作业指导书经论证后未及时修改", "", 0)
-					ics(2)=statkpcs("工艺文件签署不完整", "", 0)
-					ics(3)=statkpcs("因签署日期不实，导致质量争议", "", 0)
-					ics(4)=statkpcs("因工艺错误造成返修（漏、错工艺）", "", 0)
-					ics(5)=statkpcs("因工艺错误造成报废", "", 0)
-					ics(6)=statkpcs("未按规范执行", "", 0)
-					ics(7)=statkpcs("因工艺造成车间订单不能下达", "", 0)
-					ics(8)=statkpcs("相同错误重复出现", "", 0)
-					ics(9)=statkpcs("设计结构、材料、热处理等明显错误未及时反映", "", 0)
-
-					kpif(0)=statkpfz("工艺文件更改不完善未造成质量问题", 0)
-					kpif(1)=statkpfz("所编制的作业指导书经论证后未及时修改", 0)
-					kpif(2)=statkpfz("工艺文件签署不完整", 0)
-					kpif(3)=statkpfz("因签署日期不实，导致质量争议", 0)
-					kpif(4)=statkpfz("因工艺错误造成返修（漏、错工艺）", 0)
-					kpif(5)=statkpfz("因工艺错误造成报废", 0)
-					kpif(6)=statkpfz("未按规范执行", 0)
-					kpif(7)=statkpfz("因工艺造成车间订单不能下达", 0)
-					kpif(8)=statkpfz("相同错误重复出现", 0)
-					kpif(9)=statkpfz("设计结构、材料、热处理等明显错误未及时反映", 0)
-
-					If kpif(8)>4 Then kpif(8)=10
-					kpf(3)=kpif(0)+kpif(1)+kpif(2)+kpif(3)+kpif(4)+kpif(5)+kpif(6)+kpif(7)+kpif(8)+kpif(9)
-					If kpf(3)<-20 Then kpf(3)=-20
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=10><%=kpf(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>所编制的作业指导书经论证后未及时修改</td>
-  <td class=ctd>3</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>工艺文件签署不完整</td>
-  <td class=ctd>0.5</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>因签署日期不实，导致质量争议</td>
-  <td class=ctd>3</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(3)%></td>
-  <td class=ctd><%=kpif(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>因工艺错误造成返修（漏、错工艺）</td>
-  <td class=ctd>1.5</td>
   <td class=ctd>分/次</td>
   <td class=ctd><%=ics(4)%></td>
   <td class=ctd><%=kpif(4)%></td>
@@ -1089,8 +748,8 @@ Function ygkpstatDisplay()
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd>因工艺错误造成报废</td>
-  <td class=ctd>3</td>
+  <td class=ctd>工作过程未按规定执行</td>
+  <td class=ctd>2.0</td>
   <td class=ctd>分/次</td>
   <td class=ctd><%=ics(5)%></td>
   <td class=ctd><%=kpif(5)%></td>
@@ -1098,294 +757,63 @@ Function ygkpstatDisplay()
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd>未按规范执行</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
+  <td class=ctd>设计原因质量损失超千元</td>
+  <td class=ctd>2.0</td>
+  <td class=ctd>分/千元</td>
   <td class=ctd><%=ics(6)%></td>
   <td class=ctd><%=kpif(6)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>因工艺造成车间订单不能下达</td>
-  <td class=ctd>0.5</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(7)%></td>
-  <td class=ctd><%=kpif(7)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>相同错误重复出现</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(8)%></td>
-  <td class=ctd><%=kpif(8)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>设计结构、材料、热处理等明显错误未及时反映</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(9)%></td>
-  <td class=ctd><%=kpif(9)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=4>技能水平</td>
-  <td class=ctd>主动解决非工艺因素造成的加工问题</td>
-  <td class=ctd rowspan=4>5</td>
-  <td class=ctd>+</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("主动解决非工艺因素造成的加工问题", "", 0)
-					ics(1)=statkpcs("主动提出加工工艺改进方案并被采纳", "", 0)
-					ics(2)=statkpcs("制作专用夹具成功并在计划期内推行", "", 0)
-					ics(3)=statkpcs("新进厂技术员技能考核不合格", "", 0)
-
-					kpif(0)=statkpfz("主动解决非工艺因素造成的加工问题", 0)
-					kpif(1)=statkpfz("主动提出加工工艺改进方案并被采纳", 0)
-					kpif(2)=statkpfz("制作专用夹具成功并在计划期内推行", 0)
-					kpif(3)=statkpfz("新进厂技术员技能考核不合格", 0)
-
-					kpf(4)=kpif(0) + kpif(1) + kpif(2) + kpif(3)
-					If kpf(4)<-5 Then kpf(4)=-5
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=4><%=kpf(4)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>主动提出加工工艺改进方案并被采纳</td>
-  <td class=ctd>+</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>制作专用夹具成功并在计划期内推行</td>
-  <td class=ctd>+</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>新进厂技术员技能考核不合格</td>
-  <td class=ctd>5</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(3)%></td>
-  <td class=ctd><%=kpif(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=3>工作纪律</td>
-  <td class=ctd>上班做与工作无关的事</td>
-  <td class=ctd rowspan=3>5</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("上班做与工作无关", "", 0)
-					ics(1)=statkpcs("值班离岗,闲聊", "", 0)
-					ics(2)=statkpcs("桌面不洁,下班机器未关、门未锁", "", 0)
-
-					kpif(0)=statkpfz("上班做与工作无关", 0)
-					kpif(1)=statkpfz("值班离岗,闲聊", 0)
-					kpif(2)=statkpfz("桌面不洁,下班机器未关、门未锁", 0)
-
-					kpf(5)=kpif(0) + kpif(1) + kpif(2)
-					If kpf(5)<-5 Then kpf(5)=-5
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=3><%=kpf(5)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>值班离岗,闲聊</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>桌面不洁,下班机器未关、门未锁</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=4>工作态度</td>
-  <td class=ctd>不服从分配</td>
-  <td class=ctd rowspan=4>5</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("不服从分配", "", 0)
-					ics(1)=statkpcs("消极怠工", "", 0)
-					ics(2)=statkpcs("处理问题不及时，且无正当理由", "", 0)
-					ics(3)=statkpcs("主动承担较难任务并积极完成", "", 0)
-
-					kpif(0)=statkpfz("不服从分配", 0)
-					kpif(1)=statkpfz("消极怠工", 0)
-					kpif(2)=statkpfz("处理问题不及时，且无正当理由", 0)
-					kpif(3)=statkpfz("主动承担较难任务并积极完成", 0)
-
-					kpf(6)=kpif(0) + kpif(1) + kpif(2) + kpif(3)
-					If kpf(6)<-5 Then kpf(6)=-5
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=4><%=kpf(6)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>消极怠工</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>处理问题不及时，且无正当理由</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>主动承担较难任务并积极完成</td>
-  <td class=ctd>3</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
 </tr>
 <tr>
   <td class=rtd colspan=8>Total:</td>
   <%
-				'将质量分由默认的50改为随任务分变化而变化,即质量分=任务分/400*50,但不大于50
-				for i=0 to 29
+				for i=0 to 3
 					kpzf=kpzf+kpf(i)
 				next
-				If iTotalFz>400 Then
-					kpzf=kpzf+50
-				else
-					kpzf=round(kpzf+(iTotalFz/400 * 50),1)
-				End If
 				%>
   <td class=ctd><%=kpzf%></td>
 </tr>
-<%
-		Case 9			'编程技术员
-			%>
+<%icount=1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd>任务量</td>
-  	<td class=ctd>每月分值(总量400分)</td>
-  <td class=ctd>50.0</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <%
-					If iTotalFz<400 Then
-						kpf(0)=round((iTotalFz/400 * 50),1)
-					Else
-						kpf(0)=round((50+((iTotalFz-400)/400*50*1.25)),1)
-					End If
-				%>
-  <td class=ctd alt="<%="任务书:" & iTotalFz & "分"%>"><%=kpf(0)%></td>
-  <td class=ctd><%=kpf(0)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=2>任务完成</td>
-  <td class=ctd>延迟</td>
-  <td class=ctd rowspan=2>10</td>
-  <td class=ctd>2</td>
+  <td class=ctd rowspan=5>定性指标</td>
+  <td class=ctd>提出改进建议取得成效</td>
+  <td class=ctd rowspan=5>20.0</td>
+  <td class=ctd>1.0~5.0</td>
   <td class=ctd>分/次</td>
   <%
-					ics(0)=statkpcs("延迟", "", 0)
-					ics(1)=statkpcs("提前", "", 0)
+					ics(0)=statkpcs("提出改进建议取得成效", "", 0)
+					ics(1)=statkpcs("主动承担较难任务", "", 0)
+					ics(2)=statkpcs("上班做与工作无关", "", 0)
+					ics(3)=statkpcs("不服从分配", "", 0)
+					ics(4)=statkpcs("5S管理不达标", "", 0)
 
-					kpif(0)=statkpfz("延迟", 0)
-					If kpif(0)<-10 Then kpif(0)=-10
-					kpif(1)=statkpfz("提前", 0)
-					If kpif(1)>10 Then kpif(1)=10
-					kpf(1)=kpif(0) + kpif(1)
-					If kpf(1)>10 Then kpf(1)=10
-					If kpf(1)<-10 Then kpf(1)=-10
+					kpif(0)=statkpfz("提出改进建议取得成效", 0)
+					kpif(1)=statkpfz("主动承担较难任务", 0)
+					kpif(2)=statkpfz("上班做与工作无关", 0)
+					kpif(3)=statkpfz("不服从分配", 0)
+					kpif(4)=statkpfz("5S管理不达标", 0)
+
+					kpf(4)=20 + kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4)
+					If kpf(4)<0 Then kpf(4)=0
 				%>
   <td class=ctd><%=ics(0)%></td>
   <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=2><%=kpf(1)%></td>
+  <td class=ctd rowspan=5><%=kpf(4)%></td>
 </tr>
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd>提前</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次(多人平分)</td>
+  <td class=ctd>主动承担较难任务</td>
+  <td class=ctd>1.0~5.0</td>
+  <td class=ctd>分/次</td>
   <td class=ctd><%=ics(1)%></td>
   <td class=ctd><%=kpif(1)%></td>
 </tr>
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=5>程序质量</td>
-  <td class=ctd>因程序错误出现返修</td>
-  <td class=ctd rowspan=5>20</td>
-  <td class=ctd>1.5</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("因程序错误出现返修", "", 0)
-					ics(1)=statkpcs("相同错误重复出现2次以上", "", 0)
-					ics(2)=statkpcs("因程序错误出现报废", "", 0)
-					ics(3)=statkpcs("加工者自检发现程序错误", "", 0)
-					ics(4)=statkpcs("编程发现图纸有设计问题", "", 0)
-
-					kpif(0)=statkpfz("因程序错误出现返修", 0)
-					kpif(1)=statkpfz("相同错误重复出现2次以上", 0)
-					kpif(2)=statkpfz("因程序错误出现报废", 0)
-					kpif(3)=statkpfz("加工者自检发现程序错误", 0)
-					kpif(4)=statkpfz("编程发现图纸有设计问题", 0)
-
-					kpf(2)=kpif(0)+kpif(1)+kpif(2)+kpif(3)+kpif(4)
-					If kpf(2)<-20 Then kpf(2)=-20
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=5><%=kpf(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>相同错误重复出现2次以上</td>
-  <td class=ctd>3</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>因程序错误出现报废</td>
-  <td class=ctd>3</td>
+  <td class=ctd>上班做与工作无关的事</td>
+  <td class=ctd>2.0</td>
   <td class=ctd>分/次</td>
   <td class=ctd><%=ics(2)%></td>
   <td class=ctd><%=kpif(2)%></td>
@@ -1393,8 +821,8 @@ Function ygkpstatDisplay()
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd>加工者自检发现程序错误</td>
-  <td class=ctd>2</td>
+  <td class=ctd>不服从分配</td>
+  <td class=ctd>2.0</td>
   <td class=ctd>分/次</td>
   <td class=ctd><%=ics(3)%></td>
   <td class=ctd><%=kpif(3)%></td>
@@ -1402,161 +830,16 @@ Function ygkpstatDisplay()
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd>编程发现图纸有设计问题</td>
-  <td class=ctd>0.5</td>
+  <td class=ctd>5S管理不达标</td>
+  <td class=ctd>1.0~2.0</td>
   <td class=ctd>分/次</td>
   <td class=ctd><%=ics(4)%></td>
   <td class=ctd><%=kpif(4)%></td>
 </tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=4>技能水平</td>
-  <td class=ctd>解决非常规数控设备加工问题</td>
-  <td class=ctd rowspan=4>10</td>
-  <td class=ctd>+</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("解决非常规数控设备加工问题", "", 0)
-					ics(1)=statkpcs("提出落料改进并被采用", "", 0)
-					ics(2)=statkpcs("出现落料错误", "", 0)
-					ics(3)=statkpcs("新进厂技术员技能考核不合格", "", 0)
-
-					kpif(0)=statkpfz("解决非常规数控设备加工问题", 0)
-					kpif(1)=statkpfz("提出落料改进并被采用", 0)
-					kpif(2)=statkpfz("出现落料错误", 0)
-					kpif(3)=statkpfz("新进厂技术员技能考核不合格", 0)
-
-					kpf(3)=kpif(0) + kpif(1) + kpif(2) + kpif(3)
-					If kpf(3)<-10 Then kpf(3)=-10
-					If kpf(3)>10 Then kpf(3)=10
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=4><%=kpf(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>提出落料改进并被采用</td>
-  <td class=ctd>+</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>出现落料错误</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>新进厂技术员技能考核不合格</td>
-  <td class=ctd>5</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(3)%></td>
-  <td class=ctd><%=kpif(3)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=3>工作纪律</td>
-  <td class=ctd>上班做与工作无关的事</td>
-  <td class=ctd rowspan=3>5</td>
-  <td class=ctd>1</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("上班做与工作无关", "", 0)
-					ics(1)=statkpcs("无正当理由离岗,闲聊", "", 0)
-					ics(2)=statkpcs("桌面不洁,下班机器未关、门未锁", "", 0)
-
-					kpif(0)=statkpfz("上班做与工作无关", 0)
-					kpif(1)=statkpfz("无正当理由离岗,闲聊", 0)
-					kpif(2)=statkpfz("桌面不洁,下班机器未关、门未锁", 0)
-
-					kpf(4)=kpif(0) + kpif(1) + kpif(2)
-					If kpf(4)<-2 Then kpf(4)=-2
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=3><%=kpf(4)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>无正当理由离岗,闲聊</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>桌面不洁,下班机器未关、门未锁</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=3>工作态度</td>
-  <td class=ctd>不服从分配</td>
-  <td class=ctd rowspan=3>5</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <%
-					ics(0)=statkpcs("不服从分配", "", 0)
-					ics(1)=statkpcs("处理问题不及时", "", 0)
-					ics(2)=statkpcs("消极怠工", "", 0)
-
-					kpif(0)=statkpfz("不服从分配", 0)
-					kpif(1)=statkpfz("处理问题不及时", 0)
-					kpif(2)=statkpfz("消极怠工", 0)
-
-					kpf(5)=kpif(0) + kpif(1) + kpif(2)
-					If kpf(5)<-5 Then kpf(5)=-5
-				%>
-  <td class=ctd><%=ics(0)%></td>
-  <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=3><%=kpf(5)%></td>
-</tr>
-<%icount=icount+1%>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>处理问题不及时</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(1)%></td>
-  <td class=ctd><%=kpif(1)%></td>
-</tr>
-<tr>
-  <td class=ctd><%=icount%></td>
-  <td class=ctd>消极怠工</td>
-  <td class=ctd>2</td>
-  <td class=ctd>分/次</td>
-  <td class=ctd><%=ics(2)%></td>
-  <td class=ctd><%=kpif(2)%></td>
-</tr>
 <tr>
   <td class=rtd colspan=8>Total:</td>
   <%
-				'将质量分由默认的50改为随任务分变化而变化,即质量分=任务分/400*50,但不大于50
-				for i=0 to 29
-					kpzf=kpzf+kpf(i)
-				next
-				If iTotalFz>400 Then
-					kpzf=kpzf+50
-				else
-					kpzf=round(kpzf+(iTotalFz/400 * 50),1)
-				End If
+				kpzf=kpf(4)
 				%>
   <td class=ctd><%=kpzf%></td>
 </tr>
@@ -1571,9 +854,13 @@ Function ChkJs(str)
 	'If IsDebug Then ChkAble=True : Exit Function
 	If Len(str)<15 Then Exit Function
 	dim i
-	For i=1 To Len(str)
-		If Mid(str,i,1)=1 Then ChkJs=i : Exit For	'只取每人的最高角色,如你同时是组长和组员,则只取组长
-	Next
+	if Mid(str,8,1)=1 Then	'提升服务技术员优先级
+		ChkJs=8
+	Else
+		For i=1 To Len(str)
+			If Mid(str,i,1)=1 Then ChkJs=i : Exit For	'只取每人的最高角色,如你同时是组长和组员,则只取组长
+		Next
+	End If
 End Function
 
 Function statkpjfz(kp_item,zrrjs,i)
