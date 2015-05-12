@@ -308,9 +308,11 @@ Function YgxsStat()
 					kpf(4)=20+kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4)
 					If kpf(4)<0 Then kpf(4)=0
 					
-				for i=0 to 3
+				for i=0 to 2
 					kpzf=kpzf+kpf(i)
 				next
+				if kpzf>50 Then kpzf=50
+				kpzf=kpzf+kpf(3)
 				zrwxs=round(kpzf/100,2)
 				zzlxs=round(kpf(4)/100,2)
 				zgkxs=round(zrwxs+zzlxs,2)

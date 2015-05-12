@@ -489,7 +489,7 @@
 		case "结束复审"
 			strSql="update [mtask] set psjl='"&request("psjl")&"', fsr='"&strzrr&"', fsjs='"&now()&"' where lsh='"&strlsh&"'"
 			call xjweb.Exec(strSql, 0)
-			call sendmsg("吴翠红", web_info(0), "模具全套结束", "<a href=mtask_display.asp?s_lsh="&strlsh&" target=""_blank"">流水号 <b>"&strlsh&"</b> 已结束复审，请求准予本模具全套结束。</a>")
+			call sendmsg("伍新安", web_info(0), "模具全套结束", "<a href=mtask_display.asp?s_lsh="&strlsh&" target=""_blank"">流水号 <b>"&strlsh&"</b> 已结束复审，请求准予本模具全套结束。</a>")
 			Call JsAlert("流水号 【" & strlsh & "】 任务书组长分配部分完成!","mtask_assign.asp")
 
 		case "全套结束"

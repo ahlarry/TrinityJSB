@@ -625,7 +625,7 @@ Function ygkpstatDisplay()
 			%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=3>工作数量</td>
+  <td class=ctd rowspan=3>工作数量<br>(满分50)</td>
   <td class=ctd>设计任务<input name="basicwg" size="5" style="BACKGROUND-COLOR:transparent;BORDER-BOTTOM:#ffffff 1px solid;BORDER-LEFT:#ffffff 1px solid;BORDER-RIGHT:#ffffff 1px solid;BORDER-TOP:#ffffff 1px solid;COLOR:#00659c;HEIGHT:18px;border-color:#ffffff #ffffff #ffffff #ffffff;text-align:center;font-size:9pt" value=<%=TargetFZ%> >
   			<%if chkable(3) then%><input name="Chg_wg" type="submit" value="更新"><%End If%>
   </td>
@@ -766,9 +766,11 @@ Function ygkpstatDisplay()
 <tr>
   <td class=rtd colspan=8>Total:</td>
   <%
-				for i=0 to 3
+				for i=0 to 2
 					kpzf=kpzf+kpf(i)
 				next
+				if kpzf>50 Then kpzf=50
+				kpzf=kpzf+kpf(3)
 				%>
   <td class=ctd><%=kpzf%></td>
 </tr>
