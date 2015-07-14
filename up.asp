@@ -32,11 +32,11 @@ End Sub
 Function Updata()
 	Dim mystr, mystr1, ikhxs, rwlr_change, tmpRs
 	ikhxs=1
-	strSql="select * from [ims_user]"
+	strSql="select * from [mantime] where lsh='11545' or lsh='11544'"
 		Call xjweb.exec("",-1)
 		Rs.open strSql,Conn,1,3
 		Do while not Rs.eof
-			Rs("user_basicwage")=300
+			Rs("fz")=Rs("fz")*1.25
 		Rs.update
 		Rs.movenext
 		Loop

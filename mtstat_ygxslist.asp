@@ -8,7 +8,7 @@ strPage="mtstat"
 xjweb.header()
 Call TopTable()
 
-Dim iyear, imonth, dtstart, dtend, irwzf, iaddfz, zcount, icount, ilxrwzf, zrwwcl, zgroup
+Dim iyear, imonth, dtstart, dtend, irwzf, iaddfz, zcount, icount, ilxrwzf, zrwwcl, zgroup, zdxxs
 Dim zuser, zrwfz, zrwxs, zzlxs, zgkxs, zbmxs, zjbgz, zjxgz,zyfgz, zbeiz, ygxsRs, m, zbasicwg
 zjbgz=0
 zjxgz=0
@@ -90,13 +90,14 @@ Function YgxsDisplay()		'显示列表
     <th class=th width="8%">人员名单</th>
     <th class=th width="8%">任务分值</th>
     <th class=th width="8%">任务指标</th>
-    <th class=th width="8%">定量</th>
+    <th class=th width="8%">数量</th>
+    <th class=th width="8%">质量</th>
     <th class=th width="8%">定性</th>
     <th class=th width="8%">综合</th>
     <th class=th width="8%">部考系数</th>
     <th class=th width="10%">基本工资</th>
     <th class=th width="10%">绩效工资</th>
-    <th class=th width="10%">应发工资</th>
+    <th class=th width="*">应发工资</th>
   </tr>
   <tr>
   	<td colspan="11" class=rtd>本月部门任务完成率=<%=zrwwcl%></td>
@@ -106,7 +107,7 @@ Function YgxsDisplay()		'显示列表
 		Dim strColor
 		strColor=-1
 		If Request("bybmxs")="" Then zbmxs=1.0 Else zbmxs=Request("bybmxs") End if
-		strSql="select * from [ims_user] where user_depart='技术部' and user_group<>0 and user_able<>'010000000000000' and Instr('AABBTB调试员',user_name)=0 order by user_group,user_able"
+		strSql="select * from [ims_user] where user_depart='技术部' and user_group<>0 and user_able<>'010000000000000' and Instr('AABBTB调试员',user_name)=0 order by user_group,user_basicwage desc"
 		Set ygxsRs=xjweb.Exec(strSql, 1)
 		Do While Not ygxsRs.eof	or ygxsRs.Bof
 		zuser=ygxsRs("user_name")
@@ -115,8 +116,8 @@ Function YgxsDisplay()		'显示列表
 			zgroup=ygxsRs("user_group")
 		End If
 		zgroup=ygxsRs("user_group")
-		zbasicwg=ygxsRs("user_basicwage")		
-		zrwfz=0 : zrwxs=0 : zzlxs=0 : zgkxs=0 : zjbgz=0 : zyfgz=0 : zbeiz="" : irwzf=0 : ilxrwzf=0 : iaddfz=0
+		zbasicwg=ygxsRs("user_basicwage")
+		zrwfz=0 : zrwxs=0 : zzlxs=0 : zdxxs=0 : zgkxs=0 : zjbgz=0 : zyfgz=0 : zbeiz="" : irwzf=0 : ilxrwzf=0 : iaddfz=0
 		kpzf=0
 		for i=0 to 29
 			kpf(i)=0
@@ -138,6 +139,7 @@ Function YgxsDisplay()		'显示列表
     <td class=ctd width="8%"><%=zbasicwg%>&nbsp;</td>
     <td class=ctd width="8%"><%=zrwxs%>&nbsp;</td>
     <td class=ctd width="8%"><%=zzlxs%>&nbsp;</td>
+    <td class=ctd width="8%"><%=zdxxs%>&nbsp;</td>
     <td class=ctd width="8%"><%=zgkxs%>&nbsp;</td>
     <td class=ctd width="8%"><%=zbmxs%></td>
     <td class=ctd width="10%">&nbsp;</td>
@@ -267,8 +269,8 @@ Function YgxsStat()
 					kpif(3)=statkpfz("不服从分配", 0)
 					kpif(4)=statkpfz("5S管理不达标", 0)
 					kpf(2)=20 + kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4)
-					If kpf(2)<0 Then kpf(2)=0					
-					
+					If kpf(2)<0 Then kpf(2)=0
+
 				for i=0 to 1
 					kpzf=kpzf+kpf(i)
 				next
@@ -285,11 +287,11 @@ Function YgxsStat()
 					kpif(0)=statkpfz("技术代表延期", 0)
 					kpf(1)=kpif(0) + 5
 					If kpf(1)<0 Then kpf(1)=0
-					
+
 					kpif(0)=statkpfz("延迟", 0)
 					kpf(2)=kpif(0) + 10
 					If kpf(2)<0 Then kpf(2)=0
-					
+
 					kpif(0)=statkpfz("设计原因产生报废", 0)
 					kpif(1)=statkpfz("设计原因产生返修", 0)
 					kpif(2)=statkpfz("设计原因产生返工", 0)
@@ -299,7 +301,7 @@ Function YgxsStat()
 					kpif(6)=statkpfz("设计原因质量损失超千元", 0)
 					kpf(3)=30+kpif(0)+kpif(1)+kpif(2)+kpif(3)+kpif(4)+kpif(5)+kpif(6)
 					if kpf(3)<0 Then kpf(3)=0
-					
+
 					kpif(0)=statkpfz("提出改进建议取得成效", 0)
 					kpif(1)=statkpfz("主动承担较难任务", 0)
 					kpif(2)=statkpfz("上班做与工作无关", 0)
@@ -307,15 +309,16 @@ Function YgxsStat()
 					kpif(4)=statkpfz("5S管理不达标", 0)
 					kpf(4)=20+kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4)
 					If kpf(4)<0 Then kpf(4)=0
-					
+
 				for i=0 to 2
 					kpzf=kpzf+kpf(i)
 				next
 				if kpzf>50 Then kpzf=50
-				kpzf=kpzf+kpf(3)
 				zrwxs=round(kpzf/100,2)
-				zzlxs=round(kpf(4)/100,2)
-				zgkxs=round(zrwxs+zzlxs,2)
+				zzlxs=round(kpf(3)/100,2)
+				zdxxs=round(kpf(4)/100,2)
+				zgkxs=round(zrwxs+zdxxs+zzlxs,2)
+'				zgkxs=round(zrwxs+zzlxs,2)&","&zrwfz&","&zbasicwg&","&kpf(0)&","&kpf(1)&","&kpf(2)&","&kpf(3)&","&kpf(4)
 	End Select
 	Erase kpf
 End Function

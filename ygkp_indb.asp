@@ -260,7 +260,7 @@
 				iGroup=Rs("user_group")
 			End If
 			Rs.Close
-			kpxs=0.33
+			kpxs=1
 			strZrrjs="…Û∫À"
 			strZrr=tsShr
 			strBz=strbztmp & vbcrlf & strZrrjs
@@ -387,7 +387,7 @@
 						iGroup=Rs("user_group")
 					End If
 					Rs.Close
-					kpxs=0.33
+					kpxs=1
 					If Instr(strGroup,iGroup&",") > 0 Then
 						strZrrjs="…Û∫À2"
 					else
