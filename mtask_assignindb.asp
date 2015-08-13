@@ -548,7 +548,7 @@ end function
 Function FenToDB(lsh)
 	'将分值写入分值库
 	Dim mjfz, mtfz, dxfz, gjfz, bomfz, ijgbl, isjbl, ishbl, ifgbl, ifgshbl, ifcbl, ijc, ijc2, imtjgbl, idxjgbl, ijgshbl, iljshbl, iwcsj, mtgjf, dxgjf, ssgjf, qbfgjf, qgjf, hgjf
-	Dim igysjxs, igysjsh, igyfcxs, igyfcsh, igyfgxs, igyfgsh, iGroup, tmpSql, tmpRs
+	Dim igysjxs, igysjsh, igyfcxs, igyfcsh, igyfgxs, igyfgsh, iGroup, tmpSql, tmpRs, itsdfz, sngmtbl
 	mtgjf=0 : dxgjf=0
 	'ijc===奖惩分值
 	strSql="select * from [c_fzbl]"
@@ -607,6 +607,8 @@ Function FenToDB(lsh)
 	end select
 
 	bomfz=rs("bomzf")
+	itsdfz=rs("tsdzf")
+	sngmtbl=rs("mtbl")/100
 	ijc2=datediff("d",rs("sjjssj"),rs("jhjssj"))
 	ijc=0
 
@@ -873,6 +875,32 @@ Function FenToDB(lsh)
 				call xjweb.Exec(strSql,0)
 			end if
 
+			'调试单分值入库
+			if not(isnull(rs("mttsdr"))) then
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mttsdr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头调试单',"&Round(itsdfz*sngmtbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mttsdr")&"',"&iGroup&")"
+				call xjweb.Exec(strSql,0)
+			end if
+			if not(isnull(rs("dxtsdr"))) then
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxtsdr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型调试单',"&Round(itsdfz*(1-sngmtbl),1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxtsdr")&"',"&iGroup&")"
+				call xjweb.Exec(strSql,0)
+			end if
+
 		case "复改"
 			'复改
 			if not(isnull(rs("mtsjr"))) then
@@ -979,6 +1007,33 @@ Function FenToDB(lsh)
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型BOM',"&Round(bomfz*0.5,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxbomr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
 			end if
+
+			'调试单分值入库
+			if not(isnull(rs("mttsdr"))) then
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mttsdr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头调试单',"&Round(itsdfz*sngmtbl*ifgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mttsdr")&"',"&iGroup&")"
+				call xjweb.Exec(strSql,0)
+			end if
+			if not(isnull(rs("dxtsdr"))) then
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxtsdr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型调试单',"&Round(itsdfz*(1-sngmtbl)*ifgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxtsdr")&"',"&iGroup&")"
+				call xjweb.Exec(strSql,0)
+			end if
+
 		case "复查"
 			'复查
 			if not(isnull(rs("mtshr"))) then
@@ -1043,6 +1098,31 @@ Function FenToDB(lsh)
 				End If
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型BOM',"&Round(bomfz*0.5,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxbomr")&"',"&iGroup&")"
+				call xjweb.Exec(strSql,0)
+			end if
+			'调试单分值入库
+			if not(isnull(rs("mttsdr"))) then
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mttsdr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头调试单',"&Round(itsdfz*sngmtbl*ifcbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mttsdr")&"',"&iGroup&")"
+				call xjweb.Exec(strSql,0)
+			end if
+			if not(isnull(rs("dxtsdr"))) then
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxtsdr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型调试单',"&Round(itsdfz*(1-sngmtbl)*ifcbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxtsdr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
 			end if
 	end select

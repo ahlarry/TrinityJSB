@@ -332,15 +332,15 @@ function fentodb(lsh, strlr)
 	itsxxzlfz=rs("tsxxzlzf")
 	sngmtbl=rs("mtbl") / 100
 	Rs.Close
-	
+
 	select case irwnr
 		case "设计"
 			irwnr=""
 			ifgbl=1
 		case "复查"
 			ifgbl=ifcbl
-	end select		
-		
+	end select
+
 	'厂外精调
 	If Right(strlr,3)="jts" Then
 		strSql="select * from [ts_tsxx] where lsh='"&lsh&"' and tslr like '%精调%'"
@@ -411,24 +411,24 @@ function fentodb(lsh, strlr)
 		case "mttsd"	'模头调试单
 			strzrr=rs("mttsdr")
 			dtjssj=rs("mttsdjs")
-			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','模头调试单',"&itsdfz*sngmtbl*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
-			call xjweb.Exec(strSql,0)
+'			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','模头调试单',"&itsdfz*sngmtbl*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
+'			call xjweb.Exec(strSql,0)
 			If (datediff("d", dtjssj, jhsj) < -20) and (not isnull(rs("mttsdjs"))) and (not isnull(rs("dxtsdjs"))) then
 				call Tsdkp(strzrr, strlsh, 5, strlsh)
 			End if
 		case "dxtsd"	'定型调试单
 			strzrr=rs("dxtsdr")
 			dtjssj=rs("dxtsdjs")
-			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','定型调试单',"&itsdfz*(1-sngmtbl)*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
-			call xjweb.Exec(strSql,0)
+'			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','定型调试单',"&itsdfz*(1-sngmtbl)*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
+'			call xjweb.Exec(strSql,0)
 			If (datediff("d", dtjssj, jhsj) < -20) and (not isnull(rs("mttsdjs"))) and (not isnull(rs("dxtsdjs"))) then
 				call Tsdkp(strzrr, strlsh, 5, strlsh)
 			End if
 		case "qttsd"	'全套调试单
 			strzrr=rs("mttsdr")
 			dtjssj=rs("mttsdjs")
-			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','全套调试单',"&itsdfz*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
-			call xjweb.Exec(strSql,0)
+'			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','全套调试单',"&itsdfz*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
+'			call xjweb.Exec(strSql,0)
 			If (datediff("d", dtjssj, jhsj) < -20) and (not isnull(rs("mttsdjs"))) and (not isnull(rs("dxtsdjs"))) then
 				call Tsdkp(strzrr, strlsh, 5, strlsh)
 			End if
@@ -680,7 +680,7 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '			iGroup=KpRs("user_group")
 '		End If
 '		KpRs.Close
-'	
+'
 '		If iedxx > itscs Then
 '			iKpMul=1
 '		else
@@ -709,9 +709,9 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '			KpRs("kp_lsh")=slsh
 '			KpRs("kp_zlid")=iZlID
 '		KpRs.Update
-'		KpRs.Close		
+'		KpRs.Close
 '	End If
-'	
+'
 '	If not(isNull(idxjgr)) Then
 '		KpSql="Select [user_group] from [ims_user] where [user_name]='"&idxjgr&"'"
 '		Set KpRs=xjweb.Exec(KpSql,1)
@@ -719,7 +719,7 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '			iGroup=KpRs("user_group")
 '		End If
 '		KpRs.Close
-'	
+'
 '		If iedxx > itscs Then
 '			iKpMul=1
 '		else
@@ -748,7 +748,7 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '			KpRs("kp_lsh")=slsh
 '			KpRs("kp_zlid")=iZlID
 '		KpRs.Update
-'		KpRs.Close				
+'		KpRs.Close
 '	End If
 '	'对结构审核人进行考核
 '	If not(isNull(imtjgshr)) and imtjgshr<>ijgzz Then
@@ -758,7 +758,7 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '			iGroup=KpRs("user_group")
 '		End If
 '		KpRs.Close
-'	
+'
 '		If iedxx > itscs Then
 '			iKpMul=1
 '		else
@@ -787,7 +787,7 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '			KpRs("kp_lsh")=slsh
 '			KpRs("kp_zlid")=iZlID
 '		KpRs.Update
-'		KpRs.Close				
+'		KpRs.Close
 '	End If
 '	If not(isNull(idxjgshr)) and idxjgshr<>ijgzz Then
 '		KpSql="Select [user_group] from [ims_user] where [user_name]='"&idxjgshr&"'"
@@ -796,7 +796,7 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '			iGroup=KpRs("user_group")
 '		End If
 '		KpRs.Close
-'	
+'
 '		If iedxx > itscs Then
 '			iKpMul=1
 '		else
@@ -825,7 +825,7 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '			KpRs("kp_lsh")=slsh
 '			KpRs("kp_zlid")=iZlID
 '		KpRs.Update
-'		KpRs.Close				
+'		KpRs.Close
 '	End If
 	'对组长进行考核(结构组长(ijgzz)、调试组长(tszz))
 	Dim xxzz, tszz
