@@ -274,11 +274,11 @@ Function atask_nofinished()			'具有分配权限的未完成的调试任务
 	absPageNum = 0
 	RecordPerPage = 40
 	iCounter = 1
-	sqlorder = " order by jhjssj"
+	sqlorder = " order by jhjssj desc"
 	If LCase(strOrder) = "ddh" Then sqlorder = " order by ddh desc, lsh desc"
 	If LCase(strOrder) = "lsh" Then sqlorder = " order by lsh desc"
 
-	strSql="select * from [mtask] where not(isnull(fsjs)) and not(mjjs) and ((mjxx='全套' and (isnull(mttsdjs) or isnull(dxtsdjs)) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or (mjxx='模头' and isnull(mttsdjs) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or (mjxx='定型' and isnull(dxtsdjs) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or ((mjxx='全套' and (not isnull(mttsdjs)) and (not isnull(dxtsdjs)) and "&session("userGroup")&"=5) or (mjxx='模头' and (not isnull(mttsdjs)) and "&session("userGroup")&"=5) or (mjxx='定型' and (not isnull(dxtsdjs)) and "&session("userGroup")&"=5) ))" & sqlorder
+	strSql="select * from [mtask] where not(isnull(fsjs)) and not(mjjs) and ((mjxx='全套' and (isnull(mttsdjs) or isnull(dxtsdjs)) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or (mjxx='模头' and isnull(mttsdjs) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or (mjxx='定型' and isnull(dxtsdjs) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or ((mjxx='全套' and (not isnull(mttsdjs)) and (not isnull(dxtsdjs)) and "&session("userGroup")&"=5) or (mjxx='模头' and (not isnull(mttsdjs)) and "&session("userGroup")&"=5) or (mjxx='定型' and (not isnull(dxtsdjs)) and "&session("userGroup")&"=5) )) and datediff('yyyy',jhjssj,'"&now()&"')<2" & sqlorder
 	Call xjweb.Exec("",-1)
 	Set Rs=Server.CreateObject("ADODB.RECORDSET")
 	Rs.CacheSize=RecordPerPage

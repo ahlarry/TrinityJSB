@@ -40,6 +40,7 @@
 				If ChkAble("3,10") Then PageLink=PageLink & "<a href=ftask_add.asp>添加零星任务</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=ftask_list.asp>零星任务列表</a>"
 			Case "mtest"		Rem 模具调试模块
+				If ChkAble(6) Then PageLink=PageLink & "<a href=Repair_add.asp>添加修理信息</a> |"
 				If ChkAble(6) Then PageLink=PageLink & "<a href=mtest_add.asp>添加调试信息</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=mtest_display.asp>查看调试信息</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=mtest_list.asp>调试信息总表</a> |"

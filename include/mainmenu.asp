@@ -48,6 +48,7 @@
 
 	rem 调试信息菜单(mnu_mtest)
 	mnu_mtest=""
+	if chkable(6) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=Repair_add.asp>添加修理信息</a></div>"	
 	if chkable(6) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=mtest_add.asp>添加调试信息</a></div>"
 	if chkable(-1) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=mtest_display.asp>查看调试信息</a></div>"
 	if chkable(-1) then mnu_mtest=mnu_mtest & "<div class=menuskin2><table width=80><tr><td class=td_frame height=1></td></tr></table></div>"

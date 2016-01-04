@@ -39,6 +39,7 @@ Sub Main()
 End Sub
 
 Function KpChange()
+	Dim Tmpkpsj
 %>
 <%Call TbTopic("更改考评信息")%>
 <%
@@ -63,8 +64,11 @@ Function KpChange()
     </tr>
     <tr>
       <td class=th width=100>现修改考评时间</td>
-      <td class=ltd><script language=javascript>
-  		var myDate=new dateSelector();
+      <td class=ltd><%
+		Tmpkpsj=Rs("kp_time")
+			%>
+		<script language=javascript>
+  		var myDate=new dateSelector(<%=year(Tmpkpsj)&","&month(Tmpkpsj)&","&day(Tmpkpsj)%>);
   		myDate.year;
  		myDate.inputName='kpsj';
   		myDate.display();

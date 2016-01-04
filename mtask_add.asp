@@ -1059,6 +1059,19 @@ function calmjfz()
 	//复杂系数确定
 	ttmjfz=ttmjfz*(str.fzxs.value);
 
+	//模具信息（模头、定型）确定	
+	switch (str.mjxx.value)
+	{
+		case "模头" :
+			ttmjfz=ttmjfz*0.4;
+			break;
+		case "定型" :
+			ttmjfz=ttmjfz*0.6;
+			break;
+		default:
+			break;
+	}
+
 	//模具总分
 	var ttmjfz=ttmjfz+ttgjfz;
 
@@ -1110,6 +1123,8 @@ function chkmjxx(ftemp)
 			document.all.dxqg.value="";
 			document.all.dxjg.value="/";
 			document.all.sxjg.value="/";
+			document.all.mtbl.value="100";
+			document.all.dxbl.value="0";
                    document.getElementById("dxrw").value="";      
 			document.getElementById("mtrw").disabled=false;
 			document.getElementById("dxrw").disabled=true;
@@ -1119,6 +1134,8 @@ function chkmjxx(ftemp)
 			document.all.trdxjg.style.display="";
 			document.all.trsxjg.style.display="";
 			document.getElementById("mtrw").value="";
+			document.all.mtbl.value="0";
+			document.all.dxbl.value="100";
 			document.getElementById("mtrw").disabled=true;
 			document.getElementById("dxrw").disabled=false;
 			break;
@@ -1126,10 +1143,13 @@ function chkmjxx(ftemp)
 			document.all.trdxqg.style.display="";
 			document.all.trdxjg.style.display="";
 			document.all.trsxjg.style.display="";
+			document.all.mtbl.value="40";
+			document.all.dxbl.value="60";
 			document.getElementById("mtrw").disabled=false;
 			document.getElementById("dxrw").disabled=false;		
 			break;
 	}
+	calmjfz()
 }
 //默认状态下北调下拉菜单不显示
 document.all.trbeit.style.display="none";
