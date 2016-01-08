@@ -19,11 +19,12 @@
 				PageLink=""
 			Case "mtask"		Rem 设计任务模块
 				If ChkAble(3) Then PageLink=PageLink & " <a href=mtask_add.asp>添加设计任务书</a> |"
+				If ChkAble(3) Then PageLink=PageLink & "<a href=Repair_add.asp>添改修理任务书</a> |"												
 				If ChkAble(3) Then PageLink=PageLink & " <a href=jsdb_add.asp>添加代表任务书</a> |"
-				If ChkAble(3) Then PageLink=PageLink & " <a href=mtask_change.asp>更改设计任务书</a> |"
 				If ChkAble("3,4") Then PageLink=PageLink & " <a href=mtask_assign.asp>分配任务书</a> |"
-				If ChkAble(4) Then PageLink=PageLink & " <a href=mtask_zzchange.asp>更改责任人</a> |"
-				If ChkAble(3) Then PageLink=PageLink & " <a href=mtask_delete.asp>删除任务书</a> |"
+				If ChkAble(3) Then PageLink=PageLink & " <a href=mtask_delete.asp>删除任务书</a><p>"
+				If ChkAble(3) Then PageLink=PageLink & " <a href=mtask_change.asp>更改设计任务书</a> |"
+				If ChkAble(4) Then PageLink=PageLink & " <a href=mtask_zzchange.asp>更改责任人</a> |"				
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=mtask_display.asp>查看任务书</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=my_task.asp>我的任务</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=mtask_list.asp>任务流程</a>|"
@@ -40,7 +41,6 @@
 				If ChkAble("3,10") Then PageLink=PageLink & "<a href=ftask_add.asp>添加零星任务</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=ftask_list.asp>零星任务列表</a>"
 			Case "mtest"		Rem 模具调试模块
-				If ChkAble(6) Then PageLink=PageLink & "<a href=Repair_add.asp>添加修理信息</a> |"
 				If ChkAble(6) Then PageLink=PageLink & "<a href=mtest_add.asp>添加调试信息</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=mtest_display.asp>查看调试信息</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=mtest_list.asp>调试信息总表</a> |"

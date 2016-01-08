@@ -61,19 +61,18 @@ Function ataskAssign()
 	Set Rs=xjweb.Exec(strSql,1)
 	If Rs.Eof Or Rs.Bof Then
 		Call JsAlert("流水号 【" & s_lsh & "】 任务书不存在!","atask_assign.asp") : Exit Function
-	ElseIf IsNull(Rs("fsjs")) Then
+	ElseIf IsNull(Rs("fsjs")) and Rs("rwlr")<>"修理" Then
 		Call JsAlert("流水号 【" & s_lsh & "】 任务书正在设计中!","atask_assign.asp") : Exit Function
 	ElseIf Rs("mjjs") Then
 		Call JsAlert("流水号 【" & s_lsh & "】 任务书已经全部完成!","atask_assign.asp") : Exit Function
 	Else
 		Select Case Rs("mjxx")
 			Case "全套"
-				If not(isnull(rs("mttsdjs"))) and not(isnull(rs("dxtsdjs")))	then
+				If Session("userGroup")=5 or (not(isnull(rs("mttsdjs"))) and not(isnull(rs("dxtsdjs")))) Then
 					call group5_assign(rs)
-				else
-					'response.write rs("group")
+				Else
 					call group_assign(rs)
-				end if
+				End If
 			Case "模头"
 				if not(isnull(rs("mttsdjs"))) then
 					call group5_assign(rs)
@@ -137,12 +136,12 @@ Function group_assign(rs)
           <%
 				select case rs("mjxx")
 					case "全套"
-						if isnull(rs("mttsdr")) then sel_opt("开始模头调试单")
-						if isnull(rs("dxtsdr")) then sel_opt("开始定型调试单")
+						if isnull(rs("mttsdr")) and rs("rwlr")<>"修理" then sel_opt("开始模头调试单")
+						if isnull(rs("dxtsdr")) and rs("rwlr")<>"修理" then sel_opt("开始定型调试单")
 						if isnull(rs("mttsdr")) and isnull(rs("dxtsdr")) then sel_opt("开始全套调试单")
 
-						if (not isnull(rs("mttsdr"))) and isnull(rs("mttsdjs")) then sel_opt("结束模头调试单")
-						if not isnull(rs("dxtsdr")) and isnull(rs("dxtsdjs")) then sel_opt("结束定型调试单")
+						if (not isnull(rs("mttsdr"))) and isnull(rs("mttsdjs")) and rs("rwlr")<>"修理" then sel_opt("结束模头调试单")
+						if not isnull(rs("dxtsdr")) and isnull(rs("dxtsdjs")) and rs("rwlr")<>"修理" then sel_opt("结束定型调试单")
 						if (rs("mttsdr")=rs("dxtsdr")) and isnull(rs("mttsdjs")) and isnull(rs("dxtsdjs")) then sel_opt("结束全套调试单")
 
 					case "模头"
@@ -193,6 +192,7 @@ Function group5_assign(rs)
 					select case rs("mjxx")
 						case "全套"
 							if isnull(rs("mttsr")) and not isnull(rs("mttsdjs")) and isnull(rs("dxtsr")) and not isnull(rs("dxtsdjs")) then sel_opt("开始全套调试")
+							if isnull(rs("mttsr")) and rs("rwlr")="修理" then sel_opt("开始全套调试")
 							if isnull(rs("mttsr")) and not isnull(rs("mttsdjs")) then sel_opt("开始模头调试")
 							if isnull(rs("dxtsr")) and not isnull(rs("dxtsdjs")) then sel_opt("开始定型调试")
 
@@ -203,14 +203,14 @@ Function group5_assign(rs)
 								sel_opt("全套预验收或寄样")
 								sel_opt("全套来厂验收")
 							End If
-							if not isnull(rs("mttsr")) and isnull(rs("mttsjs")) then
+							if not isnull(rs("mttsr")) and isnull(rs("mttsjs")) and rs("rwlr")<>"修理" then
 								sel_opt("结束模头调试")
 								sel_opt("模头厂内初调")
 								sel_opt("模头厂外精调")
 								sel_opt("模头预验收或寄样")
 								sel_opt("模头来厂验收")
 							End If
-							if not isnull(rs("dxtsr")) and isnull(rs("dxtsjs")) then
+							if not isnull(rs("dxtsr")) and isnull(rs("dxtsjs")) and rs("rwlr")<>"修理" then
 								sel_opt("结束定型调试")
 								sel_opt("定型厂内初调")
 								sel_opt("定型厂外精调")
@@ -270,7 +270,7 @@ Function group5_assign(rs)
 End Function
 
 Function atask_nofinished()			'具有分配权限的未完成的调试任务
-	Dim RecordPerPage,absPageNum,absRecordNum,iCounter,TotalCount, sqlorder
+	Dim RecordPerPage,absPageNum,absRecordNum,iCounter,TotalCount, sqlorder,Tmplsh
 	absPageNum = 0
 	RecordPerPage = 40
 	iCounter = 1
@@ -278,7 +278,7 @@ Function atask_nofinished()			'具有分配权限的未完成的调试任务
 	If LCase(strOrder) = "ddh" Then sqlorder = " order by ddh desc, lsh desc"
 	If LCase(strOrder) = "lsh" Then sqlorder = " order by lsh desc"
 
-	strSql="select * from [mtask] where not(isnull(fsjs)) and not(mjjs) and ((mjxx='全套' and (isnull(mttsdjs) or isnull(dxtsdjs)) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or (mjxx='模头' and isnull(mttsdjs) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or (mjxx='定型' and isnull(dxtsdjs) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or ((mjxx='全套' and (not isnull(mttsdjs)) and (not isnull(dxtsdjs)) and "&session("userGroup")&"=5) or (mjxx='模头' and (not isnull(mttsdjs)) and "&session("userGroup")&"=5) or (mjxx='定型' and (not isnull(dxtsdjs)) and "&session("userGroup")&"=5) )) and datediff('yyyy',jhjssj,'"&now()&"')<2" & sqlorder
+	strSql="select * from [mtask] where not(mjjs) and ((not(isnull(fsjs)) and ((mjxx='全套' and (isnull(mttsdjs) or isnull(dxtsdjs)) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or (mjxx='模头' and isnull(mttsdjs) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or (mjxx='定型' and isnull(dxtsdjs) and ([group]="&session("userGroup")&" Or zz='"&Session("userName")&"' Or jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"')) or ((mjxx='全套' and (not isnull(mttsdjs)) and (not isnull(dxtsdjs)) and "&session("userGroup")&"=5) or (mjxx='模头' and (not isnull(mttsdjs)) and "&session("userGroup")&"=5) or (mjxx='定型' and (not isnull(dxtsdjs)) and "&session("userGroup")&"=5)))) or (rwlr='修理'  and ("&session("userGroup")&"=5 or ((jgzz='"&Session("userName")&"' Or sjzz='"&Session("userName")&"') and isnull(mttsdjs))))) and datediff('m',jhjssj,'"&now()&"')<12" & sqlorder
 	Call xjweb.Exec("",-1)
 	Set Rs=Server.CreateObject("ADODB.RECORDSET")
 	Rs.CacheSize=RecordPerPage
@@ -331,11 +331,17 @@ Function atask_nofinished()			'具有分配权限的未完成的调试任务
     <th class=th width=*>调试</th>
     <th class=th width=*>调试整理</th>
   </tr>
-  <% for absrecordnum = 1 to recordperpage %>
+  <% for absrecordnum = 1 to recordperpage 
+	If rs("rwlr")="修理" Then
+		Tmplsh=rs("lsh")&"["&rs("mh")&"]"
+	Else
+		Tmplsh=rs("lsh")
+	End If	  
+  %>
   <tr>
     <td class="ctd"><%=icounter %></td>
     <td class="ctd"><%= rs("ddh")%></td>
-    <td class="ctd"><a href=atask_assign.asp?s_lsh=<%=rs("lsh")%>><%=rs("lsh")%></a></td>
+    <td class="ctd"><a href=atask_assign.asp?s_lsh=<%=rs("lsh")%>><%=Tmplsh%></a></td>
     <td class="ctd"><%=rs("dwmc")%></td>
     <td class="ctd"><%=rs("dmmc")%></td>
     <td class="ctd"><%If rs("zz")<>"" Then Response.Write(rs("zz")) else Response.Write(rs("jgzz")&"(j)、"&rs("sjzz")&"(s)")%></td>
@@ -428,9 +434,9 @@ Function atask_nofinished()			'具有分配权限的未完成的调试任务
 end function
 
 function sel_opt(str)
-%>
-<option value="<%=str%>"><%=str%></option>
-<%
+		%>
+		<option value="<%=str%>"><%=str%></option>
+		<%
 end function
 
 function atask_js()

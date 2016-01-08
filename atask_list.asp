@@ -150,16 +150,14 @@ Function ataskList()
 		strsql = request("strsql")
 	end if
 
-	Dim sqlorder
+	Dim sqlorder, Tmplsh
 	sqlorder = " order by lsh desc"
 	If LCase(strorder) = "ddh" Then sqlorder = " order by ddh desc, lsh desc"
 	If LCase(strorder) = "lsh" Then sqlorder = " order by lsh desc"
 	If strsql <> "" Then
-		strsql = "select * from [mtask] where not(isnull(sjjssj)) and datediff('m',sjjssj,'"&now()&"')<24 and " &strsql & sqlorder
-		'set rs = conn.execute("select * from maintask where " &strsql &" order by lsh")
+		strsql = "select * from [mtask] where (not(isnull(sjjssj)) and datediff('m',sjjssj,'"&now()&"')<15 and " & strsql & ") or (rwlr='修理' and datediff('m',jhjssj,'"&now()&"')<12)" & sqlorder
 	Else
-		strsql = "select * from [mtask] where not(isnull(sjjssj)) and datediff('m',sjjssj,'"&now()&"')<15 " & sqlorder
-		'set rs = conn.execute("select * from maintask order by lsh")
+		strsql = "select * from [mtask] where (not(isnull(sjjssj)) and datediff('m',sjjssj,'"&now()&"')<15) or (rwlr='修理' and datediff('m',jhjssj,'"&now()&"')<12)" & sqlorder
 	End If
 	Call xjweb.Exec("",-1)
 	Set Rs=Server.CreateObject("ADODB.RECORDSET")
@@ -221,15 +219,20 @@ Function ataskList()
 		</tr>
 <%
 	For absRecordNum=1 To RecordPerPage
+	If rs("rwlr")="修理" Then
+		Tmplsh=rs("lsh")&"["&rs("mh")&"]"
+	Else
+		Tmplsh=rs("lsh")
+	End If
 %>
 		<tr>
 			<td class=ctd><%=iCounter%></td>
 			<td class=ctd><a href="?ddh=<%=rs("ddh")%>"><%=rs("ddh")%></a></td>
 			<td class=ctd alt="<%=rs("bm")%>"><a href=atask_display.asp?s_lsh=<%=rs("lsh")%>>
 				<%If InStr(rs("bz"),"调试关注")>0 Then
-      		 		Response.Write("<font color=red><b>"&rs("lsh")&"</b></font>")
+      		 		Response.Write("<font color=red><b>"&Tmplsh&"</b></font>")
       			Else
-      				Response.Write(rs("lsh"))
+      				Response.Write(Tmplsh)
       			End If%>
       		</a></td>
 			<td class=ctd><%=rs("dwmc")%></td>

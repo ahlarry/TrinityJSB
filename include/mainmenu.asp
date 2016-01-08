@@ -14,8 +14,10 @@
 	rem 设计任务菜单(mnu_mtask)
 	mnu_mtask=""
 	If chkable(3) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_add.asp>添加设计任务书</a></div>"
+	if chkable(3) then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=Repair_add.asp>添改修理任务书</a></div>"		
 	If chkable(3) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=jsdb_add.asp>添加代表任务书</a></div>"
 	If chkable(3) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_change.asp>更改设计任务书</a></div>"
+	If chkable(-1) Then mnu_mtask=mnu_mtask & "<div class=menuskin2><table width=80><tr><td class=td_frame height=1></td></tr></table></div>"	
 	If chkable("3,4") Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_assign.asp>分配任务书</a></div>"
 	If chkable(4) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_zzchange.asp>更改责任人</a></div>"
 	If chkable(3) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_delete.asp>删除任务书</a></div>"
@@ -25,8 +27,6 @@
 	If chkable(-1) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_list.asp>任务流程</a></div>"
 	If chkable(-1) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=jsdb_list.asp>技术代表</a></div>"
 	If chkable(-1) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_gj.asp>共挤模具</a></div>"
-	If chkable(-1) Then mnu_mtask=mnu_mtask & "<div class=menuskin2><table width=80><tr><td class=td_frame height=1></td></tr></table></div>"
-'	If chkable("3,4") Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=gtask_assign.asp>工艺流程</a></div>"
 
 	rem 调试任务菜单(mnu_atask)
 	mnu_atask=""
@@ -48,7 +48,6 @@
 
 	rem 调试信息菜单(mnu_mtest)
 	mnu_mtest=""
-	if chkable(6) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=Repair_add.asp>添加修理信息</a></div>"	
 	if chkable(6) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=mtest_add.asp>添加调试信息</a></div>"
 	if chkable(-1) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=mtest_display.asp>查看调试信息</a></div>"
 	if chkable(-1) then mnu_mtest=mnu_mtest & "<div class=menuskin2><table width=80><tr><td class=td_frame height=1></td></tr></table></div>"

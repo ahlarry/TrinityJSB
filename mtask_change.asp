@@ -613,14 +613,9 @@ function ExcTslb(ChangeV)
 	for(var i=1; i<z_tslb.length + 1; i++)
 	{
 		document.all.tslb[i] = new Option(z_tslb[i-1],z_tslb[i-1]);
+		if(document.all.tslb.options[i].value=="<%=TslbOv%>")
+ 			document.all.tslb.options[i].selected=true; 				
 	}
- 	var   o   =   document.getElementById("tslb");
-	var   i;
-	for(i=0;i<o.length;i++)
-	{
- 		if(o.options[i].value=="<%=TslbOv%>")
- 			o.options[i].selected=true;
- 	}
 
 //计算模具分值,同时显示隐藏层
 function calmjfz()
