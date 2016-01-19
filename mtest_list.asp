@@ -203,9 +203,9 @@ function mtestList()
 	if lcase(strorder) = "tsjssj" then sqlorder = " order by b.tsjssj desc"
 
 	if strSql <> "" then
-		strSql = "select a.lsh,a.ddh, a.dwmc, a.dmmc, a.bz, b.*, a.lsh as lsh from [mtask] a, [ts_mould] b where a.lsh=b.lsh and " &strSql & sqlorder
+		strSql = "select a.lsh, a.ddh, a.dwmc, a.dmmc, a.bz, b.*, a.lsh as lsh from [mtask] a, [ts_mould] b where a.lsh=b.lsh and " &strSql & sqlorder
 	else
-		strSql = "select a.lsh,a.ddh, a.dwmc, a.dmmc, a.bz, b.*, a.lsh as lsh from [mtask] a, [ts_mould] b where a.lsh=b.lsh " & sqlorder
+		strSql = "select a.lsh, a.ddh, a.dwmc, a.dmmc, a.bz, b.*, a.lsh as lsh from [mtask] a, [ts_mould] b where a.lsh=b.lsh " & sqlorder
 	end if
 	Call xjweb.Exec("",-1)
 	Set Rs=Server.CreateObject("ADODB.RECORDSET")

@@ -375,6 +375,10 @@ Function mtask_change(Rs)
         </select></td>
     </tr>
     <tr>
+      <td class=rtd>共挤连接尺寸</td>
+      <td class=ltd><input type=text name=gjljcc size=40 value="<%=Rs("gjljcc")%>"></td>
+    </tr>
+    <tr>
       <td class=rtd>热电偶规格</td>
       <td class=ltd><input type=text name=rdogg size=30 value="<%=Rs("rdogg")%>">
         &nbsp;

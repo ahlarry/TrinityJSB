@@ -366,6 +366,10 @@ function mtask_cadd(rs)
           <%next%>
         </select></td>
     </tr>
+    <tr>
+      <td class=rtd>共挤连接尺寸</td>
+      <td colspan="2" class=ltd><input type=text name=gjljcc size=40 value="<%=rs("gjljcc")%>"></td>
+    </tr>
     <tr bgcolor="#DDDDDD">
       <td class=rtd height=25><b>■其他信息■</b></td>
       <td colspan="2" class=ltd>　</td>
@@ -760,6 +764,10 @@ Function mtask_add()
           <%next%>
         </select>
         </span></td>
+    </tr>
+    <tr>
+      <td class=rtd>共挤连接尺寸</td>
+      <td class=ltd><input type=text name=gjljcc size=30 value="/"></td>
     </tr>
     <tr bgcolor="#DDDDDD">
       <td class=rtd height=25><b>■其他信息■</b></td>

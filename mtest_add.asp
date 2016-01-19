@@ -34,14 +34,23 @@ End Sub
 
 Function mtestAdd()
 	If s_lsh="" Then Call TbTopic("请输入添加调试信息模具的流水号!") : Exit Function
-	strSql="select a.*, b.*,a.lsh as lsh from [mtask] a, [ts_mould] b where a.lsh='"&s_lsh&"' and a.lsh=b.lsh and isnull(tsjssj)"
+	Dim regEx '建立变量。
+	Set regEx = New RegExp ' 建立正则表达式。
+	regEx.Pattern = "^[a-zA-z][0-9]+" ' 设置模式。
+	regEx.IgnoreCase = False ' 设置是否区分大小写。
+	If regEx.Test(s_lsh)  Then
+		strSql="select a.*, b.*,a.lsh as lsh from  [ts_mould] a, [ftask] b where a.lsh='"&s_lsh&"' and a.lsh=b.xlxh and isnull(tsjssj)"
+	Else
+		strSql="select a.*, b.*,a.lsh as lsh from [mtask] a, [ts_mould] b where a.lsh='"&s_lsh&"' and a.lsh=b.lsh and isnull(tsjssj)"
+	End If	
+	
 	Set Rs=xjweb.Exec(strSql,1)
 	If Rs.eof Or rs.bof Then
 		Call JsAlert("流水号 【" & s_lsh & "】 任务不存在、已完成或调试手册没有完成!","mtest_add.asp")
 	ElseIf Not IsNull(Rs("tsjssj")) Then
 		Call JsAlert("流水号 【" & s_lsh & "】 任务模具调试工作已经结束!")
 	Else
-		Call mould_inf(rs)
+		Call mould_inf(rs,regEx.Test(s_lsh))
 		Response.Write(xjLine(10, "100%", ""))
 		If tscs > 0 And tscs mod 5 = 0 And int(tscs/5) > pscs Then
 			Call mtestps_add(rs)
@@ -53,39 +62,10 @@ Function mtestAdd()
 	End If
 End Function
 
-Function mould_inf(rs)
-%>
-	<%Call TbTopic("流水号 " & rs("lsh") & " 模具信息")%>
-	<table class=xtable cellspacing=0 cellpadding=3 width="95%">
-		<tr> 
-			<td class=rtd width="60">订单号</td>
-			<td class=ctd width="90"><%=rs("ddh")%></td>
-			<td class=rtd width="60">流水号</td>
-			<td class=ctd width="90"><a href="mtask_display.asp?s_lsh=<%=rs("lsh")%>"><%=rs("lsh")%></a></td>
-			<td class=rtd width="60">单位名称</td>
-			<td class=ctd width="90"><%=rs("dwmc")%></td>
-			<td class=rtd width="60">调试类型</td>
-			<td class=ctd width="*"><%=rs("mjxx")%></td>
-		</tr>
-								
-		<tr> 
-			<td class=rtd>断面名称</td>
-			<td class=ctd><%=rs("dmmc")%></td>
-			<td class=rtd>调试开始</td>
-			<td class=ctd><%=xjDate(rs("tskssj"),1)%>&nbsp;</td>
-			<td class=rtd>最近调试</td>
-			<td class=ctd><%=xjDate(rs("tsgxsj"),1)%>&nbsp;</td>
-			<td class=rtd>调试次数</td>
-			<td class=ctd><%=tscs%></td>
-		</tr>
-	</table>	
-<%
-End Function
-
 Function mtest_add(rs)
 %>
 	<%Call TbTopic("添加 <span alt=""流水号"">" &rs("lsh")&"</span> 模具第 "&(tscs+ 1) &" 次调试信息")%>
-	<table class=xtable cellspacing=0 cellpadding=3 width="95%">
+	<table class=xtable cellspacing=0 cellpadding=3 width="95%" align="center">
 	<form id=frm_mtestadd name=frm_mtestadd action=mtest_indb.asp?action=add method=post onSubmit='return tscheckinf();'>
 
 	<tr>
@@ -113,7 +93,7 @@ end function		'mtest_add()
 Function mtestps_add(rs)
 %>
 	<%Call TbTopic("<font style=color:#ff0000>添加流水号 " &rs("lsh")&" 模具第 "&(pscs+1)&" 次评审记录</font>")%>
-	<table class=xtable cellspacing=0 cellpadding=3 width="95%">
+	<table class=xtable cellspacing=0 cellpadding=3 width="95%" align="center">
 	<form id=frm_mtestpsadd name=frm_mtestpsadd action=mtest_indb.asp?action=add method=post onSubmit='return tspscheckinf();'>
 
 	<tr>
@@ -137,10 +117,51 @@ Function mtestps_add(rs)
 <%
 End Function
 
-Function mould_inf(Rs)
+Function rwlr_change(i)
+         dim mystr,mystr1,mystr2
+		 mystr=rs("rwlr")
+			 If Instr(mystr,"||")>0 Then
+			     mystr=split(mystr,"||")
+			     If i > ubound(mystr) Then
+			     	mystr1=""
+			     	rwlr_change=mystr1
+			     else
+	   		 		 mystr1=mystr(i)
+					 mystr1=split(mystr1,":")
+					 rwlr_change=mystr1(1)
+				 End If
+
+			 else
+			    mystr=split(mystr,chr(10))
+	   		 	mystr1=mystr(i)
+	   		 	If Instr(mystr1,"：")>0 Then
+					mystr1=split(mystr1,"：")
+					rwlr_change=mystr1(1)
+				else
+					rwlr_change=mystr1
+				End If
+			 End If
+End Function
+
+Function mould_inf(Rs,xl)
+	Dim strrwlr, strddh, strlsh, strdwmc, strmjxx, strdmmc
+	strrwlr="" : strddh="" : strlsh="" : strdwmc="" : strmjxx="" : strdmmc=""
+	If xl Then
+		strddh=rs("xldh")
+		strlsh=rwlr_change(2)
+		strdwmc=rwlr_change(0)
+		strmjxx=rwlr_change(6)
+		strdmmc=rwlr_change(1)
+	Else
+		strddh=rs("ddh")
+		strlsh=rs("lsh")
+		strdwmc=rs("dwmc")
+		strmjxx=rs("mjxx")
+		strdmmc=rs("dmmc")
+	End If	
 %>
 <%Call TbTopic("流水号 "&Rs("lsh")&" 模具信息")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="95%">
+<table class=xtable cellspacing=0 cellpadding=3 width="95%" align="center">
   <tr>
     <td class=th width="10%">订单号</td>
     <td class=th width="*">断面名称</td>
@@ -152,11 +173,11 @@ Function mould_inf(Rs)
     <td class=th width="10%">调试次数</td>
   </tr>
   <tr>
-    <td class=ctd><%=Rs("ddh")%></td>
-    <td class=ctd><%=Rs("dmmc")%></td>
-    <td class=ctd><a href="mtask_display.asp?s_lsh=<%=Rs("lsh")%>"><%=Rs("lsh")%></a></td>
-    <td class=ctd><%=Rs("dwmc")%></td>
-    <td class=ctd><%=Rs("mjxx")%></td>
+    <td class=ctd><%=strddh%></td>
+    <td class=ctd><%=strdmmc%></td>
+    <td class=ctd><a href="mtask_display.asp?s_lsh=<%=strlsh%>"><%=strlsh%></a></td>
+    <td class=ctd><%=strdwmc%></td>
+    <td class=ctd><%=strmjxx%></td>
     <td class=ctd><%=xjDate(Rs("tskssj"),1)%>&nbsp;</td>
     <td class=ctd alt="<%If isnull(Rs("tsjssj")) Then%>正在调试<%Else%>调试结束<%End If%>"><%=xjDate(Rs("tsgxsj"),1)%>&nbsp;</td>
     <td class=ctd><%=xjweb.RsCount("ts_tsxx where lsh='"&Rs("lsh")&"' and not(ps)")%></td>
@@ -174,7 +195,7 @@ Function mtest_display(lsh)
 	If Prs.Eof Or Prs.Bof Then Prs.Close : Set Prs=Nothing : Call TbTopic("暂时没有任何调试信息!") : Exit Function
 	Call TbTopic("流水号 " &lsh&" 模具调试信息列表")
 %>
-<table class=xtable cellspacing=0 cellpadding=3 width="95%">
+<table class=xtable cellspacing=0 cellpadding=3 width="95%" align="center">
   <%
 	do while not prs.eof
 		If prs("ps") Then
@@ -289,7 +310,7 @@ End If
 Trs.close
 Set Trs = nothing
 %>
-<table cellspacing=0 cellpadding=3 width="95%">
+<table cellspacing=0 cellpadding=3 width="95%" align="center">
   <tr>
     <td width="20%">
     <%If strPre="Beg" Then

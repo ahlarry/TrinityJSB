@@ -7,8 +7,8 @@
 
 	Dim strlsh, strddh, strdwmc, strdmmc, strmh, strsbcj, strjcjxh, strmjxx, strrwlr, ifgbl, ifcbl
 	Dim strmtjg, strdxjg, strsxjg, strsjtsl, strqjtsl, strqysd, strmtljcc, strrdogg, ijcfx, iqs
-	Dim bpjrb, strjrbxs, strjrbcl, strjrbxx, strmjcl, strbz, dtjhjssj
-	Dim dtrwxdsj, strzz, strjsdb, strbm, strlzr, dtlzrq, bgjfs,bqhgj,strgjxs
+	Dim bpjrb, strjrbxs, strjrbcl, strjrbxx, strmjcl, strbz, dtjhjssj, strgjljcc
+	Dim dtrwxdsj, strzz, strjsdb, strbm, strlzr, dtlzrq, bgjfs,bqhgj, strgjxs
 	Dim sngmjzf, sngmtbl, ibomzf, itsdzf, itszf, itsxxzlzf, igjzf,sngmtjgbl, sngdxjgbl
 	Dim strxcbh, strdxqg, strtslb, strcnts, bbtiao,strckdm,strfzxs, strmtrw, strdxrw
 	Dim igjfs1, igjfs2, igjfs3, igjfs4, strjgzz, strsjzz, dtjhkssj, dtjgjssj, strdedm, strdefz, strdemt, strdedx
@@ -18,7 +18,7 @@
 	strmh=Trim(Request("mh")) : strsbcj=Trim(Request("sbcj")) : strjcjxh=Trim(Request("jcjxh")) : strmjxx=Request("mjxx")
 	strrwlr=Request("rwlr") : strmtjg=Trim(Request("mtjg")) : strdxjg=Trim(Request("dxjg")) : strsxjg=Trim(Request("sxjg"))
 	strsjtsl=Trim(Request("sjtsl")) : strqjtsl=Trim(Request("qjtsl")) : strqysd=Trim(Request("qysd")) : strmtljcc=Trim(Request("mtljcc"))
-	strrdogg=Trim(Request("rdogg")) : ijcfx=Trim(Request("jcfx")) : iqs=Request("qs") : bpjrb=Request("pjrb")
+	strgjljcc=Trim(Request("gjljcc")) : strrdogg=Trim(Request("rdogg")) : ijcfx=Trim(Request("jcfx")) : iqs=Request("qs") : bpjrb=Request("pjrb")
 	strjrbxs=Request("jrbxs") : strjrbcl=Request("jrbcl") : strjrbxx=Trim(Request("jrbxx")) : strmjcl=Trim(Request("mjcl"))
 	strbz=Request("bz") : strckdm=Request("ckdm") : strfzxs=Request("fzxs") : dtjhkssj=Request("jhkssj") : dtjhjssj=Request("jhjssj")
 	dtjgjssj=Request("jgjssj") :  dtrwxdsj=now() : dtlzrq=now() : sngmtjgbl=Request("mtjgbl") : sngdxjgbl=Request("dxjgbl")
@@ -174,6 +174,7 @@
 			Rs("qjtsl")=strqjtsl
 			Rs("qysd")=strqysd
 			Rs("mtljcc")=strmtljcc
+			Rs("gjljcc")=strgjljcc
 			Rs("rdogg")=strrdogg
 			Rs("mjxx")=strmjxx
 			Rs("rwlr")=strrwlr			
@@ -260,6 +261,7 @@
 			Rs("qjtsl")=strqjtsl
 			Rs("qysd")=strqysd
 			Rs("mtljcc")=strmtljcc
+			Rs("gjljcc")=strgjljcc
 			Rs("rdogg")=strrdogg
 			Rs("mjxx")=strmjxx
 			Rs("rwlr")=strrwlr			

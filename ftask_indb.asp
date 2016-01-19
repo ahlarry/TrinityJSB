@@ -45,7 +45,8 @@
 
 	'零星任务书入库
 	Function ftask_Add()
-		Dim tmpSql, tmpRs, iGroup
+		Dim tmpSql, tmpRs, iGroup, tmpts
+		tmpts=0
 		tmpSql="Select [user_group] from [ims_user] where [user_name]='"&strzrr&"'"
 		Set tmpRs=xjweb.Exec(tmpSql,1)
 		If Not(tmpRs.Eof Or tmpRs.Bof) Then
@@ -54,13 +55,28 @@
 			iGroup=0
 		End If
 		tmpRs.Close
-	
+
+		if strrwlx="零星修理" then
+			strSql="select * from [ts_mould] where lsh='" &strxlxh& "'"
+			call xjweb.Exec("",-1)
+			rs.open strSql,conn,1,3
+			If Not(Rs.eof Or Rs.bof) Then
+				tmpts=1				
+			else			
+				rs.addnew
+				rs("lsh")=strxlxh
+				rs.update
+			End If
+			rs.close
+		End If
+			
 		strSql="select * from [ftask]"
 		call xjweb.Exec("",-1)
 		rs.open strSql,conn,1,3
 		rs.addnew
 			rs("rwlx")=strrwlx
 			if strxldh<>"" then rs("xldh")=strxldh end if
+			if strrwlx="零星修理" then rs("xlxh")=strxlxh end if
 			rs("rwlr")=strrwlr
 			rs("zrr")=strzrr
 			rs("xz")=iGroup
@@ -71,7 +87,12 @@
 			rs("lzrq")=now()
 		rs.update
 		rs.close
-		Call JsAlert("零星任务添加成功","ftask_add.asp")
+
+		If tmpts=0 Then
+			Call JsAlert("零星任务添加成功","ftask_add.asp")
+		else
+			Call JsAlert("零星任务添加成功，未添加调试任务！","ftask_add.asp")
+		End if
 	end function
 
 	'更改零星任务入库
@@ -99,6 +120,7 @@
 		rs.open strSql,conn,1,3
 			rs("rwlx")=strrwlx
 			if strxldh<>"" then rs("xldh")=strxldh end if
+			if strrwlx="零星修理" then rs("xlxh")=strxlxh end if
 			rs("rwlr")=strrwlr
 			rs("zrr")=strzrr
 			rs("xz")=iGroup

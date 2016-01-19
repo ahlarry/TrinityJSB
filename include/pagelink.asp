@@ -19,7 +19,7 @@
 				PageLink=""
 			Case "mtask"		Rem 设计任务模块
 				If ChkAble(3) Then PageLink=PageLink & " <a href=mtask_add.asp>添加设计任务书</a> |"
-				If ChkAble(3) Then PageLink=PageLink & "<a href=Repair_add.asp>添改修理任务书</a> |"												
+'				If ChkAble(3) Then PageLink=PageLink & "<a href=Repair_add.asp>添改修理任务书</a> |"												
 				If ChkAble(3) Then PageLink=PageLink & " <a href=jsdb_add.asp>添加代表任务书</a> |"
 				If ChkAble("3,4") Then PageLink=PageLink & " <a href=mtask_assign.asp>分配任务书</a> |"
 				If ChkAble(3) Then PageLink=PageLink & " <a href=mtask_delete.asp>删除任务书</a><p>"
@@ -44,6 +44,7 @@
 				If ChkAble(6) Then PageLink=PageLink & "<a href=mtest_add.asp>添加调试信息</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=mtest_display.asp>查看调试信息</a> |"
 				If ChkAble(-1) Then PageLink=PageLink & " <a href=mtest_list.asp>调试信息总表</a> |"
+				If ChkAble(-1) Then PageLink=PageLink & " <a href=Repair_list.asp>修理信息总表</a> |"
 				If ChkAble("1,2,3") Then PageLink=PageLink & " <a href=mtest_kp.asp>调试考评列表</a>"
 '			Case "mquality"	Rem 模具质量
 '				If ChkAble(0) Then PageLink=PageLink & "<a href=mquality_add.asp>添加质量信息</a> |"

@@ -204,9 +204,10 @@ end select
   <tr>
     <td class="rtd">共挤类型</td>
     <td class="ltd"><%=Trim(gjxx)%></td>
+    <td class="rtd">共挤连接尺寸</td>
+    <td class="ltd"><%=rs("gjljcc")%>&nbsp;</td>
     <td class="rtd">型材壁厚</td>
     <td class="ltd"><%=Rs("xcbh")%>毫米</td>
-    <td colspan="2"  class="rtd">&nbsp;</td>
   </tr>
   <tr>
   </tr>

@@ -14,7 +14,7 @@
 	rem 设计任务菜单(mnu_mtask)
 	mnu_mtask=""
 	If chkable(3) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_add.asp>添加设计任务书</a></div>"
-	if chkable(3) then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=Repair_add.asp>添改修理任务书</a></div>"		
+'	if chkable(3) then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=Repair_add.asp>添改修理任务书</a></div>"		
 	If chkable(3) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=jsdb_add.asp>添加代表任务书</a></div>"
 	If chkable(3) Then mnu_mtask=mnu_mtask & "<div class=menuitems><a href=mtask_change.asp>更改设计任务书</a></div>"
 	If chkable(-1) Then mnu_mtask=mnu_mtask & "<div class=menuskin2><table width=80><tr><td class=td_frame height=1></td></tr></table></div>"	
@@ -52,6 +52,7 @@
 	if chkable(-1) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=mtest_display.asp>查看调试信息</a></div>"
 	if chkable(-1) then mnu_mtest=mnu_mtest & "<div class=menuskin2><table width=80><tr><td class=td_frame height=1></td></tr></table></div>"
 	if chkable(-1) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=mtest_list.asp>调试信息总表</a></div>"
+	if chkable(-1) then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=Repair_list.asp>修理信息总表</a></div>"
 	If chkable("1,2,3") Then mnu_mtest=mnu_mtest & "<div class=menuitems><a href=mtest_kp.asp>调试考评列表</a></div>"
 
 	rem 分值统计菜单(mnu_mtstat)
