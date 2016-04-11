@@ -638,7 +638,7 @@ Function FenToDB(lsh)
 '				else
 '					iwcsj=rs("dxjgjs")
 '				End If
-				Call Ddkp(rs("mtjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头结构")
+'				Call Ddkp(rs("mtjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头结构")
 			end if
 			if not(isnull(rs("dxjgr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxjgr")&"'"
@@ -656,7 +656,7 @@ Function FenToDB(lsh)
 '				else
 '					iwcsj=rs("dxjgjs")
 '				End If
-				Call Ddkp(rs("dxjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型结构")
+'				Call Ddkp(rs("dxjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型结构")
 			end if
 			if  not(isnull(rs("gjjgr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjjgr")&"'"
@@ -669,7 +669,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤结构',"&Round(hgjf*idxjgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjjgr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("gjjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤结构")
+'				Call Ddkp(rs("gjjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤结构")
 			end if
 
 			'设计
@@ -684,7 +684,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头设计',"&Round(mtfz*(1-imtjgbl),1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("mtsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头设计")
+'				Call Ddkp(rs("mtsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头设计")
 			end if
 			if not(isnull(rs("dxsjr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxsjr")&"'"
@@ -697,7 +697,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型设计',"&Round(dxfz*(1-idxjgbl),1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("dxsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型设计")
+'				Call Ddkp(rs("dxsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型设计")
 			end if
 			if not(isnull(rs("gjsjr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjsjr")&"'"
@@ -710,7 +710,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤设计',"&Round(hgjf*(1-idxjgbl),1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("gjsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤设计")
+'				Call Ddkp(rs("gjsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤设计")
 			end if
 
 			'在模头和定型中分别分离出结构和设计审核
@@ -730,7 +730,7 @@ Function FenToDB(lsh)
 '				else
 '					iwcsj=rs("dxjgshjs")
 '				End If
-				Call Ddkp(rs("mtjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头结构确认")
+'				Call Ddkp(rs("mtjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头结构确认")
 			end if
 
 			if not(isnull(rs("mtsjshr"))) then '模头设计审核
@@ -744,7 +744,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头设计确认',"&Round(mtfz*(1-imtjgbl)*iljshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("mtsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头设计确认")
+'				Call Ddkp(rs("mtsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头设计确认")
 			end if
 
 			if not(isnull(rs("dxjgshr"))) then '定型结构审核
@@ -763,7 +763,7 @@ Function FenToDB(lsh)
 '				else
 '					iwcsj=rs("dxjgshjs")
 '				End If
-				Call Ddkp(rs("dxjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型结构确认")
+'				Call Ddkp(rs("dxjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型结构确认")
 			end if
 
 			if not(isnull(rs("dxsjshr"))) then '定型设计审核
@@ -777,7 +777,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型设计确认',"&Round(dxfz*(1-idxjgbl)*iljshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("dxsjshr"), rs("sjjssj"),  rs("jhjssj"), rs("lsh"), "定型设计确认")
+'				Call Ddkp(rs("dxsjshr"), rs("sjjssj"),  rs("jhjssj"), rs("lsh"), "定型设计确认")
 			end if
 
 			if not(isnull(rs("gjjgshr"))) then '后共挤结构审核
@@ -791,7 +791,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤结构确认',"&Round(hgjf*idxjgbl*ijgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjjgshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("gjjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤结构确认")
+'				Call Ddkp(rs("gjjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤结构确认")
 			end if
 
 			if not(isnull(rs("gjsjshr"))) then '后共挤设计审核
@@ -805,7 +805,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤设计确认',"&Round(hgjf*(1-idxjgbl)*iljshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("gjsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤设计确认")
+'				Call Ddkp(rs("gjsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤设计确认")
 			end if
 
 			'审核
@@ -820,7 +820,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头审核',"&Round(mtfz*ishbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("mtshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头审核")
+'				Call Ddkp(rs("mtshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头审核")
 			end if
 			if not(isnull(rs("dxshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxshr")&"'"
@@ -833,7 +833,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型审核',"&Round(dxfz*ishbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("dxshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型审核")
+'				Call Ddkp(rs("dxshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型审核")
 			end if
 			if not(isnull(rs("gjshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjshr")&"'"
@@ -846,7 +846,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤审核',"&Round(hgjf*ishbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				Call Ddkp(rs("gjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤审核")
+'				Call Ddkp(rs("gjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤审核")
 			end if
 
 			'Bom
@@ -914,7 +914,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头复改',"&Round(mtfz*ifgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("mtsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复改")
+'				If ijc2<>0 Then Call ygkptodb(rs("mtsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复改")
 			end if
 			if not(isnull(rs("dxsjr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxsjr")&"'"
@@ -927,7 +927,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型复改',"&Round(dxfz*ifgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("dxsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复改")
+'				If ijc2<>0 Then Call ygkptodb(rs("dxsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复改")
 			end if
 			if not(isnull(rs("gjsjr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjsjr")&"'"
@@ -940,7 +940,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','共挤复改',"&Round(gjfz*ifgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("gjsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复改")
+'				If ijc2<>0 Then Call ygkptodb(rs("gjsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复改")
 			end if
 			'审核
 			if not(isnull(rs("mtshr"))) then
@@ -954,7 +954,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头审核',"&Round(mtfz*ifgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("mtshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复改审核")
+'				If ijc2<>0 Then Call ygkptodb(rs("mtshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复改审核")
 			end if
 			if not(isnull(rs("dxshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxshr")&"'"
@@ -967,7 +967,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型审核',"&Round(dxfz*ifgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复改审核")
+'				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复改审核")
 			end if
 			if not(isnull(rs("gjshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjshr")&"'"
@@ -980,7 +980,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','共挤审核',"&Round(gjfz*ifgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复改审核")
+'				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复改审核")
 			end if
 			'BOM
 			if not(isnull(rs("mtbomr"))) then
@@ -1047,7 +1047,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头复查',"&Round(mtfz*ifcbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("mtshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复查")
+'				If ijc2<>0 Then Call ygkptodb(rs("mtshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复查")
 			end if
 			if not(isnull(rs("dxshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxshr")&"'"
@@ -1060,7 +1060,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型复查',"&Round(dxfz*ifcbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复查")
+'				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复查")
 			end if
 			if not(isnull(rs("gjshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjshr")&"'"
@@ -1073,7 +1073,7 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','共挤复查',"&Round(gjfz*ifcbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-				If ijc2<>0 Then Call ygkptodb(rs("gjshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复查")
+'				If ijc2<>0 Then Call ygkptodb(rs("gjshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复查")
 			end if
 			'BOM
 			if not(isnull(rs("mtbomr"))) then

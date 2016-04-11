@@ -180,9 +180,9 @@ Function ygkpList()
 
 		<tr onmouseover="bgColor='#EEEEEE';" onmouseout="bgColor='';">
 			<td class=ctd><%=icounter%></td>
-			<td class=ltd><span alt="<%=replace(replace(replace(Rs("kp_bz"),vbcrlf,"<br>"),"'","&#39;"),Chr(34),"&#34;") & "<br><br><b>øº∆¿»À</b>:" & Rs("kp_kpr")%>"><%=Rs("kp_item")%></span></td>
+			<td class=ltd><span alt="<%=replace(replace(replace(Rs("kp_bz"),vbcrlf,"<br>"),"'","&#39;"),Chr(34),"&#34;") & "<br><br><b>øº∆¿»À</b>:" & Rs("kp_kpr")%>"><%=Rs("kp_item")%>&nbsp;</span></td>
 			<td class=ctd><%=Formatnumber(Rs("kp_uprice"),1,-1)%></td>
-			<td class=ctd><%=Rs("kp_mul")%></td>
+			<td class=ctd><%=Rs("kp_mul")%>&nbsp;</td>
 			<td class=ctd><%=Rs("kp_zrr")%></td>
 			<td class=ctd><%=Rs("kp_zrrjs")%>&nbsp;</td>
 			<td class=ctd><%=xjDate(rs("kp_time"),1)%></td>

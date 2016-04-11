@@ -9,7 +9,7 @@ xjweb.header()
 Call TopTable()
 
 Dim iyear, imonth, dtstart, dtend, irwzf, iaddfz, zcount, icount, ilxrwzf, zrwwcl, zgroup, zdxxs
-Dim zuser, zrwfz, zrwxs, zzlxs, zgkxs, zbmxs, zjbgz, zjxgz,zyfgz, zbeiz, ygxsRs, m, zbasicwg
+Dim struser, zrwfz, zrwxs, zzlxs, zgkxs, zbmxs, zjbgz, zjxgz,zyfgz, zbeiz, ygxsRs, m, zbasicwg
 zjbgz=0
 zjxgz=0
 zyfgz=0
@@ -90,8 +90,8 @@ Function YgxsDisplay()		'显示列表
     <th class=th width="8%">人员名单</th>
     <th class=th width="8%">任务分值</th>
     <th class=th width="8%">任务指标</th>
-    <th class=th width="8%">数量</th>
-    <th class=th width="8%">质量</th>
+    <th class=th width="8%">定量</th>
+    <th class=th width="8%">定质</th>
     <th class=th width="8%">定性</th>
     <th class=th width="8%">综合</th>
     <th class=th width="8%">部考系数</th>
@@ -100,7 +100,7 @@ Function YgxsDisplay()		'显示列表
     <th class=th width="*">应发工资</th>
   </tr>
   <tr>
-  	<td colspan="11" class=rtd>本月部门任务完成率=<%=zrwwcl%></td>
+  	<td colspan="12" class=rtd>本月部门任务完成率=<%=zrwwcl%></td>
   </tr>
   </THEAD>
   <%
@@ -109,8 +109,8 @@ Function YgxsDisplay()		'显示列表
 		If Request("bybmxs")="" Then zbmxs=1.0 Else zbmxs=Request("bybmxs") End if
 		strSql="select * from [ims_user] where user_depart='技术部' and user_group<>0 and user_able<>'010000000000000' and Instr('AABBTB调试员',user_name)=0 order by user_group,user_basicwage desc"
 		Set ygxsRs=xjweb.Exec(strSql, 1)
-		Do While Not ygxsRs.eof	or ygxsRs.Bof
-		zuser=ygxsRs("user_name")
+		Do While Not ygxsRs.eof or ygxsRs.Bof
+		struser=ygxsRs("user_name")
 		If zgroup<>ygxsRs("user_group") Then
 			strColor=-1*strColor
 			zgroup=ygxsRs("user_group")
@@ -134,7 +134,7 @@ Function YgxsDisplay()		'显示列表
 <TBODY>
   <tr <%If strColor=1 Then%>bgcolor="#D6D7EF"<%End If%>>
     <td class=ctd width="8%"><%=zcount%></td>
-    <td class=ctd width="8%"><%=zuser%></td>
+    <td class=ctd width="8%"><%=struser%></td>
     <td class=ctd width="8%"><%=zrwfz%>&nbsp;</td>
     <td class=ctd width="8%"><%=zbasicwg%>&nbsp;</td>
     <td class=ctd width="8%"><%=zrwxs%>&nbsp;</td>
@@ -155,7 +155,7 @@ Function YgxsDisplay()		'显示列表
 %>
 <TFOOT>
 <TR>
-<TD class=rtd colspan=11>
+<TD class=rtd colspan=12>
 The End.
 </TD>
 </TR>
@@ -165,7 +165,7 @@ The End.
 End Function
 
 Function YgxsStat()
-	strSql="Select * from [ims_user] where [user_name]='"&zuser&"'"
+	strSql="Select * from [ims_user] where [user_name]='"&struser&"'"
 	Set Rs=xjweb.Exec(strSql,1)
 	Dim tmpCount, tmpGroup, tmpAble, ilxrwzf
 	tmpCount=1
@@ -173,9 +173,9 @@ Function YgxsStat()
 	tmpAble=Rs("user_Able")
 	Rs.Close
 
-	If InStr("4568",ChkJs(tmpAble))>0 Then		'判断是不是组员或调试员
+	If InStr("45",ChkJs(tmpAble))>0 Then		'判断是不是组员或调试员
 		'1--任务分值
-		strSql="select * from [mantime] where zrr='"&zuser&"' and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0"
+		strSql="select * from [mantime] where zrr='"&struser&"' and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0"
 		Set Rs=xjweb.Exec(strSql, 1)
 		Do While Not Rs.eof
 			irwzf=irwzf+Round(Rs("fz"),1)
@@ -183,7 +183,7 @@ Function YgxsStat()
 		Loop
 		Rs.close
 		'2---零星任务分值
-		strSql="select * from [ftask] where zrr='"&zuser&"' and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0"
+		strSql="select * from [ftask] where zrr='"&struser&"' and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0"
 		Set Rs=xjweb.Exec(strSql, 1)
 		Do While Not Rs.eof
 			ilxrwzf=ilxrwzf+Rs("zf")
@@ -200,125 +200,51 @@ Function YgxsStat()
 	icount=1
 	Select Case ChkJs(tmpAble)
 		Case 6	'调试员
-					kpif(0)=statkpfz("延迟", 0)
-					kpif(1)=statkpfz("提前", 0)
-					kpf(1)=kpif(0) + kpif(1)
-					If kpf(1)>10 Then kpf(1)=10
-					If kpf(1)<-10 Then kpf(1)=-10
-					kpif(0)=statkpfz("5次以上修理未评审", 0)
-					kpif(1)=statkpfz("修理方案下发不及时", 0)
-					kpif(2)=statkpfz("修理情报录入不及时", 0)
-					kpif(3)=statkpfz("修理图纸签署、更改不完善", 0)
-					kpf(2)=kpif(0) + kpif(1) + kpif(2) + kpif(3)
-					If kpf(2)<-8 Then kpf(2)=-8
-					kpif(0)=statkpfz("修理图未及时存档", 0)
+					kpif(0)=statkpfz("标准、规范维护不及时", 0)
+					kpif(1)=statkpfz("调试方案问题处理不及时", 0)
+					kpif(2)=statkpfz("厂内调试未准时完成", 0)
+					kpf(0)=65+kpif(0) + kpif(1) + kpif(2)
+					kpif(0)=statkpfz("修理方案原因产生报废", 0)
 					kpif(1)=statkpfz("修理方案原因产生返修", 0)
-					kpif(1)=kpif(1)+statkpfz("设计原因产生返修", 0)
-					kpif(2)=statkpfz("修理方案原因产生报废", 0)
-					kpif(2)=kpif(2)+statkpfz("设计原因产生报废", 0)
-					kpf(3)=kpif(0)+kpif(1)+kpif(2)
-					If kpf(3)<-20 Then kpf(3)=-20
-					kpif(0)=statkpfz("调试超过额定最大次数", 0)
-					kpif(1)=statkpfz("调试少于额定最小次数", 0)
-					kpif(2)=statkpfz("模具调试未合格数", 0)
-					kpf(4)=kpif(0) + kpif(1) + kpif(2)
-					If kpf(4)<-6 Then kpf(4)=-6
-					kpif(0)=statkpfz("上班做与工作无关", 0)
-					kpif(1)=statkpfz("值班离岗,闲聊", 0)
-					kpif(2)=statkpfz("桌面不洁,下班机器未关、门未锁", 0)
-					kpf(6)=kpif(0) + kpif(1) + kpif(2)
-					If kpf(6)<-2 Then kpf(6)=-2
-					kpif(0)=statkpfz("不服从分配", 0)
-					kpif(1)=statkpfz("消极怠工", 0)
-					kpf(7)=kpif(0) + kpif(1)
-					If kpf(7)<-4 Then kpf(7)=-4
+					kpif(2)=statkpfz("修理方案原因产生返工", 0)
+					kpif(3)=statkpfz("设计原因质量损失超千元", 0)
+					kpf(1)=25+kpif(0)+kpif(1)+kpif(2)+kpif(3)
+					if kpf(1)<0 Then kpf(1)=0
+					kpif(0)=statkpfz("做与工作无关的事,不服从分配", 0)
+					kpf(2)=10 + kpif(0)
+					If kpf(2)<0 Then kpf(2)=0
+					
 				for i=0 to 29
 					kpzf=kpzf+kpf(i)
 				next
-				If zrwfz>zbasicwg Then
-					kpzf=kpzf+50
-				else
-					kpzf=round(kpzf+(zrwfz/zbasicwg * 50),1)
-				End If
-				If zrwfz<zbasicwg Then
-					zrwxs=round((zrwfz/zbasicwg * 50)/100,2)
-				Else
-					zrwxs=round(((50+((zrwfz-zbasicwg)/zbasicwg*50*1.25))/100),2)
-				End If
-				zzlxs=round(kpzf/100,2)
-				zgkxs=round(zrwxs+zzlxs,2)
+				zrwxs=round((kpf(0)/100),2)
+				zzlxs=round(kpf(1)/100,2)
+				zdxxs=round(kpf(2)/100,2)
+				zgkxs=round(zrwxs+zzlxs+zdxxs,2)
 				zyfgz=zjxgz*zgkxs*zbmxs+zjbgz
 
-		Case 8		'服务技术员
-					kpif(0)=statkpfz("设计标准、规范维护不及时", 0)
-					kpif(1)=statkpfz("调试方案问题处理不及时", 0)
-					kpif(2)=statkpfz("营销技术支持不及时", 0)
-					kpif(3)=statkpfz("技术代表延期", 0)
-					kpf(0)=50 + kpif(0) + kpif(1) + kpif(2) + kpif(3)
-					If kpf(0)<0 Then kpf(0)=0
-
-					kpif(0)=statkpfz("技术原因遭外部投诉", 0)
-					kpif(1)=statkpfz("工作过程未按规定执行", 0)
-					kpif(2)=statkpfz("设计原因质量损失超千元", 0)
-					kpf(1)=30 + kpif(0)+kpif(1)+kpif(2)
-					If kpf(1)<0 Then kpf(1)=0
-
-					kpif(0)=statkpfz("提出改进建议取得成效", 0)
-					kpif(1)=statkpfz("主动承担较难任务", 0)
-					kpif(2)=statkpfz("上班做与工作无关", 0)
-					kpif(3)=statkpfz("不服从分配", 0)
-					kpif(4)=statkpfz("5S管理不达标", 0)
-					kpf(2)=20 + kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4)
-					If kpf(2)<0 Then kpf(2)=0
-
-				for i=0 to 1
-					kpzf=kpzf+kpf(i)
-				next
-				zrwxs=round(kpzf/100,2)
-				zzlxs=round(kpf(2)/100,2)
-				zgkxs=round(zrwxs+zzlxs,2)
-
 		Case Else	'组员
-					If zrwfz<zbasicwg Then
-						kpf(0)=round((zrwfz/zbasicwg * 35),1)
-					Else
-						kpf(0)=round((35+((zrwfz-zbasicwg)/zbasicwg*35*1.25)),1)
-					End If
-					kpif(0)=statkpfz("技术代表延期", 0)
-					kpf(1)=kpif(0) + 5
-					If kpf(1)<0 Then kpf(1)=0
-
-					kpif(0)=statkpfz("延迟", 0)
-					kpf(2)=kpif(0) + 10
-					If kpf(2)<0 Then kpf(2)=0
-
+				kpf(0)=round((zrwfz/zbasicwg * 65),2)
+  				if ChkJs(tmpAble)=4 Then
+					kpif(0)=statkpfz("设计原因产生报废", tmpGroup)
+					kpif(1)=statkpfz("设计原因产生返修", tmpGroup)
+					kpif(2)=statkpfz("设计原因产生返工", tmpGroup)		
+				Else
 					kpif(0)=statkpfz("设计原因产生报废", 0)
 					kpif(1)=statkpfz("设计原因产生返修", 0)
-					kpif(2)=statkpfz("设计原因产生返工", 0)
-					kpif(3)=statkpfz("厂内调试少于额定次数", 0)
-					kpif(4)=statkpfz("厂内调试多于额定次数", 0)
-					kpif(5)=statkpfz("工作过程未按规定执行", 0)
-					kpif(6)=statkpfz("设计原因质量损失超千元", 0)
-					kpf(3)=30+kpif(0)+kpif(1)+kpif(2)+kpif(3)+kpif(4)+kpif(5)+kpif(6)
-					if kpf(3)<0 Then kpf(3)=0
+					kpif(2)=statkpfz("设计原因产生返工", 0)	
+				End If			
+				kpif(3)=statkpfz("设计原因质量损失超千元", 0)
+				kpf(1)=25+kpif(0)+kpif(1)+kpif(2)+kpif(3)
+				if kpf(1)<0 Then kpf(1)=0
+				kpif(0)=statkpfz("做与工作无关的事,不服从分配", 0)
+				kpf(2)=10 + kpif(0)
+				If kpf(2)<0 Then kpf(2)=0
 
-					kpif(0)=statkpfz("提出改进建议取得成效", 0)
-					kpif(1)=statkpfz("主动承担较难任务", 0)
-					kpif(2)=statkpfz("上班做与工作无关", 0)
-					kpif(3)=statkpfz("不服从分配", 0)
-					kpif(4)=statkpfz("5S管理不达标", 0)
-					kpf(4)=20+kpif(0) + kpif(1) + kpif(2) + kpif(3) + kpif(4)
-					If kpf(4)<0 Then kpf(4)=0
-
-				for i=0 to 2
-					kpzf=kpzf+kpf(i)
-				next
-				if kpzf>50 Then kpzf=50
-				zrwxs=round(kpzf/100,2)
-				zzlxs=round(kpf(3)/100,2)
-				zdxxs=round(kpf(4)/100,2)
+				zrwxs=round((kpf(0)/100),2)
+				zzlxs=round(kpf(1)/100,2)
+				zdxxs=round(kpf(2)/100,2)
 				zgkxs=round(zrwxs+zdxxs+zzlxs,2)
-'				zgkxs=round(zrwxs+zzlxs,2)&","&zrwfz&","&zbasicwg&","&kpf(0)&","&kpf(1)&","&kpf(2)&","&kpf(3)&","&kpf(4)
 	End Select
 	Erase kpf
 End Function
@@ -337,83 +263,34 @@ Function ChkJs(str)
 	End If
 End Function
 
-Function statkpjfz(kp_item,zrrjs,i)
-	Dim PjCs,tmpRs
-	statkpjfz=0
-	strSql="select * from [kp_jsb] where [kp_item] like '%"&kp_item&"%' and [kp_zrrjs] like '%"&zrrjs&"%' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
-	Set tmpRs=xjweb.Exec(strSql, 1)
-	do while not tmpRs.eof
-		statkpjfz=statkpjfz + tmpRs("kp_uprice") * tmpRs("kp_mul")
-		tmpRs.movenext
-	loop
-	tmpRs.close
-	strSql="Select * from [ims_user] where mid(user_able,4,1)>0 and user_Group>0 and user_Group<>5"
-	Call xjweb.Exec("",-1)
-	Set tmpRs=Server.CreateObject("ADODB.RECORDSET")
-	tmpRs.open strSql,Conn,1,3
-		PjCs=tmpRs.RecordCount
-	tmpRs.close
-	statkpjfz=Round(statkpjfz/PjCs,2)
-End Function
-
 Function statkpfz(kp_item, i)
+	Dim ZzSql, ZzRs 
 	statkpfz=0
 	Dim tmpRs
 	Select Case i
 		Case 0		'对组员进行统计
-			strSql="select * from [kp_jsb] where [kp_zrr]='"&zuser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
-		Case -1		'对主任进行统计
-			strSql="select * from [kp_jsb] where [kp_item]='"&kp_item&"'  and [kp_kpr]<>" & zuser & " and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
+			strSql="select ([kp_uprice]*[kp_mul]) as kp_f from [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
 		Case Else	'对组长进行统计
-			strSql="select * from [kp_jsb] where [kp_group]="&i&"  and [kp_kpr]<>" & zuser & " and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
+			strSql="select [kp_lsh],max([kp_uprice]*[kp_mul]*0.5) as kp_f from [kp_jsb] where [kp_zrr]<>'"&struser&"' and  [kp_group]="&i&" and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0 group by [kp_lsh]"		
+			ZzSql="select * from [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
 	End Select
 
 	Set tmpRs=xjweb.Exec(strSql, 1)
-
 	do while not tmpRs.eof
-		statkpfz=statkpfz + tmpRs("kp_uprice") * tmpRs("kp_mul")
+		statkpfz=statkpfz + tmpRs("kp_f")
 		tmpRs.movenext
 	loop
-	statkpfz=round(statkpfz,2)
 	tmpRs.close
 	set tmprs=nothing
-End Function
-
-Function diskpItem(arg1,arg2,arg3,arg4)
-	icount=icount+1
-	dim tmpcs, tmpkpf
-	tmpcs=statkpcs(arg1, "", arg4)
-	tmpkpf=tmpcs*arg3*-1
-	kpf(icount-1)=tmpkpf
-	If kpf(icount-1)<arg2*-1 Then kpf(icount-1)=arg2*-1
-End Function
-
-Function diskpItemM(arg1,arg2,arg3,arg4,arg5)
-	icount=icount+1
-	dim tmpcs, tmpkpf, temparg
-	temparg=arg1
-	tmpcs=0
-	tmpkpf=0
-	If Instr(arg1,"原因产生返修")>0 Then temparg="原因产生返修"
-	If Instr(arg1,"原因产生报废")>0 Then temparg="原因产生报废"
-	strSql=""
-	If arg4="" Then
-		strSql="select * from [kp_jsb] where kp_item like '%"&temparg&"%' and kp_zrrjs='"&arg5&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
-	else
-		strSql="select * from [kp_jsb] where kp_group="&arg4&" and kp_item like '%"&temparg&"%' and kp_zrrjs='"&arg5&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
-	End If
-	Set Rs = Server.CreateObject("ADODB.RECORDSET")
-	Call xjweb.Exec("",-1)
-	Rs.open strSql,Conn,3,3
-  	tmpcs=rs.recordcount
-	tmpkpf=tmpcs*arg3*-1
-	kpf(icount-1)=tmpkpf
-	If arg2<>"" Then
-		If kpf(icount-1)<arg2*-1 Then
-			 kpf(icount-1)=arg2*-1
-		End If
-	End If
-	'组长返修、报废无上限
-	Rs.Close
+	
+	If i>0 Then
+		Set ZzRs=xjweb.Exec(ZzSql, 1)
+		Do While not ZzRs.eof
+			statkpfz=statkpfz + ZzRs("kp_uprice") * ZzRs("kp_mul")
+		loop
+		ZzRs.close
+		set ZzRs=nothing		
+	End If	
+	statkpfz=round(statkpfz,2)
 End Function
 %>

@@ -150,7 +150,7 @@ End If
 if keyword<>"" then
 Set newsearch=new SearchFile
 'newsearch.Folders=Server.mappath("dmtj")
-newsearch.Folders="I:\设计参考\断面图集" '是绝对路径
+newsearch.Folders="G:\设计参考\断面图集" '是绝对路径
 newsearch.keyword=keyword
 newsearch.Search
 Set newsearch=Nothing

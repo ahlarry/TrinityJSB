@@ -828,14 +828,14 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '		KpRs.Close
 '	End If
 	'对组长进行考核(结构组长(ijgzz)、调试组长(tszz))
-	Dim xxzz, tszz
-	KpSql="Select * from [ims_user] where mid(user_able,4,1)>0"
-	Set KpRs=xjweb.Exec(KpSql,1)
-		Do While Not KpRs.Eof
-			If KpRs("user_group")=5 and mid(KpRs("user_able"),6,1)>0 and mid(KpRs("user_able"),3,1)=0 Then tszz=KpRs("user_name")
-			KpRs.moveNext
-		Loop
-	KpRs.Close
+'	Dim xxzz, tszz
+'	KpSql="Select * from [ims_user] where mid(user_able,4,1)>0"
+'	Set KpRs=xjweb.Exec(KpSql,1)
+'		Do While Not KpRs.Eof
+'			If KpRs("user_group")=5 and mid(KpRs("user_able"),6,1)>0 and mid(KpRs("user_able"),3,1)=0 Then tszz=KpRs("user_name")
+'			KpRs.moveNext
+'		Loop
+'	KpRs.Close
 
 '	If not(isNull(ijgzz)) Then
 '		ifz=Round(imjzf*sngmtbl*0.1*itsxs,1)
@@ -877,31 +877,31 @@ Function TscsKp(slsh)	'根据调试次数对技术员及组长进行考评
 '		KpRs.Close
 '	End If
 
-	KpSql="Select [user_group] from [ims_user] where [user_name]='"&tszz&"'"
-		Set KpRs=xjweb.Exec(KpSql,1)
-		If Not(KpRs.Eof Or KpRs.Bof) Then
-			iGroup=KpRs("user_group")
-		End If
-	KpRs.Close
-	KpSql="select * from [kp_jsb]"
-	Call xjweb.Exec("",-1)
-	KpRs.open KpSql,conn,1,3
-	KpRs.AddNew
-		KpRs("kp_time")=Now()
-		KpRs("kp_zrr")=tszz
-		KpRs("kp_zrrjs")="调试组长"
-		KpRs("kp_group")=iGroup
-		KpRs("kp_kind")=3
-		KpRs("kp_topic")="设计验证"
-		KpRs("kp_item")=strKpItem
-		KpRs("kp_uprice")=itsxs*0.2
-		KpRs("kp_mul")=iKpMul
-		KpRs("kp_bz")=slsh&"额定:"&iedxx&"-"&iedsx&"次,实际:"&itscs&"次"
-		KpRs("kp_kpr")="Sj901"
-		KpRs("kp_lsh")=slsh
-		KpRs("kp_zlid")=iZlID
-		KpRs.Update
-	KpRs.Close
+'	KpSql="Select [user_group] from [ims_user] where [user_name]='"&tszz&"'"
+'		Set KpRs=xjweb.Exec(KpSql,1)
+'		If Not(KpRs.Eof Or KpRs.Bof) Then
+'			iGroup=KpRs("user_group")
+'		End If
+'	KpRs.Close
+'	KpSql="select * from [kp_jsb]"
+'	Call xjweb.Exec("",-1)
+'	KpRs.open KpSql,conn,1,3
+'	KpRs.AddNew
+'		KpRs("kp_time")=Now()
+'		KpRs("kp_zrr")=tszz
+'		KpRs("kp_zrrjs")="调试组长"
+'		KpRs("kp_group")=iGroup
+'		KpRs("kp_kind")=3
+'		KpRs("kp_topic")="设计验证"
+'		KpRs("kp_item")=strKpItem
+'		KpRs("kp_uprice")=itsxs*0.2
+'		KpRs("kp_mul")=iKpMul
+'		KpRs("kp_bz")=slsh&"额定:"&iedxx&"-"&iedsx&"次,实际:"&itscs&"次"
+'		KpRs("kp_kpr")="Sj901"
+'		KpRs("kp_lsh")=slsh
+'		KpRs("kp_zlid")=iZlID
+'		KpRs.Update
+'	KpRs.Close
 
 	set KpRs = nothing
 End Function

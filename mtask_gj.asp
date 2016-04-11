@@ -63,7 +63,7 @@ Function SearchInfo()
     <tr>
       <td>Ê±¼ä·¶Î§£º
         <select name="ksy" onchange=';'>
-          <%for i = year(now) - 4 to year(now) + 1%>
+          <%for i = year(now) - 12 to year(now) + 1%>
           <option value=<%=i%><%If i = cint(iksy) Then%> selected<%end If%>><%=i%></option>
           <%next%>
         </select>
@@ -76,7 +76,7 @@ Function SearchInfo()
         ÔÂ&nbsp;&nbsp;
         &nbsp;--&nbsp;
         <select name="jsy">
-          <%for i = year(now) - 4 to year(now) + 1%>
+          <%for i = year(now) - 12 to year(now) + 1%>
           <option value=<%=i%><%If i = cint(ijsy) Then%> selected<%end If%>><%=i%></option>
           <%next%>
         </select>
