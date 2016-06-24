@@ -25,7 +25,7 @@
 	strzz=Request("zz") : strjsdb=Request("jsdb") : strbm=session("user_depart") : strlzr=session("userName")
 	sngmjzf=Request("mjzf") : sngmtbl=Request("mtbl") : ibomzf=Request("bomzf") : itsdzf=Request("tsdzf")
 	itszf=Request("tszf") : itsxxzlzf=Request("tsxxzlzf") : igjzf=Request("gjzf")
-	strtslb=Request("tslb") : strxcbh=Request("xcbh") : strcnts=Request("cnts") : bbtiao=Request("beit")
+	strtslb=Request("tslb") : strxcbh=Request("xcbh") : strcnts=Request("cnts")
 	strjgzz=Request("jgzz") : strsjzz=Request("sjzz") : strdxqg=Request("dxqg")
 	igjfs1=Request("ssgjf") : igjfs2=Request("qbfgjf")
 	igjfs3=Request("qgjf") : igjfs4=Request("hgjf")
@@ -101,7 +101,7 @@
 	If strjcjxh=""  Then strMsg=strMsg & "挤出机型号为空!<br>"
 	If strqysd=""  Then strMsg=strMsg & "牵引速度为空!<br>"
 	If strckdm=""  Then strMsg=strMsg & "参考断面不能为空!<br>"
-	If bbtiao=""  Then strMsg=strMsg & "厂内不调试时是否北调不能为空!<br>"
+'	If bbtiao=""  Then strMsg=strMsg & "厂内不调试时是否北调不能为空!<br>"
 	If strcnts="true" and strtslb=""  Then strMsg=strMsg & "厂内调试时调试类别不能为空!<br>"
 	If strxcbh=""  Then strMsg=strMsg & "型材壁厚为空!<br>"
 	If strmjxx<>"模头" And strdxjg="" Then strMsg=strMsg & "定型结构为空!<br>"
@@ -186,7 +186,6 @@
 			Rs("dedx")=strdedx
 			Rs("fzxs")=strfzxs
 			Rs("cnts")=strcnts
-			Rs("beit")=bbtiao
 			If strtslb<>"" Then Rs("tslb")=strtslb
 			Rs("xcbh")=strxcbh
 			Rs("dxqg")=strdxqg
@@ -273,7 +272,6 @@
 			Rs("dedx")=strdedx
 			Rs("fzxs")=strfzxs
 			Rs("cnts")=strcnts
-			Rs("beit")=bbtiao
 			If strtslb<>"" Then Rs("tslb")=strtslb
 			Rs("xcbh")=strxcbh
 			Rs("dxqg")=strdxqg

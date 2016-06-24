@@ -1,16 +1,17 @@
          <%
 	'9:05 2007-2-2-星期五
 	'本页用到类xj_classs的实例xjweb
-	dim c_alluser, c_allzy, c_allzz, c_alljl, c_alltsy, c_alljszd, c_allgy, c_allbc
+	dim c_alluser, c_allzy, c_allzz, c_alljl, c_alltsy, c_alljszd, c_allgy, c_allbc, c_zypx, maxGroup
 	dim c_xz0, c_xz1, c_xz2, c_xz3, c_xz4, c_xz5, c_xz6, c_xz7, c_xz8, c_allstat, c_jsb
+	dim tmpname, tmpGroup, tmpDept, tmpAble	
 	c_alluser="": c_allzy="": c_allzz="": c_alljl="" : c_alltsy="" : c_alljszd="" : c_allgy="" : c_allbc=""
 	c_xz0="" : c_xz1="" : c_xz2="" : c_xz3="" : c_xz4="" : c_xz5="" : c_xz6="" : c_xz7="" : c_xz8="" : c_allstat=""
-	c_jsb=""
-	set rs = xjweb.exec("select user_name, user_able, user_group, user_depart from ims_user where user_name<>'AA' and user_name<>'BB' order by user_depart,user_name,user_able",1)
+	c_jsb="" : c_zypx="" : maxGroup=0
+	set rs = xjweb.exec("select user_name, user_able, user_group, user_depart from ims_user where user_name<>'AA' and user_name<>'BB' order by user_depart,user_name",1)
 	do while not rs.eof
-		dim tmpname, tmpGroup, tmpDept, tmpAble
 		tmpname=replace(rs("user_name"),"|||","")
 		tmpGroup=Rs("user_group")
+		if tmpGroup>maxGroup then maxGroup=tmpGroup
 		tmpDept=Rs("user_depart")
 		tmpAble=Rs("user_Able")
 
@@ -150,6 +151,25 @@
 		rs.movenext
 	loop
 	rs.close
+	
+	set rs = xjweb.exec("select user_name, user_able, user_group, user_depart from ims_user where user_name<>'AA' and user_name<>'BB' and user_depart='技术部' order by user_group",1)
+	do while not rs.eof
+		tmpname=replace(rs("user_name"),"|||","")
+		tmpGroup=Rs("user_group")
+		tmpDept=Rs("user_depart")
+		tmpAble=Rs("user_Able")
+		'所有统计人员,包括TT、TB调试员按组排序
+		if InStr("45689",ChkJs(tmpAble))>0 Or chkuser(10)  then
+			if c_zypx <> "" then
+				c_zypx=c_zypx & "|||" & tmpname
+			else
+				c_zypx=tmpname
+			end if
+		end if
+		rs.movenext
+	loop
+	rs.close	
+	
 	If c_alluser="" Then c_alluser=" "
 	If c_allzy="" Then c_allzy=" "
 	If c_allzz="" Then c_allzz=" "
@@ -167,6 +187,7 @@
 	If c_xz7="" Then c_xz7=" "
 	If c_xz8="" Then c_xz8=" "
 	If c_allstat="" Then c_allstat=" "
+	If c_zypx="" Then c_zypx=" "
 	If c_jsb="" Then c_jsb=" "
 
 	c_alluser = split(c_alluser, "|||")
@@ -186,6 +207,7 @@
 	c_xz7=split(c_xz7,"|||")
 	c_xz8=split(c_xz8,"|||")
 	c_allstat=split(c_allstat,"|||")
+	c_zypx=split(c_zypx,"|||")
 	c_jsb=split(c_jsb,"|||")
 
 function chkuser(num)

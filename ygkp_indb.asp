@@ -235,8 +235,10 @@
 			tsShr=Request("kpsh")
 			ljjs=CInt(request("ljjs"))
 			ljxs=CSng(request("ljxs"))
+			iKpUPrice=CSng(Request("Pgkpfz"))
 			If tsZrr="" Then Call JsAlert("请选择考评人员!","")
 			if ljjs=0 Then Call JsAlert("请选择零件件数!","")
+			if iKpUPrice="" Then Call JsAlert("分值不能为空!", "")
 
 			'因为品管部一次可能涉及很多人因此在此生成随机数进行限定
 			Randomize
@@ -247,7 +249,6 @@
 			If Ubound(strTemp)<>3 Then Call JsAlert("请选择考评类型!","")
 			strKpTopic=strTemp(0)
 			strKpItem=strTemp(1)
-			iKpUPrice=CSng(strTemp(2))*ljjs*ljxs
 			iKpMul=CInt(strTemp(3))
 			strbztmp=Request("kpbz") & vbcrlf & "零件件数:" & ljjs & " 系数:" & ljxs
 			If Request("kpbz")="" Then Call JsAlert("备注为空!","")
@@ -297,7 +298,7 @@
 			If Ubound(strTemp)<>3 Then Call JsAlert("请选择考评类型!","")
 			strKpTopic=strTemp(0)
 			strKpItem=strTemp(1)
-			iKpUPrice=CSng(strTemp(2))
+			iKpUPrice=CSng(Request("Pgkpfz"))
 			iKpMul=CInt(strTemp(3))
 
 			'因为品管部一次可能涉及很多人因此在此生成随机数进行限定
@@ -353,10 +354,10 @@
 				If shr="" Then Call JsAlert("请选择审核者!","")
 				if ljjs=0 Then Call JsAlert("请选择零件件数!","")
 				if ljxs=0.0 Then Call JsAlert("请选择零件系数!", "")
+				if iKpUPrice="" Then Call JsAlert("分值不能为空!", "")
 
 				sjr=Split(sjr,",")
 				shr=Split(shr,",")
-				iKpUPrice=iKpUPrice*ljjs*ljxs
 				strBz=strBz & vbcrlf & "零件件数:" & ljjs & " 系数:" & ljxs
 
 				'sjr入库

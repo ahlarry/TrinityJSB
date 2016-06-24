@@ -113,24 +113,12 @@ end select
     <td class="rtd"  width="13%">任务内容</td>
     <td class="ltd"><%=rs("mjxx") & rs("rwlr")%></td>
         <td class="rtd"  width="13%">厂内调试</td>
-    <td class="ltd"  colspan="2" ><%if rs("cnts") then%>
-      是
-      <%else%>
-      &nbsp;/
-      <%end if%></td>
+    <td class="ltd"  colspan="2" ><%=rs("cnts")%></td>
     <td class="rtd"  width="13%">调试类别</td>
-    <% If Rs("cnts") Then%>
-    <%If Not(isnull(Rs("tslb"))) Then%>
-    <td class="ltd"  colspan="2"><a href="mtest_display.asp?s_lsh=<%=rs("lsh")%>"><%=Rs("tslb")%></a></td>
+    <%If Not(isnull(Rs("tslb"))) and Rs("cnts")<>"不调试" Then%>
+    <td class="ltd"  width="*" colspan="2" ><%=Rs("tslb")%></td>
     <%Else%>
-    <td class="ltd" colspan="2" >&nbsp;/</td>
-    <%End If%>
-    <%Else%>
-    <%If Rs("beit") Then%>
-    <td class="ltd"  colspan="2">北调</td>
-    <%Else%>
-    <td class="ltd" colspan="2">&nbsp;/</td>
-    <%End If%>
+    <td class="ltd"  width="*" colspan="2" >&nbsp;/</td>
     <%End If%>
   </tr>
   <tr>

@@ -359,8 +359,8 @@ Function ygkpstatDisplay()
   <td class=ctd>设计原因质量损失超千元</td>
   <td class=ctd>1.0</td>
   <td class=ctd>分/千元</td>
-  <td class=ctd><%=ics(6)%></td>
-  <td class=ctd><%=kpif(6)%></td>
+  <td class=ctd><%=ics(3)%></td>
+  <td class=ctd><%=kpif(3)%></td>
 </tr>
 <%icount=1%>
 <tr>
@@ -414,7 +414,6 @@ Function statkpcs(kp_item, kp_zrrjs, i)
 				strSql=" [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
 				statkpcs=xjweb.rscount(strSql)
 			Case Else	'对组长进行统计
-'				strSql="select distinct [kp_lsh] from [kp_jsb] where [kp_group]="&i&" and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0 order by [kp_lsh]"
 				strSql="select [kp_lsh] from [kp_jsb] where [kp_group]="&i&" and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0 group by [kp_lsh]"
 				Set TmpRs=Server.CreateObject("adodb.recordset")
 				TmpRs.open strsql,conn,1,3
@@ -438,14 +437,14 @@ End Function
 
 Function statkpfz(kp_item, i)
 	Dim ZzSql, ZzRs 
-	statkpfz=0
+	statkpfz=0 : ZzSql="" : ZzRs=""
 	Dim tmpRs
 	Select Case i
 		Case 0		'对组员进行统计
 			strSql="select ([kp_uprice]*[kp_mul]) as kp_f from [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
 		Case Else	'对组长进行统计
-			strSql="select [kp_lsh],max([kp_uprice]*[kp_mul]*0.5) as kp_f from [kp_jsb] where [kp_zrr]<>'"&struser&"' and  [kp_group]="&i&" and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0 group by [kp_lsh]"		
-			ZzSql="select * from [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
+			strSql="select [kp_lsh],max([kp_uprice]*[kp_mul]*0.5) as kp_f from [kp_jsb] where [kp_group]="&i&" and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0 group by [kp_lsh]"		
+			ZzSql="select ([kp_uprice]*[kp_mul]*0.5) as kp_f from [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
 	End Select
 
 	Set tmpRs=xjweb.Exec(strSql, 1)
@@ -458,8 +457,9 @@ Function statkpfz(kp_item, i)
 	
 	If i>0 Then
 		Set ZzRs=xjweb.Exec(ZzSql, 1)
-		Do While not ZzRs.eof
-			statkpfz=statkpfz + ZzRs("kp_uprice") * ZzRs("kp_mul")
+		do While not ZzRs.eof
+			statkpfz=statkpfz + ZzRs("kp_f")
+			ZzRs.movenext	
 		loop
 		ZzRs.close
 		set ZzRs=nothing		

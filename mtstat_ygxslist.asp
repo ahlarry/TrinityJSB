@@ -84,7 +84,6 @@ Function YgxsDisplay()		'显示列表
 		If Request("rwwcl")="" Then zrwwcl=1.0 Else zrwwcl=Request("rwwcl") End if
 		%>
 <table cellpadding=2 cellspacing=0 class="xtable" width="<%=web_info(8)%>">
-<THEAD>
   <tr>
     <th class=th width="8%">ID</th>
     <th class=th width="8%">人员名单</th>
@@ -102,65 +101,62 @@ Function YgxsDisplay()		'显示列表
   <tr>
   	<td colspan="12" class=rtd>本月部门任务完成率=<%=zrwwcl%></td>
   </tr>
-  </THEAD>
+</Table>
   <%
-		Dim strColor
+		Dim strColor, x
 		strColor=-1
 		If Request("bybmxs")="" Then zbmxs=1.0 Else zbmxs=Request("bybmxs") End if
-		strSql="select * from [ims_user] where user_depart='技术部' and user_group<>0 and user_able<>'010000000000000' and Instr('AABBTB调试员',user_name)=0 order by user_group,user_basicwage desc"
-		Set ygxsRs=xjweb.Exec(strSql, 1)
-		Do While Not ygxsRs.eof or ygxsRs.Bof
-		struser=ygxsRs("user_name")
-		If zgroup<>ygxsRs("user_group") Then
-			strColor=-1*strColor
-			zgroup=ygxsRs("user_group")
-		End If
-		zgroup=ygxsRs("user_group")
-		zbasicwg=ygxsRs("user_basicwage")
-		zrwfz=0 : zrwxs=0 : zzlxs=0 : zdxxs=0 : zgkxs=0 : zjbgz=0 : zyfgz=0 : zbeiz="" : irwzf=0 : ilxrwzf=0 : iaddfz=0
-		kpzf=0
-		for i=0 to 29
-			kpf(i)=0
-		next
-		for i=0 to 9
-			kpif(i)=0
-		next
-		for i=0 to 9
-			ics(i)=0
-		next
-		Call YgxsStat()
-		zrwxs=FormatNumber(zrwxs,2)
-	%>
-<TBODY>
-  <tr <%If strColor=1 Then%>bgcolor="#D6D7EF"<%End If%>>
-    <td class=ctd width="8%"><%=zcount%></td>
-    <td class=ctd width="8%"><%=struser%></td>
-    <td class=ctd width="8%"><%=zrwfz%>&nbsp;</td>
-    <td class=ctd width="8%"><%=zbasicwg%>&nbsp;</td>
-    <td class=ctd width="8%"><%=zrwxs%>&nbsp;</td>
-    <td class=ctd width="8%"><%=zzlxs%>&nbsp;</td>
-    <td class=ctd width="8%"><%=zdxxs%>&nbsp;</td>
-    <td class=ctd width="8%"><%=zgkxs%>&nbsp;</td>
-    <td class=ctd width="8%"><%=zbmxs%></td>
-    <td class=ctd width="10%">&nbsp;</td>
-    <td class=ctd width="10%">&nbsp;</td>
-    <td class=ctd width="10%">&nbsp;</td>
-  </tr>
-</TBODY>
-  <%
-		zcount = zcount + 1
-		ygxsRs.movenext
-		loop
-		ygxsRs.close
+		for x = 0 to ubound(c_zypx)
+			strSql="select * from [ims_user] where  user_name='"&c_zypx(x)&"'"
+			Set ygxsRs=xjweb.Exec(strSql, 1)
+			If Not ygxsRs.eof Then 
+				If zgroup<>ygxsRs("user_group") Then
+					strColor=-1*strColor
+				End If
+				struser=c_zypx(x)		
+				zgroup=ygxsRs("user_group")
+				zbasicwg=ygxsRs("user_basicwage")
+			End If
+			ygxsRs.close
+			zrwfz=0 : zrwxs=0 : zzlxs=0 : zdxxs=0 : zgkxs=0 : zjbgz=0 : zyfgz=0 : zbeiz="" : irwzf=0 : ilxrwzf=0 : iaddfz=0
+			kpzf=0
+			for i=0 to 29
+				kpf(i)=0
+			next
+			for i=0 to 9
+				kpif(i)=0
+			next
+			for i=0 to 9
+				ics(i)=0
+			next
+			Call YgxsStat()
+			zrwxs=FormatNumber(zrwxs,2)
 %>
-<TFOOT>
+			<table cellpadding=2 cellspacing=0  width="<%=web_info(8)%>">
+			<tr <%If strColor=1 Then%>bgcolor="#D6D7EF"<%End If%>>
+    				<td class=ctd width="8%"><%=zcount%></td>
+				<td class=ctd width="8%"><%=struser%></td>
+    				<td class=ctd width="8%"><%=zrwfz%>&nbsp;</td>
+    				<td class=ctd width="8%"><%=zbasicwg%>&nbsp;</td>
+    				<td class=ctd width="8%"><%=zrwxs%>&nbsp;</td>
+	    			<td class=ctd width="8%"><%=zzlxs%>&nbsp;</td>
+    				<td class=ctd width="8%"><%=zdxxs%>&nbsp;</td>
+    				<td class=ctd width="8%"><%=zgkxs%>&nbsp;</td>
+    				<td class=ctd width="8%"><%=zbmxs%></td>
+	    			<td class=ctd width="10%">&nbsp;</td>
+    				<td class=ctd width="10%">&nbsp;</td>
+    				<td class=ctd width="10%">&nbsp;</td>
+  			</tr>
+  			</Table>
+<%
+			zcount = zcount + 1
+		next
+%>
+<table cellpadding=2 cellspacing=0 class="xtable" width="<%=web_info(8)%>">
 <TR>
-<TD class=rtd colspan=12>
-The End.
-</TD>
+	<TD class=rtd colspan=12>The End.</TD>
 </TR>
-</TFOOT>
-</table>
+</Table>
 <%
 End Function
 
@@ -271,8 +267,8 @@ Function statkpfz(kp_item, i)
 		Case 0		'对组员进行统计
 			strSql="select ([kp_uprice]*[kp_mul]) as kp_f from [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
 		Case Else	'对组长进行统计
-			strSql="select [kp_lsh],max([kp_uprice]*[kp_mul]*0.5) as kp_f from [kp_jsb] where [kp_zrr]<>'"&struser&"' and  [kp_group]="&i&" and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0 group by [kp_lsh]"		
-			ZzSql="select * from [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
+			strSql="select [kp_lsh],max([kp_uprice]*[kp_mul]*0.5) as kp_f from [kp_jsb] where [kp_group]="&i&" and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0 group by [kp_lsh]"		
+			ZzSql="select ([kp_uprice]*[kp_mul]*0.5) as kp_f from [kp_jsb] where [kp_zrr]='"&struser&"' and [kp_item]='"&kp_item&"' and datediff('d',[kp_time],'"&dtstart&"')<=0 and datediff('d',[kp_time],'"&dtend&"')>=0"
 	End Select
 
 	Set tmpRs=xjweb.Exec(strSql, 1)
@@ -286,7 +282,8 @@ Function statkpfz(kp_item, i)
 	If i>0 Then
 		Set ZzRs=xjweb.Exec(ZzSql, 1)
 		Do While not ZzRs.eof
-			statkpfz=statkpfz + ZzRs("kp_uprice") * ZzRs("kp_mul")
+			statkpfz=statkpfz + ZzRs("kp_f")
+			ZzRs.movenext
 		loop
 		ZzRs.close
 		set ZzRs=nothing		

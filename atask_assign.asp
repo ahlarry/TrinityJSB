@@ -96,24 +96,10 @@ Function mtask_info(rs)
 <table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="rtd" width="15%">厂内调试</td>
-    <td colspan="3" class="ltd" width="35%"><%if rs("cnts") then%>
-      是
-      <%else%>
-      &nbsp;/
-      <%end if%></td>
+    <td colspan="3" class="ltd" width="35%"><%=rs("cnts")%></td>
     <td class="rtd" width="15%">调试类别</td>
-    <% If Rs("cnts") Then%>
-    <%If Not(isnull(Rs("tslb"))) Then%>
-    <td class="ltd"><%=Rs("tslb")%></td>
-    <%Else%>
-    <td class="ltd">&nbsp;/</td>
-    <%End If%>
-    <%Else%>
-    <%If Rs("beit") Then%>
-    <td class="ltd">北调</td>
-    <%Else%>
-    <td class="ltd">&nbsp;/</td>
-    <%End If%>
+    <% If Not(isnull(Rs("tslb"))) and Rs("cnts")<>"不调试" Then%>
+    <td class="ltd"><%=Rs("tslb")%>&nbsp;</td>
     <%End If%>
   </tr>
 </table>

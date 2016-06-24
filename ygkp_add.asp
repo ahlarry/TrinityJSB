@@ -471,7 +471,7 @@ Function PgbToTsykpAdd()	'品管部 to  调试技术员考评
     </Tr>
     <Tr>
       <td class=th width=100>考评项目</td>
-      <td class=ltd><Select name="kpinfo">
+      <td class=ltd><Select name="kpinfo" onChange="changexs()">
           <option value=""></option>
           <%
 						strSql="Select * from c_kplr where kp_kind=4 and kp_kpr=4 or kp_kind=4 and kp_kpr=106"		'4代表品管部
@@ -487,11 +487,15 @@ Function PgbToTsykpAdd()	'品管部 to  调试技术员考评
     </tr>
     <Tr>
       <td class=th width=100>零件件数</td>
-      <td class=ltd><input type="text" name="ljjs" size=8 value="1.0"></td>
+      <td class=ltd><input type="text" name="ljjs" size=8 value="1.0" onChange="changexs()"></td>
     </tr>
     <Tr>
       <td class=th width=100>零件系数</td>
-      <td class=ltd><input type="text" name="ljxs" size=8 value="1.0"></td>
+      <td class=ltd><input type="text" name="ljxs" size=8 value="1.0"  onChange="changexs()"></td>
+    </tr>
+    <Tr>
+      <td class=th width=100>考评分值</td>
+      <td class=ltd><input type="text" name="Pgkpfz" size=8 value="0"></td>
     </tr>
     <tr>
       <td class=th>备注</td>
@@ -519,7 +523,7 @@ Function PgbToZyKpAdd()		'品管部 to 组员考评
     </Tr>
     <Tr>
       <td class=th width=100>考评项目</td>
-      <td colspan="2" class=ltd><Select name="kpinfo">
+      <td colspan="2" class=ltd><Select name="kpinfo" onChange="changexs()">
           <option value=""></option>
           <%
 						strSql="Select * from c_kplr where kp_kind=5 and kp_kpr=4 or kp_kind=5 and kp_kpr=106"		'3代表组长
@@ -561,12 +565,17 @@ Function PgbToZyKpAdd()		'品管部 to 组员考评
     </Tr>
     <Tr>
       <td class=th width=100>零件件数</td>
-      <td colspan="2" class=ltd><input type="text" name="ljjs" size=8 value="1.0"></td>
+      <td colspan="2" class=ltd><input type="text" name="ljjs" size=8 value="1.0" onChange="changexs()"></td>
     </tr>
     <Tr>
       <td class=th width=100>零件系数</td>
-      <td colspan="2" class=ltd><input type="text" name="ljxs" size=8 value="1.0"></td>
+      <td colspan="2" class=ltd><input type="text" name="ljxs" size=8 value="1.0" onChange="changexs()"></td>
     </tr>
+    <Tr>
+      <td class=th width=100>考评分值</td>
+      <td colspan="2" class=ltd><input type="text" name="Pgkpfz" size=8 value="0"></td>
+    </tr>
+
     <tr>
       <td class=th>备注</td>
       <td colspan="2" class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
@@ -661,5 +670,15 @@ function zrrminus(arg) {
    	for (i=0;i<document.Pg2Zy.hxzrr.length;i++){
     	document.Pg2Zy.hxzrr.options[i].selected = false;
     }
+}
+
+function changexs()		//零件件数、零件系数关联函数
+{
+	var strs= new Array();
+	if (document.all.kpinfo.value !="")
+	{
+		strs = document.all.kpinfo.value.split("||")
+		document.all.Pgkpfz.value = strs[2] * document.all.ljjs.value * document.all.ljxs.value;
+	}
 }
 </script>

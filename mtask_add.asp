@@ -292,15 +292,9 @@ function mtask_cadd(rs)
     <tr>
       <td class=rtd>厂内调试</td>
       <td colspan="2" class=ltd><select name="cnts" style="width:51px;" onchange='ExcTslb(this);'>
-          <option value=true <%if rs("cnts") then%> selected <%end if%>>是</option>
-          <option value=false <%if not(rs("cnts")) then%> selected <%end if%>>否</option>
-        </select></td>
-    </tr>
-    <tr id=trbeit>
-      <td class=rtd>北&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调</td>
-      <td colspan="2" class=ltd><select name=beit style="width:51px;">
-          <option value=true <%if rs("beit") then%> selected <%end if%>>是</option>
-          <option value=false <%if not(rs("beit")) then%> selected <%end if%>>否</option>
+          <option value="全套" <%if rs("cnts")="全套" then%> selected <%end if%>>全套调试</option>
+          <option value="模头" <%if rs("cnts")="模头" then%> selected <%end if%>>模头调试</option>
+          <option value="不调试" <%if rs("cnts")="不调试" then%> selected <%end if%>>不调试</option>
         </select></td>
     </tr>
     <tr id=trtslb>
@@ -686,15 +680,9 @@ Function mtask_add()
     <tr>
       <td class=rtd>厂内调试</td>
       <td class=ltd><select name=cnts style="width:51px;" onchange='ExcTslb(this);'>
-          <option value=true selected>是</option>
-          <option value=false>否</option>
-        </select></td>
-    </tr>
-    <tr id=trbeit>
-      <td class=rtd>北&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;调</td>
-      <td class=ltd><select name=beit style="width:51px;">
-          <option value=true selected>是</option>
-          <option value=false>否</option>
+          <option value="全套" selected>全套调试</option>
+          <option value="模头" >模头调试</option>
+          <option value="不调试" >不调试</option>
         </select></td>
     </tr>
     <tr id=trtslb>
@@ -1153,23 +1141,17 @@ function chkmjxx(ftemp)
 	}
 	calmjfz()
 }
-//默认状态下北调下拉菜单不显示
-document.all.trbeit.style.display="none";
 //厂内调试关联动作
 function ExcTslb(ChangeV)
 {
-	if (ChangeV.value=="true")
-		{
-			document.all.trtslb.style.display="";
-			document.all.trbeit.style.display="none";
-
-		}
-	else
+	if (ChangeV.value=="不调试")
 		{
 			document.all.trtslb.style.display="none";
-			document.all.trbeit.style.display="";
 		}
-
+	else	
+		{
+			document.all.trtslb.style.display="";
+		}
 }
 
 //端面名称关联动作

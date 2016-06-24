@@ -5,7 +5,7 @@ Function mtask_fewinfo(rs)
 %>
 <%Call TbTopic("挤出模具厂挤出模设计任务书")%>
 
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr bgcolor="#DDDDDD">
     <td class="ltd" height="25" colspan="4"><b>■合同信息■</b></td>
   </tr>
@@ -52,7 +52,7 @@ Function mtask_muchinfo(rs)
 <%If Chkable("1,3") Then%>
 <a href="mtask_print.asp?s_lsh=<%=rs("lsh")%>">打印任务书</a>
 <%End If%>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr bgcolor="#DDDDDD">
     <td class="ltd" height="25" colspan="6"><b>合同信息</b></td>
   </tr>
@@ -132,7 +132,7 @@ Case Else		'09版共挤计分模式
 	If hgjf<>0 Then gjxx=gjxx &" 软硬后共挤"
 end select
 %>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr bgcolor="#DDDDDD">
     <td class="ltd" height="25" colspan="6"><b>模具信息</b></td>
   </tr>
@@ -149,24 +149,12 @@ end select
     %>
    </td>
         <td class="rtd"  width="13%">厂内调试</td>
-    <td class="ltd"  width="*"><%if rs("cnts") then%>
-      是
-      <%else%>
-      &nbsp;/
-      <%end if%></td>
+    <td class="ltd"  width="*"><%=rs("cnts")%></td>
     <td class="rtd"  width="13%">调试类别</td>
-    <% If Rs("cnts") Then%>
-    <%If Not(isnull(Rs("tslb"))) Then%>
+    <%If Not(isnull(Rs("tslb"))) and Rs("cnts")<>"不调试" Then%>
     <td class="ltd"  width="*"><a href="mtest_display.asp?s_lsh=<%=rs("lsh")%>"><%=Rs("tslb")%></a></td>
     <%Else%>
     <td class="ltd"  width="*">&nbsp;/</td>
-    <%End If%>
-    <%Else%>
-    <%If Rs("beit") Then%>
-    <td class="ltd"  width="*">北调</td>
-    <%Else%>
-    <td class="ltd"  width="*">&nbsp;/</td>
-    <%End If%>
     <%End If%>
   </tr>
   <tr>
@@ -213,7 +201,7 @@ end select
   </tr>
   </table>
   <%Response.Write(XjLine(5,web_info(8),""))%>
-  <table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+  <table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr bgcolor="#DDDDDD">
     <td class="ltd" height="25" colspan="8" alt="<%=DisFzInfo(Rs)%>"><b>其他信息</b></td>
   </tr>
@@ -251,7 +239,7 @@ end select
 Function mtask_allinfo(rs)
 %>
 <%Call TbTopic("挤出模具厂挤出模设计任务书")%>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr bgcolor="#DDDDDD">
     <td class="ltd" height="25" colspan="4"><b>合同信息</b></td>
   </tr>
@@ -366,7 +354,7 @@ Function mtask_userinfo(rs)
 Dim strgy
 strgy=""
 %>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <%
 			select case rs("mjxx") & rs("rwlr")
 				case "全套设计"
@@ -683,7 +671,7 @@ strgy=""
 Response.Write(XjLine(5, "100%", ""))
 If not(isNull(rs("gysjr"))) Then
 %>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="ctd" width="15%">工艺设计</td>
     <td class="ctd" width="35%" ><%=rs("gysjr")%>&nbsp;</td>
@@ -696,7 +684,7 @@ else
 select case rs("mjxx")
 	case "模头"
 	%>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="ctd" width="15%">模头工艺设计</td>
     <td class="ctd" width="35%"><%=rs("mtgysjr")%>&nbsp;</td>
@@ -707,7 +695,7 @@ select case rs("mjxx")
 <%
 	case "定型"
 	%>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="ctd" width="15%">定型工艺设计</td>
     <td class="ctd" width="35%"><%=rs("dxgysjr")%>&nbsp;</td>
@@ -718,7 +706,7 @@ select case rs("mjxx")
 <%
 	case else
 	%>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="ctd" width="15%">模头工艺设计</td>
     <td class="ctd" width="35%"><%=rs("mtgysjr")%>&nbsp;</td>
@@ -747,7 +735,7 @@ end function
 
 function atask_userinfo(rs)
 %>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <%
 			select case rs("mjxx")
@@ -840,7 +828,7 @@ end function
 
 function mtask_alluserinfo(rs)
 %>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <%select case rs("mjxx") & rs("rwlr")%>
   <%case "全套设计"%>
   <tr>
@@ -1292,7 +1280,7 @@ strgy=""
 Response.Write(XjLine(5, "100%", ""))
 If not(isNull(rs("gysjr"))) Then
 %>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="ctd" width="15%">工艺设计</td>
     <td class="ctd" width="9%" ><%=rs("gysjr")%>&nbsp;</td>
@@ -1315,7 +1303,7 @@ else
 select case rs("mjxx")
 	case "模头"
 	%>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="ctd" width="15%">模头工艺设计</td>
     <td class="ctd" width="9%"><%=rs("mtgysjr")%>&nbsp;</td>
@@ -1336,7 +1324,7 @@ select case rs("mjxx")
 <%
 	case "定型"
 	%>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="ctd">定型工艺设计</td>
     <td class="ctd"><%=rs("dxgysjr")%>&nbsp;</td>
@@ -1357,7 +1345,7 @@ select case rs("mjxx")
 <%
 	case else
 	%>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <tr>
     <td class="ctd" width="15%">模头工艺设计</td>
     <td class="ctd" width="9%"><%=rs("mtgysjr")%>&nbsp;</td>
@@ -1416,7 +1404,7 @@ end function
 
 function atask_alluserinfo(rs)
 %>
-<table class="xtable" cellspacing="0" cellpadding="3" width="95%">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <%select case rs("mjxx")%>
   <%case "全套"%>
   <tr>
@@ -1559,7 +1547,7 @@ end function
 
 Function DisTd(strfield1,strfield2,strdiff,rs)
 %>
-<table width="100%" cellpadding="0" cellspacing="0">
+<table width="100%" cellpadding="0" cellspacing="0" align="center">
   <tr>
     <%if isnull(strfield2) then
   	  if datediff("d", now, rs("jhjssj")) < strdiff then%>
@@ -1586,7 +1574,7 @@ End Function
 '结构,设计独立计时16:12 2007-4-1-星期日
 Function DisTdjg(strfield1,strfield2,strdiff,rs)
 %>
-<table width="100%" cellpadding="0" cellspacing="0">
+<table width="100%" cellpadding="0" cellspacing="0" align="center">
   <tr>
     <%if isnull(strfield2) then
   		  if datediff("d", strdiff, now) > 0 then%>
@@ -1612,7 +1600,7 @@ End Function
 
 Function DisTd2(strfield1,strfield2,rs)
 %>
-<table width="100%" cellpadding="0" cellspacing="0">
+<table width="100%" cellpadding="0" cellspacing="0" align="center">
   <tr>
     <%if isnull(strfield2) then
     	if isnull(strfield1) then%>
