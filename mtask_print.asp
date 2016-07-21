@@ -58,7 +58,7 @@ end select
 
 %>
 <%Call TbTopic("挤出模具厂挤出模设计任务书")%>
-<table class=ktable cellspacing=0 cellpadding=3 width="95%">
+<table class=ktable cellspacing=0 cellpadding=3 width="95%"  align="center">
   <tr bgcolor="#DDDDDD">
     <td class="ltd" height="25" colspan="8"><b>合同信息</b></td>
   </tr>
