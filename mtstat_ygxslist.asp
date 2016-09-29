@@ -169,7 +169,7 @@ Function YgxsStat()
 	tmpAble=Rs("user_Able")
 	Rs.Close
 
-	If InStr("45",ChkJs(tmpAble))>0 Then		'判断是不是组员或调试员
+	If InStr("456",ChkJs(tmpAble))>0 Then		'判断是不是组员或调试员
 		'1--任务分值
 		strSql="select * from [mantime] where zrr='"&struser&"' and datediff('d',jssj,'"&dtstart&"')<=0 and datediff('d',jssj,'"&dtend&"')>=0"
 		Set Rs=xjweb.Exec(strSql, 1)

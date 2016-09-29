@@ -56,7 +56,8 @@
 				If ChkAble(0) Then PageLink=PageLink & "<a href=mtstat_display.asp>查看任务分值</a> |"
 				If ChkAble(0) Then PageLink=PageLink & " <a href=mtstat_ygkpdis.asp>查看考评分值</a> |"
 				If ChkAble("2,3") Then PageLink=PageLink & " <a href=mtstat_ygxslist.asp>查看员工系数</a> |"
-				If ChkAble("2,3") Then PageLink=PageLink & " <a href=team_task.asp>任务定额</a>"
+				If ChkAble("2,3") Then PageLink=PageLink & " <a href=mtstat_fxtj.asp>分项统计</a>"
+'				If ChkAble("2,3") Then PageLink=PageLink & " <a href=team_task.asp>任务定额</a>"
 				
 			Case "docbak"	Rem 图档备份
 				If ChkAble(7) Then PageLink=PageLink & "<a href=docbak_add.asp>添加存档信息</a> |"

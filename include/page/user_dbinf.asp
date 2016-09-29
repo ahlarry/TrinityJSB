@@ -159,7 +159,7 @@
 		tmpDept=Rs("user_depart")
 		tmpAble=Rs("user_Able")
 		'所有统计人员,包括TT、TB调试员按组排序
-		if InStr("45689",ChkJs(tmpAble))>0 Or chkuser(10)  then
+		if InStr("145689",ChkJs(tmpAble))>0 Or chkuser(10)  then
 			if c_zypx <> "" then
 				c_zypx=c_zypx & "|||" & tmpname
 			else
