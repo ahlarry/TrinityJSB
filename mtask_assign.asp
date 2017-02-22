@@ -110,7 +110,7 @@ function mtask_assign(rs)
 		If chkable(3) Then
 			call mtask_finish(rs)
 		else
-			Call JsAlert("本任务已复审结束! 请联系主任结束本任务!","mtask_assign.asp")
+			Call JsAlert("本任务已复审结束! 请及时完成相应调试单任务!","mtask_assign.asp")
 		End If
 	else
 		select case rs("mjxx")
@@ -149,19 +149,22 @@ function mtask_assign(rs)
 end function		'mtask_assign()
 
 Function mtask_finish(rs)
+	if (rs("mjxx")="全套" and  (isnull(rs("mttsdjs")) or isnull(rs("dxtsdjs")))) or  (rs("mjxx")="模头" and isnull(rs("dxtsdjs"))) or  (rs("mjxx")="定型" and isnull(rs("dxtsdjs"))) then
+		Call JsAlert("请提醒组长及时完成相应调试单任务!","mtask_assign.asp")
+	end if
 %>
-<table border="0" cellpadding="4" cellspacing="0" class="xtable">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <form action="mtask_assignindb.asp" method="post" name="form_assign" id="form_assign" onsubmit="if(document.all.zrpsjl.value==''){alert('请填写评审记录!');return false;}">
     <tr>
       <td class="ctd" colspan="2" >模具分值:<b><%=Rs("mjzf")%></b></td>
     </tr>
     <tr>
-      <td class="ctd">评审记录:</td>
-      <td class="ctd"><textarea name="zrpsjl" rows="7" cols="50"><%=Rs("psjl")%></textarea></td>
+      <td class="ctd" width="15%">评审记录:</td>
+      <td class="ctd"><textarea name="zrpsjl" rows="7" cols="60"><%=Rs("psjl")%></textarea></td>
     </tr>
     <tr>
-      <td class="rtd">结束时间</td>
-      <td class="ltd"><select id="psd" name="psd">
+      <td class="ctd">结束时间</td>
+      <td class="ctd"><select id="psd" name="psd">
           <%for i = DateAdd("m", -2, date()) to date()%>
           <%if i = date() then%>
           <option value='<%=i%>' selected="selected"><%=i%></option>
@@ -185,15 +188,25 @@ End Function
 
 function mtask_audit(rs)
 %>
-<table border="0" cellpadding="4" cellspacing="0" class="xtable">
+<table class="xtable" cellspacing="0" cellpadding="3" width="95%" align="center">
   <form action="mtask_assignindb.asp" method="post" name="form_assign" id="form_assign" onsubmit="if(document.all.psjl.value==''){alert('请填写评审记录!');return false;}">
     <tr>
-      <td class="ctd">评审记录:</td>
-      <td class="ctd"><textarea name="psjl" rows="5" cols="50"><%If datediff("d", now, rs("jhjssj")) > 3 Then%>为约束任务安排合理性,系统不允许提前计划3天以上完成.<%End If%>
+      <td class="ctd"  width="15%">评审记录:</td>
+      <td class="ctd"><textarea name="psjl" rows="5" cols="80"><%If datediff("d", now, rs("jhjssj")) > 3 Then%>为约束任务安排合理性,系统不允许提前计划3天以上完成.<%End If%>
 </textarea></td>
       <td class="ctd"><input name="fplr" type="submit" value="结束复审" <%If datediff("d", now, rs("jhjssj")) > 3 Then%> disabled="disabled" <%End If%> /></td>
     </tr>
-    <input type="hidden" name="zrr" value="<%=session("userName")%>" />
+    <tr>
+    	<td class="ctd"  width="15%">评审人:</td>
+    	<td class="ctd">
+         <select name="zrr">
+          <%for i = 0 to ubound(c_allzz)%>
+          <option value='<%=c_allzz(i)%>' <%if session("userName")=c_allzz(i) then %> selected<%end if%>><%=c_allzz(i)%></option>
+          <%next%>
+          <option value=“朱钰”>朱钰</option>
+          <option value=“徐小停”>徐小停</option>
+        </select>
+	</td>
     <input type="hidden" name="lsh" value="<%=rs("lsh")%>" />
   </form>
 </table>

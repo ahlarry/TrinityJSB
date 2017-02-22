@@ -489,6 +489,7 @@
 		case "结束复审"
 			strSql="update [mtask] set psjl='"&request("psjl")&"', fsr='"&strzrr&"', fsjs='"&now()&"' where lsh='"&strlsh&"'"
 			call xjweb.Exec(strSql, 0)
+			call taskend(strlsh, "模具复审")
 			call sendmsg("伍新安", web_info(0), "模具全套结束", "<a href=mtask_display.asp?s_lsh="&strlsh&" target=""_blank"">流水号 <b>"&strlsh&"</b> 已结束复审，请求准予本模具全套结束。</a>")
 			Call JsAlert("流水号 【" & strlsh & "】 任务书组长分配部分完成!","mtask_assign.asp")
 
@@ -548,8 +549,8 @@ end function
 Function FenToDB(lsh)
 	'将分值写入分值库
 	Dim mjfz, mtfz, dxfz, gjfz, bomfz, ijgbl, isjbl, ishbl, ifgbl, ifgshbl, ifcbl, ijc, ijc2, imtjgbl, idxjgbl, ijgshbl, iljshbl, iwcsj, mtgjf, dxgjf, ssgjf, qbfgjf, qgjf, hgjf
-	Dim igysjxs, igysjsh, igyfcxs, igyfcsh, igyfgxs, igyfgsh, iGroup, tmpSql, tmpRs, itsdfz, sngmtbl
-	mtgjf=0 : dxgjf=0
+	Dim igysjxs, igysjsh, igyfcxs, igyfcsh, igyfgxs, igyfgsh, iGroup, tmpSql, tmpRs, itsdfz, sngmtbl, ifsxs
+	mtgjf=0 : dxgjf=0 : ifsxs=0
 	'ijc===奖惩分值
 	strSql="select * from [c_fzbl]"
 	set rs=xjweb.Exec(strSql, 1)
@@ -806,6 +807,22 @@ Function FenToDB(lsh)
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤设计确认',"&Round(hgjf*(1-idxjgbl)*iljshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
 '				Call Ddkp(rs("gjsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤设计确认")
+			end if
+
+			if not(isnull(rs("mtsjshr"))) and rs("fsr")<>rs("mtsjshr") Then ifsxs=1
+			if not(isnull(rs("dxsjshr"))) and rs("fsr")<>rs("dxsjshr") Then ifsxs=1
+			if not(isnull(rs("gjsjshr"))) and rs("fsr")<>rs("gjsjshr") Then ifsxs=1
+			if not(isnull(rs("fsr"))) and ifsxs=1 then '模具复审确认
+				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("fsr")&"'"
+				Set tmpRs=xjweb.Exec(tmpSql,1)
+				If Not(tmpRs.Eof Or tmpRs.Bof) Then
+					iGroup=tmpRs("user_group")
+				Else
+					iGroup=0
+				End If
+				tmpRs.Close
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模具复审确认',"&Round((mtfz*(1-imtjgbl)*iljshbl+dxfz*(1-idxjgbl)*iljshbl)*0.5,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("fsr")&"',"&iGroup&")"
+				call xjweb.Exec(strSql,0)
 			end if
 
 			'审核

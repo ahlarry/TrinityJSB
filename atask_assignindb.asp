@@ -411,24 +411,24 @@ function fentodb(lsh, strlr)
 		case "mttsd"	'模头调试单
 			strzrr=rs("mttsdr")
 			dtjssj=rs("mttsdjs")
-			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','模头调试单',"&itsdfz*sngmtbl*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
-			call xjweb.Exec(strSql,0)
+'			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','模头调试单',"&itsdfz*sngmtbl*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
+'			call xjweb.Exec(strSql,0)
 			If (datediff("d", dtjssj, jhsj) < -20) and (not isnull(rs("mttsdjs"))) and (not isnull(rs("dxtsdjs"))) then
 				call Tsdkp(strzrr, strlsh, 5, strlsh)
 			End if
 		case "dxtsd"	'定型调试单
 			strzrr=rs("dxtsdr")
 			dtjssj=rs("dxtsdjs")
-			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','定型调试单',"&itsdfz*(1-sngmtbl)*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
-			call xjweb.Exec(strSql,0)
+'			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','定型调试单',"&itsdfz*(1-sngmtbl)*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
+'			call xjweb.Exec(strSql,0)
 			If (datediff("d", dtjssj, jhsj) < -20) and (not isnull(rs("mttsdjs"))) and (not isnull(rs("dxtsdjs"))) then
 				call Tsdkp(strzrr, strlsh, 5, strlsh)
 			End if
 		case "qttsd"	'全套调试单
 			strzrr=rs("mttsdr")
 			dtjssj=rs("mttsdjs")
-			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','全套调试单',"&itsdfz*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
-			call xjweb.Exec(strSql,0)
+'			strSql="insert into [mantime] (lsh, rwlr, fz, jssj, jc, zrr) values ('"&lsh&"','全套调试单',"&itsdfz*ifgbl&",'"&dtjssj&"',0,'"&strzrr&"')"
+'			call xjweb.Exec(strSql,0)
 			If (datediff("d", dtjssj, jhsj) < -20) and (not isnull(rs("mttsdjs"))) and (not isnull(rs("dxtsdjs"))) then
 				call Tsdkp(strzrr, strlsh, 5, strlsh)
 			End if

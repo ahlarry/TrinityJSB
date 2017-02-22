@@ -1,4 +1,5 @@
 <!--#include file="include/conn.asp"-->
+<!--#include file="include/calendar.asp"-->
 <!--#include file="include/page/user_dbinf.asp"-->
 <%
 Call ChkPageAble(0)
@@ -158,7 +159,7 @@ Function ZrToZyKpAdd()		'主任 to 组员考评
     <tr id=trkpfz>
       <td class=th>考评分值</td>
       <td class=ltd><label>
-          <input name="kpfz" type="text" id="kpfz" value="0" readonly="true" onKeyPress="javascript:validationNumber(this, 'float', '', '');" />
+          <input name="kpfz" type="text" id="kpfz" value="0" onKeyPress="javascript:validationNumber(this, 'float', '', '');" />
         </label></td>
     </tr>
     <tr>
@@ -227,7 +228,7 @@ Function ZrToFwKpAdd()		'主任 to 服务技术员
     <tr id=trkpfz>
       <td class=th>考评分值</td>
       <td class=ltd><label>
-          <input name="kpfz" type="text" id="kpfz" value="0" readonly="true" onKeyPress="javascript:validationNumber(this, 'float', '', '');" />
+          <input name="kpfz" type="text" id="kpfz" value="0" onKeyPress="javascript:validationNumber(this, 'float', '', '');" />
         </label></td>
     </tr>
     <tr>
@@ -536,6 +537,17 @@ Function PgbToZyKpAdd()		'品管部 to 组员考评
 						Loop
 					%>
         </Select></td>
+    </tr>
+    <tr>
+      <td class=th width=100>考评时间</td>
+      <td colspan="2" class=ltd>
+		<script language=javascript>
+  		var myDate=new dateSelector();
+  		myDate.year;
+ 		myDate.inputName='khsj';  //注意这里设置输入框的name，同一页中日期输入框，不能出现重复的name。
+  		myDate.display();
+		</script>
+      </td>
     </tr>
     <Tr>
       <td width="100" rowspan="3" class=th>被考评人员</td>

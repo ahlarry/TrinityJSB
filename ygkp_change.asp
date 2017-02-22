@@ -63,17 +63,14 @@ Function KpChange()
       <td class=ltd><%=xjDate(rs("kp_time"),1)%></td>
     </tr>
     <tr>
-      <td class=th width=100>现修改考评时间</td>
-      <td class=ltd><%
-		Tmpkpsj=Rs("kp_time")
-			%>
-		<script language=javascript>
-  		var myDate=new dateSelector(<%=year(Tmpkpsj)&","&month(Tmpkpsj)&","&day(Tmpkpsj)%>);
+      <td class=rtd>考评时间</td>
+      <td colspan="2" class=ltd><script language=javascript>
+  		var myDate=new dateSelector();
   		myDate.year;
- 		myDate.inputName='kpsj';
+ 		myDate.inputName='kpsj';  //注意这里设置输入框的name，同一页中日期输入框，不能出现重复的name。
   		myDate.display();
-		</script>
-      </td>
+		</script></td>
+    </tr>
     </tr>
     <Tr>
       <td class=th width=100>考评分</td>

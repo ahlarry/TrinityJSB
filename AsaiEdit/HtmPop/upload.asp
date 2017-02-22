@@ -33,7 +33,7 @@ else
 	if Err_num=-1 then
 		upload_Results=upload_Results&"没有文件上传，请选择你要上传的文件"
 	elseif Err_num=1 then
-		upload_Results=upload_Results&"上传文件已超出最大限制(请小于"&request2.maxsize/1024&"KB)"
+		upload_Results=upload_Results&"上传文件已超出最大限制(请小于"&request2.maxsize/1048576&"MB)"
 	elseif Err_num=2 then
 		upload_Results=upload_Results&"不允许上传此格式的文件"
 	elseif Err_num=3 then

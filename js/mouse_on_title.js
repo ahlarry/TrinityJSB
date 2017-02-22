@@ -14,7 +14,8 @@ function showPopupText()
   MouseX=event.x;
   MouseY=event.y;
   if(o.alt!=null && o.alt!="") { o.dypop=o.alt;o.alt=""; }
-  if(o.dypop!=sPop && o.dypop!="")
+  if(o.title!=null && o.title!="") { o.dypop=o.title;o.title=""; }
+  if(o.dypop!=sPop)
   {
     sPop=o.dypop;
     clearTimeout(curShow);

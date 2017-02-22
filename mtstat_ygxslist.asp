@@ -231,7 +231,8 @@ Function YgxsStat()
 					kpif(2)=statkpfz("设计原因产生返工", 0)	
 				End If			
 				kpif(3)=statkpfz("设计原因质量损失超千元", 0)
-				kpf(1)=25+kpif(0)+kpif(1)+kpif(2)+kpif(3)
+				kpif(4)=statkpfz("BOM、清单及其他错误", 0)
+				kpf(1)=25+kpif(0)+kpif(1)+kpif(2)+kpif(3)+kpif(4)
 				if kpf(1)<0 Then kpf(1)=0
 				kpif(0)=statkpfz("做与工作无关的事,不服从分配", 0)
 				kpf(2)=10 + kpif(0)

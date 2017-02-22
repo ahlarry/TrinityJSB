@@ -484,11 +484,14 @@
 
 	'品管部考评信息入库
 	Function pgbkp_Add()
+		Dim strkptime
+		strkptime=Request("khsj")
+		If strkptime="" Then strkptime=Now()
 		strSql="select * from [kp_jsb]"
 		Call xjweb.Exec("",-1)
 		Rs.open strSql,conn,1,3
 		Rs.AddNew
-			Rs("kp_time")=Now()
+			Rs("kp_time")=strkptime
 			Rs("kp_zrr")=strZrr
 			Rs("kp_zrrjs")=strZrrjs
 			Rs("kp_group")=iGroup

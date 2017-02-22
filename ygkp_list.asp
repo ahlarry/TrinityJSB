@@ -184,7 +184,7 @@ Function ygkpList()
 			<td class=ctd><%=Formatnumber(Rs("kp_uprice"),1,-1)%></td>
 			<td class=ctd><%=Rs("kp_mul")%>&nbsp;</td>
 			<td class=ctd><%=Rs("kp_zrr")%></td>
-			<td class=ctd><%=Rs("kp_zrrjs")%>&nbsp;</td>
+			<td class=ctd><span title="<%=replace(replace(replace(Rs("kp_bz"),vbcrlf,"<br>"),"'","&#39;"),Chr(34),"&#34;") & "<br><br><b>Firefox ºÊ»›–‘≤‚ ‘</b>:" & Rs("kp_kpr")%>"><%=Rs("kp_zrrjs")%>&nbsp;</span></td>
 			<td class=ctd><%=xjDate(rs("kp_time"),1)%></td>
 			<%If ChkAble("1,2,3,11,12") Then%>
 			<td class=ctd>

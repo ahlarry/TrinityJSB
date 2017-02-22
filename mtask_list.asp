@@ -216,13 +216,13 @@ Function TaskList()
 				If strSql <> "" Then
 					strSql = " isnull(sjjssj) and " & strSql
 				Else
-					strSql  = " isnull(sjjssj) "
+					strSql  = " isnull(sjjssj) and not(isnull(ddh))"
 				End If
 			Case "ok"
 				If strSql <> "" Then
 					strSql = " not(isnull(sjjssj)) and " & strSql
 				Else
-					strSql  = " not(isnull(sjjssj)) "
+					strSql  = " not(isnull(sjjssj)) and not(isnull(ddh))"
 				End If
 			Case "all"
 			Case Else

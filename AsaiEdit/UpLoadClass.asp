@@ -67,8 +67,8 @@ Class UpLoadClass
 		m_Error	   = -1
 		m_Charset  = "gb2312"
 		m_TotalSize= 0
-		m_MaxSize  = 3072000
-		m_FileType = "png/jpg/gif/doc/docx/xls/xlsx/dwg"
+		m_MaxSize  = 10485760
+		m_FileType = "doc/docx/dwg/jpg/gif/png/pdf/xls/xlsx"
 		m_SavePath = ""
 		m_AutoSave = 0
 		Dim dtmNow : dtmNow = Date()

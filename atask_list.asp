@@ -155,9 +155,9 @@ Function ataskList()
 	If LCase(strorder) = "ddh" Then sqlorder = " order by ddh desc, lsh desc"
 	If LCase(strorder) = "lsh" Then sqlorder = " order by lsh desc"
 	If strsql <> "" Then
-		strsql = "select * from [mtask] where not(isnull(sjjssj)) and datediff('m',sjjssj,'"&now()&"')<15 and " & strsql & sqlorder
+		strsql = "select * from [mtask] where not(isnull(fsjs)) and datediff('m',fsjs,'"&now()&"')<15 and " & strsql & sqlorder
 	Else
-		strsql = "select * from [mtask] where not(isnull(sjjssj)) and datediff('m',sjjssj,'"&now()&"')<15 " & sqlorder
+		strsql = "select * from [mtask] where not(isnull(fsjs)) and datediff('m',fsjs,'"&now()&"')<15 " & sqlorder
 	End If
 	Call xjweb.Exec("",-1)
 	Set Rs=Server.CreateObject("ADODB.RECORDSET")

@@ -304,9 +304,9 @@ Function ygkpstatDisplay()
 <%icount=icount+1%>
 <tr>
   <td class=ctd><%=icount%></td>
-  <td class=ctd rowspan=4>定质</td>
+  <td class=ctd rowspan=5>定质</td>
   <td class=ctd>设计原因产生报废</td>
-  <td class=ctd rowspan=4>25.0</td>
+  <td class=ctd rowspan=5>25.0</td>
   <td class=ctd>4.0</td>
   <td class=ctd>分/次</td>
   <%
@@ -326,14 +326,16 @@ Function ygkpstatDisplay()
 		kpif(2)=statkpfz("设计原因产生返工", 0)	
 	End If			
 	ics(3)=statkpcs("设计原因质量损失超千元", "", 0)
+	ics(4)=statkpcs("BOM、清单及其他错误", "", 0)
 	kpif(3)=statkpfz("设计原因质量损失超千元", 0)
+	kpif(4)=statkpfz("BOM、清单及其他错误", 0)
 
-	kpf(1)=25+kpif(0)+kpif(1)+kpif(2)+kpif(3)
+	kpf(1)=25+kpif(0)+kpif(1)+kpif(2)+kpif(3)+kpif(4)
 	if kpf(1)<0 Then kpf(1)=0
 %>
   <td class=ctd><%=ics(0)%></td>
   <td class=ctd><%=kpif(0)%></td>
-  <td class=ctd rowspan=4><%=kpf(1)%></td>
+  <td class=ctd rowspan=5><%=kpf(1)%></td>
 </tr>
 <%icount=icount+1%>
 <tr>
@@ -361,6 +363,15 @@ Function ygkpstatDisplay()
   <td class=ctd>分/千元</td>
   <td class=ctd><%=ics(3)%></td>
   <td class=ctd><%=kpif(3)%></td>
+</tr>
+<%icount=icount+1%>
+<tr>
+  <td class=ctd><%=icount%></td>
+  <td class=ctd>BOM、清单及其他错误</td>
+  <td class=ctd>浮动</td>
+  <td class=ctd>分/次</td>
+  <td class=ctd><%=ics(4)%></td>
+  <td class=ctd><%=kpif(4)%></td>
 </tr>
 <%icount=1%>
 <tr>

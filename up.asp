@@ -9,7 +9,6 @@ Call TopTable()
 Dim strFeedBack, strOrder, strO, strlsh
 strOrder=Trim(Request("order"))
 strFeedBack="&order="&strOrder
-
 Call Main()
 Call BottomTable()
 xjweb.footer()
@@ -31,11 +30,11 @@ End Sub
 
 Function UpFz()
 	Dim n, slsh, oldxs, newxs
-	slsh="11835,11836"
-	slsh=split(slsh,",")
-	newxs=1.25
+	slsh="12109"
+'	slsh=split(slsh,",")
+	newxs=1.2
 '	for n=0 to ubound(slsh)
-'		oldxs=1	
+'		oldxs=1
 '		strSql="select * from [mtask] where lsh='"&slsh(n)&"'"
 '		Call xjweb.exec("",-1)
 '		Rs.open strSql,Conn,1,3
@@ -55,7 +54,17 @@ Function UpFz()
 '				Rs.movenext
 '			Loop
 '		Rs.close
-'	next			
-end function
 
+		strSql="select * from [mantime] where lsh='"&slsh&"'"
+		Call xjweb.exec("",-1)
+		Rs.open strSql,Conn,1,3
+			Do while not Rs.eof
+				Rs("fz")=Round(Rs("fz")*newxs,1)
+				Rs.update
+				Rs.movenext
+			Loop
+		Rs.close
+
+'	next
+end function
 %>
