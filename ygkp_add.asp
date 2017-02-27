@@ -27,23 +27,18 @@ Sub Main()
   <Tr>
     <Td class=ctd height=300><%
 				Select Case action
-					Case "cztozrkp"
-						Call CzToZrKpAdd()
+					Case "zrtowgkp"
+						Call ZrToWgKpAdd()
 					Case "zrtozykp"
 						Call ZrToZyKpAdd()
-					Case "zrtofwkp"
-						Call ZrToFwkpAdd()
-					Case "zztotsykp"
-						Call ZzToTsyKpAdd()
+					Case "zrtotsykp"
+						Call ZrToTsyKpAdd()
 					Case "zztozykp"
 						Call ZzToZyKpAdd()
 					Case "PgbToTsykp"
 						Call PgbToTsykpAdd()
 					Case "pgbtozykp"
 						Call PgbToZyKpAdd()
-					Case "glbtozrkp"
-						Call GlbKpAdd()
-					Case Else
 				End Select
 			%>
       <%Response.Write(XjLine(10,"100%",""))%></Td>
@@ -63,13 +58,13 @@ Function kpHead() '考评页面页首
 
 	If Chkable(3) Then		'主任
 	%>
-主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任 → <a href="?kp=zrtozykp">设计技术员考评</a> | <a href="?kp=zrtofwkp">服务技术员考评</a> <br>
+主&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;任 → <a href="?kp=zrtozykp">技术员考评</a> | <a href="?kp=zrtotsykp">调试员考评</a> | <a href="?kp=zrtowgkp">服务人员考评</a> <br>
 <%
 	End If
 
 	If Chkable(11) Then	'品管部
 	%>
-品&nbsp;管&nbsp;&nbsp;部 → <a href="?kp=PgbToTsykp">调试技术员考评</a> | <a href="?kp=pgbtozykp">设计、服务技术员考评</a><br>
+品&nbsp;管&nbsp;&nbsp;部 → <a href="?kp=PgbToTsykp">调试员考评</a> | <a href="?kp=pgbtozykp">技术员考评</a><br>
 <%
 	End If
 
@@ -80,56 +75,11 @@ Function kpHead() '考评页面页首
 	End If
 End Function
 
-Function CzToZrKpAdd()	 '厂长to主任考评
-	Call ChkPageAble(2)
-%>
-<%Call TbTopic("技术厂长 → 主任考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%"  align="center">
-  <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
-    <Tr>
-      <td class=th width=100>被考评人员</td>
-      <td class=ltd><Select name="kpzrr">
-          <option value=""></option>
-          <%for i = 0 to ubound(c_alljl)%>
-          <option value='<%=c_alljl(i)%>'><%=c_alljl(i)%></option>
-          <%next%>
-        </Select></td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>考评项目</td>
-      <td class=ltd><Select name="kpinfo">
-          <option value=""></option>
-          <%
-					strSql="Select * from [c_kplr] where kp_kind=1 and kp_kpr=1"	'kpr=1为技术厂长
-					Set Rs=xjweb.Exec(strSql, 1)
-					Do While Not Rs.Eof
-						%>
-          <Option value="<%=Rs("kp_topic") & "||" & Rs("kp_item") & "||" & Rs("kp_uprice") & "||" & Rs("Kp_mul")%>"><%=Rs("kp_topic")%></Option>
-          <%
-						Rs.MoveNext
-					Loop
-				%>
-        </Select></td>
-    </tr>
-    <tr>
-      <td class=th>备注</td>
-      <td class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
-    </Tr>
-    <tr>
-      <td class=th>操作</td>
-      <td class=ltd><input type="submit" value=" 确定 "></td>
-    </Tr>
-    <input type="hidden" name="action" value="cztozrkp">
-  </form>
-</Table>
-<%
-End Function
-
 Function ZrToZyKpAdd()		'主任 to 组员考评
 	Call ChkPageAble(3)
 %>
-<%Call TbTopic("主任 → 设计技术员考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%"  align="center">
+<%Call TbTopic("主任 → 技术员考评")%>
+<table class=xtable cellspacing=0 cellpadding=3 width="70%"  align="center">
   <form name="zrtozy" action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
     <Tr>
       <td class=th width=100>被考评人员</td>
@@ -194,18 +144,18 @@ Function ZrToZyKpAdd()		'主任 to 组员考评
 End Function
 
 
-Function ZrToFwKpAdd()		'主任 to 服务技术员
+Function ZrToTsyKpAdd()		'主任 to 调试员
 	Call ChkPageAble(3)
 %>
-<%Call TbTopic("主任 → 服务技术员考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%"  align="center">
+<%Call TbTopic("主任 → 调试员考评")%>
+<table class=xtable cellspacing=0 cellpadding=3 width="70%"  align="center">
   <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
     <Tr>
       <td class=th width=100>被考评人员</td>
       <td class=ltd><Select name="kpzrr">
           <option value=""></option>
-          <%for i = 0 to ubound(c_allgy)%>
-          <option value='<%=c_allgy(i)%>'><%=c_allgy(i)%></option>
+          <%for i = 0 to ubound(c_xz5)%>
+          <option value='<%=c_xz5(i)%>'><%=c_xz5(i)%></option>
           <%next%>
         </Select></td>
     </Tr>
@@ -214,7 +164,7 @@ Function ZrToFwKpAdd()		'主任 to 服务技术员
       <td class=ltd><Select name="kpinfo" onChange="changexm();">
           <option value=""></option>
           <%
-						strSql="Select * from c_kplr where kp_kind=8 and kp_kpr=2 or kp_kind=8 and kp_kpr=3 or kp_kind=8 and kp_kpr=106 order by kp_id"		'kp_kind=5代表组员,kp_kpr=2代表主任
+						strSql="Select * from c_kplr where kp_kind=4 and kp_kpr=2 or kp_kind=4 and kp_kpr=106 order by kp_id"		'kp_kind=5代表组员,kp_kpr=2代表主任
 						Set Rs=xjweb.Exec(strSql, 1)
 						Do While Not Rs.Eof
 							%>
@@ -239,7 +189,7 @@ Function ZrToFwKpAdd()		'主任 to 服务技术员
       <td class=th>操作</td>
       <td class=ltd><input type="submit" value=" 确定 "></td>
     </Tr>
-    <input type="hidden" name="action" value="zrtogykp">
+    <input type="hidden" name="action" value="zrtotsykp">
   </form>
 </Table>
 <script language="javascript">
@@ -262,68 +212,27 @@ Function ZrToFwKpAdd()		'主任 to 服务技术员
 <%
 End Function
 
-Function ZzToTsykpAdd()		'组长 to 调试员考评
-	Call ChkPageAble(4)
-	If Session("usergroup")<>5 Then Exit Function
+Function ZrToWgKpAdd()		'主任 to 服务人员考评
+	Call ChkPageAble(3)
 %>
-<%Call TbTopic("组长 → 调试员考评")%>
+<%Call TbTopic("组长 → 服务组考评")%>
 <table class=xtable cellspacing=0 cellpadding=3 width="70%"  align="center">
   <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
-    <input type="hidden" name="kpzrr" value="">
     <Tr>
       <td class=th width=100>被考评人员</td>
-      <td class=ltd width="*"><span id="kpzrr_dis" name="kpzrr_dis">请选择被考评人</span></td>
+      <td class=ltd><Select name="kpzrr">
+          <option value=""></option>
+          <%for i = 0 to ubound(c_xz0)%>
+          <option value='<%=c_xz0(i)%>'><%=c_xz0(i)%></option>
+          <%next%>
+        </Select></td>
     </tr>
-    <tr>
-      <td class=th>被考评人列表</td>
-      <td class=ltd><table border="0" width="100%" cellspacing="0" cellpadding="0">
-          <tr>
-            <%
-				dim j
-				j=1
-				for i=0 to ubound(c_alltsy)
-					if j>10 then response.write("</tr><tr>") : j=1
-			%>
-            <td><input type=checkbox id=user<%=i%> name=user<%=i%> value=<%=c_alltsy(i)%> class=radio onClick="changetsy();">
-              <label for=user<%=i%>><%=c_alltsy(i)%></label></td>
-            <%
-					j=j+1
-				next
-			%>
-          </tr>
-        </table></td>
-    </tr>
-    <script language="javascript">
-		function changetsy()
-		{
-			var ii=0;
-			var strtemp="";
-			for(ii=0; ii<=<%=ubound(c_alltsy)%>; ii++)
-			{
-				if(eval("document.all.user" + ii +".checked==true"))
-					//alert(eval("document.all.user" + ii + ".value"));
-				{
-					if(strtemp!="")
-						strtemp=strtemp + "|" + eval("document.all.user" + ii + ".value");
-					else
-						strtemp=eval("document.all.user" + ii + ".value");
-				}
-			}
-
-			if(strtemp=="")
-				document.all.kpzrr_dis.innerHTML="请选择被考评人";
-			else
-				document.all.kpzrr_dis.innerHTML=strtemp;
-			document.all.kpzrr.value=strtemp;
-		}
-
-	</script>
     <Tr>
       <td class=th width=100>考评项目</td>
-      <td class=ltd><Select name="kpinfo">
+      <td class=ltd><Select name="kpinfo" onChange="changexm();">
           <option value=""></option>
           <%
-						strSql="Select * from c_kplr where kp_kind=4 and kp_kpr=3"		'3代表组长
+						strSql="Select * from c_kplr where kp_kind=1 and kp_kpr=2"
 						Set Rs=xjweb.Exec(strSql, 1)
 						Do While Not Rs.Eof
 							%>
@@ -334,12 +243,12 @@ Function ZzToTsykpAdd()		'组长 to 调试员考评
 					%>
         </Select></td>
     </tr>
-    <Tr>
-      <span id=tshglsh style=display:black;>
-      <td class=th>模具流水号</td>
-      <td class=ltd><input type=text name="hglsh" size=15>
-        </span>(除样品合格外，此项均不填)</td>
-    </Tr>
+    <tr id=trkpfz>
+      <td class=th>考评分值</td>
+      <td class=ltd><label>
+          <input name="kpfz" type="text" id="kpfz" value="0" onKeyPress="javascript:validationNumber(this, 'float', '', '');" />
+        </label></td>
+    </tr>
     <tr>
       <td class=th>备注</td>
       <td class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
@@ -348,9 +257,26 @@ Function ZzToTsykpAdd()		'组长 to 调试员考评
       <td class=th>操作</td>
       <td class=ltd><input type="submit" value=" 确定 "></td>
     </Tr>
-    <input type="hidden" name="action" value="zztotsykp">
+    <input type="hidden" name="action" value="zrtowgkp">
   </form>
 </Table>
+<script language="javascript">
+		function changexm()
+		{
+			var TmpArr = new Array();
+			var str1 = document.all.kpinfo.value;
+			TmpArr = str1.split("||")
+			document.all.kpfz.value=TmpArr[2];
+			if(TmpArr[2]==0)
+				{
+				document.getElementById("kpfz").readOnly=false;
+				}
+			else
+				{
+				document.getElementById("kpfz").readOnly=true;
+				}
+		}
+	</script>
 <%
 End Function
 
@@ -597,51 +523,6 @@ Function PgbToZyKpAdd()		'品管部 to 组员考评
       <td colspan="2" class=ltd><input type="submit" value=" 确定 "></td>
     </Tr>
     <input type="hidden" name="action" value="pgbtozykp">
-  </form>
-</Table>
-<%
-End Function
-
-Function GlbKpAdd()		'管理部考评
-	Call ChkPageAble(12)
-%>
-<%Call TbTopic("管理部 → 技术部主任考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%" align="center">
-  <form action="ygkp_indb.asp" method="post" onSubmit="return chkygkp(this);">
-    <Tr>
-      <td class=th width=100>被考评人员</td>
-      <td class=ltd><Select name="kpzrr">
-          <option value=""></option>
-          <%for i = 0 to ubound(c_alljl)%>
-          <option value='<%=c_alljl(i)%>'><%=c_alljl(i)%></option>
-          <%next%>
-        </Select></td>
-    </Tr>
-    <Tr>
-      <td class=th width=100>考评项目</td>
-      <td class=ltd><Select name="kpinfo">
-          <option value=""></option>
-          <%
-						strSql="Select * from c_kplr where kp_kind=1 and kp_kpr=5"		'3代表组长
-						Set Rs=xjweb.Exec(strSql, 1)
-						Do While Not Rs.Eof
-							%>
-          <Option value="<%=Rs("kp_topic") & "||" & Rs("kp_item") & "||" & Rs("kp_uprice") & "||" & Rs("Kp_mul")%>"><%=Rs("kp_item")%></Option>
-          <%
-							Rs.MoveNext
-						Loop
-					%>
-        </Select></td>
-    </tr>
-    <tr>
-      <td class=th>备注</td>
-      <td class=ltd><textarea cols="50" rows="7" name="kpbz"></textarea></td>
-    </Tr>
-    <tr>
-      <td class=th>操作</td>
-      <td class=ltd><input type="submit" value=" 确定 "></td>
-    </Tr>
-    <input type="hidden" name="action" value="glbtozrkp">
   </form>
 </Table>
 <%

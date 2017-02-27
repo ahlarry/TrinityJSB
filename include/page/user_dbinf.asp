@@ -3,7 +3,7 @@
 	'本页用到类xj_classs的实例xjweb
 	dim c_alluser, c_allzy, c_allzz, c_alljl, c_alltsy, c_alljszd, c_allgy, c_allbc, c_zypx, maxGroup
 	dim c_xz0, c_xz1, c_xz2, c_xz3, c_xz4, c_xz5, c_xz6, c_xz7, c_xz8, c_allstat, c_jsb
-	dim tmpname, tmpGroup, tmpDept, tmpAble	
+	dim tmpname, tmpGroup, tmpDept, tmpAble
 	c_alluser="": c_allzy="": c_allzz="": c_alljl="" : c_alltsy="" : c_alljszd="" : c_allgy="" : c_allbc=""
 	c_xz0="" : c_xz1="" : c_xz2="" : c_xz3="" : c_xz4="" : c_xz5="" : c_xz6="" : c_xz7="" : c_xz8="" : c_allstat=""
 	c_jsb="" : c_zypx="" : maxGroup=0
@@ -38,7 +38,7 @@
 			end if
 		end if
 		'组员数组
-		if InStr("45689",ChkJs(tmpAble))>0 then
+		if InStr("145689",ChkJs(tmpAble))>0 then
 			if c_allzy <> "" then
 				c_allzy=c_allzy & "|||" & tmpname
 			else
@@ -131,7 +131,7 @@
 		end if
 
 		'所有统计人员,包括TT、TB调试员
-		if InStr("2345689",ChkJs(tmpAble))>0 Or chkuser(10)  then
+		if InStr("12345689",ChkJs(tmpAble))>0 Or chkuser(10)  then
 			if c_allstat <> "" then
 				c_allstat=c_allstat & "|||" & tmpname
 			else
@@ -151,7 +151,7 @@
 		rs.movenext
 	loop
 	rs.close
-	
+
 	set rs = xjweb.exec("select user_name, user_able, user_group, user_depart from ims_user where user_name<>'AA' and user_name<>'BB' and user_depart='技术部' order by user_group",1)
 	do while not rs.eof
 		tmpname=replace(rs("user_name"),"|||","")
@@ -168,8 +168,8 @@
 		end if
 		rs.movenext
 	loop
-	rs.close	
-	
+	rs.close
+
 	If c_alluser="" Then c_alluser=" "
 	If c_allzy="" Then c_allzy=" "
 	If c_allzz="" Then c_allzz=" "

@@ -62,10 +62,12 @@ Function uctrlSendMsg()
         第&nbsp;二&nbsp;组&nbsp;&nbsp;
         <input type=checkbox id=qfzy3 name=qfzy3 value=xz3 onclick="checkxz();">
         第&nbsp;三&nbsp;组&nbsp;&nbsp;
-        <input type=checkbox id=qfzy4 name=qfzy4 value=xz5 onclick="checkxz();">
+        <input type=checkbox id=qfzy4 name=qfzy4 value=xz4 onclick="checkxz();">
+        第&nbsp;四&nbsp;组&nbsp;&nbsp;
+        <input type=checkbox id=qfzy5 name=qfzy5 value=xz5 onclick="checkxz();">
         调&nbsp;试&nbsp;组&nbsp;&nbsp;
         <input type=checkbox id=qfzy0 name=qfzy0 value=xz0 onclick="checkxz();">
-        自&nbsp;由&nbsp;组
+        服&nbsp;务&nbsp;组
          </td>
     </tr>
     <tr>
@@ -123,7 +125,8 @@ Function uctrlSendMsg()
 		var allxz1=new Array(<%=ubound(c_xz1)%>);
 		var allxz2=new Array(<%=ubound(c_xz2)%>);
 		var allxz3=new Array(<%=ubound(c_xz3)%>);
-		var allxz4=new Array(<%=ubound(c_xz5)%>);
+		var allxz4=new Array(<%=ubound(c_xz4)%>);
+		var allxz5=new Array(<%=ubound(c_xz5)%>);
 
 		var i,j;
 		for (i = 0; i <<%=ubound(c_allzy)%>; i++)
@@ -137,7 +140,7 @@ Function uctrlSendMsg()
 			<%for i=0 to ubound(c_xz0)%>
 				allxz0[<%=i%>] ="<%=c_xz0(i)%>";
 			<%next%>
-		}		
+		}
 		for (i = 0; i <<%=ubound(c_xz1)%>; i++)
 		{
 			<%for i=0 to ubound(c_xz1)%>
@@ -156,10 +159,16 @@ Function uctrlSendMsg()
 				allxz3[<%=i%>] ="<%=c_xz3(i)%>";
 			<%next%>
 		}
+		for (i = 0; i <<%=ubound(c_xz4)%>; i++)
+		{
+			<%for i=0 to ubound(c_xz4)%>
+				allxz4[<%=i%>] ="<%=c_xz4(i)%>";
+			<%next%>
+		}
 		for (i = 0; i <<%=ubound(c_xz5)%>; i++)
 		{
 			<%for i=0 to ubound(c_xz5)%>
-				allxz4[<%=i%>] ="<%=c_xz5(i)%>";
+				allxz5[<%=i%>] ="<%=c_xz5(i)%>";
 			<%next%>
 		}
 		for (i = 0; i <<%=ubound(c_allzz)%>; i++)
@@ -210,7 +219,7 @@ Function uctrlSendMsg()
 			{
 				eval("document.all.user"+j+".checked=false");
 			}
-			for(i=0;i<5;i++) {
+			for(i=0;i<6;i++) {
 				eval("document.all.qfzy" + i +".checked=false");
 			}
 			changesenduser();
@@ -230,7 +239,7 @@ Function uctrlSendMsg()
 			{
 				eval("document.all.user"+j+".checked=false");
 			}
-			for(i=0;i<5;i++) {
+			for(i=0;i<6;i++) {
 				eval("document.all.qfzy"+i+".checked=false");
 			}
 			for(j=0; j<=<%=ubound(c_jsb)%>; j++)
@@ -251,7 +260,7 @@ Function uctrlSendMsg()
 			{
 				eval("document.all.user"+j+".checked=false");
 			}
-			for(i=0;i<5;i++) {
+			for(i=0;i<6;i++) {
 				eval("document.all.qfzy"+i+".checked=false");
 			}
 			for(j=0; j<=<%=ubound(c_jsb)%>; j++)
@@ -268,7 +277,7 @@ Function uctrlSendMsg()
 		}
 		function checkjl()
 		{
-			for(i=0;i<5;i++) {
+			for(i=0;i<6;i++) {
 				eval("document.all.qfzy"+i+".checked=false");
 			}
 			for(j=0; j<=<%=ubound(c_jsb)%>; j++)
@@ -292,7 +301,7 @@ Function uctrlSendMsg()
 		{
 			document.all.msgqf[4].checked=true;
 			var xz=new Array();
-			for(i=0;i<5;i++) {
+			for(i=0;i<6;i++) {
 				var chkobj=eval("document.all.qfzy" + i);
 				var b=eval("allxz"+i);
 				if(chkobj.checked){
@@ -336,7 +345,7 @@ Function uctrlSendMsg()
 				document.all.span_incept.innerHTML="请选择接收人";
 			else
 				document.all.span_incept.innerHTML=strtemp;
-			document.all.incept.value=strtemp;
+				document.all.incept.value=strtemp;
 		}
 		function msgsendchk()
 		{

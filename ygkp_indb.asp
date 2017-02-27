@@ -9,54 +9,6 @@
 	action=LCase(Request("action"))
 	'数据入库函数从这里开始
 	Select Case action
-		Case "cztozrkp"		'1. 厂长 to 主任考评
-			strZrr=Request("kpzrr")
-			If strZrr="" Then Call JsAlert("请选择考评人员!","")
-			iKpKind=1		'1为主任考评
-			strTemp=Request("kpinfo")
-			strTemp=Split(strTemp,"||")
-			If Ubound(strTemp)<>3 Then Call JsAlert("请选择考评类型!","")
-			strKpTopic=strTemp(0)
-			strKpItem=strTemp(1)
-			iKpUPrice=CSng(strTemp(2))
-			iKpMul=CInt(strTemp(3))
-			strBz=Request("kpbz")
-			If strBz="" Then Call JsAlert("备注为空!","")
-			Call kp_add("厂长 → 主任")
-			Call JsAlert("厂长 → 主任考评添加成功!","ygkp_add.asp")
-
-
-		Case "zrtozzkp"		'2.主任 to 组长考评
-			strZrr=Request("kpzrr")
-			If strZrr="" Then Call JsAlert("请选择考评人员!","")
-
-			strSql="Select [user_group] from [ims_user] where [user_name]='"&strZrr&"'"
-			'response.write strsql
-			Set Rs=xjweb.Exec(strSql,1)
-			If Not(Rs.Eof Or Rs.Bof) Then
-				iGroup=Rs("user_group")
-			End If
-			Rs.Close
-
-			iKpKind=3		'3为组长考评
-			strTemp=Request("kpinfo")
-			strTemp=Split(strTemp,"||")
-			If Ubound(strTemp)<>3 Then Call JsAlert("请选择考评类型!","")
-			strKpTopic=strTemp(0)
-			strKpItem=strTemp(1)
-			If strTemp(2)="" Then
-				iKpUPrice=Request("wtfz")
-			else
-				iKpUPrice=CSng(strTemp(2))
-			End If
-			If iKpUPrice="" Then Call JsAlert("考评分不能为空!","")
-			iKpMul=CInt(strTemp(3))
-			strBz=Request("kpbz")
-			If strBz="" Then Call JsAlert("备注为空!","")
-			Call kp_add("主任 → 组长")
-			Call JsAlert("主任 → 组长考评添加成功!","ygkp_add.asp")
-
-
 		Case "zrtozykp"		'3主任 to 组员考评
 			iKpKind=5		'5为组员考评
 			strTemp=Request("kpinfo")
@@ -113,7 +65,7 @@
 			End If
 			Call JsAlert("主任 → 组员考评添加成功!","ygkp_add.asp")
 
-		Case "zrtofwkp"		'4主任 to 服务技术员考评
+		Case "zrtotsykp"		'4主任 to 调试员考评
 			strZrr=Request("kpzrr")
 			If strZrr="" Then Call JsAlert("请选择考评人员!","")
 
@@ -125,7 +77,7 @@
 			End If
 			Rs.Close
 
-			iKpKind=8	'8为服务技术员
+			iKpKind=4	'4为调试员
 			iKpUPrice=Round(Request("kpfz"),1)
 			If iKpUPrice="" Then Call JsAlert("考评分不能为空!","")
 			strTemp=Request("kpinfo")
@@ -136,11 +88,40 @@
 			iKpMul=CInt(strTemp(3))
 			strBz=Request("kpbz")
 			If strBz="" Then Call JsAlert("备注为空!","")
-			Call kp_add("主任 → 服务技术员考评")
+			Call kp_add("主任 → 调试员考评")
 			If strZrr<>"" Then
 				call sendmsg(strZrr, web_info(0), "考核内容:"&strKpItem&"<br>", "您因<b>"&strKpItem&"</b>被考核，详细内容请看考评列表")
 			End If
-			Call JsAlert("主任 → 服务技术员考评考评添加成功!","ygkp_add.asp")
+			Call JsAlert("主任 → 调试员考评考评添加成功!","ygkp_add.asp")
+
+		Case "zrtowgkp"		'4主任 to 网管服务人员考评
+			strZrr=Request("kpzrr")
+			If strZrr="" Then Call JsAlert("请选择考评人员!","")
+
+			strSql="Select [user_group] from [ims_user] where [user_name]='"&strZrr&"'"
+			'response.write strsql
+			Set Rs=xjweb.Exec(strSql,1)
+			If Not(Rs.Eof Or Rs.Bof) Then
+				iGroup=Rs("user_group")
+			End If
+			Rs.Close
+
+			iKpKind=1
+			iKpUPrice=Round(Request("kpfz"),1)
+			If iKpUPrice="" Then Call JsAlert("考评分不能为空!","")
+			strTemp=Request("kpinfo")
+			strTemp=Split(strTemp,"||")
+			If Ubound(strTemp)<>3 Then Call JsAlert("请选择考评类型!","")
+			strKpTopic=strTemp(0)
+			strKpItem=strTemp(1)
+			iKpMul=CInt(strTemp(3))
+			strBz=Request("kpbz")
+			If strBz="" Then Call JsAlert("备注为空!","")
+			Call kp_add("主任 → 服务人员考评")
+			If strZrr<>"" Then
+				call sendmsg(strZrr, web_info(0), "考核内容:"&strKpItem&"<br>", "您因<b>"&strKpItem&"</b>被考核，详细内容请看考评列表")
+			End If
+			Call JsAlert("主任 → 服务人员考评添加成功!","ygkp_add.asp")
 
 		Case "zztotsykp"		'6.组长 to 调试员考评
 			dim tZrr

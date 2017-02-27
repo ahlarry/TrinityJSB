@@ -138,7 +138,7 @@ Sub DisChangeUser()
 								<Td class=ltd>
 									<input type=checkbox name="able1" value=true <%if chkuser(1) then%> checked <%end if%>>管理员<br>
 									<input type=checkbox name="able2" value=true <%if chkuser(2) then%> checked <%end if%>>厂长<br>
-									<input type=checkbox name="able3" value=true <%if chkuser(3) then%> checked <%end if%>>经理<br>
+									<input type=checkbox name="able3" value=true <%if chkuser(3) then%> checked <%end if%>>主任<br>
 									<input type=checkbox name="able4" value=true <%if chkuser(4) then%> checked <%end if%>>组长<br>
 									<input type=checkbox name="able5" value=true <%if chkuser(5) then%> checked <%end if%>>组员<br>
 									<input type=checkbox name="able6" value=true <%if chkuser(6) then%> checked <%end if%>>模具调试员<br>
@@ -146,9 +146,11 @@ Sub DisChangeUser()
 									<input type=checkbox name="able8" value=true <%if chkuser(8) then%> checked <%end if%>>服务技术员<br>
 									<input type=checkbox name="able9" value=true <%if chkuser(9) then%> checked <%end if%>>编程技术员<br>
 									<input type=checkbox name="able10" value=true <%if chkuser(10) then%> checked <%end if%>>副主任<br>
-									<input type=checkbox name="able11" value=true <%if chkuser(11) then%> checked <%end if%>>品管部<br>
-									<input type=checkbox name="able12" value=true <%if chkuser(12) then%> checked <%end if%>>管理部<br>
-									<input type=checkbox name="able13" value=true <%if chkuser(13) then%> checked <%end if%>>网络管理员<br>
+									<input type=checkbox name="able11" value=true <%if chkuser(11) then%> checked <%end if%>>品质管理员<br>
+									<input type=checkbox name="able12" value=true <%if chkuser(12) then%> checked <%end if%>>生产协调员<br>
+									<input type="hidden" name="able13" value=False <%if chkuser(12) then%> checked <%end if%>>
+									<input type="hidden" name="able14" value=False <%if chkuser(12) then%> checked <%end if%>>
+									<input type="hidden" name="able15" value=False <%if chkuser(12) then%> checked <%end if%>>
 								</td>
 							</Tr>
 							<tr>
