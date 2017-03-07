@@ -3,8 +3,8 @@
 '11:22 2007-5-30-星期三
 	'本文件只负责分配任务书的入库
 	Call ChkPageAble("3,4")
-	dim strfplr, strzrr, strlsh, strSql2, Rs2, strhth
-	strSql2=""
+	dim strfplr, strzrr, strlsh, strSql2, Rs2, strhth, imtsjshf, idxsjshf
+	strSql2="" : imtsjshf=0 : idxsjshf=0
 	strfplr=request("fplr")
 	strzrr=request("zrr")
 	strlsh=request("lsh")
@@ -743,7 +743,8 @@ Function FenToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头设计确认',"&Round(mtfz*(1-imtjgbl)*iljshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtsjshr")&"',"&iGroup&")"
+				imtsjshf=Round(mtfz*(1-imtjgbl)*iljshbl,1)
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头设计确认',"&imtsjshf&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
 '				Call Ddkp(rs("mtsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头设计确认")
 			end if
@@ -776,7 +777,8 @@ Function FenToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型设计确认',"&Round(dxfz*(1-idxjgbl)*iljshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxsjshr")&"',"&iGroup&")"
+				idxsjshf=Round(dxfz*(1-idxjgbl)*iljshbl,1)
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型设计确认',"&idxsjshf&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
 '				Call Ddkp(rs("dxsjshr"), rs("sjjssj"),  rs("jhjssj"), rs("lsh"), "定型设计确认")
 			end if
@@ -809,10 +811,8 @@ Function FenToDB(lsh)
 '				Call Ddkp(rs("gjsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤设计确认")
 			end if
 
-			if not(isnull(rs("mtsjshr"))) and rs("fsr")<>rs("mtsjshr") Then ifsxs=1
-			if not(isnull(rs("dxsjshr"))) and rs("fsr")<>rs("dxsjshr") Then ifsxs=1
-			if not(isnull(rs("gjsjshr"))) and rs("fsr")<>rs("gjsjshr") Then ifsxs=1
-			if not(isnull(rs("fsr"))) and ifsxs=1 then '模具复审确认
+			if rs("fsr")=rs("mtsjshr") or rs("fsr")=rs("dxsjshr") or rs("fsr")=rs("gjsjshr") Then ifsxs=1
+			if not(isnull(rs("fsr"))) and ifsxs=0 then '模具复审确认
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("fsr")&"'"
 				Set tmpRs=xjweb.Exec(tmpSql,1)
 				If Not(tmpRs.Eof Or tmpRs.Bof) Then
@@ -821,7 +821,7 @@ Function FenToDB(lsh)
 					iGroup=0
 				End If
 				tmpRs.Close
-				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模具复审确认',"&Round((mtfz*(1-imtjgbl)*iljshbl+dxfz*(1-idxjgbl)*iljshbl)*0.5,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("fsr")&"',"&iGroup&")"
+				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模具复审确认',"&Round((imtsjshf+idxsjshf)*0.5,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("fsr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
 			end if
 

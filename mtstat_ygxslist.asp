@@ -27,7 +27,7 @@ dtend=dateadd("d",-1,dtend)
 dtstart=cdate(iyear&"年"&imonth&"月1日")
 
 '定义考评用的变量
-	Dim kpf(10), kpif(10), ics(10), kpzf, kpxr
+	Dim kpf(30), kpif(10), ics(10), kpzf, kpxr
 	kpxr=Array("")
 
 Call Main()
@@ -119,7 +119,7 @@ Function YgxsDisplay()		'显示列表
 			ygxsRs.close
 			zrwfz=0 : zrwxs=0 : zzlxs=0 : zdxxs=0 : zgkxs=0 : zjbgz=0 : zyfgz=0 : zbeiz="" : irwzf=0 : ilxrwzf=0 : iaddfz=0
 			kpzf=0
-			for i=0 to 9
+			for i=0 to 29
 				kpf(i)=0
 			next
 			for i=0 to 9
@@ -230,7 +230,7 @@ Function YgxsStat()
 			next
 			zrwxs=round((kpf(0)/100),2)
 			zzlxs=round(kpzf/100,2)
-			zgkxs=round(zrwxs+zzlx,2)
+			zgkxs=round(zrwxs+zzlxs,2)
 			zyfgz=zjxgz*zgkxs*zbmxs+zjbgz
 
 		Case Else	'组员
