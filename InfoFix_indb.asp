@@ -108,7 +108,7 @@ Function ygkptodb(zrr, tt, iprice, strlsh, lsh)
 	If tt>0 Then
 		strKpItem="提前"
 	Else
-		strKpItem="延迟"
+		strKpItem="设计延迟"
 	End If
 
 	If tt>0 Then

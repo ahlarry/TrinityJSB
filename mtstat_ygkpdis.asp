@@ -165,15 +165,14 @@ Function ygkpstatDisplay()
 <tr>
   <td class=ctd><%=icount%></td>
   <td class=ctd >任务量</td>
-  <td class=ctd>电脑相关日常维护、故障处理<br>指标：<input name="basicwg" size="5" style="BACKGROUND-COLOR:transparent;BORDER-BOTTOM:#ffffff 1px solid;BORDER-LEFT:#ffffff 1px solid;BORDER-RIGHT:#ffffff 1px solid;BORDER-TOP:#ffffff 1px solid;COLOR:#00659c;HEIGHT:18px;border-color:#ffffff #ffffff #ffffff #ffffff;text-align:center;font-size:9pt" value=<%=TargetFZ%> >
+  <td class=ctd>日常维护、故障处理<input name="basicwg" size="5" style="BACKGROUND-COLOR:transparent;BORDER-BOTTOM:#ffffff 1px solid;BORDER-LEFT:#ffffff 1px solid;BORDER-RIGHT:#ffffff 1px solid;BORDER-TOP:#ffffff 1px solid;COLOR:#00659c;HEIGHT:18px;border-color:#ffffff #ffffff #ffffff #ffffff;text-align:center;font-size:9pt" value=<%=TargetFZ%> >
   			<%if chkable(3) then%><input name="Chg_wg" type="submit" value="更新"><%End If%>
   </td>
   <td class=ctd>50.0</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
+  <td class=ctd colspan=3 >此项系统不考核</td>
   <%
-  	kpf(0)=round((iTotalFz/TargetFZ * 50),1)
+'  	kpf(0)=round((iTotalFz/TargetFZ * 50),1)
+  	kpf(0)=50
 	%>
   <td class=ctd alt="<%="任务:" & iTotalFz & "分"%>"><%=kpf(0)%></td>
   <td class=ctd><%=kpf(0)%></td>
@@ -264,15 +263,14 @@ Function ygkpstatDisplay()
 <tr>
   <td class=ctd><%=icount%></td>
   <td class=ctd >任务量</td>
-  <td class=ctd>调试方案、信息整理和厂外技术支持<br>指标：<input name="basicwg" size="5" style="BACKGROUND-COLOR:transparent;BORDER-BOTTOM:#ffffff 1px solid;BORDER-LEFT:#ffffff 1px solid;BORDER-RIGHT:#ffffff 1px solid;BORDER-TOP:#ffffff 1px solid;COLOR:#00659c;HEIGHT:18px;border-color:#ffffff #ffffff #ffffff #ffffff;text-align:center;font-size:9pt" value=<%=TargetFZ%> >
+  <td class=ctd>调试、整理和技术支持：<input name="basicwg" size="5" style="BACKGROUND-COLOR:transparent;BORDER-BOTTOM:#ffffff 1px solid;BORDER-LEFT:#ffffff 1px solid;BORDER-RIGHT:#ffffff 1px solid;BORDER-TOP:#ffffff 1px solid;COLOR:#00659c;HEIGHT:18px;border-color:#ffffff #ffffff #ffffff #ffffff;text-align:center;font-size:9pt" value=<%=TargetFZ%> >
   			<%if chkable(3) then%><input name="Chg_wg" type="submit" value="更新"><%End If%>
   </td>
   <td class=ctd>50.0</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
+  <td class=ctd colspan=3 >此项系统不考核</td>
   <%
-  	kpf(0)=round((iTotalFz/TargetFZ * 50),1)
+'  	kpf(0)=round((iTotalFz/TargetFZ * 50),1)
+  	kpf(0)=50
 	%>
   <td class=ctd alt="<%="任务:" & iTotalFz & "分"%>"><%=kpf(0)%></td>
   <td class=ctd><%=kpf(0)%></td>
@@ -400,7 +398,7 @@ Function ygkpstatDisplay()
   <td class=ctd><%=kpzf%></td>
 </tr>
 <%
-		Case 5	'组员
+		Case else	'5其他
 			%>
 <tr>
   <td class=ctd><%=icount%></td>
@@ -409,11 +407,10 @@ Function ygkpstatDisplay()
   			<%if chkable(3) then%><input name="Chg_wg" type="submit" value="更新"><%End If%>
   </td>
   <td class=ctd>50.0</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
-  <td class=ctd>&nbsp;</td>
+  <td class=ctd colspan=3 >此项系统不考核</td>
   <%
-  	kpf(0)=round((iTotalFz/TargetFZ * 50),1)
+'  	kpf(0)=round((iTotalFz/TargetFZ * 50),1)
+  	kpf(0)=50
 	%>
   <td class=ctd alt="<%="任务:" & iTotalFz & "分"%>"><%=kpf(0)%></td>
   <td class=ctd><%=kpf(0)%></td>
@@ -483,7 +480,7 @@ Function ygkpstatDisplay()
 <tr>
   <td class=ctd><%=icount%></td>
   <td class=ctd>设计原因损失超千元</td>
-  <td class=ctd>1.0</td>
+  <td class=ctd>2.0</td>
   <td class=ctd>分/千元</td>
   <td class=ctd><%=ics(2)%></td>
   <td class=ctd><%=kpif(2)%></td>

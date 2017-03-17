@@ -62,6 +62,12 @@ Function kpHead() '考评页面页首
 <%
 	End If
 
+	If Chkable(4) Then		'组长
+	%>
+组&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长 → <a href="?kp=zztozykp">技术员考评</a><br>
+<%
+	End If
+
 	If Chkable(11) Then	'品管部
 	%>
 品&nbsp;管&nbsp;&nbsp;部 → <a href="?kp=PgbToTsykp">调试员考评</a> | <a href="?kp=pgbtozykp">技术员考评</a><br>

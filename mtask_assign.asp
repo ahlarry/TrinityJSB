@@ -173,10 +173,6 @@ Function mtask_finish(rs)
           <%end if%>
           <%next%>
         </select>
-        <select id="pst" name="pst">
-          <option value="10:00:00" <%If Hour(now())<13 Then%> selected="selected" <%End If%>>上午</option>
-          <option value="20:00:00" <%If Hour(now())>=13 Then%> selected="selected" <%End If%>>下午</option>
-        </select>
         <input name="fplr" type="submit" value="全套结束" />
       </td>
     </tr>

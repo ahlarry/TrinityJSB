@@ -495,10 +495,18 @@
 
 		case "全套结束"
 			if not bmtaskend("sjjssj", strlsh) then
-				strSql="update [mtask] set sjjssj='"&request("psd")&" "& request("pst") &"', psjl='"&request("zrpsjl")&"' where lsh='"&strlsh&"'"
+				strSql="update [mtask] set sjjssj='"&request("psd")&"', psjl='"&request("zrpsjl")&"' where lsh='"&strlsh&"'"
 				call xjweb.Exec(strSql, 0)
 				call fentodb(strlsh)
-'				call DeToDB(strlsh)
+				if datediff("d",Rs2("sjjssj"),Rs2("jhjssj"))<0 Then
+'					Call JsAlert("计划时间:【" & Rs2("jhjssj") & "】 实际时间; 【"& Rs2("sjjssj") & "】","")
+					if Rs2("jgzz")<>Rs2("sjzz") Then
+						call KptoDb(strlsh,Rs2("jgzz"),Rs2("sjjssj"),"设计延迟")
+						call KptoDb(strlsh,Rs2("sjzz"),Rs2("sjjssj"),"设计延迟")
+					else
+						call KptoDb(strlsh,Rs2("jgzz"),Rs2("sjjssj"),"设计延迟")
+					End If
+				End If
 			end if
 			Call JsAlert("流水号 【" & strlsh & "】 任务书全部完成!","mtask_assign.asp")
 
@@ -613,13 +621,6 @@ Function FenToDB(lsh)
 	ijc2=datediff("d",rs("sjjssj"),rs("jhjssj"))
 	ijc=0
 
-'	Dim ijgsj, isj
-'	If IsNull(rs("jhjgsj")) Then
-'		isj=INT(datediff("d", rs("jhkssj"), rs("jhjssj"))/2)
-'		ijgsj=dateadd("d",isj,rs("jhkssj"))
-'	else
-'		ijgsj=rs("jhjgsj")
-'	End if
 	select case rs("rwlr")
 		case "设计"
 			'结构
@@ -634,12 +635,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头结构',"&Round(mtfz*imtjgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtjgr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If datediff("n", rs("mtjgjs"), rs("dxjgjs"))<0 Then
-'					iwcsj=rs("mtjgjs")
-'				else
-'					iwcsj=rs("dxjgjs")
-'				End If
-'				Call Ddkp(rs("mtjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头结构")
 			end if
 			if not(isnull(rs("dxjgr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxjgr")&"'"
@@ -652,12 +647,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型结构',"&Round(dxfz*idxjgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxjgr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If datediff("n", rs("mtjgjs"), rs("dxjgjs"))<0 Then
-'					iwcsj=rs("mtjgjs")
-'				else
-'					iwcsj=rs("dxjgjs")
-'				End If
-'				Call Ddkp(rs("dxjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型结构")
 			end if
 			if  not(isnull(rs("gjjgr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjjgr")&"'"
@@ -670,7 +659,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤结构',"&Round(hgjf*idxjgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjjgr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("gjjgr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤结构")
 			end if
 
 			'设计
@@ -685,7 +673,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头设计',"&Round(mtfz*(1-imtjgbl),1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("mtsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头设计")
 			end if
 			if not(isnull(rs("dxsjr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxsjr")&"'"
@@ -698,7 +685,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型设计',"&Round(dxfz*(1-idxjgbl),1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("dxsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型设计")
 			end if
 			if not(isnull(rs("gjsjr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjsjr")&"'"
@@ -711,7 +697,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤设计',"&Round(hgjf*(1-idxjgbl),1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("gjsjr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤设计")
 			end if
 
 			'在模头和定型中分别分离出结构和设计审核
@@ -726,12 +711,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头结构确认',"&Round(mtfz*imtjgbl*ijgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtjgshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If datediff("n", rs("mtjgshjs"), rs("dxjgshjs"))<0 Then
-'					iwcsj=rs("mtjgshjs")
-'				else
-'					iwcsj=rs("dxjgshjs")
-'				End If
-'				Call Ddkp(rs("mtjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头结构确认")
 			end if
 
 			if not(isnull(rs("mtsjshr"))) then '模头设计审核
@@ -746,7 +725,6 @@ Function FenToDB(lsh)
 				imtsjshf=Round(mtfz*(1-imtjgbl)*iljshbl,1)
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头设计确认',"&imtsjshf&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("mtsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头设计确认")
 			end if
 
 			if not(isnull(rs("dxjgshr"))) then '定型结构审核
@@ -760,12 +738,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型结构确认',"&Round(dxfz*idxjgbl*ijgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxjgshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If datediff("n", rs("mtjgshjs"), rs("dxjgshjs"))<0 Then
-'					iwcsj=rs("mtjgshjs")
-'				else
-'					iwcsj=rs("dxjgshjs")
-'				End If
-'				Call Ddkp(rs("dxjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型结构确认")
 			end if
 
 			if not(isnull(rs("dxsjshr"))) then '定型设计审核
@@ -780,7 +752,6 @@ Function FenToDB(lsh)
 				idxsjshf=Round(dxfz*(1-idxjgbl)*iljshbl,1)
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型设计确认',"&idxsjshf&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("dxsjshr"), rs("sjjssj"),  rs("jhjssj"), rs("lsh"), "定型设计确认")
 			end if
 
 			if not(isnull(rs("gjjgshr"))) then '后共挤结构审核
@@ -794,7 +765,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤结构确认',"&Round(hgjf*idxjgbl*ijgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjjgshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("gjjgshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤结构确认")
 			end if
 
 			if not(isnull(rs("gjsjshr"))) then '后共挤设计审核
@@ -808,7 +778,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤设计确认',"&Round(hgjf*(1-idxjgbl)*iljshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjsjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("gjsjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤设计确认")
 			end if
 
 			if rs("fsr")=rs("mtsjshr") or rs("fsr")=rs("dxsjshr") or rs("fsr")=rs("gjsjshr") Then ifsxs=1
@@ -837,7 +806,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头审核',"&Round(mtfz*ishbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("mtshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "模头审核")
 			end if
 			if not(isnull(rs("dxshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxshr")&"'"
@@ -850,7 +818,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型审核',"&Round(dxfz*ishbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("dxshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "定型审核")
 			end if
 			if not(isnull(rs("gjshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjshr")&"'"
@@ -863,7 +830,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','后共挤审核',"&Round(hgjf*ishbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				Call Ddkp(rs("gjshr"), rs("sjjssj"), rs("jhjssj"), rs("lsh"), "后共挤审核")
 			end if
 
 			'Bom
@@ -931,7 +897,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头复改',"&Round(mtfz*ifgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("mtsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复改")
 			end if
 			if not(isnull(rs("dxsjr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxsjr")&"'"
@@ -944,7 +909,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型复改',"&Round(dxfz*ifgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("dxsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复改")
 			end if
 			if not(isnull(rs("gjsjr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjsjr")&"'"
@@ -957,7 +921,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','共挤复改',"&Round(gjfz*ifgbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjsjr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("gjsjr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复改")
 			end if
 			'审核
 			if not(isnull(rs("mtshr"))) then
@@ -971,7 +934,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头审核',"&Round(mtfz*ifgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("mtshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复改审核")
 			end if
 			if not(isnull(rs("dxshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxshr")&"'"
@@ -984,7 +946,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型审核',"&Round(dxfz*ifgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复改审核")
 			end if
 			if not(isnull(rs("gjshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjshr")&"'"
@@ -997,7 +958,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','共挤审核',"&Round(gjfz*ifgshbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复改审核")
 			end if
 			'BOM
 			if not(isnull(rs("mtbomr"))) then
@@ -1064,7 +1024,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','模头复查',"&Round(mtfz*ifcbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("mtshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("mtshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "模头复查")
 			end if
 			if not(isnull(rs("dxshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxshr")&"'"
@@ -1077,7 +1036,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','定型复查',"&Round(dxfz*ifcbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("dxshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("dxshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "定型复查")
 			end if
 			if not(isnull(rs("gjshr"))) then
 				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjshr")&"'"
@@ -1090,7 +1048,6 @@ Function FenToDB(lsh)
 				tmpRs.Close
 				strSql="insert into [mantime] (lsh, rwlr, fz, jssj,  jc, zrr, xz) values ('"&rs("lsh")&"','共挤复查',"&Round(gjfz*ifcbl,1)&",'"&rs("sjjssj")&"',"&ijc&",'"&rs("gjshr")&"',"&iGroup&")"
 				call xjweb.Exec(strSql,0)
-'				If ijc2<>0 Then Call ygkptodb(rs("gjshr"), ijc2, 1.5, rs("lsh"), rs("lsh"), "共挤复查")
 			end if
 			'BOM
 			if not(isnull(rs("mtbomr"))) then
@@ -1146,6 +1103,43 @@ Function FenToDB(lsh)
 	rs.close
 end function
 
+Function KptoDb(kplsh,kpzrr,kpsj,kplr)
+	'2017年改为延期直接考核组长,由组长在系统中考核相应组员
+	dim tmpSql, tmpRs, iGroup, iKPKind, iKpMul, strbz,iPrice
+	tmpSql="Select [user_group] from [ims_user] where [user_name]='"&kpzrr&"'"
+	Set tmpRs=xjweb.Exec(tmpSql,1)
+	If Not(tmpRs.Eof Or tmpRs.Bof) Then
+		iGroup=tmpRs("user_group")
+	Else
+		iGroup=0
+	End If
+	tmpRs.Close
+	iKpKind=3		'3为组长考评
+	strBz=kplsh
+	iPrice=2		'2015年开始延迟考评统一为2分/次
+	iKpMul=-1
+	tmpSql="select * from [kp_jsb]"
+	Call xjweb.Exec("",-1)
+	set tmpRs=Server.CreateObject("adodb.recordset")
+	tmpRs.open tmpSql,conn,1,3
+	tmpRs.AddNew
+		tmpRs("kp_time")=kpsj
+		tmpRs("kp_zrr")=kpzrr
+		tmpRs("kp_zrrjs")="组长"
+		tmpRs("kp_group")=iGroup
+		tmpRs("kp_kind")=iKpKind
+		tmpRs("kp_topic")="任务完成"
+		tmpRs("kp_item")=kplr
+		tmpRs("kp_uprice")=iPrice
+		tmpRs("kp_cs")=1		'这是考评次数,系统默认为1
+		tmpRs("kp_mul")=iKpMul
+		tmpRs("kp_bz")=strBz
+		tmpRs("kp_lsh")=kplsh
+		tmpRs("kp_kpr")=session("userName")
+		tmpRs.Update
+	tmpRs.Close
+End Function
+
 Function ygkptodb(zrr, tt, iprice, strlsh, lsh, zrrjs)
 	dim tmpSql, tmpRs, iGroup, iKPKind, strKpTopic, strKpItem, ikpmul, strbz,isjjssj
 	strZrr=zrr
@@ -1170,7 +1164,7 @@ Function ygkptodb(zrr, tt, iprice, strlsh, lsh, zrrjs)
 	If tt>0 Then
 		strKpItem="提前"
 	Else
-		strKpItem="延迟"
+		strKpItem="设计延迟"
 	End If
 	strBz=lsh
 	iPrice=2		'2015年延迟考评统一为2分/次
@@ -1207,7 +1201,7 @@ Function Ddkp(zrr,wcsj,jgsj,lsh,zrrjs)
 		exit Function
 	else
 		ikp=1
-		strKpItem="延迟"
+		strKpItem="设计延迟"
 		iKpMul=-1
 		iPrice=2
 	End If
@@ -1328,273 +1322,4 @@ function jsdbfz(hth,khmc,rwnr,fz,jhsj,sjr,sjjs,shr,shjs)
 		If datediff("d",sjjs,jhsj)<>0 Then Call ygkptodb(sjr, datediff("d",sjjs,jhsj), 1.5, hth, hth, "技术代表设计")
 		If datediff("d",shjs,jhsj)<>0 Then Call ygkptodb(shr, datediff("d",shjs,jhsj), 0.8, hth, hth, "技术代表审核")
 End Function
-
-Function DeToDB(lsh)
-	'将定额写入定额库
-	Dim mtfz, dxfz, imtjgbl, idxjgbl, isjbl, ishbl, ibombl, hgjf, ifzxs, igyxs
-	Dim iGroup, tmpSql, tmpRs, imtrw, idxrw, ijssj, ijhjssj, ikhxs
-	hgjf=0 : iGroup=0 : ikhxs=1 : igyxs=1
-	'指定设计、审核、bom比例，三者相加等于1
-	isjbl=0.72 : ishbl=0.24 : ibombl=0.04
-
-	strSql="select * from [mtask] where lsh='"&lsh&"'"
-	set rs=xjweb.Exec(strSql,1)
-	if NullToNum(Rs("hgj"))<>0 Then hgjf=200
-	if NullToNum(Rs("mtjgbl"))<>0 Then imtjgbl=Rs("mtjgbl")/100
-	if NullToNum(Rs("dxjgbl"))<>0 Then idxjgbl=Rs("dxjgbl")/100
-	mtfz=Rs("demt")
-	dxfz=Rs("dedx")
-	imtrw=Rs("mtrw")
-	idxrw=Rs("dxrw")
-	ijhjssj=Rs("jhjssj")
-	ijssj=Rs("sjjssj")
-	if Isnull(ijssj) then ijssj=now()
-	ikhxs=1-datediff("d",ijhjssj,ijssj)*0.1	'提前或延迟分值系数，每天浮动0.1,最多0.5
-	if ikhxs<0.5 Then ikhxs=0.5
-	if ikhxs>1.5 Then ikhxs=1.5
-
-	ifzxs=Rs("fzxs")
-	if imtrw="复查" or idxrw="复查" Then igyxs=0.33
-
-
-			if not(isnull(rs("mtjgr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtjgr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtjgr")&"',"&iGroup&",'模头结构',"&Round(mtfz*isjbl*imtjgbl,1)&","&Round(mtfz*ikhxs*isjbl*imtjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("dxjgr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxjgr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxjgr")&"',"&iGroup&",'定型结构',"&Round(dxfz*isjbl*idxjgbl,1)&","&Round(dxfz*ikhxs*isjbl*idxjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("gjjgr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjjgr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjjgr")&"',"&iGroup&",'后共挤结构',"&Round(hgjf*isjbl*imtjgbl,1)&","&Round(hgjf*ikhxs*isjbl*imtjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("mtsjr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtsjr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtsjr")&"',"&iGroup&",'模头设计',"&Round(mtfz*isjbl*(1-imtjgbl),1)&","&Round(mtfz*ikhxs*isjbl*(1-imtjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("dxsjr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxsjr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxsjr")&"',"&iGroup&",'定型设计',"&Round(dxfz*isjbl*(1-idxjgbl),1)&","&Round(dxfz*ikhxs*isjbl*(1-idxjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("gjsjr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjsjr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjsjr")&"',"&iGroup&",'后共挤设计',"&Round(hgjf*isjbl*(1-imtjgbl),1)&","&Round(hgjf*ikhxs*isjbl*(1-imtjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("mtjgshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtjgshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtjgshr")&"',"&iGroup&",'模头结构审核',"&Round(mtfz*ishbl*imtjgbl,1)&","&Round(mtfz*ikhxs*ishbl*imtjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("mtsjshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtsjshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtsjshr")&"',"&iGroup&",'模头设计审核',"&Round(mtfz*ishbl*(1-imtjgbl),1)&","&Round(mtfz*ikhxs*ishbl*(1-imtjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("dxjgshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxjgshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxjgshr")&"',"&iGroup&",'定型结构审核',"&Round(dxfz*ishbl*idxjgbl,1)&","&Round(dxfz*ikhxs*ishbl*idxjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("dxsjshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxsjshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxsjshr")&"',"&iGroup&",'定型设计审核',"&Round(dxfz*ishbl*(1-idxjgbl),1)&","&Round(dxfz*ikhxs*ishbl*(1-idxjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("gjjgshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjjgshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjjgshr")&"',"&iGroup&",'后共挤结构审核',"&Round(hgjf*ishbl*imtjgbl,1)&","&Round(hgjf*ikhxs*ishbl*imtjgbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("gjsjshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjsjshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjsjshr")&"',"&iGroup&",'后共挤设计审核',"&Round(hgjf*ishbl*(1-imtjgbl),1)&","&Round(hgjf*ikhxs*ishbl*(1-imtjgbl),1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("mtbomr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtbomr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtbomr")&"',"&iGroup&",'模头BOM',"&Round(mtfz*ibombl,1)&","&Round(mtfz*ikhxs*ibombl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("dxbomr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxbomr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxbomr")&"',"&iGroup&",'定型BOM',"&Round(dxfz*ibombl,1)&","&Round(dxfz*ikhxs*ibombl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-
-			'复改审核、复查
-			if not(isnull(rs("mtshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				if imtrw="复查" Then
-					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtshr")&"',"&iGroup&",'模头复查',"&Round(mtfz,1)&","&Round(mtfz*ikhxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				else
-					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtshr")&"',"&iGroup&",'模头审核',"&Round(mtfz*ishbl,1)&","&Round(mtfz*ikhxs*ishbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				End If
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("dxshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				if idxrw="复查" Then
-					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxshr")&"',"&iGroup&",'定型复查',"&Round(dxfz,1)&","&Round(dxfz*ikhxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				else
-					strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxshr")&"',"&iGroup&",'定型审核',"&Round(dxfz*ishbl,1)&","&Round(dxfz*ikhxs*ishbl,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				End if
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("gjshr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("gjshr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("gjshr")&"',"&iGroup&",'共挤审核',"&Round(hgjf,1)&","&Round(hgjf*ikhxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("mtgysjr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("mtgysjr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("mtgysjr")&"',"&iGroup&",'模头工艺设计',"&Round(20*ifzxs*igyxs,1)&","&Round(20*ifzxs*igyxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-			if not(isnull(rs("dxgysjr"))) then
-				tmpSql="Select [user_group] from [ims_user] where [user_name]='"&rs("dxgysjr")&"'"
-				Set tmpRs=xjweb.Exec(tmpSql,1)
-				If Not(tmpRs.Eof Or tmpRs.Bof) Then
-					iGroup=tmpRs("user_group")
-				Else
-					iGroup=0
-				End If
-				tmpRs.Close
-				strSql="insert into [reward] (lsh, zrr, xz, js, fz, sjfz, jssj, bz) values ('"&rs("lsh")&"','"&rs("dxgysjr")&"',"&iGroup&",'定型工艺设计',"&Round(30*ifzxs*igyxs,1)&","&Round(30*ifzxs*igyxs,1)&",'"&ijssj&"','时间系数:"&ikhxs&"')"
-				call xjweb.Exec(strSql,0)
-			end if
-	rs.close
-end function
 %>

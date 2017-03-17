@@ -194,7 +194,8 @@ Function YgxsStat()
 	icount=1
 	Select Case ChkJs(tmpAble)
 		Case 1	'网管
-			kpf(0)=round((zrwfz/zbasicwg * 50),2)
+'			kpf(0)=round((zrwfz/zbasicwg * 50),2)
+			kpf(0)=50		'2017年不统计任务系数
 			kpif(0)=statkpfz("大型软件推广应用不及时", 0)
 			kpif(1)=statkpfz("技术资料备份不及时", 0)
 			kpif(2)=statkpfz("网络权限设定不安全", 0)
@@ -213,7 +214,8 @@ Function YgxsStat()
 			zgkxs=round(zrwxs+zzlxs,2)
 			zyfgz=zjxgz*zgkxs*zbmxs+zjbgz
 		Case 6	'调试员
-			kpf(0)=round((zrwfz/zbasicwg * 50),2)
+'			kpf(0)=round((zrwfz/zbasicwg * 50),2)
+			kpf(0)=50		'2017年不统计任务系数
 			kpif(0)=statkpfz("调试方案问题处理不及时", 0)
 			kpif(1)=statkpfz("厂内调试未准时完成", 0)
 			kpf(1)=10+kpif(0) + kpif(1)
@@ -234,7 +236,8 @@ Function YgxsStat()
 			zyfgz=zjxgz*zgkxs*zbmxs+zjbgz
 
 		Case Else	'组员
-			kpf(0)=round((zrwfz/zbasicwg * 50),2)
+'			kpf(0)=round((zrwfz/zbasicwg * 50),2)
+			kpf(0)=50		'2017年不统计任务系数
 			kpif(0)=statkpfz("设计延迟", 0)
 			kpf(1)=10+kpif(0)
 			if kpf(1)<0 Then kpf(1)=0

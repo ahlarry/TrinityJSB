@@ -600,7 +600,7 @@ Function Tsdkp(strzrr, lsh, iprice, bz)
 
 	iKpKind=5		'5为组员考评
 	strKpTopic="任务完成"
-		strKpItem="延迟"
+		strKpItem="设计延迟"
 		iKpMul=-1
 		strBz=bz
 		tmpSql="select * from [kp_jsb]"
