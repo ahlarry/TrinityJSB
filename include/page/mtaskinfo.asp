@@ -592,7 +592,25 @@ strgy=""
     <%if isnull(rs("mtbomr")) or isnull(rs("dxbomr")) or (rs("mtbomr")<>rs("dxbomr")) then%>
     <td class="ctd" width="*"><%=rs("dxbomr")%>&nbsp;</td>
     <%end if%>
-    <%	case "模头设计"	%>
+    <%	case "模头设计"
+    		If ((rs("gjfs")=3) and (rs("qhgj")=2)) or NullToNum(Rs("hgj"))<>0 Then%>
+  <tr>
+    <td class="ctd" width="10%">后共挤结构</td>
+    <td class="ctd" width="*"><%=rs("gjjgr")%>&nbsp;</td>
+    <td class="ctd" width="13%">后共挤结构确认</td>
+    <td class="ctd" width="*"><%=rs("gjjgshr")%>&nbsp;</td>
+    <td class="ctd" width="10%">后共挤设计</td>
+    <td class="ctd" width="*"><%=rs("gjsjr")%>&nbsp;</td>
+    <%If rs("gjshr")<>"" Then%>
+    <td class="ctd" width="10%">后共挤审核</td>
+    <td class="ctd" width="*"><%=rs("gjshr")%>&nbsp;</td>
+    <td class="ctd" width="*" colspan="4">&nbsp;</td>
+    <%else%>
+    <td class="ctd" width="13%">后共挤设计审核</td>
+    <td class="ctd" width="*" colspan="3"><%=rs("gjsjshr")%>&nbsp;</td>
+    <%End If%>
+  </tr>
+  <% End If%>
     <td class="ctd" width="10%">模头结构</td>
     <td class="ctd" width="10%"><%=rs("mtjgr")%>&nbsp;</td>
     <td class="ctd" width="11%">模头结构确认</td>
@@ -626,7 +644,25 @@ strgy=""
     <td class="ctd" width="15%"><%=rs("mtshr")%>&nbsp;</td>
     <td class="ctd" width="10%">模头BOM</td>
     <td class="ctd" width="*"><%=rs("mtbomr")%>&nbsp;</td>
-    <%	case "定型设计"		%>
+    <%	case "定型设计"
+    		 If ((rs("gjfs")=3) and (rs("qhgj")=2)) or NullToNum(Rs("hgj"))<>0 Then%>
+  <tr>
+    <td class="ctd" width="10%">后共挤结构</td>
+    <td class="ctd" width="*"><%=rs("gjjgr")%>&nbsp;</td>
+    <td class="ctd" width="13%">后共挤结构确认</td>
+    <td class="ctd" width="*"><%=rs("gjjgshr")%>&nbsp;</td>
+    <td class="ctd" width="10%">后共挤设计</td>
+    <td class="ctd" width="*"><%=rs("gjsjr")%>&nbsp;</td>
+    <%If rs("gjshr")<>"" Then%>
+    <td class="ctd" width="10%">后共挤审核</td>
+    <td class="ctd" width="*"><%=rs("gjshr")%>&nbsp;</td>
+    <td class="ctd" width="*" colspan="4">&nbsp;</td>
+    <%else%>
+    <td class="ctd" width="13%">后共挤设计审核</td>
+    <td class="ctd" width="*" colspan="3"><%=rs("gjsjshr")%>&nbsp;</td>
+    <%End If%>
+  </tr>
+  <% End If%>
     <td class="ctd" width="10%">定型结构</td>
     <td class="ctd" width="10%"><%=rs("dxjgr")%>&nbsp;</td>
     <td class="ctd" width="11%">定型结构确认</td>
@@ -1641,6 +1677,8 @@ Function DisFzInfo(Rs)	'显示分值信息
 	qbfgjf=NullToNum(Rs("qbfgj"))
 	qgjf=NullToNum(Rs("qgj"))
 	hgjf=NullToNum(Rs("hgj"))
+
+	if Session("UserName")="张红英" or xjweb.userip(0)="192.168.3.15" Then Exit Function
 
 	select case ssgjf&qbfgjf&qgjf&hgjf
 		Case "0000"			'兼容08版共挤计分模式

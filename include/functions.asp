@@ -81,9 +81,9 @@ Function BottomTable()
 			<Table border=0 cellpadding=0 cellspacing=0 width="100%" height="100%">
 				<tr><td align=center width=*>
 					版权所有&copy;:<%=web_info(13)%> &nbsp;&nbsp;
-					操作数据库次数: <%=xjweb.opdbnum%> 次 &nbsp;&nbsp;
 					页面执行时间: <%=Round(((Timer()-StartTime)*1000),2)%> 毫秒 &nbsp;&nbsp;
-					Version: <%=web_info(1)%>
+					Version: <%=web_info(1)%>&nbsp;&nbsp;
+					你的IP：<%=xjweb.userip(0)%>
 				</td></tr>
 			</table>
 		</td></Tr>

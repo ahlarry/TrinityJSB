@@ -306,15 +306,23 @@ function mtask_nassign(rs)
 		If rs("zz")=session("userName") or rs("jgzz")=session("userName") Then'仅结构组长能分配结构任务
 			if isnull(rs("mtjgr")) then sel_opt("开始模头结构")
 			if (not isnull(rs("mtjgr"))) and isnull(rs("mtjgjs")) then sel_opt("结束模头结构")
+			if Rs("HGJ")>0 and isnull(rs("gjjgr")) then sel_opt("开始后共挤结构")
+			if (not isnull(rs("gjjgr"))) and isnull(rs("gjjgjs")) then sel_opt("结束后共挤结构")
 			if isnull(rs("mtjgshr")) and not isnull(rs("mtjgjs")) then sel_opt("开始模头结构确认")
+			if isnull(rs("gjjgshr")) and not isnull(rs("gjjgjs")) then sel_opt("开始后共挤结构确认")
+			if not isnull(rs("gjjgshr")) and isnull(rs("gjjgshjs")) then sel_opt("结束后共挤结构确认")
 		End If
 
 		If rs("zz")=session("userName") or rs("sjzz")=session("userName") Then'仅设计组长能分配设计任务
 			if (not isnull(rs("mtjgshr"))) and isnull(rs("mtjgshjs")) then sel_opt("结束模头结构确认")
 			if isnull(rs("mtsjr")) and not isnull(rs("mtjgshjs")) then sel_opt("开始模头设计")
 			if not isnull(rs("mtsjr")) and isnull(rs("mtsjjs")) then sel_opt("结束模头设计")
+			if isnull(rs("gjsjr")) and not isnull(rs("gjjgshjs")) then sel_opt("开始后共挤设计")
+			if not isnull(rs("gjsjr")) and isnull(rs("gjsjjs")) then sel_opt("结束后共挤设计")
 			if isnull(rs("mtsjshr")) and not isnull(rs("mtsjjs")) then sel_opt("开始模头设计确认")
 			if not isnull(rs("mtsjshr")) and isnull(rs("mtsjshjs")) then sel_opt("结束模头设计确认")
+			if  (not isnull(rs("gjsjjs"))) and isnull(rs("gjsjshr")) then sel_opt("开始后共挤设计确认")
+			if (not isnull(rs("gjsjshr"))) and isnull(rs("gjsjshjs")) then sel_opt("结束后共挤设计确认")
 		End If
 
 '          	if not(isnull(rs("mtsjshjs"))) and isnull(rs("mtgysjr")) then sel_opt("模头工艺设计")
@@ -326,7 +334,11 @@ function mtask_nassign(rs)
 		If rs("zz")=session("userName") or rs("jgzz")=session("userName") Then'仅结构组长能分配结构任务
 			if isnull(rs("dxjgr")) then sel_opt("开始定型结构")
 			if not isnull(rs("dxjgr")) and isnull(rs("dxjgjs")) then sel_opt("结束定型结构")
+			if Rs("HGJ")>0 and isnull(rs("gjjgr")) then sel_opt("开始后共挤结构")
+			if (not isnull(rs("gjjgr"))) and isnull(rs("gjjgjs")) then sel_opt("结束后共挤结构")
 			if isnull(rs("dxjgshr")) and not isnull(rs("dxjgjs")) then sel_opt("开始定型结构确认")
+			if isnull(rs("gjjgshr")) and not isnull(rs("gjjgjs")) then sel_opt("开始后共挤结构确认")
+			if not isnull(rs("gjjgshr")) and isnull(rs("gjjgshjs")) then sel_opt("结束后共挤结构确认")
 		End If
 
 
@@ -334,8 +346,12 @@ function mtask_nassign(rs)
 			if not isnull(rs("dxjgshr")) and isnull(rs("dxjgshjs")) then sel_opt("结束定型结构确认")
 			if isnull(rs("dxsjr")) and not isnull(rs("dxjgshjs")) then sel_opt("开始定型设计")
 			if not isnull(rs("dxsjr")) and isnull(rs("dxsjjs")) then sel_opt("结束定型设计")
+			if isnull(rs("gjsjr")) and not isnull(rs("gjjgshjs")) then sel_opt("开始后共挤设计")
+			if not isnull(rs("gjsjr")) and isnull(rs("gjsjjs")) then sel_opt("结束后共挤设计")
 			if isnull(rs("dxsjshr")) and not isnull(rs("dxsjjs")) then sel_opt("开始定型设计确认")
 			if not isnull(rs("dxsjshr")) and isnull(rs("dxsjshjs")) then sel_opt("结束定型设计确认")
+			if  (not isnull(rs("gjsjjs"))) and isnull(rs("gjsjshr")) then sel_opt("开始后共挤设计确认")
+			if (not isnull(rs("gjsjshr"))) and isnull(rs("gjsjshjs")) then sel_opt("结束后共挤设计确认")
 		End If
 
 '          	if not(isnull(rs("dxsjshjs"))) and isnull(rs("dxgysjr")) then sel_opt("定型工艺设计")

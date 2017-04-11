@@ -657,7 +657,96 @@ Function mtask_zzchange(rs)
         <%end if%></td>
       <td class=ctd colspan=2>&nbsp;</td>
     </tr>
-    <%
+    <% If ((not isnull(rs("gjjgr"))) or (not isnull(rs("gjsjr")))) Then %>
+    <tr>
+      <td class=ctd> 后共挤结构 </td>
+      <td class=ctd width="15%"><%if isnull(rs("gjjgr")) then%>
+        &nbsp;
+        <%else%>
+        <select name=gjjgr>
+          <option value=<%=rs("gjjgr")%>><%=rs("gjjgr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjjgsj <%if isnull(rs("gjjgjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjjgjs"))) then%>
+          <option value=<%=Replace(rs("gjjgjs")," ",".")%>><%=rs("gjjgjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select>
+        <%end if%></td>
+      <td class=ctd width="10%"> 后共挤设计 </td>
+      <td class=ctd width="15%"><%if isnull(rs("gjsjr")) then%>
+        &nbsp;
+        <%else%>
+        <select name=gjsjr>
+          <option value=<%=rs("gjsjr")%>><%=rs("gjsjr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjsjsj <%if isnull(rs("gjsjjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjsjjs"))) then%>
+          <option value=<%=Replace(rs("gjsjjs")," ",".")%>><%=rs("gjsjjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select>
+        <%end if%></td>
+      <%if isnull(rs("gjshr")) then%>
+      <td class=ctd colspan=2>&nbsp;</td>
+      <%else%>
+      <td class=ctd> 后共挤审核 </td>
+      <td class=ctd width="15%"><select name=gjshr>
+          <option value=<%=rs("gjshr")%>><%=rs("gjshr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjshsj <%if isnull(rs("gjshjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjshjs"))) then%>
+          <option value=<%=Replace(rs("gjshjs")," ",".")%>><%=rs("gjshjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select></td>
+      <%end if%>
+    </tr>
+    <%End if%>
+    <%if not isnull(rs("gjjgshr")) then%>
+    <tr>
+      <td class=ctd> 后共挤结构确认 </td>
+      <td class=ctd width="15%"><select name=gjjgshr>
+          <option value=<%=rs("gjjgshr")%>><%=rs("gjjgshr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjjgshsj <%if isnull(rs("gjjgshjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjjgshjs"))) then%>
+          <option value=<%=Replace(rs("gjjgshjs")," ",".")%>><%=rs("gjjgshjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select></td>
+      <td class=ctd> 后共挤设计确认 </td>
+      <td class=ctd width="15%"><%if isnull(rs("gjsjshr")) then%>
+        &nbsp;
+        <%else%>
+        <select name=gjsjshr>
+          <option value=<%=rs("gjsjshr")%>><%=rs("gjsjshr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjsjshsj <%if isnull(rs("gjsjshjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjsjshjs"))) then%>
+          <option value=<%=Replace(rs("gjsjshjs")," ",".")%>><%=rs("gjsjshjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select>
+        <%end if%></td>
+      <td class=ctd colspan=2>&nbsp;</td>
+    </tr>
+    <%end if
 				case "模头复改"
 				%>
     <td class=ctd width="10%">&nbsp;</td>
@@ -848,7 +937,96 @@ Function mtask_zzchange(rs)
         <%end if%></td>
       <td class=ctd colspan=2>&nbsp;</td>
     </tr>
-    <%
+        <% If ((not isnull(rs("gjjgr"))) or (not isnull(rs("gjsjr")))) Then %>
+    <tr>
+      <td class=ctd> 后共挤结构 </td>
+      <td class=ctd width="15%"><%if isnull(rs("gjjgr")) then%>
+        &nbsp;
+        <%else%>
+        <select name=gjjgr>
+          <option value=<%=rs("gjjgr")%>><%=rs("gjjgr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjjgsj <%if isnull(rs("gjjgjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjjgjs"))) then%>
+          <option value=<%=Replace(rs("gjjgjs")," ",".")%>><%=rs("gjjgjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select>
+        <%end if%></td>
+      <td class=ctd width="10%"> 后共挤设计 </td>
+      <td class=ctd width="15%"><%if isnull(rs("gjsjr")) then%>
+        &nbsp;
+        <%else%>
+        <select name=gjsjr>
+          <option value=<%=rs("gjsjr")%>><%=rs("gjsjr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjsjsj <%if isnull(rs("gjsjjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjsjjs"))) then%>
+          <option value=<%=Replace(rs("gjsjjs")," ",".")%>><%=rs("gjsjjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select>
+        <%end if%></td>
+      <%if isnull(rs("gjshr")) then%>
+      <td class=ctd colspan=2>&nbsp;</td>
+      <%else%>
+      <td class=ctd> 后共挤审核 </td>
+      <td class=ctd width="15%"><select name=gjshr>
+          <option value=<%=rs("gjshr")%>><%=rs("gjshr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjshsj <%if isnull(rs("gjshjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjshjs"))) then%>
+          <option value=<%=Replace(rs("gjshjs")," ",".")%>><%=rs("gjshjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select></td>
+      <%end if%>
+    </tr>
+    <%End if%>
+    <%if not isnull(rs("gjjgshr")) then%>
+    <tr>
+      <td class=ctd> 后共挤结构确认 </td>
+      <td class=ctd width="15%"><select name=gjjgshr>
+          <option value=<%=rs("gjjgshr")%>><%=rs("gjjgshr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjjgshsj <%if isnull(rs("gjjgshjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjjgshjs"))) then%>
+          <option value=<%=Replace(rs("gjjgshjs")," ",".")%>><%=rs("gjjgshjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select></td>
+      <td class=ctd> 后共挤设计确认 </td>
+      <td class=ctd width="15%"><%if isnull(rs("gjsjshr")) then%>
+        &nbsp;
+        <%else%>
+        <select name=gjsjshr>
+          <option value=<%=rs("gjsjshr")%>><%=rs("gjsjshr")%></option>
+          <%for i=0 to ubound(c_jsb)%>
+          <option value=<%=c_jsb(i)%>><%=c_jsb(i)%></option>
+          <%next%>
+        </select>
+        <select name=gjsjshsj <%if isnull(rs("gjsjshjs")) then%> disabled="disabled" <%End If%>>
+          <%if not(isnull(rs("gjsjshjs"))) then%>
+          <option value=<%=Replace(rs("gjsjshjs")," ",".")%>><%=rs("gjsjshjs")%></option>
+          <option value=<%=Replace(now()," ",".")%>><%=now()%></option>
+          <%End If%>
+        </select>
+        <%end if%></td>
+      <td class=ctd colspan=2>&nbsp;</td>
+    </tr>
+    <%end if
 				case "定型复改"
 				%>
     <td class=ctd width="10%">&nbsp;</td>
