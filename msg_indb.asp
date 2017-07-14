@@ -33,6 +33,7 @@ select case action
 		struser=request("incept")
 		strtitle=trim(request("title"))
 		strcontent=request("content")
+		'strcontent=ReplaceBadChar(strcontent)
 		if struser="" or strtitle="" or strcontent="" then
 			Call JsAlert("请确认从正确入口进入并保证信息输入完整!","")
 		else

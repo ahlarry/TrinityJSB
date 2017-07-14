@@ -212,6 +212,23 @@ Function ChkStr(sn_var)
 	ChkStr=True
 End Function
 
+'---------------------------------过滤非法的SQL字符-----------------------------
+Function ReplaceBadChar(strChar)
+    If strChar = "" Or IsNull(strChar) Then
+        ReplaceBadChar = ""
+        Exit Function
+    End If
+    Dim strBadChar, arrBadChar, tempChar, i
+    strBadChar = "',%,^,?,(,),[,],{,},\," & Chr(34) & "," & Chr(0) & ""
+    arrBadChar = Split(strBadChar, ",")
+    tempChar = Replace(strChar, "?", "？")
+    tempChar = Replace(strChar, "?", "？")
+    For i = 0 To UBound(arrBadChar)
+        tempChar = Replace(tempChar, arrBadChar(i), "“")
+    Next
+    ReplaceBadChar = tempChar
+End Function
+
 '---------------------------------处理相关内容(空值\数字,日期等)------------------------------
 Function Var_Null(ub)
 	Var_Null=Trim(ub)

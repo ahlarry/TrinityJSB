@@ -9,7 +9,7 @@ function isInteger(para)
        on error resume next
        dim str
        dim l,i
-       if isNUll(para) then 
+       if isNUll(para) then
           isInteger=false
           exit function
        end if
@@ -21,7 +21,7 @@ function isInteger(para)
        l=len(str)
        for i=1 to l
            if mid(str,i,1)>"9" or mid(str,i,1)<"0" then
-              isInteger=false 
+              isInteger=false
               exit function
            end if
        next
@@ -97,10 +97,15 @@ Function ReplaceBadChar(strChar)
         ReplaceBadChar = ""
         Exit Function
     End If
-    Dim strBadChar, arrBadChar, tempChar, i
-    strBadChar = "',%,^,&,?,(,),<,>,[,],{,},/,\,;,:," & Chr(34) & "," & Chr(0) & ""
+    Dim strBadChar, arrBadChar, tempChar, i, regEx
+    Set regEx = New RegExp ' 建立正则表达式。
+	regEx.Pattern = patrn ' 设置模式。
+	regEx.IgnoreCase = True ' 设置是否区分大小写
+'    strBadChar = "',%,^,&,?,(,),<,>,[,],{,},/,\,;,:," & Chr(34) & "," & Chr(0) & ""
+	strBadChar = "',%,^,?,(,),[,],{,},\," & Chr(34) & "," & Chr(0) & ""
     arrBadChar = Split(strBadChar, ",")
     tempChar = strChar
+    tempChar = regEx.Replace(str, replStr) ' 作替换
     For i = 0 To UBound(arrBadChar)
         tempChar = Replace(tempChar, arrBadChar(i), "")
     Next

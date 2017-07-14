@@ -154,7 +154,7 @@ function dis_sendbox()
       <img src="images/uctrl/m_olds.gif" border="0">
       <%end if%></td>
     <td class=ctd><%=rs("incept")%></td>
-    <td class=ltd alt="¶ÌÐÅÄÚÈÝ:<br><%=rs("content")%>"><a href="msg_dis.asp?action=send&id=<%=rs("id")%>" target="_blank"><%=rs("title")%></a></td>
+    <td class=ltd ><a href="msg_dis.asp?action=send&id=<%=rs("id")%>" target="_blank"><%=rs("title")%></a></td>
     <td class=ctd><%=rs("sendtime")%></td>
     <td class=ctd ><%=len(rs("content"))%>Byte</td>
     <td class=ctd ><input type=checkbox class="radio" id=chkbox name=chkbox value=<%=rs("id")%>></td>

@@ -14,14 +14,16 @@
 	Dim igjfs1, igjfs2, igjfs3, igjfs4, strjgzz, strsjzz, dtjhkssj, dtjgjssj, strdedm, strdefz, strdemt, strdedx
 
 	'任务书所有变量初始化
-	strlsh=Trim(Request("lsh")) : strddh=Trim(Request("ddh")) : strdwmc=Trim(Request("dwmc")) : strdmmc=Trim(Request("dmmc"))
-	strmh=Trim(Request("mh")) : strsbcj=Trim(Request("sbcj")) : strjcjxh=Trim(Request("jcjxh")) : strmjxx=Request("mjxx")
-	strrwlr=Request("rwlr") : strmtjg=Trim(Request("mtjg")) : strdxjg=Trim(Request("dxjg")) : strsxjg=Trim(Request("sxjg"))
-	strsjtsl=Trim(Request("sjtsl")) : strqjtsl=Trim(Request("qjtsl")) : strqysd=Trim(Request("qysd")) : strmtljcc=Trim(Request("mtljcc"))
-	strgjljcc=Trim(Request("gjljcc")) : strrdogg=Trim(Request("rdogg")) : ijcfx=Trim(Request("jcfx")) : iqs=Request("qs") : bpjrb=Request("pjrb")
-	strjrbxs=Request("jrbxs") : strjrbcl=Request("jrbcl") : strjrbxx=Trim(Request("jrbxx")) : strmjcl=Trim(Request("mjcl"))
-	strbz=Request("bz") : strckdm=Request("ckdm") : strfzxs=Request("fzxs") : dtjhkssj=Request("jhkssj") : dtjhjssj=Request("jhjssj")
-	dtjgjssj=Request("jgjssj") :  dtrwxdsj=now() : dtlzrq=now() : sngmtjgbl=Request("mtjgbl") : sngdxjgbl=Request("dxjgbl")
+	strlsh=ReplaceBadChar(Trim(Request("lsh"))) : strddh=ReplaceBadChar(Trim(Request("ddh"))) : strdwmc=ReplaceBadChar(Trim(Request("dwmc")))
+	strdmmc=ReplaceBadChar(Trim(Request("dmmc"))) : strmh=ReplaceBadChar(Trim(Request("mh"))) : strsbcj=ReplaceBadChar(Trim(Request("sbcj")))
+	strjcjxh=ReplaceBadChar(Trim(Request("jcjxh"))) : strmjxx=Request("mjxx") : strrwlr=Request("rwlr") : strmtjg=ReplaceBadChar(Trim(Request("mtjg")))
+	strdxjg=ReplaceBadChar(Trim(Request("dxjg"))) : strsxjg=ReplaceBadChar(Trim(Request("sxjg"))) : strsjtsl=ReplaceBadChar(Trim(Request("sjtsl")))
+	strqjtsl=ReplaceBadChar(Trim(Request("qjtsl"))) : strqysd=ReplaceBadChar(Trim(Request("qysd"))) : strmtljcc=ReplaceBadChar(Trim(Request("mtljcc")))
+	strgjljcc=ReplaceBadChar(Trim(Request("gjljcc"))) : strrdogg=ReplaceBadChar(Trim(Request("rdogg"))) : ijcfx=ReplaceBadChar(Trim(Request("jcfx")))
+	iqs=ReplaceBadChar(Request("qs")) : bpjrb=Request("pjrb") : strjrbxs=Request("jrbxs") : strjrbcl=Request("jrbcl") : strmjcl=Trim(Request("mjcl"))
+	strjrbxx=ReplaceBadChar(Trim(Request("jrbxx"))) : strbz=ReplaceBadChar(Request("bz")) : strckdm=Request("ckdm") : strfzxs=Request("fzxs")
+	dtjhkssj=Request("jhkssj") : dtjhjssj=Request("jhjssj") : dtjgjssj=Request("jgjssj") :  dtrwxdsj=now() : dtlzrq=now()
+	sngmtjgbl=Request("mtjgbl") : sngdxjgbl=Request("dxjgbl")
 	strzz=Request("zz") : strjsdb=Request("jsdb") : strbm=session("user_depart") : strlzr=session("userName")
 	sngmjzf=Request("mjzf") : sngmtbl=Request("mtbl") : ibomzf=Request("bomzf") : itsdzf=Request("tsdzf")
 	itszf=Request("tszf") : itsxxzlzf=Request("tsxxzlzf") : igjzf=Request("gjzf")
@@ -29,7 +31,7 @@
 	strjgzz=Request("jgzz") : strsjzz=Request("sjzz") : strdxqg=Request("dxqg")
 	igjfs1=Request("ssgjf") : igjfs2=Request("qbfgjf")
 	igjfs3=Request("qgjf") : igjfs4=Request("hgjf")
-	strmtrw=Request("mtrw") : strdxrw=Request("dxrw") : strdedm=Request("dedm") : strdefz=Request("defz")		
+	strmtrw=Request("mtrw") : strdxrw=Request("dxrw") : strdedm=Request("dedm") : strdefz=Request("defz")
 
 	sngmjzf=NullToNum(sngmjzf)
 	sngmtbl=NulltoNum(sngmtbl)
@@ -57,8 +59,8 @@
 		Case "定型"
 			strdefz=strdefz*0.6
 			sngmtbl=0
-	End select	
-	
+	End select
+
 	If igjfs2<>0 Then
 		strdemt=strdefz*strfzxs*sngmtbl/100 + 400
 	else
@@ -68,7 +70,7 @@
 	If igjfs3<>0 Then
 		strdemt=strdemt + 200*sngmtbl/100
 		strdedx=strdedx + 200*(100-sngmtbl)/100
-	End If	
+	End If
 	Select Case strmtrw
 		Case ""
 			strdemt=0
@@ -88,7 +90,7 @@
 			strdedx=Round(strdedx*ifgbl,1)
 		Case "复查"
 			strdedx=Round(strdedx*ifcbl,1)
-	End select	
+	End select
 
 	'对待入库数据进行处理
 	strMsg=""
@@ -177,7 +179,7 @@
 			Rs("gjljcc")=strgjljcc
 			Rs("rdogg")=strrdogg
 			Rs("mjxx")=strmjxx
-			Rs("rwlr")=strrwlr			
+			Rs("rwlr")=strrwlr
 			Rs("mtrw")=strmtrw
 			Rs("dxrw")=strdxrw
 			Rs("ckdm")=strckdm
@@ -263,7 +265,7 @@
 			Rs("gjljcc")=strgjljcc
 			Rs("rdogg")=strrdogg
 			Rs("mjxx")=strmjxx
-			Rs("rwlr")=strrwlr			
+			Rs("rwlr")=strrwlr
 			Rs("mtrw")=strmtrw
 			Rs("dxrw")=strdxrw
 			Rs("ckdm")=strckdm

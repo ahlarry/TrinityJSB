@@ -149,7 +149,7 @@ function mtask_assign(rs)
 end function		'mtask_assign()
 
 Function mtask_finish(rs)
-	if (rs("mjxx")="全套" and  (isnull(rs("mttsdjs")) or isnull(rs("dxtsdjs")))) or  (rs("mjxx")="模头" and isnull(rs("dxtsdjs"))) or  (rs("mjxx")="定型" and isnull(rs("dxtsdjs"))) then
+	if (rs("mjxx")="全套" and  (isnull(rs("mttsdjs")) or isnull(rs("dxtsdjs")))) or  (rs("mjxx")="模头" and isnull(rs("mttsdjs"))) or  (rs("mjxx")="定型" and isnull(rs("dxtsdjs"))) then
 		Call JsAlert("请提醒组长及时完成相应调试单任务!","mtask_assign.asp")
 	end if
 %>
@@ -200,6 +200,7 @@ function mtask_audit(rs)
           <option value='<%=c_allzz(i)%>' <%if session("userName")=c_allzz(i) then %> selected<%end if%>><%=c_allzz(i)%></option>
           <%next%>
           <option value=“朱钰”>朱钰</option>
+          <option value=“谢小三”>谢小三</option>
           <option value=“徐小停”>徐小停</option>
         </select>
 	</td>

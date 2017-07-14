@@ -111,6 +111,10 @@ Function uctrlSendMsg()
 		<SCRIPT language="JavaScript" src="AsaiEdit/EditMenu.js"></SCRIPT>
       <textarea name="content" id="content" cols="88" rows="8" style="display:none;"></textarea></td>
     </tr>
+
+    <tr>
+      <td class=ctd colspan="2"><input  name="Attach" id="Attach" size="70" value=""></td>
+    </tr>
     <tr>
       <td class=ctd colspan="2"><input type="submit" value=" ·¢ËÍ "></td>
     </tr>
