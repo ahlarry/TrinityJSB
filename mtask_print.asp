@@ -63,12 +63,12 @@ end select
     <td class="ltd" height="25" colspan="8"><b>合同信息</b></td>
   </tr>
   <tr>
-    <td class="rtd" width="13%">订单号</td>
+    <td class="rtd" width="10%">订单号</td>
     <td class="ltd"><%=rs("ddh")%></td>
-    <td class="rtd" width="13%">流水号</td>
+    <td class="rtd" width="11%">流水号</td>
     <td colspan="2" class="ltd" width="*"><a href="SreacDwg.asp?s_lsh=<%=rs("lsh")%>"><%=rs("lsh")%></a></td>
-    <td class="rtd" width="13%">模号</td>
-    <td colspan="2" class="ltd" width="*"><%=rs("mh")%></td>
+    <td class="rtd" width="10%">模号</td>
+    <td colspan="2" class="ltd" width="25%"><%=rs("mh")%></td>
   </tr>
   <tr>
     <td class="rtd">客户名称</td>
@@ -110,32 +110,41 @@ end select
     <td class="ltd" height="25" colspan="8"><b>模具信息</b></td>
   </tr>
   <tr>
-    <td class="rtd"  width="13%">任务内容</td>
-    <td class="ltd"><%=rs("mjxx") & rs("rwlr")%></td>
-        <td class="rtd"  width="13%">厂内调试</td>
-    <td class="ltd"  colspan="2" ><%=rs("cnts")%></td>
-    <td class="rtd"  width="13%">调试类别</td>
+    <td class="rtd">任务内容</td>
+    <td class="ltd">
+    <%
+    If IsNull(rs("mtrw")) and IsNull(rs("dxrw")) Then
+    	Response.Write(rs("mjxx") & rs("rwlr"))
+    else
+    	If Rs("mtrw")<>"" Then Response.Write("模头"&rs("mtrw")) End If
+    	If Rs("dxrw")<>"" Then Response.Write("定型"&rs("dxrw")) End If
+    End If
+    %>
+   </td>
+        <td class="rtd">厂内调试</td>
+    <td class="ltd"  width="*" colspan="2"><%=rs("cnts")%></td>
+    <td class="rtd" >调试类别</td>
     <%If Not(isnull(Rs("tslb"))) and Rs("cnts")<>"不调试" Then%>
-    <td class="ltd"  width="*" colspan="2" ><%=Rs("tslb")%></td>
+    <td class="ltd"  width="*" colspan="2"><a href="mtest_display.asp?s_lsh=<%=rs("lsh")%>"><%=Rs("tslb")%></a></td>
     <%Else%>
-    <td class="ltd"  width="*" colspan="2" >&nbsp;/</td>
+    <td class="ltd"  width="*" colspan="2">&nbsp;/</td>
     <%End If%>
   </tr>
   <tr>
     <td class="rtd">模头结构</td>
     <td class="ltd"><%if IsNull(rs("mtjg")) Then
-    	Response.Write("&nbsp;")
+    	Response.Write("&nbsp;/")
     else
     	Response.Write(rs("mtjg"))
     End if%></td>
     <td class="rtd">定型结构</td>
-    <td class="ltd" colspan="2" ><%if IsNull(rs("dxjg")) Then
+    <td class="ltd" colspan="2"><%if IsNull(rs("dxjg")) Then
     	Response.Write("&nbsp;/")
     else
     	Response.Write(rs("dxjg"))
     End if%></td>
     <td class="rtd">水箱结构</td>
-    <td class="ltd" colspan="2" ><%if IsNull(rs("sxjg")) Then
+    <td class="ltd" colspan="2"><%if IsNull(rs("sxjg")) Then
     	Response.Write("&nbsp;/")
     else
     	Response.Write(rs("sxjg"))
@@ -149,17 +158,17 @@ end select
     	Response.Write(rs("dxqg"))
     End if%></td>
     <td class="rtd">模头连接尺寸</td>
-    <td class="ltd" colspan="2" ><%=rs("mtljcc")%></td>
+    <td class="ltd" colspan="2"><%=rs("mtljcc")%></td>
     <td class="rtd">热电偶规格</td>
-    <td class="ltd" colspan="2" ><%=rs("rdogg")%></td>
+    <td class="ltd" colspan="2"><%=rs("rdogg")%></td>
   </tr>
   <tr>
     <td class="rtd">共挤类型</td>
     <td class="ltd"><%=Trim(gjxx)%></td>
     <td class="rtd">共挤连接尺寸</td>
-    <td class="ltd" colspan="2" ><%=rs("gjljcc")%>&nbsp;</td>
+    <td class="ltd" colspan="2"><%=rs("gjljcc")%>&nbsp;</td>
     <td class="rtd">型材壁厚</td>
-    <td class="ltd" colspan="2" ><%=Rs("xcbh")%>毫米</td>
+    <td class="ltd" colspan="2"><%=Rs("xcbh")%>毫米</td>
   </tr>
   <tr>
   </tr>

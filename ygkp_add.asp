@@ -448,7 +448,7 @@ Function PgbToZyKpAdd()		'品管部 to 组员考评
 	Call ChkPageAble(11)
 %>
 <%Call TbTopic("品管部 → 设计技术员考评")%>
-<table class=xtable cellspacing=0 cellpadding=3 width="60%" align="center">
+<table class=xtable cellspacing=0 cellpadding=3 width="70%" align="center">
   <form name="Pg2Zy" action="ygkp_indb.asp" method="post" onSubmit="return chkpgbkp(this);">
     <Tr>
       <td class=th width=100>模具流水号</td>

@@ -219,9 +219,8 @@ Function ReplaceBadChar(strChar)
         Exit Function
     End If
     Dim strBadChar, arrBadChar, tempChar, i
-    strBadChar = "',%,^,?,(,),[,],{,},\," & Chr(34) & "," & Chr(0) & ""
+    strBadChar = "',%,^,?,{,},\," & Chr(34) & "," & Chr(0) & ""
     arrBadChar = Split(strBadChar, ",")
-    tempChar = Replace(strChar, "?", "£¿")
     tempChar = Replace(strChar, "?", "£¿")
     For i = 0 To UBound(arrBadChar)
         tempChar = Replace(tempChar, arrBadChar(i), "¡°")

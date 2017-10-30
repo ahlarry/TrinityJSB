@@ -273,13 +273,9 @@ Function ChkJs(str)
 	ChkJs=0
 	If Len(str)<15 Then Exit Function
 	dim i
-	if Mid(str,8,1)=1 Then	'提升服务技术员优先级
-		ChkJs=8
-	Else
-		For i=1 To Len(str)
-			If Mid(str,i,1)=1 Then ChkJs=i : Exit For	'只取每人的最高角色,如你同时是组长和组员,则只取组长
-		Next
-	End If
+	For i=1 To Len(str)
+		If Mid(str,i,1)=1 Then ChkJs=i : Exit For	'只取每人的最高角色,如你同时是组长和组员,则只取组长
+	Next
 End Function
 
 Function statkpfz(kp_item, i)

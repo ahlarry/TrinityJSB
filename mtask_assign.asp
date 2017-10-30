@@ -196,12 +196,9 @@ function mtask_audit(rs)
     	<td class="ctd"  width="15%">评审人:</td>
     	<td class="ctd">
          <select name="zrr">
-          <%for i = 0 to ubound(c_allzz)%>
-          <option value='<%=c_allzz(i)%>' <%if session("userName")=c_allzz(i) then %> selected<%end if%>><%=c_allzz(i)%></option>
+          <%for i = 0 to ubound(c_allfs)%>
+          <option value='<%=c_allfs(i)%>' <%if session("userName")=c_allfs(i) then %> selected<%end if%>><%=c_allfs(i)%></option>
           <%next%>
-          <option value=“朱钰”>朱钰</option>
-          <option value=“谢小三”>谢小三</option>
-          <option value=“徐小停”>徐小停</option>
         </select>
 	</td>
     <input type="hidden" name="lsh" value="<%=rs("lsh")%>" />

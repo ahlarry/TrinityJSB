@@ -1,10 +1,10 @@
          <%
 	'9:05 2007-2-2-星期五
 	'本页用到类xj_classs的实例xjweb
-	dim c_alluser, c_allzy, c_allzz, c_alljl, c_alltsy, c_alljszd, c_allgy, c_allbc, c_zypx, maxGroup
+	dim c_alluser, c_allzy, c_allzz, c_alljl, c_alltsy, c_alljszd, c_allfs, c_allbc, c_zypx, maxGroup
 	dim c_xz0, c_xz1, c_xz2, c_xz3, c_xz4, c_xz5, c_xz6, c_xz7, c_xz8, c_allstat, c_jsb
 	dim tmpname, tmpGroup, tmpDept, tmpAble
-	c_alluser="": c_allzy="": c_allzz="": c_alljl="" : c_alltsy="" : c_alljszd="" : c_allgy="" : c_allbc=""
+	c_alluser="": c_allzy="": c_allzz="": c_alljl="" : c_alltsy="" : c_alljszd="" : c_allfs="" : c_allbc=""
 	c_xz0="" : c_xz1="" : c_xz2="" : c_xz3="" : c_xz4="" : c_xz5="" : c_xz6="" : c_xz7="" : c_xz8="" : c_allstat=""
 	c_jsb="" : c_zypx="" : maxGroup=0
 	set rs = xjweb.exec("select user_name, user_able, user_group, user_depart from ims_user where user_name<>'AA' and user_name<>'BB' order by user_depart,user_name",1)
@@ -112,12 +112,12 @@
 			end if
 		end if
 
-		'工艺数组
+		'复审数组
 		if chkuser(8) then
-				if c_allgy <> "" then
-					c_allgy=c_allgy & "|||" & tmpname
+				if c_allfs <> "" then
+					c_allfs=c_allfs & "|||" & tmpname
 				else
-					c_allgy=tmpname
+					c_allfs=tmpname
 				end if
 		end if
 
@@ -175,7 +175,7 @@
 	If c_allzz="" Then c_allzz=" "
 	If c_alljl="" Then c_alljl=" "
 	If c_alltsy="" Then c_alltsy=" "
-	If c_allgy="" Then c_allgy=" "
+	If c_allfs="" Then c_allfs=" "
 	If c_allbc="" Then c_allbc=" "
 	If c_xz0="" Then c_xz0=" "
 	If c_xz1="" Then c_xz1=" "
@@ -195,7 +195,7 @@
 	c_allzz = split(c_allzz, "|||")
 	c_alljl = split(c_alljl, "|||")
 	c_alltsy = split(c_alltsy, "|||")
-	c_allgy = split(c_allgy, "|||")
+	c_allfs = split(c_allfs, "|||")
 	c_allbc = split(c_allbc, "|||")
 	c_xz0=split(c_xz0,"|||")
 	c_xz1=split(c_xz1,"|||")

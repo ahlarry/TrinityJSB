@@ -143,7 +143,7 @@ Sub DisChangeUser()
 									<input type=checkbox name="able5" value=true <%if chkuser(5) then%> checked <%end if%>>组员<br>
 									<input type=checkbox name="able6" value=true <%if chkuser(6) then%> checked <%end if%>>模具调试员<br>
 									<input type=checkbox name="able7" value=true <%if chkuser(7) then%> checked <%end if%>>图档管理员<br>
-									<input type=checkbox name="able8" value=true <%if chkuser(8) then%> checked <%end if%>>服务技术员<br>
+									<input type=checkbox name="able8" value=true <%if chkuser(8) then%> checked <%end if%>>复审技术员<br>
 									<input type=checkbox name="able9" value=true <%if chkuser(9) then%> checked <%end if%>>编程技术员<br>
 									<input type=checkbox name="able10" value=true <%if chkuser(10) then%> checked <%end if%>>副主任<br>
 									<input type=checkbox name="able11" value=true <%if chkuser(11) then%> checked <%end if%>>品质管理员<br>

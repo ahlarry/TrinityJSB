@@ -30,7 +30,7 @@ Function mtaskDisplay()
 	s_lsh=Trim(Request("s_lsh"))
 	action=Trim(Request("action"))
 	If s_lsh="" Then Call TbTopic("请输入查看任务书的流水号!") : Exit Function
-	strSql="select * from [mtask] where lsh like '%"&s_lsh&"%'"
+	strSql="select * from [mtask] where lsh = '"&s_lsh&"'"
 	Set Rs=xjweb.Exec(strSql,1)
 	If Rs.Eof Or Rs.Bof Then
 		Call JsAlert("流水号 【" & s_lsh & "】 任务书不存在! 请重新输入流水号!", "")
