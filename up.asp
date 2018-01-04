@@ -30,68 +30,31 @@ End Sub
 
 Function UpFz()
 	Dim n, slsh, oldxs, newxs,TmpRs,TmpSql
-	slsh="" : oldxs=0 : newxs=1
-'	slsh=split(slsh,",")
-'	for n=0 to ubound(slsh)
-'		oldxs=1
-'		strSql="select * from [mtask] where lsh='"&slsh(n)&"'"
-'		Call xjweb.exec("",-1)
-'		Rs.open strSql,Conn,1,3
-'		If Not Rs.eof Then
-'			oldxs=rs("fzxs")
-'			rs("fzxs")=newxs
-'		End If
-'		Rs.update
-'		Rs.close
+	slsh="12168,12172" : oldxs=1 : newxs=1.4
+	slsh=split(slsh,",")
+	for n=0 to ubound(slsh)
+		oldxs=1
+		strSql="select * from [mtask] where lsh='"&slsh(n)&"'"
+		Call xjweb.exec("",-1)
+		Rs.open strSql,Conn,1,3
+		If Not Rs.eof Then
+			oldxs=rs("fzxs")
+			rs("fzxs")=newxs
+		End If
+		Rs.update
+		Rs.close
 
-'		strSql="select * from [mantime] where (Instr(rwlr,'结构')>0 or Instr(rwlr,'设计')>0 or Instr(rwlr,'BOM')>0) and lsh='"&slsh(n)&"'"
-'		Call xjweb.exec("",-1)
-'		Rs.open strSql,Conn,1,3
-'			Do while not Rs.eof
-'				Rs("fz")=Round(Rs("fz")*newxs/oldxs,1)
-'				Rs.update
-'				Rs.movenext
-'			Loop
-'		Rs.close
-'	next
-
-		TmpSql="select * from [mantime] where rwlr='模具复审确认'"
-		Set TmpRs=Server.CreateObject("adodb.recordset")
-		TmpRs.open TmpSql,Conn,1,3
-		Do while not TmpRs.eof
-
-'			TmpSql="select * from [mtask] where lsh='"&Rs("lsh")&"'"
-'			Set TmpRs=Server.CreateObject("adodb.recordset")
-'			TmpRs.open TmpSql,conn,1,3
-'			If Not TmpRs.eof Then
-'				TmpRs("fz")=0
-'			End If
-'			Response.Write(newxs&"、"&Rs("lsh")&"<br>")
-'			TmpRs.update
-'			TmpRs.close
-			oldxs=0
-			StrSql="select * from [mantime] where lsh='"&TmpRs("lsh")&"' and rwlr='模头设计确认'"
-			Set Rs=Server.CreateObject("adodb.recordset")
-			Rs.open StrSql,conn,1,3
-			If Not Rs.eof Then
-				oldxs=Rs("fz")
-			End If
-			Rs.close
-			StrSql="select * from [mantime] where lsh='"&TmpRs("lsh")&"' and rwlr='定型设计确认'"
-			Set Rs=Server.CreateObject("adodb.recordset")
-			Rs.open StrSql,conn,1,3
-			If Not Rs.eof Then
-				oldxs=Rs("fz")+oldxs
-			End If
-			Rs.close
-			oldxs=Round(oldxs/2,1)
-		n=TmpRs("fz")
-		if TmpRs("fz")<>0 and TmpRs("fz")<>oldxs Then TmpRs("fz")=oldxs
-		TmpRs.update
-		Response.Write(newxs&"、"&TmpRs("lsh")&" ："&n&"---"&oldxs&"---"&TmpRs("fz")&"<br>")
-		TmpRs.movenext
-		newxs=newxs+1
-		Loop
-		TmpRs.close
+		strSql="select * from [mantime] where Instr(rwlr,'调试')=0 and lsh='"&slsh(n)&"'"
+		Call xjweb.exec("",-1)
+		Rs.open strSql,Conn,1,3
+			Do while not Rs.eof
+				Response.write(Rs("lsh")&"---"&Rs("zrr")&"---"&Rs("fz")&"→ ")
+				Rs("fz")=Round(Rs("fz")*newxs/oldxs,1)
+				Rs.update
+				Response.write(Rs("fz")&"<br>")
+				Rs.movenext
+			Loop
+		Rs.close
+	next
 end function
 %>

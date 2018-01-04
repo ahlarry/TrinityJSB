@@ -179,6 +179,9 @@ If strCjia<>"" Then	strSql=" (dwmc like '%"&strCjia&"%' or dmmc like '%"&strCjia
     <th class="th" width="60">共挤名称
       </td>
     </th>
+    <th class="th" width="60">断面名称
+      </td>
+    </th>
     <th class="th" width="40">组长
       </td>
     </th>
@@ -254,7 +257,8 @@ end select
     <td class="ctd" alt="型材壁厚:<%=strbh%>mm&lt;br&gt;理论成型缝隙:<%=strcxfx%>mm&lt;/br&gt;参考平直段长度:"><a href="mtask_display.asp?s_lsh=<%=rs("lsh")%>"><%=rs("lsh")%></a></td>
     <td class="ctd"><%=rs("dwmc")%></td>
     <td class="ctd"><%=Trim(gjxx)%></td>
-    <td class="ctd"><%If rs("zz")<>"" Then Response.Write(rs("zz")) else Response.Write(rs("jgzz")&"(j)、"&rs("sjzz")&"(s)")%>
+    <td class="ctd"><%=rs("dmmc")%></td>    
+    <td class="ctd"><%If rs("zz")<>"" Then Response.Write(rs("zz")) else Response.Write(rs("jgzz"))%>
     </td>
     <%if isnull(rs("sjjssj")) then%>
     <td class="ctd" alt="计划结构完成:<%=Dateadd("h",ijgsj+1,rs("jhkssj"))%><br>整套设计未完成"><%=rs("jhjssj")%></td>
