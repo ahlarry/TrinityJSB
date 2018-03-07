@@ -8,7 +8,7 @@ strPage="mtstat"
 xjweb.header()
 Call TopTable()
 
-Dim isjfz, iaddfz, zcount, idbsh, iksy, iksm, ijsy, ijsm, ikssj, ijssj, struser, idbsj, ilxxl, ilxrw, ygxsRs, ishfz
+Dim isjfz, iaddfz, zcount, idbsh, iksy, iksm, ijsy, ijsm, ikssj, ijssj, struser, idbsj, ilxxl, ilxrw, ygxsRs, ishfz,ibom,itsd,iypj
 
 zcount=1
 iksy = request("ksy")
@@ -97,13 +97,16 @@ Function YgxsDisplay()		'显示列表
 		%>
 <table cellpadding=2 cellspacing=0 class="xtable" width="<%=web_info(8)%>">
   <tr>
-    <th class=th rowspan="2" width="5%">ID</th>
-    <th class=th rowspan="2" width="10%">姓名</th>
+    <th class=th  rowspan="2" width="5%">ID</th>
+    <th class=th rowspan="2" width="8%">姓名</th>
     <th class=th colspan="3" width="25%">模具</th>
-    <th class=th colspan="3" width="25%">技术代表</th>
-    <th class=th rowspan="2" width="12%">零星修理</th>
-    <th class=th rowspan="2" width="12%">零星任务</th>
-    <th class=th rowspan="2">总分</th>
+    <th class=th colspan="3" width="20%">技术代表</th>
+    <th class=th rowspan="2" >修理</th>
+    <th class=th rowspan="2" >BOM</th>
+    <th class=th rowspan="2" >调试单</th>
+    <th class=th  rowspan="2" >其他</th>
+    <th class=th rowspan="2" >总分</th>
+    <th class=th rowspan="2" >月平均</th>
   </tr>
   <tr>
     <th class=th>设计</th>
@@ -144,22 +147,25 @@ Function YgxsDisplay()		'显示列表
     				<td class=ctd ><%=idbsh%></td>
     				<td class=ctd bgcolor="#D6D7EF"><%=idbsj+idbsh%></td>
     				<td class=ctd ><%=ilxxl%></td>
+    				<td class=ctd ><%=ibom%></td>
+    				<td class=ctd ><%=itsd%></td>
     				<td class=ctd ><%=ilxrw%></td>
-    				<td class=ctd bgcolor="#D6D7EF"><%=Round(isjfz+ishfz+idbsj+idbsh+ilxxl+ilxrw,1)%></td>
+    				<td class=ctd bgcolor="#D6D7EF"><%=Round(isjfz+ishfz+idbsj+idbsh+ilxxl+ibom+itsd+ilxrw,1)%></td>
+    				<td class=ctd ><%=Round((isjfz+ishfz+idbsj+idbsh+ilxxl+ibom+itsd+ilxrw)/(datediff("m",ikssj,ijssj)+1),1)%></td>
   			</tr>
 <%
 			zcount = zcount + 1
 		next
 %>
 <TR>
-	<TD class=rtd colspan=12>The End.</TD>
+	<TD class=rtd colspan=14>The End.</TD>
 </TR>
 </Table>
 <%
 End Function
 
 Function YgxsStat()
-		isjfz=0 : ishfz=0 : idbsj=0 : idbsh=0 : ilxxl=0 : ilxrw=0
+		isjfz=0 : ishfz=0 : idbsj=0 : idbsh=0 : ilxxl=0 : ilxrw=0 : ibom=0 : itsd=0 : iypj=0
 		'1--模具设计分值
 		strSql="select * from [mantime] where zrr='"&struser&"' and datediff('d',jssj,'"&ikssj&"')<=0 and datediff('d',jssj,'"&ijssj&"')>=0 and (Right(rwlr,len('结构'))='结构' or Right(rwlr,len('设计'))='设计') "
 		Set Rs=xjweb.Exec(strSql, 1)
@@ -204,8 +210,26 @@ Function YgxsStat()
 			Rs.movenext
 		Loop
 		ilxxl=Round(ilxxl,1)
-		Rs.close
-		'5--零星任务分值
+		Rs.close		
+		'5--BOM分值
+		strSql="select * from [mantime] where zrr='"&struser&"' and datediff('d',jssj,'"&ikssj&"')<=0 and datediff('d',jssj,'"&ijssj&"')>=0 and Right(rwlr,len('BOM'))='BOM' "
+		Set Rs=xjweb.Exec(strSql, 1)
+		Do While Not Rs.eof
+			ibom=Round(ibom+Rs("fz"),1)
+			Rs.movenext
+		Loop
+		ishfz=Round(ishfz,1)
+		Rs.close		
+		'6--调试单分值
+		strSql="select * from [mantime] where zrr='"&struser&"' and datediff('d',jssj,'"&ikssj&"')<=0 and datediff('d',jssj,'"&ijssj&"')>=0 and Right(rwlr,len('调试单'))='调试单' "
+		Set Rs=xjweb.Exec(strSql, 1)
+		Do While Not Rs.eof
+			itsd=Round(itsd+Rs("fz"),1)
+			Rs.movenext
+		Loop
+		ishfz=Round(ishfz,1)
+		Rs.close		
+		'7--其他零星任务分值
 		strSql="select * from [ftask] where zrr='"&struser&"' and datediff('d',jssj,'"&ikssj&"')<=0 and datediff('d',jssj,'"&ijssj&"')>=0 and rwlx='零星任务' "
 		Set Rs=xjweb.Exec(strSql, 1)
 		Do While Not Rs.eof
