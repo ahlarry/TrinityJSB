@@ -96,6 +96,10 @@ Function ZrToZyKpAdd()		'主任 to 组员考评
           <%next%>
         </Select></td>
     </Tr>
+        <Tr>
+      <td class=th width=100>模具流水号</td>
+      <td colspan="2" class=ltd><input type="text" name="kplsh" size=15><font color="#ff8080">*没有可不填</font></td>
+    </Tr>
     <Tr>
       <td class=th width=100>考评项目</td>
       <td class=ltd><Select name="kpinfo" onChange="changexm();">

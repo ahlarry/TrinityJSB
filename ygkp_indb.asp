@@ -32,34 +32,17 @@
 				strSql="Select * from [mtask] where lsh='"&strlsh&"'"
 				Set Rs=xjweb.Exec(strSql,1)
 				If Rs.Eof Or Rs.bof Then Call JsAlert("流水号是不是输错了?请核实一下!","")
-				Dim tempzrr,mtjgshr,dxjgshr,mtsjshr,dxsjshr
-				mtjgr=Rs("mtjgr") : dxjgr=Rs("dxjgr") : mtsjr=Rs("mtsjr") : dxsjr=Rs("dxsjr")
-				mtjgshr=Rs("mtjgshr") : dxjgshr=Rs("dxjgshr") : mtsjshr=Rs("mtsjshr") : dxsjshr=Rs("dxsjshr")
-				tempzrr=Array(mtjgr,dxjgr,mtsjr,dxsjr,mtjgshr,dxjgshr,mtsjshr,dxsjshr)
-				For I = Lbound(tempzrr) to Ubound(tempzrr)
-					strZrr=tempzrr(i)
-					strSql="Select [user_group] from [ims_user] where [user_name]='"&strZrr&"'"
-					Set Rs=xjweb.Exec(strSql,1)
-					If Not(Rs.Eof Or Rs.Bof) Then
-						iGroup=Rs("user_group")
-					Rs.Close
-					iKpUPrice=CSng(strTemp(2))
-					If i>3 Then	iKpUPrice=Round(iKpUPrice/3,2)
-					Call kp_add("主任 → 组员")
-					End If
-				Next
-			else
-				strZrr=Request("kpzrr")
-				If strZrr="" Then Call JsAlert("请选择考评人员!","")
-				strSql="Select [user_group] from [ims_user] where [user_name]='"&strZrr&"'"
-				'response.write strsql
-				Set Rs=xjweb.Exec(strSql,1)
-				If Not(Rs.Eof Or Rs.Bof) Then
-					iGroup=Rs("user_group")
-				End If
-				Rs.Close
-				Call kp_add("主任 → 组员")
 			End If
+			strZrr=Request("kpzrr")
+			If strZrr="" Then Call JsAlert("请选择考评人员!","")
+			strSql="Select [user_group] from [ims_user] where [user_name]='"&strZrr&"'"
+			'response.write strsql
+			Set Rs=xjweb.Exec(strSql,1)
+			If Not(Rs.Eof Or Rs.Bof) Then
+				iGroup=Rs("user_group")
+			End If
+			Rs.Close
+			Call kp_add("主任 → 组员")
 			If strZrr<>"" Then
 				call sendmsg(strZrr, web_info(0), "考核内容:"&strKpItem&"<br>", "您因<b>"&strKpItem&"</b>被考核，详细内容请看考评列表")
 			End If
@@ -457,6 +440,7 @@
 			Rs("kp_uprice")=iKpUPrice
 			Rs("kp_cs")=1		'这是考评次数,系统默认为1
 			Rs("kp_mul")=iKpMul
+			If strlsh<>"" Then Rs("kp_lsh")=strlsh
 			If strBz<>"" Then Rs("kp_bz")=strBz
 			Rs("kp_kpr")=strKpr
 		Rs.Update

@@ -30,7 +30,7 @@ End Sub
 
 Function UpFz()
 	Dim n, slsh, oldxs, newxs,TmpRs,TmpSql
-	slsh="12168,12172" : oldxs=1 : newxs=1.4
+	slsh="12850,12851" : newxs=1.8
 	slsh=split(slsh,",")
 	for n=0 to ubound(slsh)
 		oldxs=1
@@ -40,6 +40,7 @@ Function UpFz()
 		If Not Rs.eof Then
 			oldxs=rs("fzxs")
 			rs("fzxs")=newxs
+			rs("mjzf")=Round(Rs("mjzf")*newxs/oldxs,0)
 		End If
 		Rs.update
 		Rs.close
@@ -48,7 +49,7 @@ Function UpFz()
 		Call xjweb.exec("",-1)
 		Rs.open strSql,Conn,1,3
 			Do while not Rs.eof
-				Response.write(Rs("lsh")&"---"&Rs("zrr")&"---"&Rs("fz")&"¡ú ")
+				Response.write(Rs("lsh")&"---"&Rs("zrr")&"---"&Rs("rwlr")&"---"&Rs("fz")&"¡ú ")
 				Rs("fz")=Round(Rs("fz")*newxs/oldxs,1)
 				Rs.update
 				Response.write(Rs("fz")&"<br>")

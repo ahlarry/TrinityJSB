@@ -65,28 +65,57 @@ End Function
 Function mtest_add(rs)
 %>
 	<%Call TbTopic("添加 <span alt=""流水号"">" &rs("lsh")&"</span> 模具第 "&(tscs+ 1) &" 次调试信息")%>
-	<table class=xtable cellspacing=0 cellpadding=3 width="95%" align="center">
-	<form id=frm_mtestadd name=frm_mtestadd action=mtest_indb.asp?action=add method=post onSubmit='return tscheckinf();'>
-
-	<tr>
-		<th class=rtd height=25 width="20%">项目名称</td>
-		<th class=ctd width="*">项目内容</td>
-	</tr>
+	<table class=xtable cellspacing=0 cellpadding=3  align="center" >
+	<form id=frm_mtestadd name=frm_mtestadd action=mtest_indb.asp?action=add method=post onSubmit='return tscheckinf();'>			
 	<tr>
 		<td class=rtd>调试原因</td>
-		<td class=ltd><textarea name="tsyy" cols="95" rows="7"></textarea></td>
+		<td class=ltd colspan=6><textarea name="tsyy" cols="90" rows="7"></textarea></td>
 	</tr>
-
 	<tr>
 		<td class=rtd>调试内容</td>
-		<td class=ltd><textarea name="tslr" cols="95" rows="7"></textarea></td>
+		<td class=ltd colspan=6><textarea name="tslr" cols="90" rows="7"></textarea></td>
 	</tr>
-	<tr><td class=ctd colspan=2><input type=submit value=" · 添 加 · "></td></tr>
+	<tr>
+		<td class=ctd >挤出机</td>
+		<td class=ctd >螺筒1</td>
+		<td class=ctd >螺筒2</td>
+		<td class=ctd >螺筒3</td>
+		<td class=ctd >螺筒4</td>
+		<td class=ctd >螺筒5</td>
+		<td class=ctd >螺筒6</td>
+	</tr>	
+	<tr>
+		<td class=ctd ><input name="jcj" size=8></td>
+		<td class=ctd ><input name="lt1" size=8></td>
+		<td class=ctd ><input name="lt2" size=8></td>
+		<td class=ctd ><input name="lt3" size=8></td>
+		<td class=ctd ><input name="lt4" size=8></td>
+		<td class=ctd ><input name="lt5" size=8></td>
+		<td class=ctd ><input name="lt6" size=8></td>
+	</tr>	
+	<tr>
+		<td class=ctd >过渡体</td>
+		<td class=ctd >模头温度</td>
+		<td class=ctd >螺杆速度</td>
+		<td class=ctd >加料速度</td>
+		<td class=ctd >扭矩</td>		
+		<td class=ctd >融温</td>
+		<td class=ctd >融压</td>
+	</tr>	
+	<tr>
+		<td class=ctd ><input name="gdt" size=8></td>
+		<td class=ctd ><input name="mtwd" size=8></td>
+		<td class=ctd ><input name="lgsd" size=8></td>
+		<td class=ctd ><input name="jlsd" size=8></td>
+		<td class=ctd ><input name="niuj" size=8></td>		
+		<td class=ctd ><input name="rongw" size=8></td>
+		<td class=ctd ><input name="rongy" size=8></td>
+	</tr>		
+	<tr><td class=ctd colspan=7><input type=submit value=" · 添 加 · "></td></tr>
 	<input type="hidden" name="lsh" value=<%=rs("lsh")%>>
 	<input type="hidden" name="tsps" value=false>
-	</form>
-
-	</table>
+	</form>	
+	</table>	
 <%
 end function		'mtest_add()
 
@@ -97,19 +126,51 @@ Function mtestps_add(rs)
 	<form id=frm_mtestpsadd name=frm_mtestpsadd action=mtest_indb.asp?action=add method=post onSubmit='return tspscheckinf();'>
 
 	<tr>
-		<th class=rtd height=25 width="20%">项目名称</td>
-		<th class=ctd width="*">项目内容</td>
-	</tr>
-	<tr>
 		<td class=rtd>评审内容</td>
-		<td class=ltd><textarea name="tslr" cols="95" rows="7"></textarea></td>
+		<td class=ltd colspan=6><textarea name="tslr" cols="90" rows="7"></textarea></td>
 	</tr>
 
 	<tr>
 		<td class=rtd>评审人</td>
-		<td class=ltd><textarea name="tsyy" cols="95" rows="3"></textarea></td>
+		<td class=ltd colspan=6 ><textarea name="tsyy" cols="90" rows="3"></textarea></td>
 	</tr>
-	<tr><td class=ctd colspan=2><input type=submit value=" · 添 加 · "></td></tr>
+	<tr>
+		<td class=ctd >挤出机</td>
+		<td class=ctd >螺筒1</td>
+		<td class=ctd >螺筒2</td>
+		<td class=ctd >螺筒3</td>
+		<td class=ctd >螺筒4</td>
+		<td class=ctd >螺筒5</td>
+		<td class=ctd >螺筒6</td>
+	</tr>	
+	<tr>
+		<td class=ctd ><input name="jcj" size=8></td>
+		<td class=ctd ><input name="lt1" size=8></td>
+		<td class=ctd ><input name="lt2" size=8></td>
+		<td class=ctd ><input name="lt3" size=8></td>
+		<td class=ctd ><input name="lt4" size=8></td>
+		<td class=ctd ><input name="lt5" size=8></td>
+		<td class=ctd ><input name="lt6" size=8></td>
+	</tr>	
+	<tr>
+		<td class=ctd >过渡体</td>
+		<td class=ctd >模头温度</td>
+		<td class=ctd >螺杆速度</td>
+		<td class=ctd >加料速度</td>
+		<td class=ctd >扭矩</td>		
+		<td class=ctd >融温</td>
+		<td class=ctd >融压</td>
+	</tr>	
+	<tr>
+		<td class=ctd ><input name="gdt" size=8></td>
+		<td class=ctd ><input name="mtwd" size=8></td>
+		<td class=ctd ><input name="lgsd" size=8></td>
+		<td class=ctd ><input name="jlsd" size=8></td>
+		<td class=ctd ><input name="niuj" size=8></td>		
+		<td class=ctd ><input name="rongw" size=8></td>
+		<td class=ctd ><input name="rongy" size=8></td>
+	</tr>			
+	<tr><td class=ctd colspan=7><input type=submit value=" · 添 加 · "></td></tr>
 	<input type="hidden" name="lsh" value=<%=rs("lsh")%>>
 	<input type="hidden" name="tsps" value=true>
 	</form>

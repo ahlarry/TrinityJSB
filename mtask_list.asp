@@ -205,9 +205,9 @@ Function TaskList()
 	End If
 	If strdxjs <> "" Then
 		If strSql <> "" Then
-			strSql = " bz like '%"&strdxjs&"%' and " & strSql
+			strSql = " (bz like '%"&strdxjs&"%' or mtljcc like '%"&strdxjs&"%') and " & strSql
 		Else
-			strSql  = " bz like '%"&strdxjs&"%' "
+			strSql  = " (bz like '%"&strdxjs&"%' or mtljcc like '%"&strdxjs&"%') "
 		End If
 	End If
 

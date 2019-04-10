@@ -165,7 +165,7 @@ Function mtask_finish(rs)
     <tr>
       <td class="ctd">Ω· ¯ ±º‰</td>
       <td class="ctd"><select id="psd" name="psd">
-          <%for i = DateAdd("m", -2, date()) to date()%>
+          <%for i = DateAdd("m", -3, date()) to date()%>
           <%if i = date() then%>
           <option value='<%=i%>' selected="selected"><%=i%></option>
           <%else%>

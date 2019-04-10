@@ -139,8 +139,11 @@ Function mtest_display(lsh)
 		If prs("ps") Then
 	%>
   <tr bgcolor=#dddddd>
-    <td class=ctd width="10%" rowspan="3">第 <b><%=ipscs%></b> 次<br>
-      评审</td>
+    	<%if prs("jcj")<>"" Then%>
+    		<td class=ctd width="10%" rowspan="3">第 <b><%=ipscs%></b> 次<br>评审</td>
+      <%else%>
+    		<td class=ctd width="10%" rowspan="3">第 <b><%=ipscs%></b> 次<br>评审</td>
+	<%End If%>      
     <td class=rtd width="10%">评审内容:</td>
     <td class=ltd width="*"><%=xjweb.htmltocode(prs("tslr"))%></td>
   </tr>
@@ -148,6 +151,12 @@ Function mtest_display(lsh)
     <td class=rtd>评审人:</td>
     <td class=ltd><%=xjweb.htmltocode(prs("tsyy"))%></td>
   </tr>
+  <%if prs("jcj")<>"" Then%>
+  <tr>
+    <td class=rtd>工艺参数:</td>
+    <td class=ltd><%=xjweb.htmltocode(prs("jcj")& "挤出机, 螺筒一:" &prs("lt1")& "°, 螺筒二:" &prs("lt2")& "°, 螺筒三:" &prs("lt3")& "°, 螺筒四:" &prs("lt4")& "°, 螺筒五:" &prs("lt5")& "°, 螺筒六:" &prs("lt6")& "°, 过渡体:" &prs("gdt")& "°, 模头温度:" &prs("mtwd")& "°, 螺杆速度:" &prs("lgsd")& ", 加料速度:" &prs("jlsd")& ", 扭矩:" &prs("niuj")& ", 融温:" &prs("rongw")& ", 融压:" &prs("rongy") )%></td>  
+</tr>
+<%End If%>
   <form action="mtest_indb.asp?action=delete" method=post onsubmit="return confirm('确认删除吗?');">
     <tr bgcolor=#dddddd>
       <td class=rtd colspan="2">签写:<%=prs("tsr")%> 日期:<%=prs("tssj")%>
@@ -166,7 +175,11 @@ Function mtest_display(lsh)
 		Else
 	%>
   <tr>
-    <td class=ctd width="10%" rowspan="3">第 <b><%=itscs%></b> 次</td>
+  	<%if prs("jcj")<>"" Then%>
+  		<td class=ctd width="10%" rowspan="4">第 <b><%=itscs%></b> 次</td>
+  	<%else%>
+  		<td class=ctd width="10%" rowspan="3">第 <b><%=itscs%></b> 次</td>
+  	<%End If%>
     <td class=rtd width="10%">调试原因:</td>
     <td class=ltd width="*"><%=xjweb.htmltocode(prs("tsyy"))%></td>
   </tr>
@@ -174,6 +187,12 @@ Function mtest_display(lsh)
     <td class=rtd>调试内容:</td>
     <td class=ltd><%=xjweb.htmltocode(prs("tslr"))%></td>
   </tr>
+  <%if prs("jcj")<>"" Then%>
+  <tr>
+    <td class=rtd>工艺参数:</td>
+    <td class=ltd><%=xjweb.htmltocode(prs("jcj")& "挤出机, 螺筒一:" &prs("lt1")& "°, 螺筒二:" &prs("lt2")& "°, 螺筒三:" &prs("lt3")& "°, 螺筒四:" &prs("lt4")& "°, 螺筒五:" &prs("lt5")& "°, 螺筒六:" &prs("lt6")& "°, 过渡体:" &prs("gdt")& "°, 模头温度:" &prs("mtwd")& "°, 螺杆速度:" &prs("lgsd")& ", 加料速度:" &prs("jlsd")& ", 扭矩:" &prs("niuj")& ", 融温:" &prs("rongw")& ", 融压:" &prs("rongy") )%></td>  
+</tr>
+<%End If%>
   <form action="mtest_indb.asp?action=delete" method=post onsubmit="return confirm('确认删除吗?');">
     <tr>
       <td class=rtd colspan="2">调试:<%=prs("tsr")%> 日期:<%=prs("tssj")%>

@@ -88,12 +88,12 @@ Function SearchMantime()
         ÔÂ&nbsp;&nbsp;
         <select name="searchuser" onchange='location.href("<%=request.servervariables("script_name")%>?searchy="+this.form.searchy.value+"&searchm="+this.form.searchm.value+"&searchuser="+this.form.searchuser.value);'>
           <option value=""></option>
-          <%If chkable("1,2,3,4") Then%>
+          <%If chkable("1,2,3") Then%>
           <%for i = 0 to ubound(c_allstat)%>
           <option value="<%=c_allstat(i)%>" <%If struser = c_allstat(i) Then%>selected<%end If%>><%=c_allstat(i)%></option>
           <%next%>
           <%Else%>
-          <option value="<%=session("userName")%>"><%=session("userName")%></option>
+          <option value="<%=session("userName")%>" selected><%=session("userName")%></option>
           <%end If%>
         </select>
         &nbsp;
