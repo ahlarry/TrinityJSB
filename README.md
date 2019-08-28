@@ -1,4 +1,0 @@
-TrinityJSB
-==========
-
-TrinityJSB

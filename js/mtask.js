@@ -85,10 +85,6 @@ function checkinf()
 	if (objdm.rdogg.value==""){alert("热电偶规格不能为空!"); objdm.rdogg.focus(); return false;}
 	if (objdm.mjcl.value==""){alert("模具材料不能为空!"); objdm.mjcl.focus(); return false;}
 	if (objdm.mjzf.value==0){alert("模具分值不能 0 !"); objdm.ckdm.focus(); return false;}
-	if (objdm.mtbl.value==""){alert("模头比例不能空!"); objdm.mtbl.focus(); return false;}
-	if (objdm.dxbl.value==""){alert("定型比例不能空 !"); objdm.dxbl.focus(); return false;}
-	if (objdm.mtjgbl.value==""){alert("模头结构比例不能空 !"); objdm.mtjgbl.focus(); return false;}
-	if (objdm.dxjgbl.value==""){alert("定型结构比例不能空 !"); objdm.dxjgbl.focus(); return false;}
 	if (objdm.fzxs.value==0){alert("复杂系数不能 0 !"); objdm.fzxs.focus(); return false;}
 	if (objdm.tsdzf.value==0){alert("更改添加任务书时需重新选择分值 !"); objdm.ckdm.focus(); return false;}
 	if (objdm.qysd.value==""){alert("牵引速度不能为空!"); objdm.qysd.focus(); return false;}

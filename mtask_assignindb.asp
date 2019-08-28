@@ -168,30 +168,30 @@
 				call taskstart(strlsh, "定型审核", strzrr, now())
 			end if
 
-'		case "全套工艺设计"
-'			strSql="update [mtask] set mtgysjr='"&strzrr&"', mtgysjks='"&now()&"', mtgysjjs='"&now()&"', dxgysjr='"&strzrr&"', dxgysjks='"&now()&"', dxgysjjs='"&now()&"', gjgysjr='"&strzrr&"', gjgysjks='"&now()&"', gjgysjjs='"&now()&"' where lsh='"&strlsh&"'"
-'			call xjweb.Exec(strSql, 0)
-'		case "模头工艺设计"
-'			strSql="update [mtask] set  mtgysjr='"&strzrr&"', mtgysjks='"&now()&"', mtgysjjs='"&now()&"' where lsh='"&strlsh&"'"
-'			call xjweb.Exec(strSql, 0)
-'		case "定型工艺设计"
-'			strSql="update [mtask] set dxgysjr='"&strzrr&"', dxgysjks='"&now()&"', dxgysjjs='"&now()&"' where lsh='"&strlsh&"'"
-'			call xjweb.Exec(strSql, 0)
-'		case "共挤工艺设计"
-'			strSql="update [mtask] set gjgysjr='"&strzrr&"', gjgysjks='"&now()&"', gjgysjjs='"&now()&"' where lsh='"&strlsh&"'"
-'			call xjweb.Exec(strSql, 0)
-'		case "全套工艺审核"
-'			strSql="update [mtask] set mtgyshr='"&strzrr&"', mtgyshks='"&now()&"', mtgyshjs='"&now()&"', dxgyshr='"&strzrr&"', dxgyshks='"&now()&"', dxgyshjs='"&now()&"', gjgyshr='"&strzrr&"', gjgyshks='"&now()&"', gjgyshjs='"&now()&"' where lsh='"&strlsh&"'"
-'			call xjweb.Exec(strSql, 0)
-'		case "模头工艺审核"
-'			strSql="update [mtask] set mtgyshr='"&strzrr&"', mtgyshks='"&now()&"', mtgyshjs='"&now()&"' where lsh='"&strlsh&"'"
-'			call xjweb.Exec(strSql, 0)
-'		case "定型工艺审核"
-'			strSql="update [mtask] set dxgyshr='"&strzrr&"', dxgyshks='"&now()&"', dxgyshjs='"&now()&"' where lsh='"&strlsh&"'"
-'			call xjweb.Exec(strSql, 0)
-'		case "共挤工艺审核"
-'			strSql="update [mtask] set gjgyshr='"&strzrr&"', gjgyshks='"&now()&"', gjgyshjs='"&now()&"' where lsh='"&strlsh&"'"
-'			call xjweb.Exec(strSql, 0)
+		case "全套工艺设计"
+			strSql="update [mtask] set mtgysjr='"&strzrr&"', mtgysjks='"&now()&"', mtgysjjs='"&now()&"', dxgysjr='"&strzrr&"', dxgysjks='"&now()&"', dxgysjjs='"&now()&"', gjgysjr='"&strzrr&"', gjgysjks='"&now()&"', gjgysjjs='"&now()&"' where lsh='"&strlsh&"'"
+			call xjweb.Exec(strSql, 0)
+		case "模头工艺设计"
+			strSql="update [mtask] set  mtgysjr='"&strzrr&"', mtgysjks='"&now()&"', mtgysjjs='"&now()&"' where lsh='"&strlsh&"'"
+			call xjweb.Exec(strSql, 0)
+		case "定型工艺设计"
+			strSql="update [mtask] set dxgysjr='"&strzrr&"', dxgysjks='"&now()&"', dxgysjjs='"&now()&"' where lsh='"&strlsh&"'"
+			call xjweb.Exec(strSql, 0)
+		case "共挤工艺设计"
+			strSql="update [mtask] set gjgysjr='"&strzrr&"', gjgysjks='"&now()&"', gjgysjjs='"&now()&"' where lsh='"&strlsh&"'"
+			call xjweb.Exec(strSql, 0)
+		case "全套工艺审核"
+			strSql="update [mtask] set mtgyshr='"&strzrr&"', mtgyshks='"&now()&"', mtgyshjs='"&now()&"', dxgyshr='"&strzrr&"', dxgyshks='"&now()&"', dxgyshjs='"&now()&"', gjgyshr='"&strzrr&"', gjgyshks='"&now()&"', gjgyshjs='"&now()&"' where lsh='"&strlsh&"'"
+			call xjweb.Exec(strSql, 0)
+		case "模头工艺审核"
+			strSql="update [mtask] set mtgyshr='"&strzrr&"', mtgyshks='"&now()&"', mtgyshjs='"&now()&"' where lsh='"&strlsh&"'"
+			call xjweb.Exec(strSql, 0)
+		case "定型工艺审核"
+			strSql="update [mtask] set dxgyshr='"&strzrr&"', dxgyshks='"&now()&"', dxgyshjs='"&now()&"' where lsh='"&strlsh&"'"
+			call xjweb.Exec(strSql, 0)
+		case "共挤工艺审核"
+			strSql="update [mtask] set gjgyshr='"&strzrr&"', gjgyshks='"&now()&"', gjgyshjs='"&now()&"' where lsh='"&strlsh&"'"
+			call xjweb.Exec(strSql, 0)
 
 		case "开始模头BOM"
 			strSql="update [mtask] set mtbomr='"&strzrr&"', mtbomks='"&now()&"' where lsh='"&strlsh&"'"
@@ -1294,7 +1294,7 @@ function jsdbfz(hth,khmc,rwnr,fz,jhsj,sjr,sjjs,shr,shjs)
 			rs("zrr")=sjr
 			rs("xz")=iGroup
 			rs("zf")=fz
-			rs("jssj")=sjjs
+			rs("jssj")=shjs
 			rs("lzr")=session("userName")
 			rs("lzrq")=now()
 		rs.update

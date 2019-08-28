@@ -1,4 +1,41 @@
+<!--#include file="include/conn.asp"-->
 <%
+CurPage="断面图和投影图"					'页面的名称位置( 任务书管理 → 添加任务书)
+strPage=""
+xjweb.header()
+Call TopTable()
+Dim strFeedBack, strOrder, strO, strlsh
+strOrder=Trim(Request("order"))
+strFeedBack="&order="&strOrder
+%>
+<Table class=xtable cellspacing=0 cellpadding=0 width="<%=web_info(8)%>">
+<form name="form1" method="post" action="<% =Request.ServerVariables("PATH_INFO")%>">
+请输入模具流水号:
+<input name="keyword" type="text" id="keyword">
+<input type="submit" name="Submit" value="搜索">
+</form>
+</Table>
+<%
+Dim newsearch, s_lsh, action, keyword
+keyword=""
+s_lsh=Trim(Request("s_lsh"))
+If s_lsh<>"" Then
+	keyword=s_lsh
+Else
+	keyword=Request.Form("keyword")
+End If
+if keyword<>"" then
+Set newsearch=new SearchFile
+'newsearch.Folders=Server.mappath("dmtj")
+newsearch.Folders="G:\设计参考\断面图集+F:\模具图档\模具修理" '是绝对路径
+'newsearch.Folders="D:\模具图\+G:\迅雷下载" '是绝对路径
+newsearch.keyword=keyword
+newsearch.Search
+Set newsearch=Nothing
+end if
+Call BottomTable()
+xjweb.footer()
+closeObj()
 '*************Set newsearch=new SearchFile '声明 *************
 '*************newsearch.Folder="F:+E:"'传入搜索源*************
 '*************newsearch.keyword="汇编" '关键词*************
@@ -22,10 +59,11 @@ Set objFso=Nothing
 End Sub
 '**************公有成员,调用的方法***************************
 Function Search
+dim flag
 Folders=split(Folders,"+") '转化为数组
 keyword=trim(keyword) '去掉前后空格
 if keyword="" then
-Response.Write("<font color='red'>关键字不能为空</font><br/>")
+Call JsAlert("关键字不能为空","")
 exit Function
 end if
 '判断是否包含非法字符
@@ -34,7 +72,7 @@ flag=flag or instr(keyword,":")
 flag=flag or instr(keyword,"|")
 flag=flag or instr(keyword,"&")
 if flag then '关键字中不能包含\/:|&
-Response.Write("<font color='red'>关键字不能包含/\:|&</font><br/>")
+Call JsAlert("关键字不能包含/\:|&","")
 Exit Function '如果包含有这个则退出
 end if
 '多路径搜索
@@ -42,7 +80,6 @@ dim i
 for i=0 to ubound(Folders)
 Call GetAllFile(Folders(i)) '调用循环递归函数
 next
-Response.Write("共搜索到<font color='red'>"&Counter&"</font>个结果")
 End Function
 '***************历遍文件和文件夹******************************
 Private Function GetAllFile(Folder)
@@ -50,9 +87,8 @@ dim objFd,objFs,objFf
 Set objFd=objFso.GetFolder(Folder)
 Set objFs=objFd.SubFolders
 Set objFf=objFd.Files
-'历遍子文件夹
-dim strFdName '声明子文件夹名
 '*********历遍子文件夹******
+dim OneDir,SFN,strFdName  '声明子文件夹名
 on error resume next
 For Each OneDir In objFs
 strFdName=OneDir.Name
@@ -62,8 +98,8 @@ SFN=Folder&"\"&strFdName '绝对路径
 Call GetAllFile(SFN) '调用递归
 End If
 Next
-dim strFlName
 '**********历遍文件********
+dim strFlName,OneFile,FN
 For Each OneFile In objFf
 strFlName=OneFile.Name
 'desktop.ini和folder.htt隐藏的系统文件不在列取范围
@@ -95,67 +131,27 @@ CreatePattern="("&CreatePattern&")+" '整体匹配
 End Function
 '***************************搜索完全匹配的文件名*********************
 Private Function ColorOn(FileName)
-Dim objReg
+Dim objReg,objJpg,OutPut
+'Response.Write("---"&FileName&"<p>")'=======调试输出======
 objReg=Right(FileName,(Len(FileName)-InStrRev(FileName,"\")))
-If STRCOMP(objReg,keyword,1)=0 Then
+objJpg=Right(FileName,(Len(FileName)-InStrRev(FileName,".")))
+If STRCOMP(objReg,keyword&".dwg",1)=0 Then
 FileName="\\sj901"& Mid(FileName,InStr(FileName,"\"))
 OutPut="<a href="&FileName&">"&FileName&"</a><br/>"
-'OutPut="<a href='#'>"&FileName&"</a><br/>"
-'Response.Write(objFd&"<p>")
-Response.Write(OutPut&"<p>") '输出匹配的结果
-''**************************搜索并使关键字上色*************************
-'Private Function ColorOn(FileName)
-'dim objReg
-'Set objReg=new RegExp
-'objReg.Pattern=CreatePattern(keyword)
-'objReg.IgnoreCase=True
-'objReg.Global=True
-'retVal=objReg.Test(FileName) '进行搜索测试,如果通过则上色并输出
-'if retVal then
-'OutPut=objReg.Replace(FileName,"<font color='#FF0000'>$1</font>") '设置关键字的显示颜色
-''***************************该部分可以根据需要修改输出************************************
-'OutPut="<a href='#'>"&OutPut&"</a><br/>"
-'Response.Write(OutPut&"<p>") '输出匹配的结果
-'Response.Write(keyword&"<p>")
-'Response.Write(FileName&"☆<p>")
-'*************************************可修改部分结束**************************************
+Response.Write("<p>"&OutPut&"<p>") '输出匹配的结果
 ColorOn=1 '加入计数器的数目
-else
+else if objJpg="jpg" and Instr(FileName,keyword)>0 Then
+FileName="\\sj901"& Mid(FileName,InStr(FileName,"\"))
+'OutPut="<a href="&FileName&">"&FileName&"</a><br/>"
+OutPut="<img src=file:\\"&FileName&"  onload='javascript:if(this.width>("&web_info(8)&"-10)) this.width=("&web_info(8)&"-10);' border='0'></img>"
+Response.Write("<p>"&OutPut&"<p>"&objReg&"<p>==========<p>") '输出匹配的结果
+ColorOn=1 '加入计数器的数目
+End If
 ColorOn=0
 end if
 Set objReg=Nothing
+Set objJpg=Nothing
 End Function
 End Class
 '************************结束类SearchFile**********************
 %>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
-<title>模具断面图搜索</title>
-</head>
-<body>
-<form name="form1" method="post" action="<% =Request.ServerVariables("PATH_INFO")%>">
-请输入模具流水号:
-<input name="keyword" type="text" id="keyword">
-<input type="submit" name="Submit" value="搜索">
-</form>
-<%
-Dim s_lsh, action
-s_lsh=Trim(Request("s_lsh"))
-If s_lsh<>"" Then
-	keyword=s_lsh &".dwg"
-Else
-	keyword=Request.Form("keyword") &".dwg"
-End If
-if keyword<>"" then
-Set newsearch=new SearchFile
-'newsearch.Folders=Server.mappath("dmtj")
-newsearch.Folders="G:\设计参考\断面图集" '是绝对路径
-newsearch.keyword=keyword
-newsearch.Search
-Set newsearch=Nothing
-response.Write("<br/>费时："&(timer()-st)*1000&"毫秒")
-end if
-%>
-</body>
-</html>

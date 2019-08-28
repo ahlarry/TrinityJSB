@@ -231,7 +231,9 @@ end select
     <td class="rtd">组长</td>
     <td colspan="3" class="ltd"><%If rs("zz")<>"" Then Response.Write(rs("zz")) else Response.Write(rs("jgzz")&"(结构)、"&rs("sjzz")&"(设计)")%></td>
     <td class="rtd">技术代表</td>
-    <td colspan="3" class="ltd"><%=rs("jsdb")%></td>
+    <td class="ltd"><%=rs("jsdb")%></td>
+    <td class="rtd">复审人</td>
+    <td class="ltd"><%=rs("fsr")%></td>
   </tr>
 </table>
 <% End Function
@@ -341,6 +343,8 @@ Function mtask_allinfo(rs)
     <td colspan="3" class="ltd"><%If rs("zz")<>"" Then Response.Write(rs("zz")) else Response.Write(rs("jgzz")&"(结构)、"&rs("sjzz")&"(设计)")%></td>
     <td class="rtd">技术代表</td>
     <td class="ltd"><%=rs("jsdb")%></td>
+    <td class="rtd">复审人</td>
+    <td class="ltd"><%=rs("fsr")%></td>
   </tr>
 </table>
 <%Response.Write(XjLine(5,web_info(8),""))%>
